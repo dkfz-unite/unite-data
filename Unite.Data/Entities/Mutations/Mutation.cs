@@ -8,14 +8,14 @@ namespace Unite.Data.Entities.Mutations
     {
         public int Id { get; set; }
         public string ReferenceId { get; set; }
-        public string Code { get; set; }
         public int? GeneId { get; set; }
         public Chromosome? ChromosomeId { get; set; }
         public int? ContigId { get; set; }
         public SequenceType SequenceTypeId { get; set; }
         public int Position { get; set; }
         public MutationType TypeId { get; set; }
-        public string Value { get; set; }
+        public string ReferenceAllele { get; set; }
+        public string AlternateAllele { get; set; }
 
         public virtual Gene Gene { get; set; }
         public virtual Contig Contig { get; set; }

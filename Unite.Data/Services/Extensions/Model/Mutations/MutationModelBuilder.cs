@@ -15,16 +15,6 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
                 entity.HasKey(mutation => mutation.Id);
 
-                entity.HasAlternateKey(mutation => new
-                {
-                    mutation.ChromosomeId,
-                    mutation.ContigId,
-                    mutation.SequenceTypeId,
-                    mutation.Position,
-                    mutation.ReferenceAllele,
-                    mutation.AlternateAllele
-                });
-
                 entity.Property(mutation => mutation.Id)
                       .ValueGeneratedOnAdd();
 

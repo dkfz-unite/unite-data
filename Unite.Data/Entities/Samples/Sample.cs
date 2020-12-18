@@ -14,6 +14,8 @@ namespace Unite.Data.Entities.Samples
         public string Link { get; set; }
         public SampleType? TypeId { get; set; }
         public SampleSubtype? SubtypeId { get; set; }
+        public string Format { get; set; }
+        public string Data { get; set; }
 
         public virtual Donor Donor { get; set; }
         public virtual CellLine CellLine { get; set; }

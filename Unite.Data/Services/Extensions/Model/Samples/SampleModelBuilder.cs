@@ -34,6 +34,12 @@ namespace Unite.Data.Services.Extensions.Model.Samples
                 entity.Property(sample => sample.SubtypeId)
                       .HasConversion<int>();
 
+                entity.Property(sample => sample.Format)
+                      .HasMaxLength(100);
+
+                entity.Property(sample => sample.Data)
+                      .HasMaxLength(100);
+
 
                 entity.HasOne<EnumValue<SampleType>>()
                       .WithMany()

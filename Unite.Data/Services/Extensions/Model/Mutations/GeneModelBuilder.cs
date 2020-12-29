@@ -13,6 +13,8 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
                 entity.HasKey(gene => gene.Id);
 
+                entity.HasAlternateKey(gene => gene.Name);
+
                 entity.Property(gene => gene.Id)
                       .IsRequired()
                       .ValueGeneratedOnAdd();
@@ -20,10 +22,6 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                 entity.Property(gene => gene.Name)
                       .IsRequired()
                       .HasMaxLength(100);
-
-
-                entity.HasIndex(gene => gene.Name)
-                      .IsUnique();
             });
         }
     }

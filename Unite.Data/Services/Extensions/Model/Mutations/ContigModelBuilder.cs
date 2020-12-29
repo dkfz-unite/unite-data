@@ -13,17 +13,15 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
                 entity.HasKey(contig => contig.Id);
 
+                entity.HasAlternateKey(contig => contig.Value);
+
                 entity.Property(contig => contig.Id)
                       .IsRequired()
                       .ValueGeneratedOnAdd();
 
                 entity.Property(contig => contig.Value)
                       .IsRequired()
-                      .HasMaxLength(500);
-
-
-                entity.HasIndex(contig => contig.Value)
-                      .IsUnique();
+                      .HasMaxLength(50);
             });
         }
     }

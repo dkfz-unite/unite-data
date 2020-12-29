@@ -15,11 +15,18 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
                 entity.HasKey(mutation => mutation.Id);
 
+                entity.HasAlternateKey(mutation => mutation.Code);
+
                 entity.Property(mutation => mutation.Id)
+                      .IsRequired()
                       .ValueGeneratedOnAdd();
 
-                entity.Property(mutation => mutation.ReferenceId)
-                      .HasMaxLength(100);
+                entity.Property(mutation => mutation.Code)
+                      .IsRequired()
+                      .HasMaxLength(500);
+
+                entity.Property(mutation => mutation.Name)
+                      .HasMaxLength(50);
 
                 entity.Property(mutation => mutation.ChromosomeId)
                       .HasConversion<int>();
@@ -35,10 +42,10 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .HasConversion<int>();
 
                 entity.Property(mutation => mutation.ReferenceAllele)
-                      .HasMaxLength(500);
+                      .HasMaxLength(200);
 
                 entity.Property(mutation => mutation.AlternateAllele)
-                      .HasMaxLength(500);
+                      .HasMaxLength(200);
 
 
                 entity.HasOne<EnumValue<Chromosome>>()

@@ -8,7 +8,8 @@ namespace Unite.Data.Entities.Mutations
     public class Mutation
     {
         public int Id { get; set; }
-        public string ReferenceId { get; set; }
+        public string Code { get; set; }
+        public string Name { get; set; }
         public int? GeneId { get; set; }
         public Chromosome? ChromosomeId { get; set; }
         public int? ContigId { get; set; }
@@ -18,7 +19,6 @@ namespace Unite.Data.Entities.Mutations
         public string ReferenceAllele { get; set; }
         public string AlternateAllele { get; set; }
 
-        public string Code => GetCode();
 
         public virtual Gene Gene { get; set; }
         public virtual Contig Contig { get; set; }
@@ -26,25 +26,25 @@ namespace Unite.Data.Entities.Mutations
         public virtual ICollection<SampleMutation> MutationSamples { get; set; }
 
 
-        private string GetCode()
+        public string GetCode()
         {
-            var chr = ChromosomeId != null
-                    ? ChromosomeId.ToDefinitionString()
-                    : Contig.Value;
+            var strand = ChromosomeId != null
+                       ? $"chr{ChromosomeId.ToDefinitionString()}"
+                       : Contig.Value;
 
-            var seq = SequenceTypeId.ToDefinitionString();
+            var sequenceType = SequenceTypeId.ToDefinitionString();
 
-            var pos = Position.ToString();
+            var position = Position.ToString();
 
-            var refA = !string.IsNullOrEmpty(ReferenceAllele)
-                     ? ReferenceAllele
-                     : "-";
+            var referenceAllele = !string.IsNullOrEmpty(ReferenceAllele)
+                                ? ReferenceAllele
+                                : "-";
 
-            var altA = !string.IsNullOrEmpty(AlternateAllele)
-                     ? AlternateAllele
-                     : "-";
+            var alternateAllele = !string.IsNullOrEmpty(AlternateAllele)
+                                ? AlternateAllele
+                                : "-";
 
-            return $"chr{chr}:{seq}.{pos}{refA}>{altA}";
+            return $"{strand}:{sequenceType}.{position}{referenceAllele}>{alternateAllele}";
         }
     }
 }

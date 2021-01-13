@@ -21,12 +21,9 @@ namespace Unite.Data.Services.Extensions.Model.Samples
                       .IsRequired()
                       .ValueGeneratedNever();
 
-                entity.Property(sample => sample.Quality)
-                      .HasMaxLength(100);
-
-                entity.Property(sample => sample.Filter)
-                      .HasMaxLength(100);
-
+                entity.HasOne(sampleMutation => sampleMutation.VcfData)
+                      .WithOne()
+                      .HasForeignKey<SampleMutation>(sampleMutation => sampleMutation.VcfDataId);
 
                 entity.HasOne(sampleMutation => sampleMutation.Sample)
                       .WithMany(sample => sample.SampleMutations)

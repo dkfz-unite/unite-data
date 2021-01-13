@@ -105,6 +105,7 @@ namespace Unite.Data.Services
 
             modelBuilder.BuildSampleModel();
             modelBuilder.BuildSampleMutationModel();
+            modelBuilder.BuildVcfDataModel();
 
             // Studies
             modelBuilder.BuildStudyModel();

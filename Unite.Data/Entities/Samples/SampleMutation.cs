@@ -6,10 +6,9 @@ namespace Unite.Data.Entities.Samples
     {
         public int SampleId { get; set; }
         public int MutationId { get; set; }
-        public string Quality { get; set; }
-        public string Filter { get; set; }
-        public string Info { get; set; }
+        public int? VcfDataId { get; set; }
 
+        public virtual VcfData VcfData { get; set; }
         public virtual Sample Sample { get; set; }
         public virtual Mutation Mutation { get; set; }
     }

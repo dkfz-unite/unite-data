@@ -2,7 +2,9 @@
 {
     public class VcfData
     {
-        public int Id { get; set; }
+        public int SampleId { get; set; }
+        public int MutationId { get; set; }
+
         public string Quality { get; set; }
         public string Filter { get; set; }
         public string Info { get; set; }

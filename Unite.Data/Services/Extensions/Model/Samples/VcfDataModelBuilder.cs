@@ -11,11 +11,15 @@ namespace Unite.Data.Services.Extensions.Model.Samples
             {
                 entity.ToTable("VcfData");
 
-                entity.HasKey(vcfData => vcfData.Id);
+                entity.HasKey(vcfData => new { vcfData.SampleId, vcfData.MutationId });
 
-                entity.Property(vcfData => vcfData.Id)
+                entity.Property(vcfData => vcfData.SampleId)
                       .IsRequired()
-                      .ValueGeneratedOnAdd();
+                      .ValueGeneratedNever();
+
+                entity.Property(vcfData => vcfData.MutationId)
+                      .IsRequired()
+                      .ValueGeneratedNever();
 
                 entity.Property(vcfData => vcfData.Quality)
                       .HasMaxLength(50);
@@ -31,6 +35,11 @@ namespace Unite.Data.Services.Extensions.Model.Samples
 
                 entity.Property(vcfData => vcfData.SampleInfo)
                       .HasMaxLength(500);
+
+
+                entity.HasOne<SampleMutation>()
+                      .WithOne(sampleMutation => sampleMutation.VcfData)
+                      .HasForeignKey<VcfData>(vcfData => new { vcfData.SampleId, vcfData.MutationId });
             });
         }
     }

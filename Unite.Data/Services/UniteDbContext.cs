@@ -38,6 +38,7 @@ namespace Unite.Data.Services
         public DbSet<CellLineInfo> CellLineInfos { get; set; }
 
         public DbSet<Sample> Samples { get; set; }
+        public DbSet<VcfData> VcfData { get; set; }
         public DbSet<SampleMutation> SampleMutations { get; set; }
 
         public DbSet<Study> Studies { get; set; }

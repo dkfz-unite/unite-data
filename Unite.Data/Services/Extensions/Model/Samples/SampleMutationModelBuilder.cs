@@ -13,17 +13,14 @@ namespace Unite.Data.Services.Extensions.Model.Samples
 
                 entity.HasKey(sampleMutation => new { sampleMutation.SampleId, sampleMutation.MutationId });
 
-                entity.Property(sample => sample.SampleId)
+                entity.Property(sampleMutation => sampleMutation.SampleId)
                       .IsRequired()
                       .ValueGeneratedNever();
 
-                entity.Property(sample => sample.MutationId)
+                entity.Property(sampleMutation => sampleMutation.MutationId)
                       .IsRequired()
                       .ValueGeneratedNever();
 
-                entity.HasOne(sampleMutation => sampleMutation.VcfData)
-                      .WithOne()
-                      .HasForeignKey<SampleMutation>(sampleMutation => sampleMutation.VcfDataId);
 
                 entity.HasOne(sampleMutation => sampleMutation.Sample)
                       .WithMany(sample => sample.SampleMutations)

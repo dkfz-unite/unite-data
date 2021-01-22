@@ -27,7 +27,7 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .HasForeignKey(matchedSample => matchedSample.AnalysedSampleId);
 
                 entity.HasOne(matchedSample => matchedSample.Matched)
-                      .WithMany(analysedSample => analysedSample.MatchedSamples)
+                      .WithMany()
                       .HasForeignKey(matchedSample => matchedSample.MatchedSampleId);
             });
         }

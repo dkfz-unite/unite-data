@@ -24,8 +24,7 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .HasConversion<int>();
 
                 entity.Property(analysis => analysis.Date)
-                      .IsRequired()
-                      .HasDefaultValue(DateTime.UtcNow);
+                      .IsRequired();
 
 
                 entity.HasOne<EnumValue<AnalysisType>>()

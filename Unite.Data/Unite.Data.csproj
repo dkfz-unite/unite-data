@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <ReleaseVersion>1.0.9</ReleaseVersion>
-    <Version>1.0.9</Version>
+    <ReleaseVersion>1.1.0</ReleaseVersion>
+    <Version>1.1.0</Version>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
     <Authors>Valiantsin Ulasau (DKFZ)</Authors>
@@ -16,9 +16,10 @@
     <Folder Include="Entities\Donors\" />
     <Folder Include="Entities\Extensions\" />
     <Folder Include="Entities\Mutations\" />
-    <Folder Include="Entities\Samples\" />
     <Folder Include="Entities\Tasks\" />
     <Folder Include="Services\" />
+    <Folder Include="Entities\Xenografts\" />
+    <Folder Include="Entities\Xenografts\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />

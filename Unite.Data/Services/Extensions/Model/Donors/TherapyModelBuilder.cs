@@ -13,6 +13,8 @@ namespace Unite.Data.Services.Extensions.Model.Donors
 
                 entity.HasKey(therapy => therapy.Id);
 
+                entity.HasAlternateKey(therapy => therapy.Name);
+
                 entity.Property(therapy => therapy.Id)
                       .IsRequired()
                       .ValueGeneratedOnAdd();
@@ -20,10 +22,6 @@ namespace Unite.Data.Services.Extensions.Model.Donors
                 entity.Property(therapy => therapy.Name)
                       .IsRequired()
                       .HasMaxLength(100);
-
-
-                entity.HasIndex(therapy => therapy.Name)
-                      .IsUnique();
             });
         }
     }

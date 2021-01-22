@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Unite.Data.Entities;
+using Unite.Data.Entities.Donors;
 
-namespace Unite.Data.Services.Extensions.Model
+namespace Unite.Data.Services.Extensions.Model.Donors
 {
     public static class StudyDonorModelBuilder
     {

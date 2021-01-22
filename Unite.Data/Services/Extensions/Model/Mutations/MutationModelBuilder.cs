@@ -39,12 +39,13 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .HasConversion<int>();
 
                 entity.Property(mutation => mutation.TypeId)
+                      .IsRequired()
                       .HasConversion<int>();
 
-                entity.Property(mutation => mutation.ReferenceAllele)
+                entity.Property(mutation => mutation.ReferenceBase)
                       .HasMaxLength(200);
 
-                entity.Property(mutation => mutation.AlternateAllele)
+                entity.Property(mutation => mutation.AlternateBase)
                       .HasMaxLength(200);
 
 
@@ -68,6 +69,7 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                 entity.HasOne(mutation => mutation.Contig)
                       .WithMany()
                       .HasForeignKey(mutation => mutation.ContigId);
+
             });
         }
     }

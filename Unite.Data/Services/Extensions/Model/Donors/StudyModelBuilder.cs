@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Unite.Data.Entities;
+using Unite.Data.Entities.Donors;
 
-namespace Unite.Data.Services.Extensions.Model
+namespace Unite.Data.Services.Extensions.Model.Donors
 {
     public static class StudyModelBuilder
     {
@@ -13,6 +13,8 @@ namespace Unite.Data.Services.Extensions.Model
 
                 entity.HasKey(study => study.Id);
 
+                entity.HasAlternateKey(study => study.Name);
+
                 entity.Property(study => study.Id)
                       .IsRequired()
                       .ValueGeneratedOnAdd();
@@ -20,10 +22,6 @@ namespace Unite.Data.Services.Extensions.Model
                 entity.Property(study => study.Name)
                       .IsRequired()
                       .HasMaxLength(100);
-
-
-                entity.HasIndex(study => study.Name)
-                      .IsUnique();
             });
         }
     }

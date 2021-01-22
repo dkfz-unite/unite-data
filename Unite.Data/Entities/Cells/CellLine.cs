@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Unite.Data.Entities.Cells.Enums;
 using Unite.Data.Entities.Donors;
-using Unite.Data.Entities.Samples;
+using Unite.Data.Entities.Mutations;
 
 namespace Unite.Data.Entities.Cells
 {

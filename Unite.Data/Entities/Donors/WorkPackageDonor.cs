@@ -1,6 +1,4 @@
-﻿using Unite.Data.Entities.Donors;
-
-namespace Unite.Data.Entities
+﻿namespace Unite.Data.Entities.Donors
 {
     public class WorkPackageDonor
     {

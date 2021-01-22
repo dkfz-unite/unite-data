@@ -18,7 +18,8 @@ namespace Unite.Data.Services.Extensions.Model.Tasks
                       .ValueGeneratedOnAdd();
 
                 entity.Property(task => task.MutationId)
-                      .IsRequired();
+                      .IsRequired()
+                      .ValueGeneratedNever();
 
                 entity.Property(task => task.Date)
                       .IsRequired();
@@ -26,8 +27,7 @@ namespace Unite.Data.Services.Extensions.Model.Tasks
 
                 entity.HasOne(task => task.Mutation)
                       .WithMany()
-                      .HasForeignKey(task => task.MutationId)
-                      .IsRequired();
+                      .HasForeignKey(task => task.MutationId);
             });
         }
     }

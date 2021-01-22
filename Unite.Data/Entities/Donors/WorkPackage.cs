@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Unite.Data.Entities
+namespace Unite.Data.Entities.Donors
 {
     public class WorkPackage
     {

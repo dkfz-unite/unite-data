@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Unite.Data.Entities.Samples;
-using Unite.Data.Entities.Samples.Enums;
+using Unite.Data.Entities.Mutations;
+using Unite.Data.Entities.Mutations.Enums;
 using Unite.Data.Services.Entities;
 
-namespace Unite.Data.Services.Extensions.Model.Samples
+namespace Unite.Data.Services.Extensions.Model.Mutations
 {
     public static class SampleModelBuilder
     {
@@ -25,9 +25,6 @@ namespace Unite.Data.Services.Extensions.Model.Samples
                 entity.Property(sample => sample.Name)
                       .HasMaxLength(500);
 
-                entity.Property(sample => sample.Link)
-                      .HasMaxLength(500);
-
                 entity.Property(sample => sample.TypeId)
                       .HasConversion<int>();
 
@@ -47,10 +44,6 @@ namespace Unite.Data.Services.Extensions.Model.Samples
                 entity.HasOne(sample => sample.Donor)
                       .WithMany(donor => donor.Samples)
                       .HasForeignKey(sample => sample.DonorId);
-
-                entity.HasOne(sample => sample.CellLine)
-                      .WithMany(cellLine => cellLine.Samples)
-                      .HasForeignKey(sample => sample.CellLineId);
             });
         }
     }

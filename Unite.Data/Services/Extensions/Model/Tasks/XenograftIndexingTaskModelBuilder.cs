@@ -3,13 +3,13 @@ using Unite.Data.Entities.Tasks;
 
 namespace Unite.Data.Services.Extensions.Model.Tasks
 {
-    public static class DonorIndexingTaskModelBuilder
+    public static class XenograftIndexingTaskModelBuilder
     {
-        public static void BuildDonorIndexingTaskModel(this ModelBuilder modelBuilder)
+        public static void BuildXenograftIndexingTaskModel(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<DonorIndexingTask>(entity =>
+            modelBuilder.Entity<XenograftIndexingTask>(entity =>
             {
-                entity.ToTable("DonorIndexingTasks");
+                entity.ToTable("XenograftIndexingTasks");
 
                 entity.HasKey(task => task.Id);
 
@@ -17,7 +17,7 @@ namespace Unite.Data.Services.Extensions.Model.Tasks
                       .IsRequired()
                       .ValueGeneratedOnAdd();
 
-                entity.Property(task => task.DonorId)
+                entity.Property(task => task.XenograftId)
                       .IsRequired()
                       .ValueGeneratedNever();
 
@@ -25,9 +25,9 @@ namespace Unite.Data.Services.Extensions.Model.Tasks
                       .IsRequired();
 
 
-                entity.HasOne(task => task.Donor)
+                entity.HasOne(task => task.Xenograft)
                       .WithMany()
-                      .HasForeignKey(task => task.DonorId);
+                      .HasForeignKey(task => task.XenograftId);
             });
         }
     }

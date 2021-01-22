@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Unite.Data.Entities.Samples.Enums;
+using Unite.Data.Entities.Mutations.Enums;
 using Unite.Data.Services.Entities;
 
-namespace Unite.Data.Services.Extensions.Model.Samples.Enums
+namespace Unite.Data.Services.Extensions.Model.Mutations.Enums
 {
     public static class SampleTypeModelBuilder
     {

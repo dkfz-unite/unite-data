@@ -13,6 +13,8 @@ namespace Unite.Data.Services.Extensions.Model.Donors
 
                 entity.HasKey(localization => localization.Id);
 
+                entity.HasAlternateKey(localization => localization.Value);
+
                 entity.Property(localization => localization.Id)
                       .IsRequired()
                       .ValueGeneratedOnAdd();
@@ -20,10 +22,6 @@ namespace Unite.Data.Services.Extensions.Model.Donors
                 entity.Property(localization => localization.Value)
                       .IsRequired()
                       .HasMaxLength(50);
-
-
-                entity.HasIndex(localization => localization.Value)
-                      .IsUnique();
             });
         }
     }

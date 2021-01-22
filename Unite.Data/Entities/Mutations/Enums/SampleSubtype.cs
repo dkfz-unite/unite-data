@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Unite.Data.Entities.Samples.Enums
+namespace Unite.Data.Entities.Mutations.Enums
 {
     public enum SampleSubtype
     {

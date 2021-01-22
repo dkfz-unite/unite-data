@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Unite.Data.Entities;
+using Unite.Data.Entities.Donors;
 
-namespace Unite.Data.Services.Extensions.Model
+namespace Unite.Data.Services.Extensions.Model.Donors
 {
     public static class WorkPackageModelBuilder
     {
@@ -13,6 +13,8 @@ namespace Unite.Data.Services.Extensions.Model
 
                 entity.HasKey(workPackage => workPackage.Id);
 
+                entity.HasAlternateKey(workPackage => workPackage.Name);
+
                 entity.Property(workPackage => workPackage.Id)
                       .IsRequired()
                       .ValueGeneratedOnAdd();
@@ -20,10 +22,6 @@ namespace Unite.Data.Services.Extensions.Model
                 entity.Property(workPackage => workPackage.Name)
                       .IsRequired()
                       .HasMaxLength(100);
-
-
-                entity.HasIndex(workPackage => workPackage.Name)
-                      .IsUnique();
             });
         }
     }

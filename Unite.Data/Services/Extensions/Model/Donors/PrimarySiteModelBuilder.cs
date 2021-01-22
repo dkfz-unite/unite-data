@@ -13,6 +13,8 @@ namespace Unite.Data.Services.Extensions.Model.Donors
 
                 entity.HasKey(primarySite => primarySite.Id);
 
+                entity.HasAlternateKey(primarySite => primarySite.Value);
+
                 entity.Property(primarySite => primarySite.Id)
                       .IsRequired()
                       .ValueGeneratedOnAdd();
@@ -20,10 +22,6 @@ namespace Unite.Data.Services.Extensions.Model.Donors
                 entity.Property(primarySite => primarySite.Value)
                       .IsRequired()
                       .HasMaxLength(50);
-
-
-                entity.HasIndex(primarySite => primarySite.Value)
-                      .IsUnique();
             });
         }
     }

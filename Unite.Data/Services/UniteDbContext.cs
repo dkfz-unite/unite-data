@@ -21,8 +21,8 @@ namespace Unite.Data.Services
 
         public DbSet<Donor> Donors { get; set; }
         public DbSet<PrimarySite> PrimarySites { get; set; }
-        public DbSet<Localization> Localizations { get; set; }
         public DbSet<ClinicalData> ClinicalData { get; set; }
+        public DbSet<Localization> Localizations { get; set; }
         public DbSet<Therapy> Therapies { get; set; }
         public DbSet<Treatment> Treatments { get; set; }
         public DbSet<Study> Studies { get; set; }
@@ -83,9 +83,9 @@ namespace Unite.Data.Services
 
             modelBuilder.BuildDonorModel();
             modelBuilder.BuildPrimarySiteModel();
-            modelBuilder.BuildLocalizationModel();
 
             modelBuilder.BuildClinicalDataModel();
+            modelBuilder.BuildLocalizationModel();
 
             modelBuilder.BuildTherapyModel();
             modelBuilder.BuildTreatmentModel();

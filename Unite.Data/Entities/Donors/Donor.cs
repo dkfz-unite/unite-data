@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Unite.Data.Entities.Cells;
 using Unite.Data.Entities.Mutations;
 
 namespace Unite.Data.Entities.Donors
@@ -18,7 +17,6 @@ namespace Unite.Data.Entities.Donors
         public virtual ClinicalData ClinicalData { get; set; }
 
         public virtual ICollection<Treatment> Treatments { get; set; }
-        public virtual ICollection<CellLine> CellLines { get; set; }
         public virtual ICollection<Sample> Samples { get; set; }
         public virtual ICollection<WorkPackageDonor> DonorWorkPackages { get; set; }
         public virtual ICollection<StudyDonor> DonorStudies { get; set; }

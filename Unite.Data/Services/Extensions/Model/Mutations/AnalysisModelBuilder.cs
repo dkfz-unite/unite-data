@@ -15,9 +15,15 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
                 entity.HasKey(analysis => analysis.Id);
 
+                entity.HasAlternateKey(analysis => analysis.Name);
+
                 entity.Property(analysis => analysis.Id)
                       .IsRequired()
                       .ValueGeneratedOnAdd();
+
+                entity.Property(analysis => analysis.Name)
+                      .IsRequired()
+                      .HasMaxLength(500);
 
                 entity.Property(analysis => analysis.TypeId)
                       .HasConversion<int>();

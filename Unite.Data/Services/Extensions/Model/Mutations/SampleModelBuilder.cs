@@ -23,6 +23,7 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .IsRequired();
 
                 entity.Property(sample => sample.Name)
+                      .IsRequired()
                       .HasMaxLength(500);
 
                 entity.Property(sample => sample.TypeId)

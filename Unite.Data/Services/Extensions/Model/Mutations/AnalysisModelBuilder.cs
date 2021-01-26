@@ -15,11 +15,12 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
                 entity.HasKey(analysis => analysis.Id);
 
-                entity.HasAlternateKey(analysis => analysis.Name);
-
                 entity.Property(analysis => analysis.Id)
                       .IsRequired()
                       .ValueGeneratedOnAdd();
+
+                entity.Property(analysis => analysis.DonorId)
+                      .IsRequired();
 
                 entity.Property(analysis => analysis.Name)
                       .IsRequired()
@@ -28,14 +29,15 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                 entity.Property(analysis => analysis.TypeId)
                       .HasConversion<int>();
 
-                entity.Property(analysis => analysis.Date)
-                      .IsRequired();
-
 
                 entity.HasOne<EnumValue<AnalysisType>>()
                       .WithMany()
                       .HasForeignKey(analysis => analysis.TypeId);
 
+
+                entity.HasOne(analysis => analysis.Donor)
+                      .WithMany(donor => donor.Analyses)
+                      .HasForeignKey(analysis => analysis.DonorId);
 
                 entity.HasOne(analysis => analysis.File)
                       .WithOne()

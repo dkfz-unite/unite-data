@@ -18,6 +18,7 @@ namespace Unite.Data.Entities.Donors
 
         public virtual ICollection<Treatment> Treatments { get; set; }
         public virtual ICollection<Sample> Samples { get; set; }
+        public virtual ICollection<Analysis> Analyses { get; set; }
         public virtual ICollection<WorkPackageDonor> DonorWorkPackages { get; set; }
         public virtual ICollection<StudyDonor> DonorStudies { get; set; }
     }

@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities;
 using Unite.Data.Entities.Donors;
+using Unite.Data.Entities.Epigenetics;
 using Unite.Data.Entities.Mutations;
 using Unite.Data.Entities.Tasks;
 using Unite.Data.Services.Configuration.Options;
 using Unite.Data.Services.Extensions.Model;
 using Unite.Data.Services.Extensions.Model.Donors;
 using Unite.Data.Services.Extensions.Model.Donors.Enums;
+using Unite.Data.Services.Extensions.Model.Epigenetics;
+using Unite.Data.Services.Extensions.Model.Epigenetics.Enums;
 using Unite.Data.Services.Extensions.Model.Mutations;
 using Unite.Data.Services.Extensions.Model.Mutations.Enums;
 using Unite.Data.Services.Extensions.Model.Tasks;
@@ -22,6 +25,7 @@ namespace Unite.Data.Services
         public DbSet<Donor> Donors { get; set; }
         public DbSet<PrimarySite> PrimarySites { get; set; }
         public DbSet<ClinicalData> ClinicalData { get; set; }
+        public DbSet<EpigeneticsData> EpigeneticsData { get; set; }
         public DbSet<Localization> Localizations { get; set; }
         public DbSet<Therapy> Therapies { get; set; }
         public DbSet<Treatment> Treatments { get; set; }
@@ -65,6 +69,8 @@ namespace Unite.Data.Services
 
             BuildDonorModels(modelBuilder);
 
+            BuildEpigeneticsModels(modelBuilder);
+
             BuildMutationModels(modelBuilder);
 
             BuildIndexingTaskModels(modelBuilder);
@@ -95,6 +101,17 @@ namespace Unite.Data.Services
 
             modelBuilder.BuildWorkPackageModel();
             modelBuilder.BuildWorkPackageDonorModel();
+        }
+
+        private void BuildEpigeneticsModels(ModelBuilder modelBuilder)
+        {
+            modelBuilder.BuildGeneExpressionSubtypeModel();
+            modelBuilder.BuildIDHStatusModel();
+            modelBuilder.BuildIDHMutationModel();
+            modelBuilder.BuildMethylationStatusModel();
+            modelBuilder.BuildMethylationSubtypeModel();
+
+            modelBuilder.BuildEpigeneticsDataModel();
         }
 
         private void BuildMutationModels(ModelBuilder modelBuilder)

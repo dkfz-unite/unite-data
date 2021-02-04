@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unite.Data.Entities.Epigenetics;
 using Unite.Data.Entities.Mutations;
 
 namespace Unite.Data.Entities.Donors
@@ -15,6 +16,7 @@ namespace Unite.Data.Entities.Donors
 
         public virtual PrimarySite PrimarySite { get; set; }
         public virtual ClinicalData ClinicalData { get; set; }
+        public virtual EpigeneticsData EpigeneticsData { get; set; }
 
         public virtual ICollection<Treatment> Treatments { get; set; }
         public virtual ICollection<Sample> Samples { get; set; }

@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <ReleaseVersion>1.1.6</ReleaseVersion>
-    <Version>1.1.6</Version>
+    <ReleaseVersion>1.1.7</ReleaseVersion>
+    <Version>1.1.7</Version>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
     <Authors>Valiantsin Ulasau (DKFZ)</Authors>
@@ -17,6 +17,10 @@
     <Folder Include="Entities\Mutations\" />
     <Folder Include="Entities\Tasks\" />
     <Folder Include="Services\" />
+    <Folder Include="Entities\Epigenetics\" />
+    <Folder Include="Entities\Epigenetics\Enums\" />
+    <Folder Include="Services\Extensions\Model\Epigenetics\" />
+    <Folder Include="Services\Extensions\Model\Epigenetics\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />

@@ -2,6 +2,7 @@
 using Unite.Data.Entities;
 using Unite.Data.Entities.Donors;
 using Unite.Data.Entities.Epigenetics;
+using Unite.Data.Entities.Identity;
 using Unite.Data.Entities.Mutations;
 using Unite.Data.Entities.Tasks;
 using Unite.Data.Services.Configuration.Options;
@@ -10,6 +11,7 @@ using Unite.Data.Services.Extensions.Model.Donors;
 using Unite.Data.Services.Extensions.Model.Donors.Enums;
 using Unite.Data.Services.Extensions.Model.Epigenetics;
 using Unite.Data.Services.Extensions.Model.Epigenetics.Enums;
+using Unite.Data.Services.Extensions.Model.Identity;
 using Unite.Data.Services.Extensions.Model.Mutations;
 using Unite.Data.Services.Extensions.Model.Mutations.Enums;
 using Unite.Data.Services.Extensions.Model.Tasks;
@@ -19,6 +21,9 @@ namespace Unite.Data.Services
     public class UniteDbContext : DbContext
     {
         private readonly string _connectionString;
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserSession> UserSessions { get; set; }
 
         public DbSet<File> Files { get; set; }
 
@@ -65,6 +70,8 @@ namespace Unite.Data.Services
         {
             base.OnModelCreating(modelBuilder);
 
+            BuildIdentityModels(modelBuilder);
+
             BuildGeneralModels(modelBuilder);
 
             BuildDonorModels(modelBuilder);
@@ -74,6 +81,12 @@ namespace Unite.Data.Services
             BuildMutationModels(modelBuilder);
 
             BuildIndexingTaskModels(modelBuilder);
+        }
+
+        private void BuildIdentityModels(ModelBuilder modelBuilder)
+        {
+            modelBuilder.BuildUserModel();
+            modelBuilder.BuildUserSessionModel();
         }
 
         private void BuildGeneralModels(ModelBuilder modelBuilder)

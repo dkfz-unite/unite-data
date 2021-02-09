@@ -11,14 +11,18 @@ namespace Unite.Data.Services.Extensions.Model.Identity
             {
                 entity.ToTable("UserSessions");
 
+                entity.HasKey(userSession => new { userSession.UserId, userSession.Session });
+
                 entity.Property(userSession => userSession.UserId)
                       .IsRequired();
 
                 entity.Property(userSession => userSession.Session)
-                      .IsRequired();
+                      .IsRequired()
+                      .HasMaxLength(100);
 
                 entity.Property(userSession => userSession.Token)
-                      .IsRequired();
+                      .IsRequired()
+                      .HasMaxLength(100);
 
 
                 entity.HasOne(userSession => userSession.User)

@@ -7,7 +7,7 @@ namespace Unite.Data.Entities.Mutations
     {
         public int Id { get; set; }
         public string Code { get; set; }
-        public Chromosome? ChromosomeId { get; set; }
+        public Chromosome ChromosomeId { get; set; }
         public SequenceType SequenceTypeId { get; set; }
         public int Start { get; set; }
         public int End { get; set; }

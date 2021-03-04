@@ -32,8 +32,7 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .IsRequired();
 
                 entity.Property(mutation => mutation.End)
-                      .IsRequired()
-                      .HasDefaultValueSql($"[Start]");
+                      .IsRequired();
 
                 entity.Property(mutation => mutation.SequenceTypeId)
                       .IsRequired()

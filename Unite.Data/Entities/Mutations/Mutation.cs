@@ -7,19 +7,14 @@ namespace Unite.Data.Entities.Mutations
     {
         public int Id { get; set; }
         public string Code { get; set; }
-        public string Name { get; set; }
-        public int? GeneId { get; set; }
         public Chromosome? ChromosomeId { get; set; }
-        public int? ContigId { get; set; }
         public SequenceType SequenceTypeId { get; set; }
-        public int Position { get; set; }
+        public int Start { get; set; }
+        public int End { get; set; }
         public MutationType TypeId { get; set; }
         public string ReferenceBase { get; set; }
         public string AlternateBase { get; set; }
 
-
-        public virtual Gene Gene { get; set; }
-        public virtual Contig Contig { get; set; }
 
         public virtual ICollection<MutationOccurrence> MutationOccurrences { get; set; }
     }

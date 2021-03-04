@@ -45,8 +45,6 @@ namespace Unite.Data.Services
         public DbSet<AnalysedSample> AnalysedSamples { get; set; }
         public DbSet<MatchedSample> MatchedSamples { get; set; }
         public DbSet<Mutation> Mutations { get; set; }
-        public DbSet<Gene> Genes { get; set; }
-        public DbSet<Contig> Contigs { get; set; }
         public DbSet<MutationOccurrence> MutationOccurrences { get; set; }
 
 
@@ -143,8 +141,6 @@ namespace Unite.Data.Services
             modelBuilder.BuildMatchedSampleModel();
 
             modelBuilder.BuildMutationModel();
-            modelBuilder.BuildGeneModel();
-            modelBuilder.BuildContigModel();
 
             modelBuilder.BuildMutationOccurrenceModel();
         }

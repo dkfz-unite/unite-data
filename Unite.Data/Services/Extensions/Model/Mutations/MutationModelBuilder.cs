@@ -25,14 +25,15 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .IsRequired()
                       .HasMaxLength(500);
 
-                entity.Property(mutation => mutation.Name)
-                      .HasMaxLength(50);
-
                 entity.Property(mutation => mutation.ChromosomeId)
                       .HasConversion<int>();
                       
-                entity.Property(mutation => mutation.Position)
+                entity.Property(mutation => mutation.Start)
                       .IsRequired();
+
+                entity.Property(mutation => mutation.End)
+                      .IsRequired()
+                      .HasDefaultValueSql($"[Start]");
 
                 entity.Property(mutation => mutation.SequenceTypeId)
                       .IsRequired()
@@ -60,16 +61,6 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                 entity.HasOne<EnumValue<MutationType>>()
                       .WithMany()
                       .HasForeignKey(mutation => mutation.TypeId);
-
-
-                entity.HasOne(mutation => mutation.Gene)
-                      .WithMany(gene => gene.Mutations)
-                      .HasForeignKey(mutation => mutation.GeneId);
-
-                entity.HasOne(mutation => mutation.Contig)
-                      .WithMany()
-                      .HasForeignKey(mutation => mutation.ContigId);
-
             });
         }
     }

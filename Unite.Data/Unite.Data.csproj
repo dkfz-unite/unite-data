@@ -25,6 +25,6 @@
     <Folder Include="Services\Extensions\Model\Identity\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
   </ItemGroup>
 </Project>

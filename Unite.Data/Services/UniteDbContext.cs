@@ -54,14 +54,14 @@ namespace Unite.Data.Services
 
         public UniteDbContext(IMySqlOptions options)
         {
-            _connectionString = $"server={options.Host};database={options.Database};user={options.User};password={options.Password}";
+            _connectionString = $"Host={options.Host};Database={options.Database};Username={options.User};Password={options.Password}";
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.EnableSensitiveDataLogging();
 
-            optionsBuilder.UseMySQL(_connectionString, b => b.MigrationsAssembly("Unite.Data.Migrations"));
+            optionsBuilder.UseNpgsql(_connectionString, b => b.MigrationsAssembly("Unite.Data.Migrations"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

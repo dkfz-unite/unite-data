@@ -52,7 +52,7 @@ namespace Unite.Data.Services
         public DbSet<MutationIndexingTask> MutationIndexingTasks { get; set; }
 
 
-        public UniteDbContext(IMySqlOptions options)
+        public UniteDbContext(ISqlOptions options)
         {
             _connectionString = $"Host={options.Host};Database={options.Database};Username={options.User};Password={options.Password}";
         }

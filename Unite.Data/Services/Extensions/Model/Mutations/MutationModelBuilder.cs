@@ -26,6 +26,7 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .HasMaxLength(500);
 
                 entity.Property(mutation => mutation.ChromosomeId)
+                      .IsRequired()
                       .HasConversion<int>();
                       
                 entity.Property(mutation => mutation.Start)

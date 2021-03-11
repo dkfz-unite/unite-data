@@ -46,6 +46,12 @@ namespace Unite.Data.Services
         public DbSet<MatchedSample> MatchedSamples { get; set; }
         public DbSet<Mutation> Mutations { get; set; }
         public DbSet<MutationOccurrence> MutationOccurrences { get; set; }
+        public DbSet<Gene> Genes { get; set; }
+        public DbSet<GeneInfo> GeneInfo { get; set; }
+        public DbSet<Consequence> Consequences { get; set; }
+        public DbSet<Transcript> Transcripts { get; set; }
+        public DbSet<TranscriptInfo> TranscriptInfo { get; set; }
+        public DbSet<TranscriptConsequence> TranscriptConsequences { get; set; }
 
 
         public DbSet<DonorIndexingTask> DonorIndexingTasks { get; set; }
@@ -133,6 +139,8 @@ namespace Unite.Data.Services
             modelBuilder.BuildAnalysisTypeModel();
             modelBuilder.BuildSampleTypeModel();
             modelBuilder.BuildSampleSubtypeModel();
+            modelBuilder.BuildConsequenceTypeModel();
+            modelBuilder.BuildConsequenceImpactModel();
 
             modelBuilder.BuildAnalysisModel();
 
@@ -141,8 +149,16 @@ namespace Unite.Data.Services
             modelBuilder.BuildMatchedSampleModel();
 
             modelBuilder.BuildMutationModel();
-
             modelBuilder.BuildMutationOccurrenceModel();
+
+            modelBuilder.BuildConsequenceModel();
+
+            modelBuilder.BuildGeneModel();
+            modelBuilder.BuildGeneInfoModel();
+
+            modelBuilder.BuildTranscriptModel();
+            modelBuilder.BuildTranscriptInfoModel();
+            modelBuilder.BuildTranscriptConsequenceModel();
         }
 
         private void BuildIndexingTaskModels(ModelBuilder modelBuilder)

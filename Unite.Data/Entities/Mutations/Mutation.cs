@@ -16,6 +16,6 @@ namespace Unite.Data.Entities.Mutations
         public string AlternateBase { get; set; }
 
         public virtual ICollection<MutationOccurrence> MutationOccurrences { get; set; }
-        public virtual ICollection<TranscriptConsequence> TranscriptConsequences { get; set; }
+        public virtual ICollection<AffectedTranscript> AffectedTranscripts { get; set; }
     }
 }

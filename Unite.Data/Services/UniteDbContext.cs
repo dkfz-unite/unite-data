@@ -51,7 +51,8 @@ namespace Unite.Data.Services
         public DbSet<Consequence> Consequences { get; set; }
         public DbSet<Transcript> Transcripts { get; set; }
         public DbSet<TranscriptInfo> TranscriptInfo { get; set; }
-        public DbSet<TranscriptConsequence> TranscriptConsequences { get; set; }
+        public DbSet<AffectedTranscript> TranscriptConsequences { get; set; }
+        public DbSet<AffectedTranscriptConsequence> AffectedTranscriptConsequences { get; set; }
 
 
         public DbSet<DonorIndexingTask> DonorIndexingTasks { get; set; }
@@ -158,7 +159,8 @@ namespace Unite.Data.Services
 
             modelBuilder.BuildTranscriptModel();
             modelBuilder.BuildTranscriptInfoModel();
-            modelBuilder.BuildTranscriptConsequenceModel();
+            modelBuilder.BuildAffectedTranscriptModel();
+            modelBuilder.BuildAffectedTranscriptConsequenceModel();
         }
 
         private void BuildIndexingTaskModels(ModelBuilder modelBuilder)

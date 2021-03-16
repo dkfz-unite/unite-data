@@ -19,7 +19,7 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
 
                 entity.HasOne<Transcript>()
-                      .WithOne(transcript => transcript.TranscriptInfo)
+                      .WithOne(transcript => transcript.Info)
                       .HasForeignKey<TranscriptInfo>(transcriptInfo => transcriptInfo.TranscriptId)
                       .IsRequired();
             });

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Unite.Data.Entities.Mutations.Enums;
+﻿using Unite.Data.Entities.Mutations.Enums;
 
 namespace Unite.Data.Entities.Mutations
 {
@@ -13,9 +12,8 @@ namespace Unite.Data.Entities.Mutations
         public int? End { get; set; }
         public bool? Strand { get; set; }
 
-        public virtual Gene Gene { get; set; }
-        public virtual TranscriptInfo TranscriptInfo { get; set; }
+        public virtual TranscriptInfo Info { get; set; }
 
-        public virtual ICollection<TranscriptConsequence> TranscriptConsequences { get; set; }
+        public virtual Gene Gene { get; set; }
     }
 }

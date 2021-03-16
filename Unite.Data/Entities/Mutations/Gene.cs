@@ -14,7 +14,7 @@ namespace Unite.Data.Entities.Mutations
         public int? End { get; set; }
         public bool? Strand { get; set; }
 
-        public virtual GeneInfo GeneInfo { get; set; }
+        public virtual GeneInfo Info { get; set; }
 
         public virtual ICollection<Transcript> Transcripts { get; set; }
     }

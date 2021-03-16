@@ -19,7 +19,7 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
 
                 entity.HasOne<Gene>()
-                      .WithOne(gene => gene.GeneInfo)
+                      .WithOne(gene => gene.Info)
                       .HasForeignKey<GeneInfo>(geneInfo => geneInfo.GeneId)
                       .IsRequired();
             });

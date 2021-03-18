@@ -11,8 +11,9 @@ namespace Unite.Data.Services
     {
         protected readonly DbContext _dbContext;
 
+        protected DbSet<T> Set => _dbContext.Set<T>();
 
-        public DbSet<T> Entities => _dbContext.Set<T>();
+        public IQueryable<T> Entities => Set.AsQueryable();
 
 
         protected Repository(DbContext dbContext)
@@ -21,31 +22,9 @@ namespace Unite.Data.Services
         }
 
 
-        public virtual T Find(Expression<Func<T, bool>> predicate)
-        {
-            var query = Entities.AsQueryable();
-
-            query = Include(query);
-
-            var entity = query.FirstOrDefault(predicate);
-
-            return entity;
-        }
-
-        public virtual IEnumerable<T> FindAll(Expression<Func<T, bool>> predicate)
-        {
-            var query = Entities.AsQueryable();
-
-            query = Include(query);
-
-            var entities = query.Where(predicate).ToArray();
-
-            return entities;
-        }
-
         public virtual T Add(in T model)
         {
-            var entity = Entities.Add(model).Entity;
+            var entity = Set.Add(model).Entity;
 
             _dbContext.SaveChanges();
 
@@ -54,7 +33,7 @@ namespace Unite.Data.Services
 
         public virtual void AddRange(in IEnumerable<T> models)
         {
-            Entities.AddRange(models);
+            Set.AddRange(models);
 
             _dbContext.SaveChanges();
         }
@@ -63,21 +42,21 @@ namespace Unite.Data.Services
         {
             Map(model, ref entity);
 
-            entity = Entities.Update(entity).Entity;
+            entity = Set.Update(entity).Entity;
 
             _dbContext.SaveChanges();
         }
 
         public virtual void Delete(ref T entity)
         {
-            Entities.Remove(entity);
+            Set.Remove(entity);
 
             _dbContext.SaveChanges();
         }
 
         public virtual void DeleteRange(ref IEnumerable<T> entities)
         {
-            Entities.RemoveRange(entities);
+            Set.RemoveRange(entities);
 
             _dbContext.SaveChanges();
         }
@@ -86,16 +65,11 @@ namespace Unite.Data.Services
         {
             var entities = Entities.Where(predicate);
 
-            Entities.RemoveRange(entities);
+            Set.RemoveRange(entities);
 
             _dbContext.SaveChanges();
         }
 
-
-        protected virtual IQueryable<T> Include(IQueryable<T> query)
-        {
-            return query;
-        }
 
         protected abstract void Map(in T source, ref T target);
     }

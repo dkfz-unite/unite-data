@@ -14,7 +14,8 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                 entity.HasKey(gene => gene.Id);
 
                 entity.Property(gene => gene.Id)
-                      .IsRequired();
+                      .IsRequired()
+                      .ValueGeneratedOnAdd();
 
                 entity.Property(gene => gene.ChromosomeId)
                       .HasConversion<int>();

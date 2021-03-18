@@ -5,7 +5,6 @@ namespace Unite.Data.Entities.Mutations
     public class Transcript
     {
         public int Id { get; set; }
-        public int GeneId { get; set; }
         public string Symbol { get; set; }
         public Chromosome? ChromosomeId { get; set; }
         public int? Start { get; set; }
@@ -13,7 +12,5 @@ namespace Unite.Data.Entities.Mutations
         public bool? Strand { get; set; }
 
         public virtual TranscriptInfo Info { get; set; }
-
-        public virtual Gene Gene { get; set; }
     }
 }

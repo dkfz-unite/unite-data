@@ -27,6 +27,10 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .IsRequired()
                       .ValueGeneratedNever();
 
+                entity.Property(affectedTranscript => affectedTranscript.GeneId)
+                      .IsRequired()
+                      .ValueGeneratedNever();
+
                 entity.Property(affectedTranscript => affectedTranscript.TranscriptId)
                       .IsRequired()
                       .ValueGeneratedNever();
@@ -35,6 +39,10 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                 entity.HasOne(affectedTranscript => affectedTranscript.Mutation)
                       .WithMany(mutation => mutation.AffectedTranscripts)
                       .HasForeignKey(affectedTranscript => affectedTranscript.MutationId);
+
+                entity.HasOne(affectedTranscript => affectedTranscript.Gene)
+                      .WithMany()
+                      .HasForeignKey(affectedTranscript => affectedTranscript.GeneId);
 
                 entity.HasOne(affectedTranscript => affectedTranscript.Transcript)
                       .WithMany()

@@ -17,17 +17,8 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .IsRequired()
                       .ValueGeneratedOnAdd();
 
-                entity.Property(transcript => transcript.GeneId)
-                      .IsRequired()
-                      .ValueGeneratedNever();
-
                 entity.Property(transcript => transcript.ChromosomeId)
                       .HasConversion<int>();
-
-
-                entity.HasOne(transcript => transcript.Gene)
-                      .WithMany(gene => gene.Transcripts)
-                      .HasForeignKey(transcript => transcript.GeneId);
             });
         }
     }

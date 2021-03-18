@@ -15,6 +15,7 @@ using Unite.Data.Services.Extensions.Model.Identity;
 using Unite.Data.Services.Extensions.Model.Mutations;
 using Unite.Data.Services.Extensions.Model.Mutations.Enums;
 using Unite.Data.Services.Extensions.Model.Tasks;
+using Unite.Data.Services.Extensions.Model.Tasks.Enums;
 
 namespace Unite.Data.Services
 {
@@ -55,8 +56,7 @@ namespace Unite.Data.Services
         public DbSet<AffectedTranscriptConsequence> AffectedTranscriptConsequences { get; set; }
 
 
-        public DbSet<DonorIndexingTask> DonorIndexingTasks { get; set; }
-        public DbSet<MutationIndexingTask> MutationIndexingTasks { get; set; }
+        public DbSet<Task> Tasks { get; set; }
 
 
         public UniteDbContext(ISqlOptions options)
@@ -165,8 +165,10 @@ namespace Unite.Data.Services
 
         private void BuildIndexingTaskModels(ModelBuilder modelBuilder)
         {
-            modelBuilder.BuildDonorIndexingTaskModel();
-            modelBuilder.BuildMutationIndexingTaskModel();
+            modelBuilder.BuildTaskTypeModel();
+            modelBuilder.BuildTaskTargetTypeModel();
+
+            modelBuilder.BuildTaskModel();
         }
     }
 }

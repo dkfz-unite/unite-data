@@ -34,22 +34,25 @@ namespace Unite.Data.Services
 
         public virtual T Add(in T model)
         {
-            var entity = new T();
-
-            Map(model, ref entity);
-
-            Entities.Add(entity);
+            var entity = Entities.Add(model).Entity;
 
             _database.SaveChanges();
 
             return entity;
         }
 
+        public virtual void AddRange(in IEnumerable<T> models)
+        {
+            Entities.AddRange(models);
+
+            _database.SaveChanges();
+        }
+
         public virtual void Update(ref T entity, in T model)
         {
             Map(model, ref entity);
 
-            Entities.Update(entity);
+            entity = Entities.Update(entity).Entity;
 
             _database.SaveChanges();
         }
@@ -61,14 +64,14 @@ namespace Unite.Data.Services
             _database.SaveChanges();
         }
 
-        public virtual void Delete(ref IEnumerable<T> entities)
+        public virtual void DeleteRange(ref IEnumerable<T> entities)
         {
             Entities.RemoveRange(entities);
 
             _database.SaveChanges();
         }
 
-        public virtual void Delete(Expression<Func<T, bool>> predicate)
+        public virtual void DeleteRange(Expression<Func<T, bool>> predicate)
         {
             var query = Entities.AsQueryable();
 

@@ -9,15 +9,15 @@ namespace Unite.Data.Services
     public abstract class Repository<T>
         where T : class, new()
     {
-        protected readonly DbContext _database;
+        protected readonly DbContext _dbContext;
 
 
-        protected DbSet<T> Entities => _database.Set<T>();
+        public DbSet<T> Entities => _dbContext.Set<T>();
 
 
-        protected Repository(DbContext database)
+        protected Repository(DbContext dbContext)
         {
-            _database = database;
+            _dbContext = dbContext;
         }
 
 
@@ -32,11 +32,22 @@ namespace Unite.Data.Services
             return entity;
         }
 
+        public virtual IEnumerable<T> FindAll(Expression<Func<T, bool>> predicate)
+        {
+            var query = Entities.AsQueryable();
+
+            query = Include(query);
+
+            var entities = query.Where(predicate).ToArray();
+
+            return entities;
+        }
+
         public virtual T Add(in T model)
         {
             var entity = Entities.Add(model).Entity;
 
-            _database.SaveChanges();
+            _dbContext.SaveChanges();
 
             return entity;
         }
@@ -45,7 +56,7 @@ namespace Unite.Data.Services
         {
             Entities.AddRange(models);
 
-            _database.SaveChanges();
+            _dbContext.SaveChanges();
         }
 
         public virtual void Update(ref T entity, in T model)
@@ -54,34 +65,30 @@ namespace Unite.Data.Services
 
             entity = Entities.Update(entity).Entity;
 
-            _database.SaveChanges();
+            _dbContext.SaveChanges();
         }
 
         public virtual void Delete(ref T entity)
         {
             Entities.Remove(entity);
 
-            _database.SaveChanges();
+            _dbContext.SaveChanges();
         }
 
         public virtual void DeleteRange(ref IEnumerable<T> entities)
         {
             Entities.RemoveRange(entities);
 
-            _database.SaveChanges();
+            _dbContext.SaveChanges();
         }
 
         public virtual void DeleteRange(Expression<Func<T, bool>> predicate)
         {
-            var query = Entities.AsQueryable();
-
-            query = Include(query);
-
-            var entities = query.Where(predicate);
+            var entities = Entities.Where(predicate);
 
             Entities.RemoveRange(entities);
 
-            _database.SaveChanges();
+            _dbContext.SaveChanges();
         }
 
 

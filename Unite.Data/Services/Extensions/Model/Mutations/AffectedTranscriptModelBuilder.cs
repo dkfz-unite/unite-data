@@ -16,6 +16,7 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                 entity.HasAlternateKey(affectedTranscript => new
                 {
                     affectedTranscript.MutationId,
+                    affectedTranscript.GeneId,
                     affectedTranscript.TranscriptId
                 });
 

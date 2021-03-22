@@ -24,7 +24,11 @@ namespace Unite.Data.Services
 
         public virtual T Add(in T model)
         {
-            var entity = Set.Add(model).Entity;
+            var entity = new T();
+
+            Map(model, ref entity);
+
+            entity = Set.Add(entity).Entity;
 
             _dbContext.SaveChanges();
 

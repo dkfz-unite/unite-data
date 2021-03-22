@@ -22,9 +22,8 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
 
                 entity.HasOne(gene => gene.Biotype)
-                      .WithOne()
-                      .HasForeignKey<Gene>(gene => gene.BiotypeId);
-
+                      .WithMany()
+                      .HasForeignKey(gene => gene.BiotypeId);
             });
         }
     }

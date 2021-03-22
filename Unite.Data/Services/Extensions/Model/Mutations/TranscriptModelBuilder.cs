@@ -22,8 +22,8 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
 
                 entity.HasOne(transcript => transcript.Biotype)
-                      .WithOne()
-                      .HasForeignKey<Transcript>(transcript => transcript.BiotypeId);
+                      .WithMany()
+                      .HasForeignKey(transcript => transcript.BiotypeId);
             });
         }
     }

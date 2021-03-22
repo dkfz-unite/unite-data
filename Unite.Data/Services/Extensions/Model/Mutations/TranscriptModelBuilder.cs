@@ -19,6 +19,11 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
                 entity.Property(transcript => transcript.ChromosomeId)
                       .HasConversion<int>();
+
+
+                entity.HasOne(transcript => transcript.Biotype)
+                      .WithOne()
+                      .HasForeignKey<Transcript>(transcript => transcript.BiotypeId);
             });
         }
     }

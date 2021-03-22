@@ -20,6 +20,11 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                 entity.Property(gene => gene.ChromosomeId)
                       .HasConversion<int>();
 
+
+                entity.HasOne(gene => gene.Biotype)
+                      .WithOne()
+                      .HasForeignKey<Gene>(gene => gene.BiotypeId);
+
             });
         }
     }

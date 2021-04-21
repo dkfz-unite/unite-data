@@ -5,7 +5,7 @@ namespace Unite.Data.Entities.Mutations
     public class AffectedTranscript
     {
         public int Id { get; set; }
-        public int MutationId { get; set; }
+        public long MutationId { get; set; }
         public int GeneId { get; set; }
         public int TranscriptId { get; set; }
 

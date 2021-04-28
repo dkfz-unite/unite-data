@@ -1,5 +1,5 @@
 ﻿using System;
-using Unite.Data.Entities.Extensions;
+using Unite.Data.Extensions;
 
 namespace Unite.Data.Services.Entities
 {

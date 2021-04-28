@@ -15,18 +15,7 @@ namespace Unite.Data.Services.Extensions.Model.Donors
 
                 entity.Property(donor => donor.Id)
                       .IsRequired()
-                      .HasMaxLength(100);
-
-                entity.Property(donor => donor.Diagnosis)
-                      .HasMaxLength(100);
-
-                entity.Property(donor => donor.Origin)
-                      .HasMaxLength(100);
-
-
-                entity.HasOne(donor => donor.PrimarySite)
-                      .WithMany()
-                      .HasForeignKey(donor => donor.PrimarySiteId);
+                      .ValueGeneratedOnAdd();
             });
         }
     }

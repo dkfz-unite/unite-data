@@ -11,7 +11,11 @@ namespace Unite.Data.Services.Extensions.Model.Donors
             {
                 entity.ToTable("WorkPackageDonors");
 
-                entity.HasKey(workPackageDonor => new { workPackageDonor.WorkPackageId, workPackageDonor.DonorId });
+                entity.HasKey(workPackageDonor => new
+                {
+                    workPackageDonor.WorkPackageId,
+                    workPackageDonor.DonorId
+                });
 
                 entity.Property(workPackageDonor => workPackageDonor.WorkPackageId)
                       .IsRequired()

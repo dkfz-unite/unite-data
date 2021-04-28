@@ -9,6 +9,7 @@ namespace Unite.Data.Entities.Mutations
     {
         public int Id { get; set; }
         public string DonorId { get; set; }
+
         public string Name { get; set; }
         public AnalysisType? TypeId { get; set; }
         public DateTime? Date { get; set; }
@@ -16,6 +17,7 @@ namespace Unite.Data.Entities.Mutations
 
         public virtual Donor Donor { get; set; }
         public virtual File File { get; set; }
+
         public virtual ICollection<AnalysedSample> AnalysedSamples { get; set; }
     }
 }

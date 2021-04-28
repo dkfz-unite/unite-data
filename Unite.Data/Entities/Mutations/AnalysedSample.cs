@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unite.Data.Entities.Samples;
 
 namespace Unite.Data.Entities.Mutations
 {
@@ -10,6 +11,7 @@ namespace Unite.Data.Entities.Mutations
 
         public virtual Analysis Analysis { get; set; }
         public virtual Sample Sample { get; set; }
+
         public virtual ICollection<MatchedSample> MatchedSamples { get; set; }
         public virtual ICollection<MutationOccurrence> MutationOccurrences { get; set; }
     }

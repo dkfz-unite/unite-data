@@ -13,7 +13,8 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
                 entity.HasKey(mutationOccurrence => mutationOccurrence.Id);
 
-                entity.HasAlternateKey(mutationOccurrence => new {
+                entity.HasAlternateKey(mutationOccurrence => new
+                {
                     mutationOccurrence.AnalysedSampleId,
                     mutationOccurrence.MutationId
                 });

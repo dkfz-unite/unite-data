@@ -18,7 +18,7 @@ namespace Unite.Data.Services.Extensions.Model.Donors
                 entity.Property(study => study.Id)
                       .IsRequired()
                       .ValueGeneratedOnAdd();
-
+                       
                 entity.Property(study => study.Name)
                       .IsRequired()
                       .HasMaxLength(100);

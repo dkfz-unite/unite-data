@@ -4,7 +4,7 @@ namespace Unite.Data.Entities.Mutations
 {
     public class AffectedTranscriptConsequence
     {
-        public int AffectedTranscriptId { get; set; }
+        public long AffectedTranscriptId { get; set; }
         public ConsequenceType ConsequenceId { get; set; }
 
         public virtual AffectedTranscript AffectedTranscript { get; set; }

@@ -13,7 +13,11 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
                 entity.HasKey(analysedSample => analysedSample.Id);
 
-                entity.HasAlternateKey(analysedSample => new { analysedSample.AnalysisId, analysedSample.SampleId });
+                entity.HasAlternateKey(analysedSample => new
+                {
+                    analysedSample.AnalysisId,
+                    analysedSample.SampleId
+                });
 
                 entity.Property(analysedSample => analysedSample.Id)
                       .IsRequired()
@@ -33,7 +37,7 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .HasForeignKey(analysedSample => analysedSample.AnalysisId);
 
                 entity.HasOne(analysedSample => analysedSample.Sample)
-                      .WithMany(sample => sample.SampleAnalises)
+                      .WithMany()
                       .HasForeignKey(analysedSample => analysedSample.SampleId);
             });
         }

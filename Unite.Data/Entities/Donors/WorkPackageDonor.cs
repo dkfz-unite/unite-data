@@ -3,7 +3,7 @@
     public class WorkPackageDonor
     {
         public int WorkPackageId { get; set; }
-        public string DonorId { get; set; }
+        public int DonorId { get; set; }
 
         public virtual WorkPackage WorkPackage { get; set; }
         public virtual Donor Donor { get; set; }

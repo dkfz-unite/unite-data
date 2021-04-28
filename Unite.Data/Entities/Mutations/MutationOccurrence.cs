@@ -3,6 +3,7 @@
     public class MutationOccurrence
     {
         public long Id { get; set; }
+
         public int AnalysedSampleId { get; set; }
         public long MutationId { get; set; }
 

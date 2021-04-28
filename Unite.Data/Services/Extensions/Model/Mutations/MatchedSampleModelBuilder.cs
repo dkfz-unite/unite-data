@@ -11,7 +11,11 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
             {
                 entity.ToTable("MatchedSamples");
 
-                entity.HasKey(matchedSample => new { matchedSample.AnalysedSampleId, matchedSample.MatchedSampleId });
+                entity.HasKey(matchedSample => new
+                {
+                    matchedSample.AnalysedSampleId,
+                    matchedSample.MatchedSampleId
+                });
 
                 entity.Property(matchedSample => matchedSample.AnalysedSampleId)
                       .IsRequired()

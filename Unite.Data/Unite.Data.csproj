@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <ReleaseVersion>1.5.2</ReleaseVersion>
-    <Version>1.5.2</Version>
+    <ReleaseVersion>1.5.3</ReleaseVersion>
+    <Version>1.5.3</Version>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
     <Authors>Valiantsin Ulasau (DKFZ)</Authors>
@@ -39,15 +39,9 @@
     <Folder Include="Services\Extensions\Model\Samples\Tissues\Enums\" />
     <Folder Include="Services\Extensions\Model\Samples\Cells\" />
     <Folder Include="Services\Extensions\Model\Samples\Cells\Enums\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.5.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Entities\Cells\CellLine.cs" />
-    <Compile Remove="Entities\Cells\CellLineInfo.cs" />
-    <Compile Remove="Entities\Cells\Enums\CellLineType.cs" />
-    <Compile Remove="Entities\Cells\Enums\Species.cs" />
-    <Compile Remove="Entities\Common\Enums\TumorType.cs" />
   </ItemGroup>
 </Project>

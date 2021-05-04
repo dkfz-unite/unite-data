@@ -15,7 +15,17 @@ namespace Unite.Data.Services.Extensions.Model.Donors
             {
                 entity.ToTable("ClinicalData");
 
-                entity.HasNoKey();
+                entity.HasKey(clinicalData => new
+                {
+                    clinicalData.DonorId,
+                    clinicalData.SampleId
+                });
+
+                entity.Property(clinicalData => clinicalData.DonorId)
+                      .ValueGeneratedNever();
+
+                entity.Property(clinicalData => clinicalData.SampleId)
+                      .ValueGeneratedNever();
 
                 entity.Property(clinicalData => clinicalData.GenderId)
                       .HasConversion<int>();

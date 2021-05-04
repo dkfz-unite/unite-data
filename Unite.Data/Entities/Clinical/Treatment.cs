@@ -4,6 +4,8 @@ namespace Unite.Data.Entities.Clinical
 {
     public class Treatment
     {
+        public int Id { get; set; }
+
         public int TherapyId { get; set; }
         public int? DonorId { get; set; }
         public int? SampleId { get; set; }

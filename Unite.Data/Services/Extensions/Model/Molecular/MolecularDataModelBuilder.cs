@@ -15,7 +15,17 @@ namespace Unite.Data.Services.Extensions.Model.Molecular
             {
                 entity.ToTable("MolecularData");
 
-                entity.HasNoKey();
+                entity.HasKey(molecularData => new
+                {
+                    molecularData.DonorId,
+                    molecularData.SampleId
+                });
+
+                entity.Property(molecularData => molecularData.DonorId)
+                      .ValueGeneratedNever();
+
+                entity.Property(molecularData => molecularData.SampleId)
+                      .ValueGeneratedNever();
 
                 entity.Property(molecularData => molecularData.GeneExpressionSubtypeId)
                       .HasConversion<int>();

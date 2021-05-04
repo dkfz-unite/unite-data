@@ -13,7 +13,11 @@ namespace Unite.Data.Services.Extensions.Model.Clinical
             {
                 entity.ToTable("Treatments");
 
-                entity.HasNoKey();
+                entity.HasKey(treatment => treatment.Id);
+
+                entity.Property(treatment => treatment.Id)
+                      .IsRequired()
+                      .ValueGeneratedOnAdd();
 
                 entity.Property(treatment => treatment.DonorId)
                       .ValueGeneratedNever();

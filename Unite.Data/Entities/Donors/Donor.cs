@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Unite.Data.Entities.Clinical;
 using Unite.Data.Entities.Molecular;
-using Unite.Data.Entities.Mutations;
 using Unite.Data.Entities.Samples;
 
 namespace Unite.Data.Entities.Donors
@@ -22,7 +21,5 @@ namespace Unite.Data.Entities.Donors
         public virtual ICollection<StudyDonor> DonorStudies { get; set; }
 
         public virtual ICollection<Sample> Samples { get; set; }
-
-        public virtual ICollection<Analysis> Analyses { get; set; }
     }
 }

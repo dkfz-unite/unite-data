@@ -19,9 +19,6 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .IsRequired()
                       .ValueGeneratedOnAdd();
 
-                entity.Property(analysis => analysis.DonorId)
-                      .IsRequired();
-
                 entity.Property(analysis => analysis.Name)
                       .IsRequired()
                       .HasMaxLength(500);
@@ -33,11 +30,6 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                 entity.HasOne<EnumValue<AnalysisType>>()
                       .WithMany()
                       .HasForeignKey(analysis => analysis.TypeId);
-
-
-                entity.HasOne(analysis => analysis.Donor)
-                      .WithMany(donor => donor.Analyses)
-                      .HasForeignKey(analysis => analysis.DonorId);
 
                 entity.HasOne(analysis => analysis.File)
                       .WithOne()

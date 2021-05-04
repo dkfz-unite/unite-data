@@ -11,6 +11,6 @@ namespace Unite.Data.Entities.Samples.Cells
         public Species? SpeciesId { get; set; }
 
         public virtual Sample Sample { get; set; }
-        public virtual CellLineInfo CellLineInfo { get; set; }
+        public virtual CellLineInfo Info { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace Unite.Data.Services.Extensions.Model.Samples.Cells
 
 
                 entity.HasOne<CellLine>()
-                      .WithOne(cellLine => cellLine.CellLineInfo)
+                      .WithOne(cellLine => cellLine.Info)
                       .HasForeignKey<CellLineInfo>(cellLineInfo => cellLineInfo.CellLineId);
             });
         }

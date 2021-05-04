@@ -7,19 +7,10 @@ namespace Unite.Data.Entities.Tasks.Enums
         [EnumMember(Value = "Donor")]
         Donor = 1,
 
+        [EnumMember(Value = "Sample")]
+        Sample = 2,
+
         [EnumMember(Value = "Mutation")]
-        Mutation = 2,
-
-        [EnumMember(Value = "Gene")]
-        Gene = 3,
-
-        [EnumMember(Value = "CellLine")]
-        CellLine = 4,
-
-        [EnumMember(Value = "Xenograft")]
-        Xenograft = 5,
-
-        [EnumMember(Value = "MRIFeature")]
-        MRIFeature = 6
+        Mutation = 3        
     }
 }

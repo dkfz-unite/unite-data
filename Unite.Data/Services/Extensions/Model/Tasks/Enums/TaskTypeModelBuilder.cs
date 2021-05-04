@@ -11,7 +11,7 @@ namespace Unite.Data.Services.Extensions.Model.Tasks.Enums
             var data = new EnumValue<TaskType>[]
             {
                 TaskType.Indexing.ToEnumValue(),
-                TaskType.AnnotationVEP.ToEnumValue()
+                TaskType.Annotation.ToEnumValue()
             };
 
             modelBuilder.BuildEnumValueModel("TaskTypes", data);

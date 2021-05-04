@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities.Tasks.Enums;
 using Unite.Data.Services.Entities;
 
@@ -12,11 +11,8 @@ namespace Unite.Data.Services.Extensions.Model.Tasks.Enums
             var data = new EnumValue<TaskTargetType>[]
             {
                 TaskTargetType.Donor.ToEnumValue(),
-                TaskTargetType.Mutation.ToEnumValue(),
-                TaskTargetType.Gene.ToEnumValue(),
-                TaskTargetType.CellLine.ToEnumValue(),
-                TaskTargetType.Xenograft.ToEnumValue(),
-                TaskTargetType.MRIFeature.ToEnumValue(),
+                TaskTargetType.Sample.ToEnumValue(),
+                TaskTargetType.Mutation.ToEnumValue()
             };
 
             modelBuilder.BuildEnumValueModel("TaskTargetTypes", data);

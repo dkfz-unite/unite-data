@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities.Clinical;
 using Unite.Data.Entities.Donors;
-using Unite.Data.Entities.Samples;
 
 namespace Unite.Data.Services.Extensions.Model.Clinical
 {
@@ -20,9 +19,7 @@ namespace Unite.Data.Services.Extensions.Model.Clinical
                       .ValueGeneratedOnAdd();
 
                 entity.Property(treatment => treatment.DonorId)
-                      .ValueGeneratedNever();
-
-                entity.Property(treatment => treatment.SampleId)
+                      .IsRequired()
                       .ValueGeneratedNever();
 
                 entity.Property(treatment => treatment.TherapyId)
@@ -33,10 +30,6 @@ namespace Unite.Data.Services.Extensions.Model.Clinical
                 entity.HasOne<Donor>()
                       .WithMany(donor => donor.Treatments)
                       .HasForeignKey(treatment => treatment.DonorId);
-
-                entity.HasOne<Sample>()
-                      .WithMany(sample => sample.Treatments)
-                      .HasForeignKey(treatment => treatment.SampleId);
 
                 entity.HasOne(treatment => treatment.Therapy)
                       .WithMany()

@@ -5,9 +5,9 @@ using Unite.Data.Entities.Donors;
 using Unite.Data.Entities.Identity;
 using Unite.Data.Entities.Molecular;
 using Unite.Data.Entities.Mutations;
-using Unite.Data.Entities.Samples;
-using Unite.Data.Entities.Samples.Cells;
-using Unite.Data.Entities.Samples.Tissues;
+using Unite.Data.Entities.Specimens;
+using Unite.Data.Entities.Specimens.Cells;
+using Unite.Data.Entities.Specimens.Tissues;
 using Unite.Data.Entities.Tasks;
 using Unite.Data.Services.Configuration.Options;
 using Unite.Data.Services.Extensions.Model;
@@ -19,11 +19,11 @@ using Unite.Data.Services.Extensions.Model.Molecular;
 using Unite.Data.Services.Extensions.Model.Molecular.Enums;
 using Unite.Data.Services.Extensions.Model.Mutations;
 using Unite.Data.Services.Extensions.Model.Mutations.Enums;
-using Unite.Data.Services.Extensions.Model.Samples;
-using Unite.Data.Services.Extensions.Model.Samples.Cells;
-using Unite.Data.Services.Extensions.Model.Samples.Cells.Enums;
-using Unite.Data.Services.Extensions.Model.Samples.Tissues;
-using Unite.Data.Services.Extensions.Model.Samples.Tissues.Enums;
+using Unite.Data.Services.Extensions.Model.Specimens;
+using Unite.Data.Services.Extensions.Model.Specimens.Cells;
+using Unite.Data.Services.Extensions.Model.Specimens.Cells.Enums;
+using Unite.Data.Services.Extensions.Model.Specimens.Tissues;
+using Unite.Data.Services.Extensions.Model.Specimens.Tissues.Enums;
 using Unite.Data.Services.Extensions.Model.Tasks;
 using Unite.Data.Services.Extensions.Model.Tasks.Enums;
 
@@ -39,25 +39,27 @@ namespace Unite.Data.Services
         public DbSet<File> Files { get; set; }
 
         public DbSet<Donor> Donors { get; set; }
-        public DbSet<Pseudonym> Pseudonyms { get; set; }
-        public DbSet<Therapy> Therapies { get; set; }
-        public DbSet<Treatment> Treatments { get; set; }
         public DbSet<Study> Studies { get; set; }
         public DbSet<StudyDonor> StudyDonors { get; set; }
         public DbSet<WorkPackage> WorkPackages { get; set; }
         public DbSet<WorkPackageDonor> WorkPackageDonors { get; set; }
 
         public DbSet<ClinicalData> ClinicalData { get; set; }
-        public DbSet<MolecularData> MolecularData { get; set; }
-        public DbSet<Localization> Localizations { get; set; }
-        public DbSet<PrimarySite> PrimarySites { get; set; }
+        public DbSet<TumourPrimarySite> TumourPrimarySites { get; set; }
+        public DbSet<TumourLocalization> TumourLocalizations { get; set; }
+        public DbSet<Therapy> Therapies { get; set; }
+        public DbSet<Treatment> Treatments { get; set; }
 
-        public DbSet<Sample> Samples { get; set; }
+        public DbSet<MolecularData> MolecularData { get; set; }
+        
+        public DbSet<Specimen> Specimens { get; set; }
         public DbSet<Tissue> Tissues { get; set; }
+        public DbSet<TissueSource> TissueSources { get; set; }
         public DbSet<CellLine> CellLines { get; set; }
         public DbSet<CellLineInfo> CellLineInfo { get; set; }
 
         public DbSet<Analysis> Analyses { get; set; }
+        public DbSet<Sample> Samples { get; set; }
         public DbSet<AnalysedSample> AnalysedSamples { get; set; }
         public DbSet<MatchedSample> MatchedSamples { get; set; }
         public DbSet<Mutation> Mutations { get; set; }
@@ -95,7 +97,7 @@ namespace Unite.Data.Services
             BuildDonorModels(modelBuilder);
             BuildClinicalDataModels(modelBuilder);
             BuildMolecularDataModels(modelBuilder);
-            BuildSampleModels(modelBuilder);
+            BuildSpecimenModels(modelBuilder);
             BuildMutationModels(modelBuilder);
             BuildTaskModels(modelBuilder);
         }
@@ -114,7 +116,6 @@ namespace Unite.Data.Services
         private void BuildDonorModels(ModelBuilder modelBuilder)
         {
             modelBuilder.BuildDonorModel();
-            modelBuilder.BuildPseudonymModel();
             modelBuilder.BuildStudyModel();
             modelBuilder.BuildStudyDonorModel();
             modelBuilder.BuildWorkPackageModel();
@@ -126,8 +127,8 @@ namespace Unite.Data.Services
             modelBuilder.BuildGenderModel();
 
             modelBuilder.BuildClinicalDataModel();
-            modelBuilder.BuildPrimarySiteModel();
-            modelBuilder.BuildLocalizationModel();
+            modelBuilder.TumourBuildPrimarySiteModel();
+            modelBuilder.TumourBuildLocalizationModel();
             modelBuilder.BuildTherapyModel();
             modelBuilder.BuildTreatmentModel();
         }
@@ -143,17 +144,18 @@ namespace Unite.Data.Services
             modelBuilder.BuildMolecularDataModel();
         }
 
-        private void BuildSampleModels(ModelBuilder modelBuilder)
+        private void BuildSpecimenModels(ModelBuilder modelBuilder)
         {
-            modelBuilder.BuildSampleModel();
-
             modelBuilder.BuildTissueTypeModel();
+            modelBuilder.BuildTissueSourceModel();
             modelBuilder.BuildTissueModel();
 
             modelBuilder.BuildCellLineTypeModel();
             modelBuilder.BuildSpeciesModel();
             modelBuilder.BuildCellLineModel();
             modelBuilder.BuildCellLineInfoModel();
+
+            modelBuilder.BuildSpecimenModel();
         }
 
         private void BuildMutationModels(ModelBuilder modelBuilder)
@@ -166,6 +168,7 @@ namespace Unite.Data.Services
             modelBuilder.BuildConsequenceImpactModel();
 
             modelBuilder.BuildAnalysisModel();
+            modelBuilder.BuildSampleModel();
             modelBuilder.BuildAnalysedSampleModel();
             modelBuilder.BuildMatchedSampleModel();
             modelBuilder.BuildMutationModel();

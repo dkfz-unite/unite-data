@@ -11,7 +11,7 @@ namespace Unite.Data.Services.Extensions.Model.Tasks.Enums
             var data = new EnumValue<TaskTargetType>[]
             {
                 TaskTargetType.Donor.ToEnumValue(),
-                TaskTargetType.Sample.ToEnumValue(),
+                TaskTargetType.Specimen.ToEnumValue(),
                 TaskTargetType.Mutation.ToEnumValue()
             };
 

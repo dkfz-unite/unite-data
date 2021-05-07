@@ -21,7 +21,7 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
                 entity.Property(biotype => biotype.Value)
                       .IsRequired()
-                      .HasMaxLength(50);
+                      .HasMaxLength(100);
             });
         }
     }

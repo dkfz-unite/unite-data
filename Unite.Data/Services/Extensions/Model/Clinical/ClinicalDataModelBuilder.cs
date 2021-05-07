@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Unite.Data.Entities.Donors;
-using Unite.Data.Entities.Clinical.Enums;
-using Unite.Data.Services.Entities;
 using Unite.Data.Entities.Clinical;
-using Unite.Data.Entities.Samples;
+using Unite.Data.Entities.Clinical.Enums;
+using Unite.Data.Entities.Donors;
+using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Donors
 {
@@ -15,23 +14,17 @@ namespace Unite.Data.Services.Extensions.Model.Donors
             {
                 entity.ToTable("ClinicalData");
 
-                entity.HasKey(clinicalData => new
-                {
-                    clinicalData.DonorId,
-                    clinicalData.SampleId
-                });
+                entity.HasKey(clinicalData => clinicalData.DonorId);
 
                 entity.Property(clinicalData => clinicalData.DonorId)
-                      .ValueGeneratedNever();
-
-                entity.Property(clinicalData => clinicalData.SampleId)
+                      .IsRequired()
                       .ValueGeneratedNever();
 
                 entity.Property(clinicalData => clinicalData.GenderId)
                       .HasConversion<int>();
 
                 entity.Property(clinicalData => clinicalData.Diagnosis)
-                      .HasMaxLength(100);
+                      .HasMaxLength(255);
 
 
                 entity.HasOne<EnumValue<Gender>>()
@@ -49,10 +42,6 @@ namespace Unite.Data.Services.Extensions.Model.Donors
                 entity.HasOne<Donor>()
                       .WithOne(donor => donor.ClinicalData)
                       .HasForeignKey<ClinicalData>(clinicalData => clinicalData.DonorId);
-
-                entity.HasOne<Sample>()
-                      .WithOne(sample => sample.ClinicalData)
-                      .HasForeignKey<ClinicalData>(clinicalData => clinicalData.SampleId);
             });
         }
     }

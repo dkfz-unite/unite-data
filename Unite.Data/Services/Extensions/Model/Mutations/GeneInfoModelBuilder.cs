@@ -17,11 +17,18 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .IsRequired()
                       .ValueGeneratedNever();
 
+                entity.Property(geneInfo => geneInfo.EnsemblId)
+                      .HasMaxLength(255);
+
 
                 entity.HasOne<Gene>()
                       .WithOne(gene => gene.Info)
                       .HasForeignKey<GeneInfo>(geneInfo => geneInfo.GeneId)
                       .IsRequired();
+
+
+                entity.HasIndex(geneInfo => geneInfo.EnsemblId)
+                      .IsUnique();
             });
         }
     }

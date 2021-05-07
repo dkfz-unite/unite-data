@@ -4,8 +4,7 @@ namespace Unite.Data.Entities.Molecular
 {
     public class MolecularData
     {
-        public int? DonorId { get; set; }
-        public int? SampleId { get; set; }
+        public int? SpecimenId { get; set; }
 
         public GeneExpressionSubtype? GeneExpressionSubtypeId { get; set; }
         public IDHStatus? IdhStatusId { get; set; }

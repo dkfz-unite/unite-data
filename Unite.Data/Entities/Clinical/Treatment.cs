@@ -6,9 +6,8 @@ namespace Unite.Data.Entities.Clinical
     {
         public int Id { get; set; }
 
+        public int DonorId { get; set; }
         public int TherapyId { get; set; }
-        public int? DonorId { get; set; }
-        public int? SampleId { get; set; }
 
         public string Details { get; set; }
         public DateTime? StartDate { get; set; }

@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Unite.Data.Entities.Donors;
 using Unite.Data.Entities.Molecular;
 using Unite.Data.Entities.Molecular.Enums;
-using Unite.Data.Entities.Samples;
+using Unite.Data.Entities.Specimens;
 using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Molecular
@@ -15,16 +14,10 @@ namespace Unite.Data.Services.Extensions.Model.Molecular
             {
                 entity.ToTable("MolecularData");
 
-                entity.HasKey(molecularData => new
-                {
-                    molecularData.DonorId,
-                    molecularData.SampleId
-                });
+                entity.HasKey(molecularData => molecularData.SpecimenId);
 
-                entity.Property(molecularData => molecularData.DonorId)
-                      .ValueGeneratedNever();
-
-                entity.Property(molecularData => molecularData.SampleId)
+                entity.Property(molecularData => molecularData.SpecimenId)
+                      .IsRequired()
                       .ValueGeneratedNever();
 
                 entity.Property(molecularData => molecularData.GeneExpressionSubtypeId)
@@ -64,13 +57,9 @@ namespace Unite.Data.Services.Extensions.Model.Molecular
                       .HasForeignKey(molecularData => molecularData.MethylationSubtypeId);
 
 
-                entity.HasOne<Donor>()
-                      .WithOne(donor => donor.MolecularData)
-                      .HasForeignKey<MolecularData>(molecularData => molecularData.DonorId);
-
-                entity.HasOne<Sample>()
-                      .WithOne(sample => sample.MolecularData)
-                      .HasForeignKey<MolecularData>(molecularData => molecularData.SampleId);
+                entity.HasOne<Specimen>()
+                      .WithOne(specimen => specimen.MolecularData)
+                      .HasForeignKey<MolecularData>(molecularData => molecularData.SpecimenId);
             });
         }
     }

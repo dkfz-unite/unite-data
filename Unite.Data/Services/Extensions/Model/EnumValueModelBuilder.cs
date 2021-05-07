@@ -42,7 +42,7 @@ namespace Unite.Data.Services.Extensions.Model
 
             entity.Property(enumValue => enumValue.Value)
                   .IsRequired()
-                  .HasMaxLength(50);
+                  .HasMaxLength(100);
 
             entity.Property(enumValue => enumValue.Name)
                   .HasMaxLength(100);

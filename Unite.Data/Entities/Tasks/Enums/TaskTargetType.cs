@@ -7,8 +7,8 @@ namespace Unite.Data.Entities.Tasks.Enums
         [EnumMember(Value = "Donor")]
         Donor = 1,
 
-        [EnumMember(Value = "Sample")]
-        Sample = 2,
+        [EnumMember(Value = "Specimen")]
+        Specimen = 2,
 
         [EnumMember(Value = "Mutation")]
         Mutation = 3        

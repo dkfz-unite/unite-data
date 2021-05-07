@@ -19,9 +19,8 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .IsRequired()
                       .ValueGeneratedOnAdd();
 
-                entity.Property(analysis => analysis.Name)
-                      .IsRequired()
-                      .HasMaxLength(500);
+                entity.Property(analysis => analysis.ReferenceId)
+                      .HasMaxLength(255);
 
                 entity.Property(analysis => analysis.TypeId)
                       .HasConversion<int>();
@@ -34,6 +33,9 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                 entity.HasOne(analysis => analysis.File)
                       .WithOne()
                       .HasForeignKey<Analysis>(analysis => analysis.FileId);
+
+
+                entity.HasIndex(analysis => analysis.ReferenceId);
             });
         }
     }

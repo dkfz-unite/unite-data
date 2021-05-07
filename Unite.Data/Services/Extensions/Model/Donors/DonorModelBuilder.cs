@@ -16,6 +16,12 @@ namespace Unite.Data.Services.Extensions.Model.Donors
                 entity.Property(donor => donor.Id)
                       .IsRequired()
                       .ValueGeneratedOnAdd();
+
+                entity.Property(donor => donor.ReferenceId)
+                      .HasMaxLength(255);
+
+
+                entity.HasIndex(donor => donor.ReferenceId);
             });
         }
     }

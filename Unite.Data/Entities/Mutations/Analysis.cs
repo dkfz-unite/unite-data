@@ -7,8 +7,8 @@ namespace Unite.Data.Entities.Mutations
     public class Analysis
     {
         public int Id { get; set; }
+        public string ReferenceId { get; set; }
 
-        public string Name { get; set; }
         public AnalysisType? TypeId { get; set; }
         public DateTime? Date { get; set; }
         public int? FileId { get; set; }

@@ -14,6 +14,7 @@ namespace Unite.Data.Entities.Mutations
         public bool? Strand { get; set; }
 
         public virtual Biotype Biotype { get; set; }
+
         public virtual GeneInfo Info { get; set; }
     }
 }

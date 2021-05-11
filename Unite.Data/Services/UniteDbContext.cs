@@ -147,6 +147,7 @@ namespace Unite.Data.Services
         private void BuildSpecimenModels(ModelBuilder modelBuilder)
         {
             modelBuilder.BuildTissueTypeModel();
+            modelBuilder.BuildTumourTypeModel();
             modelBuilder.BuildTissueSourceModel();
             modelBuilder.BuildTissueModel();
 

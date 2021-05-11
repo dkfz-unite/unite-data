@@ -8,6 +8,8 @@ namespace Unite.Data.Entities.Mutations
         public int Id { get; set; }
         public string ReferenceId { get; set; }
         public int SpecimenId { get; set; }
+
+        public string Name { get; set; }
         public DateTime? Date { get; set; }
 
         public virtual Specimen Specimen { get; set; }

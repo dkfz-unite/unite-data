@@ -43,9 +43,6 @@ namespace Unite.Data.Services.Extensions.Model.Tasks
                 entity.HasOne<EnumValue<TaskTargetType>>()
                       .WithMany()
                       .HasForeignKey(task => task.TargetTypeId);
-
-
-                entity.HasIndex(task => task.Target);
             });
         }
     }

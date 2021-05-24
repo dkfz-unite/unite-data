@@ -17,8 +17,9 @@ namespace Unite.Data.Services.Extensions.Model.Specimens
                       .IsRequired()
                       .ValueGeneratedOnAdd();
 
-                entity.Property(specimen => specimen.ReferenceId)
-                      .HasMaxLength(255);
+                entity.Property(specimen => specimen.DonorId)
+                      .IsRequired()
+                      .ValueGeneratedNever();
 
 
                 entity.HasOne(specimen => specimen.Parent)
@@ -28,9 +29,6 @@ namespace Unite.Data.Services.Extensions.Model.Specimens
                 entity.HasOne(specimen => specimen.Donor)
                       .WithMany(donor => donor.Specimens)
                       .HasForeignKey(specimen => specimen.DonorId);
-
-
-                entity.HasIndex(specimen => specimen.ReferenceId);
             });
         }
     }

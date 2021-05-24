@@ -11,8 +11,7 @@ namespace Unite.Data.Entities.Specimens
     {
         public int Id { get; set; }
         public int? ParentId { get; set; }
-        public string ReferenceId { get; set; }
-        public int? DonorId { get; set; }
+        public int DonorId { get; set; }
 
         public virtual Specimen Parent { get; set; }
         public virtual ICollection<Specimen> Children { get; set; }

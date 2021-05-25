@@ -6,7 +6,6 @@ namespace Unite.Data.Entities.Specimens.Cells
     {
         public int SpecimenId { get; set; }
 
-        public string ReferenceId { get; set; }
         public string Name { get; set; }
         public CellLineType? TypeId { get; set; }
         public Species? SpeciesId { get; set; }

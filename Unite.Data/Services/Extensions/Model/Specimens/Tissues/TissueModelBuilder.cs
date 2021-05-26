@@ -20,6 +20,9 @@ namespace Unite.Data.Services.Extensions.Model.Specimens.Tissues
                       .IsRequired()
                       .ValueGeneratedNever();
 
+                entity.Property(tissue => tissue.ReferenceId)
+                      .HasMaxLength(255);
+
                 entity.Property(tissue => tissue.TypeId)
                       .HasConversion<int>();
 
@@ -43,6 +46,9 @@ namespace Unite.Data.Services.Extensions.Model.Specimens.Tissues
                       .WithOne(specimen => specimen.Tissue)
                       .HasForeignKey<Tissue>(tissue => tissue.SpecimenId)
                       .IsRequired();
+
+
+                entity.HasIndex(tissue => tissue.ReferenceId);
             });
         }
     }

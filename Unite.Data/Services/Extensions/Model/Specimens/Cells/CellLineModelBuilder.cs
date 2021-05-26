@@ -20,9 +20,12 @@ namespace Unite.Data.Services.Extensions.Model.Specimens.Cells
                       .IsRequired()
                       .ValueGeneratedNever();
 
+                entity.Property(cellLine => cellLine.ReferenceId)
+                      .HasMaxLength(255);
+
                 entity.Property(cellLine => cellLine.Name)
                       .IsRequired()
-                      .HasMaxLength(100);
+                      .HasMaxLength(255);
 
 
                 entity.HasOne<EnumValue<CellLineType>>()
@@ -37,6 +40,9 @@ namespace Unite.Data.Services.Extensions.Model.Specimens.Cells
                       .WithOne(specimen => specimen.CellLine)
                       .HasForeignKey<CellLine>(cellLine => cellLine.SpecimenId)
                       .IsRequired();
+
+
+                entity.HasIndex(cellLine => cellLine.ReferenceId);
             });
         }
     }

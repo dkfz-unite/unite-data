@@ -10,7 +10,7 @@ namespace Unite.Data.Entities.Molecular
         public IDHStatus? IdhStatusId { get; set; }
         public IDHMutation? IdhMutationId { get; set; }
         public MethylationStatus? MethylationStatusId { get; set; }
-        public MethylationSubtype? MethylationSubtypeId { get; set; }
+        public MethylationType? MethylationTypeId { get; set; }
         public bool? GcimpMethylation { get; set; }
     }
 }

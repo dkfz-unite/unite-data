@@ -32,7 +32,7 @@ namespace Unite.Data.Services.Extensions.Model.Molecular
                 entity.Property(molecularData => molecularData.MethylationStatusId)
                       .HasConversion<int>();
 
-                entity.Property(molecularData => molecularData.MethylationSubtypeId)
+                entity.Property(molecularData => molecularData.MethylationTypeId)
                       .HasConversion<int>();
 
 
@@ -52,9 +52,9 @@ namespace Unite.Data.Services.Extensions.Model.Molecular
                       .WithMany()
                       .HasForeignKey(molecularData => molecularData.MethylationStatusId);
 
-                entity.HasOne<EnumValue<MethylationSubtype>>()
+                entity.HasOne<EnumValue<MethylationType>>()
                       .WithMany()
-                      .HasForeignKey(molecularData => molecularData.MethylationSubtypeId);
+                      .HasForeignKey(molecularData => molecularData.MethylationTypeId);
 
 
                 entity.HasOne<Specimen>()

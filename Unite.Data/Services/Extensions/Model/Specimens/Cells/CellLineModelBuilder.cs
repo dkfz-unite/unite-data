@@ -23,10 +23,6 @@ namespace Unite.Data.Services.Extensions.Model.Specimens.Cells
                 entity.Property(cellLine => cellLine.ReferenceId)
                       .HasMaxLength(255);
 
-                entity.Property(cellLine => cellLine.Name)
-                      .IsRequired()
-                      .HasMaxLength(255);
-
 
                 entity.HasOne<EnumValue<CellLineType>>()
                       .WithMany()

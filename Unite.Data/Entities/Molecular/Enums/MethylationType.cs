@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Molecular.Enums
 {
-    public enum MethylationSubtype
+    public enum MethylationType
     {
         /// <summary>
         /// H3-K27

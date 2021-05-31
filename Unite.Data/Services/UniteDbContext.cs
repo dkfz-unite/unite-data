@@ -139,7 +139,7 @@ namespace Unite.Data.Services
             modelBuilder.BuildIDHStatusModel();
             modelBuilder.BuildIDHMutationModel();
             modelBuilder.BuildMethylationStatusModel();
-            modelBuilder.BuildMethylationSubtypeModel();
+            modelBuilder.BuildMethylationTypeModel();
 
             modelBuilder.BuildMolecularDataModel();
         }

@@ -6,6 +6,7 @@ namespace Unite.Data.Entities.Specimens.Cells
     {
         public int SpecimenId { get; set; }
 
+        public string Name { get; set; }
         public string DepositorName { get; set; }
         public string DepositorEstablishment { get; set; }
         public DateTime? EstablishmentDate { get; set; }

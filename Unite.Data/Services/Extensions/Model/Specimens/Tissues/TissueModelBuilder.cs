@@ -26,7 +26,7 @@ namespace Unite.Data.Services.Extensions.Model.Specimens.Tissues
                 entity.Property(tissue => tissue.TypeId)
                       .HasConversion<int>();
 
-                entity.Property(tissue => tissue.TumourTypeId)
+                entity.Property(tissue => tissue.TumorTypeId)
                       .HasConversion<int>();
 
 
@@ -34,9 +34,9 @@ namespace Unite.Data.Services.Extensions.Model.Specimens.Tissues
                       .WithMany()
                       .HasForeignKey(tissue => tissue.TypeId);
 
-                entity.HasOne<EnumValue<TumourType>>()
+                entity.HasOne<EnumValue<TumorType>>()
                       .WithMany()
-                      .HasForeignKey(tissue => tissue.TumourTypeId);
+                      .HasForeignKey(tissue => tissue.TumorTypeId);
 
                 entity.HasOne(tissue => tissue.Source)
                       .WithMany()

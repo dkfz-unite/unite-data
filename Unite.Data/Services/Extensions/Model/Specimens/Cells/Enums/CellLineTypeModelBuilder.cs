@@ -10,8 +10,8 @@ namespace Unite.Data.Services.Extensions.Model.Specimens.Cells.Enums
         {
             var data = new EnumValue<CellLineType>[]
             {
-                CellLineType.GCS.ToEnumValue(),
-                CellLineType.Suspension.ToEnumValue()
+                CellLineType.StemCell.ToEnumValue(),
+                CellLineType.Differentiated.ToEnumValue()
             };
 
             modelBuilder.BuildEnumValueModel("CellLineTypes", data);

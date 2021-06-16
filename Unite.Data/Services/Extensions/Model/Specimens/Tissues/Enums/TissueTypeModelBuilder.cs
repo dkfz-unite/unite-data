@@ -11,7 +11,7 @@ namespace Unite.Data.Services.Extensions.Model.Specimens.Tissues.Enums
             var data = new EnumValue<TissueType>[]
             {
                 TissueType.Control.ToEnumValue(),
-                TissueType.Tumour.ToEnumValue()
+                TissueType.Tumor.ToEnumValue()
             };
 
             modelBuilder.BuildEnumValueModel("TissueTypes", data);

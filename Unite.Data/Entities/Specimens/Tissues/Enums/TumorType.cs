@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Specimens.Tissues.Enums
 {
-    public enum TumourType
+    public enum TumorType
     {
         [EnumMember(Value = "Primary")]
         Primary = 1,

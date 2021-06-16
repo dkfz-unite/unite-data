@@ -7,7 +7,7 @@ namespace Unite.Data.Entities.Specimens.Tissues.Enums
         [EnumMember(Value = "Control")]
         Control = 1,
 
-        [EnumMember(Value = "Tumour")]
-        Tumour = 2
+        [EnumMember(Value = "Tumor")]
+        Tumor = 2
     }
 }

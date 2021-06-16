@@ -147,12 +147,13 @@ namespace Unite.Data.Services
         private void BuildSpecimenModels(ModelBuilder modelBuilder)
         {
             modelBuilder.BuildTissueTypeModel();
-            modelBuilder.BuildTumourTypeModel();
+            modelBuilder.BuildTumorTypeModel();
             modelBuilder.BuildTissueSourceModel();
             modelBuilder.BuildTissueModel();
 
-            modelBuilder.BuildCellLineTypeModel();
             modelBuilder.BuildSpeciesModel();
+            modelBuilder.BuildCellLineTypeModel();
+            modelBuilder.BuildCellLineCultureTypeModel();
             modelBuilder.BuildCellLineModel();
             modelBuilder.BuildCellLineInfoModel();
 

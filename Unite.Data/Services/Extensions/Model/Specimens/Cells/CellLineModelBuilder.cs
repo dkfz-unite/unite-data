@@ -24,13 +24,18 @@ namespace Unite.Data.Services.Extensions.Model.Specimens.Cells
                       .HasMaxLength(255);
 
 
+                entity.HasOne<EnumValue<Species>>()
+                      .WithMany()
+                      .HasForeignKey(cellLine => cellLine.SpeciesId);
+
                 entity.HasOne<EnumValue<CellLineType>>()
                       .WithMany()
                       .HasForeignKey(cellLine => cellLine.TypeId);
 
-                entity.HasOne<EnumValue<Species>>()
+                entity.HasOne<EnumValue<CellLineCultureType>>()
                       .WithMany()
-                      .HasForeignKey(cellLine => cellLine.SpeciesId);
+                      .HasForeignKey(cellLine => cellLine.CultureTypeId);
+
 
                 entity.HasOne<Specimen>()
                       .WithOne(specimen => specimen.CellLine)

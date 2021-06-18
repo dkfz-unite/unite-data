@@ -3,13 +3,13 @@ using Unite.Data.Entities.Clinical;
 
 namespace Unite.Data.Services.Extensions.Model.Clinical
 {
-    public static class TumourLocalizationModelBuilder
+    public static class TumorLocalizationModelBuilder
     {
-        public static void TumourBuildLocalizationModel(this ModelBuilder modelBuilder)
+        public static void BuildTumorLocalizationModel(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TumourLocalization>(entity =>
+            modelBuilder.Entity<TumorLocalization>(entity =>
             {
-                entity.ToTable("TumourLocalizations");
+                entity.ToTable("TumorLocalizations");
 
                 entity.HasKey(localization => localization.Id);
 

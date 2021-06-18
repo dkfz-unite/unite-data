@@ -5,7 +5,7 @@ namespace Unite.Data.Entities.Molecular.Enums
     /// <summary>
     /// MGMT
     /// </summary>
-    public enum MethylationStatus
+    public enum MgmtStatus
     {
         /// <summary>
         /// Unmethylated

@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <ReleaseVersion>1.5.14</ReleaseVersion>
-    <Version>1.5.14</Version>
+    <ReleaseVersion>1.6.0</ReleaseVersion>
+    <Version>1.6.0</Version>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
     <Authors>Valiantsin Ulasau (DKFZ)</Authors>
@@ -40,8 +40,22 @@
     <Folder Include="Services\Extensions\Model\Specimens\Cells\" />
     <Folder Include="Services\Extensions\Model\Specimens\Cells\Enums\" />
     <Folder Include="Utilities\" />
+    <Folder Include="Entities\Specimens\Xenografts\" />
+    <Folder Include="Entities\Specimens\Xenografts\Enums\" />
+    <Folder Include="Entities\Specimens\Organoids\" />
+    <Folder Include="Services\Extensions\Model\Specimens\Organoids\" />
+    <Folder Include="Services\Extensions\Model\Specimens\Xenografts\" />
+    <Folder Include="Services\Extensions\Model\Specimens\Xenografts\Enums\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.6" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Entities\Specimens\Xenografts\" />
+    <None Remove="Entities\Specimens\Xenografts\Enums\" />
+    <None Remove="Entities\Specimens\Organoids\" />
+    <None Remove="Services\Extensions\Model\Specimens\Organoids\" />
+    <None Remove="Services\Extensions\Model\Specimens\Xenografts\" />
+    <None Remove="Services\Extensions\Model\Specimens\Xenografts\Enums\" />
   </ItemGroup>
 </Project>

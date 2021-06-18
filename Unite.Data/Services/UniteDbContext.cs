@@ -7,7 +7,9 @@ using Unite.Data.Entities.Molecular;
 using Unite.Data.Entities.Mutations;
 using Unite.Data.Entities.Specimens;
 using Unite.Data.Entities.Specimens.Cells;
+using Unite.Data.Entities.Specimens.Organoids;
 using Unite.Data.Entities.Specimens.Tissues;
+using Unite.Data.Entities.Specimens.Xenografts;
 using Unite.Data.Entities.Tasks;
 using Unite.Data.Services.Configuration.Options;
 using Unite.Data.Services.Extensions.Model;
@@ -22,8 +24,11 @@ using Unite.Data.Services.Extensions.Model.Mutations.Enums;
 using Unite.Data.Services.Extensions.Model.Specimens;
 using Unite.Data.Services.Extensions.Model.Specimens.Cells;
 using Unite.Data.Services.Extensions.Model.Specimens.Cells.Enums;
+using Unite.Data.Services.Extensions.Model.Specimens.Organoids;
 using Unite.Data.Services.Extensions.Model.Specimens.Tissues;
 using Unite.Data.Services.Extensions.Model.Specimens.Tissues.Enums;
+using Unite.Data.Services.Extensions.Model.Specimens.Xenografts;
+using Unite.Data.Services.Extensions.Model.Specimens.Xenografts.Enums;
 using Unite.Data.Services.Extensions.Model.Tasks;
 using Unite.Data.Services.Extensions.Model.Tasks.Enums;
 
@@ -45,8 +50,8 @@ namespace Unite.Data.Services
         public DbSet<WorkPackageDonor> WorkPackageDonors { get; set; }
 
         public DbSet<ClinicalData> ClinicalData { get; set; }
-        public DbSet<TumourPrimarySite> TumourPrimarySites { get; set; }
-        public DbSet<TumourLocalization> TumourLocalizations { get; set; }
+        public DbSet<TumorPrimarySite> TumorPrimarySites { get; set; }
+        public DbSet<TumorLocalization> TumorLocalizations { get; set; }
         public DbSet<Therapy> Therapies { get; set; }
         public DbSet<Treatment> Treatments { get; set; }
 
@@ -57,6 +62,12 @@ namespace Unite.Data.Services
         public DbSet<TissueSource> TissueSources { get; set; }
         public DbSet<CellLine> CellLines { get; set; }
         public DbSet<CellLineInfo> CellLineInfo { get; set; }
+        public DbSet<Organoid> Organoids { get; set; }
+        public DbSet<OrganoidIntervention> OrganoidInterventions { get; set; }
+        public DbSet<OrganoidInterventionType> OrganoidInterventionTypes { get; set; }
+        public DbSet<Xenograft> Xenografts { get; set; }
+        public DbSet<XenograftIntervention> XenograftInterventions { get; set; }
+        public DbSet<XenograftInterventionType> XenograftInterventionTypes { get; set; }
 
         public DbSet<Analysis> Analyses { get; set; }
         public DbSet<Sample> Samples { get; set; }
@@ -127,19 +138,19 @@ namespace Unite.Data.Services
             modelBuilder.BuildGenderModel();
 
             modelBuilder.BuildClinicalDataModel();
-            modelBuilder.TumourBuildPrimarySiteModel();
-            modelBuilder.TumourBuildLocalizationModel();
+            modelBuilder.BuildTumorPrimarySiteModel();
+            modelBuilder.BuildTumorLocalizationModel();
             modelBuilder.BuildTherapyModel();
             modelBuilder.BuildTreatmentModel();
         }
 
         private void BuildMolecularDataModels(ModelBuilder modelBuilder)
         {
+            modelBuilder.BuildMgmtStatusModel();
+            modelBuilder.BuildIdhStatusModel();
+            modelBuilder.BuildIdhMutationModel();
             modelBuilder.BuildGeneExpressionSubtypeModel();
-            modelBuilder.BuildIDHStatusModel();
-            modelBuilder.BuildIDHMutationModel();
-            modelBuilder.BuildMethylationStatusModel();
-            modelBuilder.BuildMethylationTypeModel();
+            modelBuilder.BuildMethylationSubtypeModel();
 
             modelBuilder.BuildMolecularDataModel();
         }
@@ -156,6 +167,17 @@ namespace Unite.Data.Services
             modelBuilder.BuildCellLineCultureTypeModel();
             modelBuilder.BuildCellLineModel();
             modelBuilder.BuildCellLineInfoModel();
+
+            modelBuilder.BuildOrganoidModel();
+            modelBuilder.BuildOrganoidInterventionModel();
+            modelBuilder.BuildOrganoidInterventionTypeModel();
+
+            modelBuilder.BuildImplantTypeModel();
+            modelBuilder.BuildTissueLocationModel();
+            modelBuilder.BuildTumorGrowthFormModel();
+            modelBuilder.BuildXenograftModel();
+            modelBuilder.BuildXenograftInterventionModel();
+            modelBuilder.BuildXenograftInterventionTypeModel();
 
             modelBuilder.BuildSpecimenModel();
         }

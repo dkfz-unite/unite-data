@@ -5,7 +5,7 @@ namespace Unite.Data.Entities.Molecular.Enums
     /// <summary>
     /// IDH
     /// </summary>
-    public enum IDHStatus
+    public enum IdhStatus
     {
         /// <summary>
         /// Wild Type

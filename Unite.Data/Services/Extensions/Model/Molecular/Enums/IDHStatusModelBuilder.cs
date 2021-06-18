@@ -4,17 +4,17 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Molecular.Enums
 {
-    public static class IDHStatusModelBuilder
+    public static class IdhStatusModelBuilder
     {
-        public static void BuildIDHStatusModel(this ModelBuilder modelBuilder)
+        public static void BuildIdhStatusModel(this ModelBuilder modelBuilder)
         {
-            var data = new EnumValue<IDHStatus>[]
+            var data = new EnumValue<IdhStatus>[]
             {
-                IDHStatus.WildType.ToEnumValue(),
-                IDHStatus.Mutant.ToEnumValue()
+                IdhStatus.WildType.ToEnumValue(),
+                IdhStatus.Mutant.ToEnumValue()
             };
 
-            modelBuilder.BuildEnumValueModel("IDHStatuses", data);
+            modelBuilder.BuildEnumValueModel("IdhStatuses", data);
         }
     }
 }

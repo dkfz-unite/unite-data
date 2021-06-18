@@ -20,7 +20,7 @@ namespace Unite.Data.Services.Extensions.Model.Molecular
                       .IsRequired()
                       .ValueGeneratedNever();
 
-                entity.Property(molecularData => molecularData.GeneExpressionSubtypeId)
+                entity.Property(molecularData => molecularData.MgmtStatusId)
                       .HasConversion<int>();
 
                 entity.Property(molecularData => molecularData.IdhStatusId)
@@ -29,32 +29,32 @@ namespace Unite.Data.Services.Extensions.Model.Molecular
                 entity.Property(molecularData => molecularData.IdhMutationId)
                       .HasConversion<int>();
 
-                entity.Property(molecularData => molecularData.MethylationStatusId)
+                entity.Property(molecularData => molecularData.GeneExpressionSubtypeId)
                       .HasConversion<int>();
 
-                entity.Property(molecularData => molecularData.MethylationTypeId)
+                entity.Property(molecularData => molecularData.MethylationSubtypeId)
                       .HasConversion<int>();
 
+
+                entity.HasOne<EnumValue<MgmtStatus>>()
+                      .WithMany()
+                      .HasForeignKey(molecularData => molecularData.MgmtStatusId);
+
+                entity.HasOne<EnumValue<IdhStatus>>()
+                      .WithMany()
+                      .HasForeignKey(molecularData => molecularData.IdhStatusId);
+
+                entity.HasOne<EnumValue<IdhMutation>>()
+                      .WithMany()
+                      .HasForeignKey(molecularData => molecularData.IdhMutationId);
 
                 entity.HasOne<EnumValue<GeneExpressionSubtype>>()
                       .WithMany()
                       .HasForeignKey(molecularData => molecularData.GeneExpressionSubtypeId);
 
-                entity.HasOne<EnumValue<IDHStatus>>()
+                entity.HasOne<EnumValue<MethylationSubtype>>()
                       .WithMany()
-                      .HasForeignKey(molecularData => molecularData.IdhStatusId);
-
-                entity.HasOne<EnumValue<IDHMutation>>()
-                      .WithMany()
-                      .HasForeignKey(molecularData => molecularData.IdhMutationId);
-
-                entity.HasOne<EnumValue<MethylationStatus>>()
-                      .WithMany()
-                      .HasForeignKey(molecularData => molecularData.MethylationStatusId);
-
-                entity.HasOne<EnumValue<MethylationType>>()
-                      .WithMany()
-                      .HasForeignKey(molecularData => molecularData.MethylationTypeId);
+                      .HasForeignKey(molecularData => molecularData.MethylationSubtypeId);
 
 
                 entity.HasOne<Specimen>()

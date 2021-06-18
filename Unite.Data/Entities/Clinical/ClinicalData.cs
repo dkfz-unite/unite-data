@@ -18,7 +18,7 @@ namespace Unite.Data.Entities.Clinical
         public int? KpsBaseline { get; set; }
         public bool? SteroidsBaseline { get; set; }
 
-        public virtual TumourPrimarySite PrimarySite { get; set; }
-        public virtual TumourLocalization Localization { get; set; }
+        public virtual TumorPrimarySite PrimarySite { get; set; }
+        public virtual TumorLocalization Localization { get; set; }
     }
 }

@@ -3,13 +3,13 @@ using Unite.Data.Entities.Clinical;
 
 namespace Unite.Data.Services.Extensions.Model.Clinical
 {
-    public static class TumourPrimarySiteModelBuilder
+    public static class TumorPrimarySiteModelBuilder
     {
-        public static void TumourBuildPrimarySiteModel(this ModelBuilder modelBuilder)
+        public static void BuildTumorPrimarySiteModel(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TumourPrimarySite>(entity =>
+            modelBuilder.Entity<TumorPrimarySite>(entity =>
             {
-                entity.ToTable("TumourPrimarySites");
+                entity.ToTable("TumorPrimarySites");
 
                 entity.HasKey(primarySite => primarySite.Id);
 

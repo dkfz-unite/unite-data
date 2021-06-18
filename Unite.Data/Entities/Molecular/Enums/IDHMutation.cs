@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Molecular.Enums
 {
-    public enum IDHMutation
+    public enum IdhMutation
     {
         /// <summary>
         /// IDH1 R132H

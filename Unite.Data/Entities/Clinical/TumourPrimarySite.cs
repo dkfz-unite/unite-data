@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Clinical
 {
-    public class TumourPrimarySite
+    public class TumorPrimarySite
     {
         public int Id { get; set; }
 

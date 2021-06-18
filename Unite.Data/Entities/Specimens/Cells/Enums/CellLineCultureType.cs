@@ -8,6 +8,9 @@ namespace Unite.Data.Entities.Specimens.Cells.Enums
         Suspension = 1,
 
         [EnumMember(Value = "Adherent")]
-        Adherent = 2
+        Adherent = 2,
+
+        [EnumMember(Value = "Both")]
+        Both = 3,
     }
 }

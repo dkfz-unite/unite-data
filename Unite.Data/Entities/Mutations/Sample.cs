@@ -5,8 +5,6 @@ namespace Unite.Data.Entities.Mutations
 {
     public class Sample
     {
-        public int Id { get; set; }
-        public string ReferenceId { get; set; }
         public int SpecimenId { get; set; }
 
         public DateTime? Date { get; set; }

@@ -11,14 +11,7 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
             {
                 entity.ToTable("Samples");
 
-                entity.HasKey(sample => sample.Id);
-
-                entity.Property(sample => sample.Id)
-                      .IsRequired()
-                      .ValueGeneratedOnAdd();
-
-                entity.Property(sample => sample.ReferenceId)
-                      .HasMaxLength(255);
+                entity.HasKey(sample => sample.SpecimenId);
 
                 entity.Property(sample => sample.SpecimenId)
                       .IsRequired()
@@ -28,9 +21,6 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                 entity.HasOne(sample => sample.Specimen)
                       .WithMany(specimen => specimen.Samples)
                       .HasForeignKey(sample => sample.SpecimenId);
-
-
-                entity.HasIndex(sample => sample.ReferenceId);
             });
         }
     }

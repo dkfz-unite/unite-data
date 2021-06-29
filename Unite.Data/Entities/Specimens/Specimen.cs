@@ -21,8 +21,8 @@ namespace Unite.Data.Entities.Specimens
         public virtual Donor Donor { get; set; }
         public virtual Tissue Tissue { get; set; }
         public virtual CellLine CellLine { get; set; }
-        public virtual Xenograft Xenograft { get; set; }
         public virtual Organoid Organoid { get; set; }
+        public virtual Xenograft Xenograft { get; set; }
 
         public virtual MolecularData MolecularData { get; set; }
 

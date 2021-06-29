@@ -17,6 +17,9 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .IsRequired()
                       .ValueGeneratedOnAdd();
 
+                entity.Property(sample => sample.ReferenceId)
+                      .HasMaxLength(255);
+
                 entity.Property(sample => sample.SpecimenId)
                       .IsRequired()
                       .ValueGeneratedNever();

@@ -31,15 +31,14 @@ namespace Unite.Data.Utilities.Mutations
         /// <param name="chr">Chromosome</param>
         /// <param name="seq">Sequence type</param>
         /// <param name="start">Mutation start</param>
-        /// <param name="end">Mutation end</param>
         /// <param name="refBase">Reference base</param>
         /// <param name="altBase">Alternate base</param>
         /// <returns>HGVs mutation code.</returns>
-        public static string Generate(Chromosome chr, SequenceType seq, int start, int end, string refBase, string altBase)
+        public static string Generate(Chromosome chr, SequenceType seq, int start, string refBase, string altBase)
         {
             var chromosome = $"chr{chr.ToDefinitionString()}";
             var sequenceType = seq.ToDefinitionString();
-            var position = start == end ? $"{start}" : $"{start}-{end}";
+            var position = $"{start}";
             var referenceBase = refBase ?? "-";
             var alternateBase = altBase ?? "-";
 

@@ -1,5 +1,4 @@
-﻿using System;
-using Unite.Data.Entities.Specimens;
+﻿using Unite.Data.Entities.Specimens;
 
 namespace Unite.Data.Entities.Mutations
 {
@@ -8,8 +7,6 @@ namespace Unite.Data.Entities.Mutations
         public int Id { get; set; }
         public string ReferenceId { get; set; }
         public int SpecimenId { get; set; }
-
-        public DateTime? Date { get; set; }
 
         public virtual Specimen Specimen { get; set; }
     }

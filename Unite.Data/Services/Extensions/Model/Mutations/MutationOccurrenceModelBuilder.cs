@@ -23,22 +23,22 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .IsRequired()
                       .ValueGeneratedOnAdd();
 
-                entity.Property(mutationOccurrence => mutationOccurrence.MutationId)
-                      .IsRequired()
-                      .ValueGeneratedNever();
-
                 entity.Property(mutationOccurrence => mutationOccurrence.AnalysedSampleId)
                       .IsRequired()
                       .ValueGeneratedNever();
 
+                entity.Property(mutationOccurrence => mutationOccurrence.MutationId)
+                      .IsRequired()
+                      .ValueGeneratedNever();
 
-                entity.HasOne(mutationOccurrence => mutationOccurrence.Mutation)
-                      .WithMany(mutation => mutation.MutationOccurrences)
-                      .HasForeignKey(mutationOccurrence => mutationOccurrence.MutationId);
 
                 entity.HasOne(mutationOccurrence => mutationOccurrence.AnalysedSample)
                       .WithMany(analysedSample => analysedSample.MutationOccurrences)
                       .HasForeignKey(mutationOccurrence => mutationOccurrence.AnalysedSampleId);
+
+                entity.HasOne(mutationOccurrence => mutationOccurrence.Mutation)
+                      .WithMany(mutation => mutation.MutationOccurrences)
+                      .HasForeignKey(mutationOccurrence => mutationOccurrence.MutationId);
             });
         }
     }

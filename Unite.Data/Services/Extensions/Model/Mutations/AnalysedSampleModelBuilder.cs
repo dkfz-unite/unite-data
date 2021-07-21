@@ -13,12 +13,6 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
 
                 entity.HasKey(analysedSample => analysedSample.Id);
 
-                entity.HasAlternateKey(analysedSample => new
-                {
-                    analysedSample.AnalysisId,
-                    analysedSample.SampleId
-                });
-
                 entity.Property(analysedSample => analysedSample.Id)
                       .IsRequired()
                       .ValueGeneratedOnAdd();
@@ -31,6 +25,9 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .IsRequired()
                       .ValueGeneratedNever();
 
+                entity.Property(analysedSample => analysedSample.MatchedSampleId)
+                      .ValueGeneratedNever();
+
 
                 entity.HasOne(analysedSample => analysedSample.Analysis)
                       .WithMany(analysis => analysis.AnalysedSamples)
@@ -39,6 +36,10 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                 entity.HasOne(analysedSample => analysedSample.Sample)
                       .WithMany()
                       .HasForeignKey(analysedSample => analysedSample.SampleId);
+
+                entity.HasOne(analysedSample => analysedSample.MatchedSample)
+                      .WithMany()
+                      .HasForeignKey(analysedSample => analysedSample.MatchedSampleId);
             });
         }
     }

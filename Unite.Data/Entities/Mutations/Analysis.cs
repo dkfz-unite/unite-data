@@ -13,6 +13,7 @@ namespace Unite.Data.Entities.Mutations
 
         public virtual File File { get; set; }
 
+
         public virtual ICollection<AnalysedSample> AnalysedSamples { get; set; }
     }
 }

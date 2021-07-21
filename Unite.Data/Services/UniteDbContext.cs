@@ -72,7 +72,6 @@ namespace Unite.Data.Services
         public DbSet<Analysis> Analyses { get; set; }
         public DbSet<Sample> Samples { get; set; }
         public DbSet<AnalysedSample> AnalysedSamples { get; set; }
-        public DbSet<MatchedSample> MatchedSamples { get; set; }
         public DbSet<Mutation> Mutations { get; set; }
         public DbSet<MutationOccurrence> MutationOccurrences { get; set; }
         public DbSet<Gene> Genes { get; set; }
@@ -194,7 +193,6 @@ namespace Unite.Data.Services
             modelBuilder.BuildAnalysisModel();
             modelBuilder.BuildSampleModel();
             modelBuilder.BuildAnalysedSampleModel();
-            modelBuilder.BuildMatchedSampleModel();
             modelBuilder.BuildMutationModel();
             modelBuilder.BuildMutationOccurrenceModel();
             modelBuilder.BuildConsequenceModel();

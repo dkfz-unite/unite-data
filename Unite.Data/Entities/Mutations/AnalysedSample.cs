@@ -12,7 +12,7 @@ namespace Unite.Data.Entities.Mutations
 
         public virtual Analysis Analysis { get; set; }
         public virtual Sample Sample { get; set; }
-        public virtual AnalysedSample MatchedSample { get; set; }
+        public virtual Sample MatchedSample { get; set; }
 
 
         public virtual ICollection<MutationOccurrence> MutationOccurrences { get; set; }

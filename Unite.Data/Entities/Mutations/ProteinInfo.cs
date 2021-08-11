@@ -1,8 +1,8 @@
 ﻿namespace Unite.Data.Entities.Mutations
 {
-    public class GeneInfo
+    public class ProteinInfo
     {
-        public int GeneId { get; set; }
+        public int ProteinId { get; set; }
 
         public string EnsemblId { get; set; }
     }

@@ -6,6 +6,8 @@ namespace Unite.Data.Entities.Mutations
     {
         public int Id { get; set; }
 
+        public int? GeneId { get; set; }
+        public int? ProteinId { get; set; }
         public int? BiotypeId { get; set; }
         public string Symbol { get; set; }
         public Chromosome? ChromosomeId { get; set; }
@@ -13,6 +15,8 @@ namespace Unite.Data.Entities.Mutations
         public int? End { get; set; }
         public bool? Strand { get; set; }
 
+        public virtual Gene Gene { get; set; }
+        public virtual Protein Protein { get; set; }
         public virtual Biotype Biotype { get; set; }
 
         public virtual TranscriptInfo Info { get; set; }

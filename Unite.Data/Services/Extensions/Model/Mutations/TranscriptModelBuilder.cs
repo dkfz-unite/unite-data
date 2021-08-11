@@ -21,6 +21,14 @@ namespace Unite.Data.Services.Extensions.Model.Mutations
                       .HasConversion<int>();
 
 
+                entity.HasOne(transcript => transcript.Gene)
+                      .WithMany()
+                      .HasForeignKey(transcript => transcript.GeneId);
+
+                entity.HasOne(transcript => transcript.Protein)
+                      .WithMany()
+                      .HasForeignKey(transcript => transcript.ProteinId);
+
                 entity.HasOne(transcript => transcript.Biotype)
                       .WithMany()
                       .HasForeignKey(transcript => transcript.BiotypeId);

@@ -12,7 +12,8 @@ namespace Unite.Data.Services.Extensions.Model.Tasks.Enums
             {
                 TaskTargetType.Donor.ToEnumValue(),
                 TaskTargetType.Specimen.ToEnumValue(),
-                TaskTargetType.Mutation.ToEnumValue()
+                TaskTargetType.Mutation.ToEnumValue(),
+                TaskTargetType.Gene.ToEnumValue()
             };
 
             modelBuilder.BuildEnumValueModel("TaskTargetTypes", data);

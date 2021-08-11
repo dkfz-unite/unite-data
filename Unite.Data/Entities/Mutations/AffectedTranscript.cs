@@ -7,7 +7,6 @@ namespace Unite.Data.Entities.Mutations
         public long Id { get; set; }
 
         public long MutationId { get; set; }
-        public int GeneId { get; set; }
         public int TranscriptId { get; set; }
 
         public int? CDNAStart { get; set; }
@@ -20,7 +19,6 @@ namespace Unite.Data.Entities.Mutations
         public string CodonChange { get; set; }
 
         public virtual Mutation Mutation { get; set; }
-        public virtual Gene Gene { get; set; }
         public virtual Transcript Transcript { get; set; }
 
         public virtual ICollection<AffectedTranscriptConsequence> Consequences { get; set; }

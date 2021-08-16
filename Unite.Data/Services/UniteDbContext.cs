@@ -80,8 +80,6 @@ namespace Unite.Data.Services
         public DbSet<TranscriptInfo> TranscriptInfo { get; set; }
         public DbSet<Protein> Proteins { get; set; }
         public DbSet<ProteinInfo> ProteinInfo { get; set; }
-        public DbSet<ProteinDomain> ProteinDomains { get; set; }
-        public DbSet<ProteinDomainInfo> ProteinDomainInfo { get; set; }
         public DbSet<Biotype> Biotypes { get; set; }
         public DbSet<AffectedTranscript> AffectedTranscripts { get; set; }
         public DbSet<AffectedTranscriptConsequence> AffectedTranscriptConsequences { get; set; }
@@ -207,8 +205,6 @@ namespace Unite.Data.Services
             modelBuilder.BuildTranscriptInfoModel();
             modelBuilder.BuildProteinModel();
             modelBuilder.BuildProteinInfoModel();
-            modelBuilder.BuildProteinDomainModel();
-            modelBuilder.BuildProteinDomainInfoModel();
             modelBuilder.BuildAffectedTranscriptModel();
             modelBuilder.BuildAffectedTranscriptConsequenceModel();
         }

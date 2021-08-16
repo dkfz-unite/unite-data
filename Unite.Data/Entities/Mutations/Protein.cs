@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Unite.Data.Entities.Mutations
+﻿namespace Unite.Data.Entities.Mutations
 {
     public class Protein
     {
@@ -12,7 +10,5 @@ namespace Unite.Data.Entities.Mutations
         public int? Length { get; set; }
 
         public ProteinInfo Info { get; set; }
-
-        public virtual ICollection<ProteinDomain> ProteinDomains { get; set; }
     }
 }

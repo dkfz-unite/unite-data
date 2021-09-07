@@ -4,9 +4,9 @@ using Unite.Data.Entities.Mutations.Enums;
 
 namespace Unite.Data.Services.Extensions.Model.Mutations
 {
-    public static class ConsequenceModelBuilder
+    internal static class ConsequenceModelBuilder
     {
-        public static void BuildConsequenceModel(this ModelBuilder modelBuilder)
+        internal static void BuildConsequenceModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Consequence>(entity =>
             {

@@ -5,10 +5,10 @@ namespace Unite.Data.Services
     public abstract class DataWriter<TModel> : IDataWriter<TModel>
         where TModel : class
     {
-        protected readonly UniteDbContext _dbContext;
+        protected readonly DomainDbContext _dbContext;
 
 
-        public DataWriter(UniteDbContext dbContext)
+        public DataWriter(DomainDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -67,10 +67,10 @@ namespace Unite.Data.Services
         where TModel : class
         where TAudit : class, new()
     {
-        protected readonly UniteDbContext _dbContext;
+        protected readonly DomainDbContext _dbContext;
 
 
-        public DataWriter(UniteDbContext dbContext)
+        public DataWriter(DomainDbContext dbContext)
         {
             _dbContext = dbContext;
         }

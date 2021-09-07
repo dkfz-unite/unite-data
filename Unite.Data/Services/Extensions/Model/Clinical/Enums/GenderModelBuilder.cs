@@ -4,9 +4,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Clinical.Enums
 {
-    public static class GenderModelBuilder
+    internal static class GenderModelBuilder
     {
-        public static void BuildGenderModel(this ModelBuilder modelBuilder)
+        internal static void BuildGenderModel(this ModelBuilder modelBuilder)
         {
             var data = new EnumValue<Gender>[]
             {

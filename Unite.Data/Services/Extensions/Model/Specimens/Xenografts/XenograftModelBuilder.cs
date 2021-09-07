@@ -6,9 +6,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Specimens.Xenografts
 {
-    public static class XenograftModelBuilder
+    internal static class XenograftModelBuilder
     {
-        public static void BuildXenograftModel(this ModelBuilder modelBuilder)
+        internal static void BuildXenograftModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Xenograft>(entity =>
             {

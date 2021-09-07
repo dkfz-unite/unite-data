@@ -4,9 +4,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Mutations.Enums
 {
-    public static class ConsequenceImpactModelBuilder
+    internal static class ConsequenceImpactModelBuilder
     {
-        public static void BuildConsequenceImpactModel(this ModelBuilder modelBuilder)
+        internal static void BuildConsequenceImpactModel(this ModelBuilder modelBuilder)
         {
             var data = new EnumValue<ConsequenceImpact>[]
             {

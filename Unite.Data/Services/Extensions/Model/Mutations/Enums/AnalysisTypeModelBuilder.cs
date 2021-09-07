@@ -4,9 +4,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Mutations.Enums
 {
-    public static class AnalysisTypeModelBuilder
+    internal static class AnalysisTypeModelBuilder
     {
-        public static void BuildAnalysisTypeModel(this ModelBuilder modelBuilder)
+        internal static void BuildAnalysisTypeModel(this ModelBuilder modelBuilder)
         {
             var data = new EnumValue<AnalysisType>[]
             {

@@ -6,9 +6,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Donors
 {
-    public static class ClinicalDataModelBuilder
+    internal static class ClinicalDataModelBuilder
     {
-        public static void BuildClinicalDataModel(this ModelBuilder modelBuilder)
+        internal static void BuildClinicalDataModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ClinicalData>(entity =>
             {

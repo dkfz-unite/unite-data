@@ -4,9 +4,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Molecular.Enums
 {
-    public static class MethylationSubtypeModelBuilder
+    internal static class MethylationSubtypeModelBuilder
     {
-        public static void BuildMethylationSubtypeModel(this ModelBuilder modelBuilder)
+        internal static void BuildMethylationSubtypeModel(this ModelBuilder modelBuilder)
         {
             var data = new EnumValue<MethylationSubtype>[]
             {

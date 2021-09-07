@@ -4,9 +4,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Mutations.Enums
 {
-    public static class ChromosomeModelBuilder
+    internal static class ChromosomeModelBuilder
     {
-        public static void BuildChromosomeModel(this ModelBuilder modelBuilder)
+        internal static void BuildChromosomeModel(this ModelBuilder modelBuilder)
         {
             var data = new EnumValue<Chromosome>[]
             {

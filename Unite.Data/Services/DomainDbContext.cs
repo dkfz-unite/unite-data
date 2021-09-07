@@ -2,7 +2,6 @@
 using Unite.Data.Entities;
 using Unite.Data.Entities.Clinical;
 using Unite.Data.Entities.Donors;
-using Unite.Data.Entities.Identity;
 using Unite.Data.Entities.Molecular;
 using Unite.Data.Entities.Mutations;
 using Unite.Data.Entities.Specimens;
@@ -16,7 +15,6 @@ using Unite.Data.Services.Extensions.Model;
 using Unite.Data.Services.Extensions.Model.Clinical;
 using Unite.Data.Services.Extensions.Model.Clinical.Enums;
 using Unite.Data.Services.Extensions.Model.Donors;
-using Unite.Data.Services.Extensions.Model.Identity;
 using Unite.Data.Services.Extensions.Model.Molecular;
 using Unite.Data.Services.Extensions.Model.Molecular.Enums;
 using Unite.Data.Services.Extensions.Model.Mutations;
@@ -34,12 +32,10 @@ using Unite.Data.Services.Extensions.Model.Tasks.Enums;
 
 namespace Unite.Data.Services
 {
-    public class UniteDbContext : DbContext
+    public class DomainDbContext : DbContext
     {
+        private const string _database = "unite";
         private readonly string _connectionString;
-
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserSession> UserSessions { get; set; }
 
         public DbSet<File> Files { get; set; }
 
@@ -88,9 +84,9 @@ namespace Unite.Data.Services
         public DbSet<Task> Tasks { get; set; }
 
 
-        public UniteDbContext(ISqlOptions options)
+        public DomainDbContext(ISqlOptions options)
         {
-            _connectionString = $"Host={options.Host};Database={options.Database};Username={options.User};Password={options.Password}";
+            _connectionString = $"Host={options.Host};Port={options.Port};Database={_database};Username={options.User};Password={options.Password}";
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -104,7 +100,6 @@ namespace Unite.Data.Services
         {
             base.OnModelCreating(modelBuilder);
 
-            BuildIdentityModels(modelBuilder);
             BuildGeneralModels(modelBuilder);
             BuildDonorModels(modelBuilder);
             BuildClinicalDataModels(modelBuilder);
@@ -114,11 +109,6 @@ namespace Unite.Data.Services
             BuildTaskModels(modelBuilder);
         }
 
-        private void BuildIdentityModels(ModelBuilder modelBuilder)
-        {
-            modelBuilder.BuildUserModel();
-            modelBuilder.BuildUserSessionModel();
-        }
 
         private void BuildGeneralModels(ModelBuilder modelBuilder)
         {

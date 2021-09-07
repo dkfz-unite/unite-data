@@ -3,9 +3,9 @@ using Unite.Data.Entities.Clinical;
 
 namespace Unite.Data.Services.Extensions.Model.Clinical
 {
-    public static class TumorPrimarySiteModelBuilder
+    internal static class TumorPrimarySiteModelBuilder
     {
-        public static void BuildTumorPrimarySiteModel(this ModelBuilder modelBuilder)
+        internal static void BuildTumorPrimarySiteModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TumorPrimarySite>(entity =>
             {

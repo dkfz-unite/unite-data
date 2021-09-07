@@ -3,9 +3,9 @@ using Unite.Data.Entities.Specimens.Xenografts;
 
 namespace Unite.Data.Services.Extensions.Model.Specimens.Xenografts
 {
-    public static class XenograftInterventionTypeModelBuilder
+    internal static class XenograftInterventionTypeModelBuilder
     {
-        public static void BuildXenograftInterventionTypeModel(this ModelBuilder modelBuilder)
+        internal static void BuildXenograftInterventionTypeModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<XenograftInterventionType>(entity =>
             {

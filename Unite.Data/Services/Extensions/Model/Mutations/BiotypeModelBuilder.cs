@@ -3,9 +3,9 @@ using Unite.Data.Entities.Mutations;
 
 namespace Unite.Data.Services.Extensions.Model.Mutations
 {
-    public static class BiotypeModelBuilder
+    internal static class BiotypeModelBuilder
     {
-        public static void BuildBiotypeModel(this ModelBuilder modelBuilder)
+        internal static void BuildBiotypeModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Biotype>(entity =>
             {

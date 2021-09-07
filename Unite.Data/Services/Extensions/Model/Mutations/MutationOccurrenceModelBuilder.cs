@@ -3,9 +3,9 @@ using Unite.Data.Entities.Mutations;
 
 namespace Unite.Data.Services.Extensions.Model.Mutations
 {
-    public static class MutationOccurrenceModelBuilder
+    internal static class MutationOccurrenceModelBuilder
     {
-        public static void BuildMutationOccurrenceModel(this ModelBuilder modelBuilder)
+        internal static void BuildMutationOccurrenceModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MutationOccurrence>(entity =>
             {

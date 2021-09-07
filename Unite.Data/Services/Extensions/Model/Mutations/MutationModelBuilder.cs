@@ -5,9 +5,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Mutations
 {
-    public static class MutationModelBuilder
+    internal static class MutationModelBuilder
     {
-        public static void BuildMutationModel(this ModelBuilder modelBuilder)
+        internal static void BuildMutationModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Mutation>(entity =>
             {

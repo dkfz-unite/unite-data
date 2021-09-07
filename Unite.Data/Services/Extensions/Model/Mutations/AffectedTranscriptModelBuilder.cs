@@ -3,9 +3,9 @@ using Unite.Data.Entities.Mutations;
 
 namespace Unite.Data.Services.Extensions.Model.Mutations
 {
-    public static class AffectedTranscriptModelBuilder
+    internal static class AffectedTranscriptModelBuilder
     {
-        public static void BuildAffectedTranscriptModel(this ModelBuilder modelBuilder)
+        internal static void BuildAffectedTranscriptModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AffectedTranscript>(entity =>
             {

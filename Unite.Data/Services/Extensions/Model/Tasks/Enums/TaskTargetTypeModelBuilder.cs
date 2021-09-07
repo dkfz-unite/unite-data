@@ -4,9 +4,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Tasks.Enums
 {
-    public static class TaskTargetTypeModelBuilder
+    internal static class TaskTargetTypeModelBuilder
     {
-        public static void BuildTaskTargetTypeModel(this ModelBuilder modelBuilder)
+        internal static void BuildTaskTargetTypeModel(this ModelBuilder modelBuilder)
         {
             var data = new EnumValue<TaskTargetType>[]
             {

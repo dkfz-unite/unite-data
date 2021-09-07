@@ -5,9 +5,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Tasks
 {
-    public static class TaskModelBuilder
+    internal static class TaskModelBuilder
     {
-        public static void BuildTaskModel(this ModelBuilder modelBuilder)
+        internal static void BuildTaskModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Task>(entity =>
             {

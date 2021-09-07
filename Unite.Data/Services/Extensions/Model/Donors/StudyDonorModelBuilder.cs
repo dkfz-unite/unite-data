@@ -3,9 +3,9 @@ using Unite.Data.Entities.Donors;
 
 namespace Unite.Data.Services.Extensions.Model.Donors
 {
-    public static class StudyDonorModelBuilder
+    internal static class StudyDonorModelBuilder
     {
-        public static void BuildStudyDonorModel(this ModelBuilder modelBuilder)
+        internal static void BuildStudyDonorModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<StudyDonor>(entity =>
             {

@@ -7,7 +7,7 @@ namespace Unite.Data.Services.Extensions.Model
 {
     internal static class EnumValueModelBuilder
     {
-        public static void BuildEnumValueModel<T>(this ModelBuilder modelBuilder, EnumValue<T>[] data)
+        internal static void BuildEnumValueModel<T>(this ModelBuilder modelBuilder, EnumValue<T>[] data)
             where T : Enum
         {
 
@@ -17,7 +17,7 @@ namespace Unite.Data.Services.Extensions.Model
             });
         }
 
-        public static void BuildEnumValueModel<T>(this ModelBuilder modelBuilder, string tableName, EnumValue<T>[] data)
+        internal static void BuildEnumValueModel<T>(this ModelBuilder modelBuilder, string tableName, EnumValue<T>[] data)
             where T : Enum
         {
             modelBuilder.Entity<EnumValue<T>>(entity =>

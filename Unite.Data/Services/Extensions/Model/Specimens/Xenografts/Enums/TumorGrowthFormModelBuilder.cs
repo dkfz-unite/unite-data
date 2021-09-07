@@ -4,9 +4,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Specimens.Xenografts.Enums
 {
-    public static class TumorGrowthFormModelBuilder
+    internal static class TumorGrowthFormModelBuilder
     {
-        public static void BuildTumorGrowthFormModel(this ModelBuilder modelBuilder)
+        internal static void BuildTumorGrowthFormModel(this ModelBuilder modelBuilder)
         {
             var data = new EnumValue<TumorGrowthForm>[]
             {

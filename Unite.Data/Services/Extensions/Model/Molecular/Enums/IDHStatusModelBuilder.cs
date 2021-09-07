@@ -4,9 +4,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Molecular.Enums
 {
-    public static class IdhStatusModelBuilder
+    internal static class IdhStatusModelBuilder
     {
-        public static void BuildIdhStatusModel(this ModelBuilder modelBuilder)
+        internal static void BuildIdhStatusModel(this ModelBuilder modelBuilder)
         {
             var data = new EnumValue<IdhStatus>[]
             {

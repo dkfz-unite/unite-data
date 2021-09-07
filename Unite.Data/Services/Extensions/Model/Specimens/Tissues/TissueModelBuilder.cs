@@ -6,9 +6,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Specimens.Tissues
 {
-    public static class TissueModelBuilder
+    internal static class TissueModelBuilder
     {
-        public static void BuildTissueModel(this ModelBuilder modelBuilder)
+        internal static void BuildTissueModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Tissue>(entity =>
             {

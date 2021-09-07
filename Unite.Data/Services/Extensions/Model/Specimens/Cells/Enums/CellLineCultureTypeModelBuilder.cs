@@ -4,9 +4,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Specimens.Cells.Enums
 {
-    public static class CellLineCultureTypeModelBuilder
+    internal static class CellLineCultureTypeModelBuilder
     {
-        public static void BuildCellLineCultureTypeModel(this ModelBuilder modelBuilder)
+        internal static void BuildCellLineCultureTypeModel(this ModelBuilder modelBuilder)
         {
             var data = new EnumValue<CellLineCultureType>[]
             {

@@ -3,7 +3,7 @@
     public interface ISqlOptions
     {
         string Host { get; }
-        string Database { get; }
+        string Port { get; }
         string User { get; }
         string Password { get; }
     }

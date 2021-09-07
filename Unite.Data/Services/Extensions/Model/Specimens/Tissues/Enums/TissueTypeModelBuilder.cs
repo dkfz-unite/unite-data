@@ -4,9 +4,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Specimens.Tissues.Enums
 {
-    public static class TissueTypeModelBuilder
+    internal static class TissueTypeModelBuilder
     {
-        public static void BuildTissueTypeModel(this ModelBuilder modelBuilder)
+        internal static void BuildTissueTypeModel(this ModelBuilder modelBuilder)
         {
             var data = new EnumValue<TissueType>[]
             {

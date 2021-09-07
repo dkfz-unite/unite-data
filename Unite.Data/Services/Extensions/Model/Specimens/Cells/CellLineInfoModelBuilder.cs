@@ -3,9 +3,9 @@ using Unite.Data.Entities.Specimens.Cells;
 
 namespace Unite.Data.Services.Extensions.Model.Specimens.Cells
 {
-    public static class CellLineInfoModelBuilder
+    internal static class CellLineInfoModelBuilder
     {
-        public static void BuildCellLineInfoModel(this ModelBuilder modelBuilder)
+        internal static void BuildCellLineInfoModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CellLineInfo>(entity =>
             {

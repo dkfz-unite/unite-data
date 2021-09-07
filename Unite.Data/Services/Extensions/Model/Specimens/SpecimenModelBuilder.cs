@@ -3,9 +3,9 @@ using Unite.Data.Entities.Specimens;
 
 namespace Unite.Data.Services.Extensions.Model.Specimens
 {
-    public static class SpecimenModelBuilder
+    internal static class SpecimenModelBuilder
     {
-        public static void BuildSpecimenModel(this ModelBuilder modelBuilder)
+        internal static void BuildSpecimenModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Specimen>(entity =>
             {

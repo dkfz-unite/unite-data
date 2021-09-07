@@ -3,9 +3,9 @@ using Unite.Data.Entities;
 
 namespace Unite.Data.Services.Extensions.Model
 {
-    public static class FileModelBuilder
+    internal static class FileModelBuilder
     {
-        public static void BuildFileModel(this ModelBuilder modelBuilder)
+        internal static void BuildFileModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<File>(entity =>
             {

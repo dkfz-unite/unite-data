@@ -4,9 +4,9 @@ using Unite.Data.Entities.Donors;
 
 namespace Unite.Data.Services.Extensions.Model.Clinical
 {
-    public static class TreatmentModelBuilder
+    internal static class TreatmentModelBuilder
     {
-        public static void BuildTreatmentModel(this ModelBuilder modelBuilder)
+        internal static void BuildTreatmentModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Treatment>(entity =>
             {

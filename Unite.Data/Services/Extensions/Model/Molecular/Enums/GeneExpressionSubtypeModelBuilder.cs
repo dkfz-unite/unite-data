@@ -4,9 +4,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Molecular.Enums
 {
-    public static class GeneExpressionSubtypeModelBuilder
+    internal static class GeneExpressionSubtypeModelBuilder
     {
-        public static void BuildGeneExpressionSubtypeModel(this ModelBuilder modelBuilder)
+        internal static void BuildGeneExpressionSubtypeModel(this ModelBuilder modelBuilder)
         {
             var data = new EnumValue<GeneExpressionSubtype>[]
             {

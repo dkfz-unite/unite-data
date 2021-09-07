@@ -6,9 +6,9 @@ using Unite.Data.Services.Entities;
 
 namespace Unite.Data.Services.Extensions.Model.Molecular
 {
-    public static class MolecularDataModelBuilder
+    internal static class MolecularDataModelBuilder
     {
-        public static void BuildMolecularDataModel(this ModelBuilder modelBuilder)
+        internal static void BuildMolecularDataModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MolecularData>(entity =>
             {

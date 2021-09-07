@@ -3,9 +3,9 @@ using Unite.Data.Entities.Mutations;
 
 namespace Unite.Data.Services.Extensions.Model.Mutations
 {
-    public static class ProteinModelBuilder
+    internal static class ProteinModelBuilder
     {
-        public static void BuildProteinModel(this ModelBuilder modelBuilder)
+        internal static void BuildProteinModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Protein>(entity =>
             {

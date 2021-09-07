@@ -4,9 +4,9 @@ using Unite.Data.Entities.Specimens.Organoids;
 
 namespace Unite.Data.Services.Extensions.Model.Specimens.Organoids
 {
-    public static class OrganoidModelBuilder
+    internal static class OrganoidModelBuilder
     {
-        public static void BuildOrganoidModel(this ModelBuilder modelBuilder)
+        internal static void BuildOrganoidModel(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Organoid>(entity =>
             {

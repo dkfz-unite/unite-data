@@ -17,7 +17,7 @@ namespace Unite.Data.Entities.Mutations
 
         public virtual Gene Gene { get; set; }
         public virtual Protein Protein { get; set; }
-        public virtual Biotype Biotype { get; set; }
+        public virtual TranscriptBiotype Biotype { get; set; }
 
         public virtual TranscriptInfo Info { get; set; }
     }

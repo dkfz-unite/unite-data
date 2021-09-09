@@ -71,12 +71,13 @@ namespace Unite.Data.Services
         public DbSet<Mutation> Mutations { get; set; }
         public DbSet<MutationOccurrence> MutationOccurrences { get; set; }
         public DbSet<Gene> Genes { get; set; }
+        public DbSet<GeneBiotype> GeneBiotypes { get; set; }
         public DbSet<GeneInfo> GeneInfo { get; set; }
         public DbSet<Transcript> Transcripts { get; set; }
+        public DbSet<TranscriptBiotype> TranscriptBiotypes { get; set; }
         public DbSet<TranscriptInfo> TranscriptInfo { get; set; }
         public DbSet<Protein> Proteins { get; set; }
         public DbSet<ProteinInfo> ProteinInfo { get; set; }
-        public DbSet<Biotype> Biotypes { get; set; }
         public DbSet<AffectedTranscript> AffectedTranscripts { get; set; }
         public DbSet<AffectedTranscriptConsequence> AffectedTranscriptConsequences { get; set; }
         public DbSet<Consequence> Consequences { get; set; }
@@ -188,10 +189,11 @@ namespace Unite.Data.Services
             modelBuilder.BuildMutationModel();
             modelBuilder.BuildMutationOccurrenceModel();
             modelBuilder.BuildConsequenceModel();
-            modelBuilder.BuildBiotypeModel();
             modelBuilder.BuildGeneModel();
+            modelBuilder.BuildGeneBiotypeModel();
             modelBuilder.BuildGeneInfoModel();
             modelBuilder.BuildTranscriptModel();
+            modelBuilder.BuildTranscriptBiotypeModel();
             modelBuilder.BuildTranscriptInfoModel();
             modelBuilder.BuildProteinModel();
             modelBuilder.BuildProteinInfoModel();

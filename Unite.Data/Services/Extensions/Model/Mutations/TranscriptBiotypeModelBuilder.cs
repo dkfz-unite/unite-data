@@ -3,13 +3,13 @@ using Unite.Data.Entities.Mutations;
 
 namespace Unite.Data.Services.Extensions.Model.Mutations
 {
-    internal static class BiotypeModelBuilder
+    internal static class TranscriptBiotypeModelBuilder
     {
-        internal static void BuildBiotypeModel(this ModelBuilder modelBuilder)
+        internal static void BuildTranscriptBiotypeModel(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Biotype>(entity =>
+            modelBuilder.Entity<TranscriptBiotype>(entity =>
             {
-                entity.ToTable("Biotypes");
+                entity.ToTable("TranscriptBiotypes");
 
                 entity.HasKey(biotype => biotype.Id);
 

@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Mutations
 {
-    public class Biotype
+    public class GeneBiotype
     {
         public int Id { get; set; }
 

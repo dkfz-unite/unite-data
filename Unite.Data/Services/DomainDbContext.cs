@@ -34,7 +34,7 @@ namespace Unite.Data.Services
 {
     public class DomainDbContext : DbContext
     {
-        private const string _database = "unite";
+        private const string _database = "unite_data";
         private readonly string _connectionString;
 
         public DbSet<File> Files { get; set; }

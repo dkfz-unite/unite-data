@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities.Specimens.Xenografts.Enums;
-using Unite.Data.Services.Entities;
+using Unite.Data.Services.Models;
 
 namespace Unite.Data.Services.Extensions.Model.Specimens.Xenografts.Enums
 {

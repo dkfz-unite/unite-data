@@ -2,7 +2,7 @@
 using Unite.Data.Entities.Specimens;
 using Unite.Data.Entities.Specimens.Tissues;
 using Unite.Data.Entities.Specimens.Tissues.Enums;
-using Unite.Data.Services.Entities;
+using Unite.Data.Services.Models;
 
 namespace Unite.Data.Services.Extensions.Model.Specimens.Tissues
 {

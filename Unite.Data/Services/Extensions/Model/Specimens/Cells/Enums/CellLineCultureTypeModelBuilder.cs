@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities.Specimens.Cells.Enums;
-using Unite.Data.Services.Entities;
+using Unite.Data.Services.Models;
 
 namespace Unite.Data.Services.Extensions.Model.Specimens.Cells.Enums
 {

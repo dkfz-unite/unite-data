@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using Unite.Data.Entities.Clinical;
+using Unite.Data.Entities.Donors.Clinical;
+using Unite.Data.Entities.Radiology;
 using Unite.Data.Entities.Specimens;
 
 namespace Unite.Data.Entities.Donors
@@ -14,6 +15,7 @@ namespace Unite.Data.Entities.Donors
         public virtual ClinicalData ClinicalData { get; set; }
         public virtual ICollection<Treatment> Treatments { get; set; }
         public virtual ICollection<Specimen> Specimens { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
         public virtual ICollection<WorkPackageDonor> DonorWorkPackages { get; set; }
         public virtual ICollection<StudyDonor> DonorStudies { get; set; }
     }

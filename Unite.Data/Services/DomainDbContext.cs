@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities;
-using Unite.Data.Entities.Clinical;
 using Unite.Data.Entities.Donors;
-using Unite.Data.Entities.Molecular;
+using Unite.Data.Entities.Donors.Clinical;
 using Unite.Data.Entities.Mutations;
 using Unite.Data.Entities.Specimens;
 using Unite.Data.Entities.Specimens.Cells;
@@ -12,16 +11,15 @@ using Unite.Data.Entities.Specimens.Xenografts;
 using Unite.Data.Entities.Tasks;
 using Unite.Data.Services.Configuration.Options;
 using Unite.Data.Services.Extensions.Model;
-using Unite.Data.Services.Extensions.Model.Clinical;
-using Unite.Data.Services.Extensions.Model.Clinical.Enums;
 using Unite.Data.Services.Extensions.Model.Donors;
-using Unite.Data.Services.Extensions.Model.Molecular;
-using Unite.Data.Services.Extensions.Model.Molecular.Enums;
+using Unite.Data.Services.Extensions.Model.Donors.Clinical;
+using Unite.Data.Services.Extensions.Model.Donors.Clinical.Enums;
 using Unite.Data.Services.Extensions.Model.Mutations;
 using Unite.Data.Services.Extensions.Model.Mutations.Enums;
 using Unite.Data.Services.Extensions.Model.Specimens;
 using Unite.Data.Services.Extensions.Model.Specimens.Cells;
 using Unite.Data.Services.Extensions.Model.Specimens.Cells.Enums;
+using Unite.Data.Services.Extensions.Model.Specimens.Enums;
 using Unite.Data.Services.Extensions.Model.Specimens.Organoids;
 using Unite.Data.Services.Extensions.Model.Specimens.Tissues;
 using Unite.Data.Services.Extensions.Model.Specimens.Tissues.Enums;
@@ -51,9 +49,8 @@ namespace Unite.Data.Services
         public DbSet<Therapy> Therapies { get; set; }
         public DbSet<Treatment> Treatments { get; set; }
 
-        public DbSet<MolecularData> MolecularData { get; set; }
-        
         public DbSet<Specimen> Specimens { get; set; }
+        public DbSet<MolecularData> MolecularData { get; set; }
         public DbSet<Tissue> Tissues { get; set; }
         public DbSet<TissueSource> TissueSources { get; set; }
         public DbSet<CellLine> CellLines { get; set; }
@@ -82,6 +79,16 @@ namespace Unite.Data.Services
         public DbSet<AffectedTranscriptConsequence> AffectedTranscriptConsequences { get; set; }
         public DbSet<Consequence> Consequences { get; set; }
 
+
+        public DbSet<Entities.Radiology.AnalysedImage> AnalysedImages { get; set; }
+        public DbSet<Entities.Radiology.Analysis> ImageAnalyses { get; set; }
+        public DbSet<Entities.Radiology.AnalysisParameter> ImageAnalysisParameters { get; set; }
+        public DbSet<Entities.Radiology.AnalysisParameterOccurrence> ImageAnalysisParameterOccurrences { get; set; }
+        public DbSet<Entities.Radiology.Image> Images { get; set; }
+        public DbSet<Entities.Radiology.ImageFeature> ImageFeatures { get; set; }
+        public DbSet<Entities.Radiology.ImageFeatureOccurrence> ImageFeatureOccurrences { get; set; }
+        public DbSet<Entities.Radiology.MriImage> MriImages { get; set; }
+
         public DbSet<Task> Tasks { get; set; }
 
 
@@ -103,10 +110,9 @@ namespace Unite.Data.Services
 
             BuildGeneralModels(modelBuilder);
             BuildDonorModels(modelBuilder);
-            BuildClinicalDataModels(modelBuilder);
-            BuildMolecularDataModels(modelBuilder);
             BuildSpecimenModels(modelBuilder);
             BuildMutationModels(modelBuilder);
+            BuildRadiologyModels(modelBuilder);
             BuildTaskModels(modelBuilder);
         }
 
@@ -123,10 +129,7 @@ namespace Unite.Data.Services
             modelBuilder.BuildStudyDonorModel();
             modelBuilder.BuildWorkPackageModel();
             modelBuilder.BuildWorkPackageDonorModel();
-        }
 
-        private void BuildClinicalDataModels(ModelBuilder modelBuilder)
-        {
             modelBuilder.BuildGenderModel();
 
             modelBuilder.BuildClinicalDataModel();
@@ -134,17 +137,6 @@ namespace Unite.Data.Services
             modelBuilder.BuildTumorLocalizationModel();
             modelBuilder.BuildTherapyModel();
             modelBuilder.BuildTreatmentModel();
-        }
-
-        private void BuildMolecularDataModels(ModelBuilder modelBuilder)
-        {
-            modelBuilder.BuildMgmtStatusModel();
-            modelBuilder.BuildIdhStatusModel();
-            modelBuilder.BuildIdhMutationModel();
-            modelBuilder.BuildGeneExpressionSubtypeModel();
-            modelBuilder.BuildMethylationSubtypeModel();
-
-            modelBuilder.BuildMolecularDataModel();
         }
 
         private void BuildSpecimenModels(ModelBuilder modelBuilder)
@@ -172,6 +164,14 @@ namespace Unite.Data.Services
             modelBuilder.BuildXenograftInterventionTypeModel();
 
             modelBuilder.BuildSpecimenModel();
+
+            modelBuilder.BuildMgmtStatusModel();
+            modelBuilder.BuildIdhStatusModel();
+            modelBuilder.BuildIdhMutationModel();
+            modelBuilder.BuildGeneExpressionSubtypeModel();
+            modelBuilder.BuildMethylationSubtypeModel();
+
+            modelBuilder.BuildMolecularDataModel();
         }
 
         private void BuildMutationModels(ModelBuilder modelBuilder)
@@ -199,6 +199,20 @@ namespace Unite.Data.Services
             modelBuilder.BuildProteinInfoModel();
             modelBuilder.BuildAffectedTranscriptModel();
             modelBuilder.BuildAffectedTranscriptConsequenceModel();
+        }
+
+        private void BuildRadiologyModels(ModelBuilder builder)
+        {
+            builder.ApplyConfiguration(new Mappers.Radiology.Enums.AnalysisTypeMapper());
+
+            builder.ApplyConfiguration(new Mappers.Radiology.AnalysedImageMapper());
+            builder.ApplyConfiguration(new Mappers.Radiology.AnalysisMapper());
+            builder.ApplyConfiguration(new Mappers.Radiology.AnalysisParameterMapper());
+            builder.ApplyConfiguration(new Mappers.Radiology.AnalysisParameterOccurrenceMapper());
+            builder.ApplyConfiguration(new Mappers.Radiology.ImageMapper());
+            builder.ApplyConfiguration(new Mappers.Radiology.ImageFeatureMapper());
+            builder.ApplyConfiguration(new Mappers.Radiology.ImageFeatureOccurrenceMapper());
+            builder.ApplyConfiguration(new Mappers.Radiology.MriImageMapper());
         }
 
         private void BuildTaskModels(ModelBuilder modelBuilder)

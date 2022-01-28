@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Services.Entities;
+using Unite.Data.Services.Models;
 
 namespace Unite.Data.Services.Extensions.Model
 {
@@ -26,6 +26,22 @@ namespace Unite.Data.Services.Extensions.Model
 
                 entity.BuildEnumEntity(data);
             });
+        }
+
+        internal static void BuildEnumEntity<T>(this EntityTypeBuilder<EnumValue<T>> entity, string tableName, EnumValue<T>[] data)
+            where T : Enum
+        {
+            entity.ToTable(tableName);
+
+            entity.BuildEnumEntity(data);
+        }
+
+        internal static void BuildEnumEntity<T>(this EntityTypeBuilder<EnumValue<T>> entity, string tableName, string tableSchema, EnumValue<T>[] data)
+            where T : Enum
+        {
+            entity.ToTable(tableName, tableSchema);
+
+            entity.BuildEnumEntity(data);
         }
 
         private static void BuildEnumEntity<T>(this EntityTypeBuilder<EnumValue<T>> entity, EnumValue<T>[] data)

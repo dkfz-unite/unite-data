@@ -14,6 +14,9 @@ namespace Unite.Data.Entities.Tasks.Enums
         Mutation = 3,
 
         [EnumMember(Value = "Gene")]
-        Gene = 4
+        Gene = 4,
+
+        [EnumMember(Value = "Image")]
+        Image = 5
     }
 }

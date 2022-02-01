@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Unite.Data.Entities.Donors.Clinical;
-using Unite.Data.Entities.Radiology;
+using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Specimens;
 
 namespace Unite.Data.Entities.Donors

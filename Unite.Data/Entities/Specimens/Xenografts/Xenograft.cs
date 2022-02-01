@@ -18,6 +18,6 @@ namespace Unite.Data.Entities.Specimens.Xenografts
         public int? SurvivalDaysFrom { get; set; }
         public int? SurvivalDaysTo { get; set; }
 
-        public virtual ICollection<XenograftIntervention> Interventions { get; set; }
+        public virtual ICollection<Intervention> Interventions { get; set; }
     }
 }

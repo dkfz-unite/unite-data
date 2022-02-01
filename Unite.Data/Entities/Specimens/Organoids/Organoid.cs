@@ -11,6 +11,6 @@ namespace Unite.Data.Entities.Specimens.Organoids
         public bool? Tumorigenicity { get; set; }
         public string Medium { get; set; }
 
-        public virtual ICollection<OrganoidIntervention> Interventions { get; set; }
+        public virtual ICollection<Intervention> Interventions { get; set; }
     }
 }

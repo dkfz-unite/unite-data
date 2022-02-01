@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Unite.Data.Entities.Donors;
-using Unite.Data.Entities.Mutations;
+using Unite.Data.Entities.Genome.Mutations;
 using Unite.Data.Entities.Specimens.Cells;
 using Unite.Data.Entities.Specimens.Organoids;
 using Unite.Data.Entities.Specimens.Tissues;

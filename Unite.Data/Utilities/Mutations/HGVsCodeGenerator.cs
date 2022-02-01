@@ -1,4 +1,4 @@
-﻿using Unite.Data.Entities.Mutations.Enums;
+﻿using Unite.Data.Entities.Genome.Enums;
 using Unite.Data.Extensions;
 
 namespace Unite.Data.Utilities.Mutations
@@ -14,10 +14,10 @@ namespace Unite.Data.Utilities.Mutations
         /// <param name="refBase">Reference base</param>
         /// <param name="altBase">Alternate base</param>
         /// <returns>HGVs mutation code.</returns>
-        public static string Generate(Chromosome chr, SequenceType seq, string pos, string refBase, string altBase)
+        public static string Generate(Chromosome chr, string pos, string refBase, string altBase)
         {
             var chromosome = $"chr{chr.ToDefinitionString()}";
-            var sequenceType = seq.ToDefinitionString();
+            var sequenceType = "g";
             var position = pos;
             var referenceBase = refBase ?? "-";
             var alternateBase = altBase ?? "-";
@@ -34,10 +34,10 @@ namespace Unite.Data.Utilities.Mutations
         /// <param name="refBase">Reference base</param>
         /// <param name="altBase">Alternate base</param>
         /// <returns>HGVs mutation code.</returns>
-        public static string Generate(Chromosome chr, SequenceType seq, int start, string refBase, string altBase)
+        public static string Generate(Chromosome chr, int start, string refBase, string altBase)
         {
             var chromosome = $"chr{chr.ToDefinitionString()}";
-            var sequenceType = seq.ToDefinitionString();
+            var sequenceType = "g";
             var position = $"{start}";
             var referenceBase = refBase ?? "-";
             var alternateBase = altBase ?? "-";

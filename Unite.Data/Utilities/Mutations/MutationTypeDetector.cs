@@ -1,5 +1,5 @@
 ﻿using System;
-using Unite.Data.Entities.Mutations.Enums;
+using Unite.Data.Entities.Genome.Mutations.Enums;
 
 namespace Unite.Data.Utilities.Mutations
 {

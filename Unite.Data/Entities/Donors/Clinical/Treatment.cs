@@ -11,10 +11,10 @@ namespace Unite.Data.Entities.Donors.Clinical
 
         public string Details { get; set; }
 
-        public DateTime? Start { get; set; }
+        public DateTime? StartDate { get; set; }
         public int? StartDay { get; set; }
 
-        public DateTime? End { get; set; }
+        public DateTime? EndDate { get; set; }
         public int? EndDay { get; set; }
 
         public bool? ProgressionStatus { get; set; }

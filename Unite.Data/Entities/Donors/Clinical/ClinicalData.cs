@@ -14,6 +14,7 @@ namespace Unite.Data.Entities.Donors.Clinical
         public int? PrimarySiteId { get; set; }
         public int? LocalizationId { get; set; }
         public bool? VitalStatus { get; set; }
+        public DateTime? VitalStatusChangeDate { get; set; }
         public int? VitalStatusChangeDay { get; set; }
         public int? KpsBaseline { get; set; }
         public bool? SteroidsBaseline { get; set; }

@@ -6,7 +6,7 @@ namespace Unite.Data.Extensions
     {
         public static int? RelativeFrom(this DateTime? eventDate, DateTime? referenceDate)
         {
-            return referenceDate != null || eventDate != null
+            return referenceDate != null && eventDate != null
                 ? eventDate.Value.RelativeFrom(referenceDate.Value)
                 : null;
         }
@@ -27,7 +27,7 @@ namespace Unite.Data.Extensions
 
         public static int RelativeFrom(this DateTime eventDate, DateTime referenceDate)
         {
-            return (Normalise(referenceDate) - Normalise(eventDate)).Days;
+            return (Normalise(eventDate) - Normalise(referenceDate)).Days;
         }
 
 

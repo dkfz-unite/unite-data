@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Unite.Data.Entities.Donors;
+using Unite.Data.Entities.Images.Features;
 
 namespace Unite.Data.Entities.Images
 {
@@ -15,7 +16,6 @@ namespace Unite.Data.Entities.Images
 
         public virtual Donor Donor { get; set; }
         public virtual MriImage MriImage { get; set; }
-
-        public virtual ICollection<AnalysedImage> ImageAnalyses { get; set; }
+        public virtual ICollection<Sample> Samples { get; set; }
     }
 }

@@ -1,16 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Entities.Images;
+using Unite.Data.Entities.Images.Features;
 
-namespace Unite.Data.Services.Mappers.Images
+namespace Unite.Data.Services.Mappers.Images.Features
 {
-    internal class ImageFeatureMapper : IEntityTypeConfiguration<ImageFeature>
+    internal class FeatureMapper : IEntityTypeConfiguration<Feature>
     {
-        public void Configure(EntityTypeBuilder<ImageFeature> entity)
+        public void Configure(EntityTypeBuilder<Feature> entity)
         {
-            entity.ToTable("ImageFeatures", DomainDbSchemaNames.Images);
+            entity.ToTable("Features", DomainDbSchemaNames.Images);
 
             entity.HasKey(feature => feature.Id);
+
+            entity.HasAlternateKey(feature => feature.Name);
 
             entity.Property(feature => feature.Id)
                   .IsRequired()

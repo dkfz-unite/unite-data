@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Entities.Images;
-using Unite.Data.Entities.Images.Enums;
+using Unite.Data.Entities.Images.Features;
+using Unite.Data.Entities.Images.Features.Enums;
 using Unite.Data.Services.Models;
 
-namespace Unite.Data.Services.Mappers.Images
+namespace Unite.Data.Services.Mappers.Images.Features
 {
     internal class AnalysisMapper : IEntityTypeConfiguration<Analysis>
     {
@@ -16,7 +16,7 @@ namespace Unite.Data.Services.Mappers.Images
 
             entity.Property(analysis => analysis.Id)
                   .IsRequired()
-                  .ValueGeneratedNever();
+                  .ValueGeneratedOnAdd();
 
             entity.Property(analysis => analysis.ReferenceId)
                   .HasMaxLength(255);
@@ -28,6 +28,10 @@ namespace Unite.Data.Services.Mappers.Images
             entity.HasOne<EnumValue<AnalysisType>>()
                   .WithMany()
                   .HasForeignKey(analysis => analysis.TypeId);
+
+            entity.HasOne(analysis => analysis.File)
+                  .WithOne()
+                  .HasForeignKey<Analysis>(analysis => analysis.FileId);
 
 
             entity.HasIndex(analysis => analysis.ReferenceId);

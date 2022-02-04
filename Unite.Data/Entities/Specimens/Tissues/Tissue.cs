@@ -1,5 +1,4 @@
-﻿using System;
-using Unite.Data.Entities.Specimens.Tissues.Enums;
+﻿using Unite.Data.Entities.Specimens.Tissues.Enums;
 
 namespace Unite.Data.Entities.Specimens.Tissues
 {
@@ -11,8 +10,6 @@ namespace Unite.Data.Entities.Specimens.Tissues
         public int? SourceId { get; set; }
         public TissueType? TypeId { get; set; }
         public TumorType? TumorTypeId { get; set; }
-        public DateTime? ExtractionDate { get; set; }
-        public int? ExtractionDay { get; set; }
 
         public virtual TissueSource Source { get; set; }
     }

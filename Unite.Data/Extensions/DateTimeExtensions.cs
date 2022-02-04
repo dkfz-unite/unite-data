@@ -4,30 +4,30 @@ namespace Unite.Data.Extensions
 {
     public static class DateTimeExtensions
     {
-        public static int? RelativeFrom(this DateTime? eventDate, DateTime? referenceDate)
+        public static int? RelativeFrom(this DateTime? eventDate, DateTime? anchorDate)
         {
-            return referenceDate != null && eventDate != null
-                ? eventDate.Value.RelativeFrom(referenceDate.Value)
+            return anchorDate != null && eventDate != null
+                ? eventDate.Value.RelativeFrom(anchorDate.Value)
                 : null;
         }
 
-        public static int? RelativeFrom(this DateTime? eventDate, DateTime referenceDate)
+        public static int? RelativeFrom(this DateTime? eventDate, DateTime anchorDate)
         {
             return eventDate != null
-                ? eventDate.Value.RelativeFrom(referenceDate)
+                ? eventDate.Value.RelativeFrom(anchorDate)
                 : null;
         }
 
-        public static int? RelativeFrom(this DateTime eventDate, DateTime? referenceDate)
+        public static int? RelativeFrom(this DateTime eventDate, DateTime? anchorDate)
         {
-            return referenceDate != null
-                ? eventDate.RelativeFrom(referenceDate.Value)
+            return anchorDate != null
+                ? eventDate.RelativeFrom(anchorDate.Value)
                 : null;
         }
 
-        public static int RelativeFrom(this DateTime eventDate, DateTime referenceDate)
+        public static int RelativeFrom(this DateTime eventDate, DateTime anchorDate)
         {
-            return (Normalise(eventDate) - Normalise(referenceDate)).Days;
+            return (Normalise(eventDate) - Normalise(anchorDate)).Days;
         }
 
 

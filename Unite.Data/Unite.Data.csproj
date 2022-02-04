@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <ReleaseVersion>2.0.3</ReleaseVersion>
-    <Version>2.0.3</Version>
+    <ReleaseVersion>2.0.4</ReleaseVersion>
+    <Version>2.0.4</Version>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
     <Authors>Valiantsin Ulasau (DKFZ)</Authors>
@@ -12,5 +12,17 @@
 
   <ItemGroup>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Entities\Images\Features\" />
+    <None Remove="Services\Mappers\Images\Features\" />
+    <None Remove="Services\Mappers\Images\Features\Enums\" />
+    <None Remove="Entities\Images\Features\Enums\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Images\Features\" />
+    <Folder Include="Services\Mappers\Images\Features\" />
+    <Folder Include="Services\Mappers\Images\Features\Enums\" />
+    <Folder Include="Entities\Images\Features\Enums\" />
   </ItemGroup>
 </Project>

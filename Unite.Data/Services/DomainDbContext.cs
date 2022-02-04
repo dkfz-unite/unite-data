@@ -43,23 +43,25 @@ namespace Unite.Data.Services
         public DbSet<Entities.Genome.TranscriptInfo> TranscriptInfo { get; set; }
         public DbSet<Entities.Genome.Protein> Proteins { get; set; }
         public DbSet<Entities.Genome.ProteinInfo> ProteinInfo { get; set; }
-        public DbSet<Entities.Genome.Mutations.Sample> Samples { get; set; }
-        public DbSet<Entities.Genome.Mutations.Analysis> Analyses { get; set; }
-        public DbSet<Entities.Genome.Mutations.AnalysedSample> AnalysedSamples { get; set; }
+        public DbSet<Entities.Genome.Mutations.Sample> SpecimenSamples { get; set; }
+        public DbSet<Entities.Genome.Mutations.Analysis> SpecimenAnalyses { get; set; }
+        public DbSet<Entities.Genome.Mutations.AnalysisParameter> SpecimenAnalysisParameters { get; set; }
+        public DbSet<Entities.Genome.Mutations.AnalysisParameterOccurrence> SpecimenAnalysisParameterOccurrences { get; set; }
         public DbSet<Entities.Genome.Mutations.Mutation> Mutations { get; set; }
         public DbSet<Entities.Genome.Mutations.MutationOccurrence> MutationOccurrences { get; set; }
         public DbSet<Entities.Genome.Mutations.AffectedTranscript> AffectedTranscripts { get; set; }
         public DbSet<Entities.Genome.Mutations.AffectedTranscriptConsequence> AffectedTranscriptConsequences { get; set; }
         public DbSet<Entities.Genome.Mutations.Consequence> Consequences { get; set; }
 
-        public DbSet<Entities.Images.AnalysedImage> AnalysedImages { get; set; }
-        public DbSet<Entities.Images.Analysis> ImageAnalyses { get; set; }
-        public DbSet<Entities.Images.AnalysisParameter> ImageAnalysisParameters { get; set; }
-        public DbSet<Entities.Images.AnalysisParameterOccurrence> ImageAnalysisParameterOccurrences { get; set; }
         public DbSet<Entities.Images.Image> Images { get; set; }
-        public DbSet<Entities.Images.ImageFeature> ImageFeatures { get; set; }
-        public DbSet<Entities.Images.ImageFeatureOccurrence> ImageFeatureOccurrences { get; set; }
         public DbSet<Entities.Images.MriImage> MriImages { get; set; }
+        public DbSet<Entities.Images.Features.Sample> ImageSamples { get; set; }
+        public DbSet<Entities.Images.Features.Analysis> ImageAnalyses { get; set; }
+        public DbSet<Entities.Images.Features.AnalysisParameter> ImageAnalysisParameters { get; set; }
+        public DbSet<Entities.Images.Features.AnalysisParameterOccurrence> ImageAnalysisParameterOccurrences { get; set; }
+        public DbSet<Entities.Images.Features.Feature> ImageFeatures { get; set; }
+        public DbSet<Entities.Images.Features.FeatureOccurrence> ImageFeatureOccurrences { get; set; }
+        
 
 
         public DomainDbContext(ISqlOptions options)
@@ -160,11 +162,12 @@ namespace Unite.Data.Services
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.Enums.ConsequenceTypeMapper());
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.Enums.ConsequenceImpactMapper());
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.Enums.MutationTypeMapper());
-            builder.ApplyConfiguration(new Mappers.Genome.Mutations.MutationMapper());
-            builder.ApplyConfiguration(new Mappers.Genome.Mutations.MutationOccurrenceMapper());
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.SampleMapper());
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.AnalysisMapper());
-            builder.ApplyConfiguration(new Mappers.Genome.Mutations.AnalysedSampleMapper());
+            builder.ApplyConfiguration(new Mappers.Genome.Mutations.AnalysisParameterMapper());
+            builder.ApplyConfiguration(new Mappers.Genome.Mutations.AnalysisParameterOccurrenceMapper());
+            builder.ApplyConfiguration(new Mappers.Genome.Mutations.MutationMapper());
+            builder.ApplyConfiguration(new Mappers.Genome.Mutations.MutationOccurrenceMapper());
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.AffectedTranscriptMapper());
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.AffectedTranscriptConsequenceMapper());
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.ConsequenceMapper());
@@ -172,15 +175,17 @@ namespace Unite.Data.Services
 
         private void ConfigureImages(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new Mappers.Images.Enums.AnalysisTypeMapper());
-            builder.ApplyConfiguration(new Mappers.Images.AnalysedImageMapper());
-            builder.ApplyConfiguration(new Mappers.Images.AnalysisMapper());
-            builder.ApplyConfiguration(new Mappers.Images.AnalysisParameterMapper());
-            builder.ApplyConfiguration(new Mappers.Images.AnalysisParameterOccurrenceMapper());
             builder.ApplyConfiguration(new Mappers.Images.ImageMapper());
-            builder.ApplyConfiguration(new Mappers.Images.ImageFeatureMapper());
-            builder.ApplyConfiguration(new Mappers.Images.ImageFeatureOccurrenceMapper());
             builder.ApplyConfiguration(new Mappers.Images.MriImageMapper());
+
+            builder.ApplyConfiguration(new Mappers.Images.Features.Enums.AnalysisTypeMapper());
+            builder.ApplyConfiguration(new Mappers.Images.Features.SampleMapper());
+            builder.ApplyConfiguration(new Mappers.Images.Features.AnalysisMapper());
+            builder.ApplyConfiguration(new Mappers.Images.Features.AnalysisParameterMapper());
+            builder.ApplyConfiguration(new Mappers.Images.Features.AnalysisParameterOccurrenceMapper());
+            builder.ApplyConfiguration(new Mappers.Images.Features.FeatureMapper());
+            builder.ApplyConfiguration(new Mappers.Images.Features.FeatureOccurrenceMapper());
+            
         }
     }
 }

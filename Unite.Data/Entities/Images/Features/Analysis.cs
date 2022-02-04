@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Unite.Data.Entities.Genome.Mutations.Enums;
+using Unite.Data.Entities.Images.Features.Enums;
 
-namespace Unite.Data.Entities.Genome.Mutations
+namespace Unite.Data.Entities.Images.Features
 {
     public class Analysis
     {
@@ -13,7 +13,7 @@ namespace Unite.Data.Entities.Genome.Mutations
 
 
         public virtual File File { get; set; }
-        public virtual ICollection<Sample> Samples { get; set; }
+        public virtual Sample Sample { get; set; }
         public virtual ICollection<AnalysisParameterOccurrence> ParameterOccurrences { get; set; }
     }
 }

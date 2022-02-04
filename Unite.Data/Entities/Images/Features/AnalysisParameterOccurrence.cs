@@ -1,4 +1,4 @@
-﻿namespace Unite.Data.Entities.Images
+﻿namespace Unite.Data.Entities.Images.Features
 {
     public class AnalysisParameterOccurrence
     {

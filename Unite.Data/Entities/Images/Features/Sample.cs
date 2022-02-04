@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Unite.Data.Entities.Images
+namespace Unite.Data.Entities.Images.Features
 {
-    public class AnalysedImage
+    public class Sample
     {
         public int Id { get; set; }
 
@@ -13,6 +13,6 @@ namespace Unite.Data.Entities.Images
         public virtual Image Image { get; set; }
         public virtual Analysis Analysis { get; set; }
 
-        public virtual ICollection<ImageFeatureOccurrence> FeatureOccurrences { get; set; }
+        public virtual ICollection<FeatureOccurrence> FeatureOccurrences { get; set; }
     }
 }

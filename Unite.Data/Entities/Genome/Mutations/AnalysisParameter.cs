@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Unite.Data.Entities.Images
+namespace Unite.Data.Entities.Genome.Mutations
 {
     public class AnalysisParameter
     {

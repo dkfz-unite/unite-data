@@ -1,16 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Entities.Images;
+using Unite.Data.Entities.Genome.Mutations;
 
-namespace Unite.Data.Services.Mappers.Images
+namespace Unite.Data.Services.Mappers.Genome.Mutations
 {
-    internal class AnalysisParameterOccurrenceMapper : IEntityTypeConfiguration<AnalysisParameterOccurrence>
+    public class AnalysisParameterOccurrenceMapper : IEntityTypeConfiguration<AnalysisParameterOccurrence>
     {
         public void Configure(EntityTypeBuilder<AnalysisParameterOccurrence> entity)
         {
-            entity.ToTable("AnalysisParameterOccurrences", DomainDbSchemaNames.Images);
+            entity.ToTable("AnalysisParameterOccurrences", DomainDbSchemaNames.Genome);
 
             entity.HasKey(parameterOccurrence => parameterOccurrence.Id);
+
+            entity.HasAlternateKey(parameterOccurrence => new
+            {
+                parameterOccurrence.ParameterId,
+                parameterOccurrence.AnalysisId
+            });
 
             entity.Property(parameterOccurrence => parameterOccurrence.Id)
                   .IsRequired()

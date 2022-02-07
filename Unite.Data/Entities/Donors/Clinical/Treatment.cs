@@ -15,7 +15,7 @@ namespace Unite.Data.Entities.Donors.Clinical
         public int? StartDay { get; set; }
 
         public DateTime? EndDate { get; set; }
-        public int? EndDay { get; set; }
+        public int? DurationDays { get; set; }
 
         public bool? ProgressionStatus { get; set; }
         public DateTime? ProgressionStatusChangeDate { get; set; }

@@ -16,7 +16,7 @@ namespace Unite.Data.Entities.Specimens.Organoids
         public int? StartDay { get; set; }
 
         public DateTime? EndDate { get; set; }
-        public int? EndDay { get; set; }
+        public int? DurationDays { get; set; }
 
         public string Results { get; set; }
 

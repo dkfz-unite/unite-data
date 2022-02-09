@@ -16,6 +16,6 @@ namespace Unite.Data.Entities.Images
 
         public virtual Donor Donor { get; set; }
         public virtual MriImage MriImage { get; set; }
-        public virtual ICollection<Sample> Samples { get; set; }
+        public virtual ICollection<AnalysedImage> ImageAnalyses { get; set; }
     }
 }

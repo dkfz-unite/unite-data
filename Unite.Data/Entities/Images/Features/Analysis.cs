@@ -13,7 +13,7 @@ namespace Unite.Data.Entities.Images.Features
 
 
         public virtual File File { get; set; }
-        public virtual Sample Sample { get; set; }
+        public virtual AnalysedImage Sample { get; set; }
         public virtual ICollection<AnalysisParameterOccurrence> ParameterOccurrences { get; set; }
     }
 }

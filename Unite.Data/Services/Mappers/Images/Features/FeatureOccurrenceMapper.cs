@@ -15,14 +15,14 @@ namespace Unite.Data.Services.Mappers.Images.Features
             entity.HasAlternateKey(featureOccurrence => new
             {
                 featureOccurrence.FeatureId,
-                featureOccurrence.SampleId
+                featureOccurrence.AnalysedImageId
             });
 
             entity.Property(featureOccurrence => featureOccurrence.Id)
                   .IsRequired()
                   .ValueGeneratedOnAdd();
 
-            entity.Property(featureOccurrence => featureOccurrence.SampleId)
+            entity.Property(featureOccurrence => featureOccurrence.AnalysedImageId)
                   .IsRequired()
                   .ValueGeneratedNever();
 
@@ -34,9 +34,9 @@ namespace Unite.Data.Services.Mappers.Images.Features
                   .IsRequired();
 
 
-            entity.HasOne(featureOccurrence => featureOccurrence.Sample)
+            entity.HasOne(featureOccurrence => featureOccurrence.AnalysedImage)
                   .WithMany(analysedImage => analysedImage.FeatureOccurrences)
-                  .HasForeignKey(featureOccurrence => featureOccurrence.SampleId);
+                  .HasForeignKey(featureOccurrence => featureOccurrence.AnalysedImageId);
 
             entity.HasOne(featureOccurrence => featureOccurrence.Feature)
                   .WithMany(feature => feature.FeatureOccurrences)

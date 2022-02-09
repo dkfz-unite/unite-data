@@ -4,11 +4,11 @@ using Unite.Data.Entities.Images.Features;
 
 namespace Unite.Data.Services.Mappers.Images.Features
 {
-    internal class SampleMapper : IEntityTypeConfiguration<Sample>
+    internal class AnalysedImageMapper : IEntityTypeConfiguration<AnalysedImage>
     {
-        public void Configure(EntityTypeBuilder<Sample> entity)
+        public void Configure(EntityTypeBuilder<AnalysedImage> entity)
         {
-            entity.ToTable("Samples", DomainDbSchemaNames.Images);
+            entity.ToTable("AnalysedImages", DomainDbSchemaNames.Images);
 
             entity.HasKey(sample => sample.Id);
 
@@ -16,22 +16,22 @@ namespace Unite.Data.Services.Mappers.Images.Features
                   .IsRequired()
                   .ValueGeneratedOnAdd();
 
-            entity.Property(sample => sample.ImageId)
-                  .IsRequired()
-                  .ValueGeneratedNever();
-
             entity.Property(sample => sample.AnalysisId)
                   .IsRequired()
                   .ValueGeneratedNever();
 
+            entity.Property(sample => sample.ImageId)
+                  .IsRequired()
+                  .ValueGeneratedNever();
 
-            entity.HasOne(sample => sample.Image)
-                  .WithMany(image => image.Samples)
-                  .HasForeignKey(sample => sample.ImageId);
 
             entity.HasOne(sample => sample.Analysis)
                   .WithOne(analysis => analysis.Sample)
-                  .HasForeignKey<Sample>(sample => sample.AnalysisId);
+                  .HasForeignKey<AnalysedImage>(sample => sample.AnalysisId);
+
+            entity.HasOne(sample => sample.Image)
+                  .WithMany(image => image.ImageAnalyses)
+                  .HasForeignKey(sample => sample.ImageId);
         }
     }
 }

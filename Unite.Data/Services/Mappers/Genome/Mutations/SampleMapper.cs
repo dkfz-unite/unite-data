@@ -4,7 +4,7 @@ using Unite.Data.Entities.Genome.Mutations;
 
 namespace Unite.Data.Services.Mappers.Genome.Mutations
 {
-    internal class SampleMapper : IEntityTypeConfiguration<Sample>
+    public class SampleMapper : IEntityTypeConfiguration<Sample>
     {
         public void Configure(EntityTypeBuilder<Sample> entity)
         {
@@ -20,25 +20,16 @@ namespace Unite.Data.Services.Mappers.Genome.Mutations
                   .IsRequired()
                   .ValueGeneratedNever();
 
-            entity.Property(sample => sample.AnalysisId)
-                  .IsRequired()
-                  .ValueGeneratedNever();
-
-            entity.Property(sample => sample.MatchedSampleId)
-                  .ValueGeneratedNever();
+            entity.Property(sample => sample.ReferenceId)
+                  .HasMaxLength(255);
 
 
             entity.HasOne(sample => sample.Specimen)
                   .WithMany(specimen => specimen.Samples)
                   .HasForeignKey(sample => sample.SpecimenId);
 
-            entity.HasOne(sample => sample.Analysis)
-                  .WithMany(analysis => analysis.Samples)
-                  .HasForeignKey(sample => sample.AnalysisId);
 
-            entity.HasOne(sample => sample.MatchedSample)
-                  .WithMany()
-                  .HasForeignKey(sample => sample.MatchedSampleId);
+            entity.HasIndex(sample => sample.ReferenceId);
         }
     }
 }

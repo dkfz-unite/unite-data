@@ -43,10 +43,11 @@ namespace Unite.Data.Services
         public DbSet<Entities.Genome.TranscriptInfo> TranscriptInfo { get; set; }
         public DbSet<Entities.Genome.Protein> Proteins { get; set; }
         public DbSet<Entities.Genome.ProteinInfo> ProteinInfo { get; set; }
-        public DbSet<Entities.Genome.Mutations.Sample> SpecimenSamples { get; set; }
-        public DbSet<Entities.Genome.Mutations.Analysis> SpecimenAnalyses { get; set; }
-        public DbSet<Entities.Genome.Mutations.AnalysisParameter> SpecimenAnalysisParameters { get; set; }
-        public DbSet<Entities.Genome.Mutations.AnalysisParameterOccurrence> SpecimenAnalysisParameterOccurrences { get; set; }
+        public DbSet<Entities.Genome.Mutations.Sample> Samples { get; set; }
+        public DbSet<Entities.Genome.Mutations.AnalysedSample> AnalysedSamples { get; set; }
+        public DbSet<Entities.Genome.Mutations.Analysis> SampleAnalyses { get; set; }
+        public DbSet<Entities.Genome.Mutations.AnalysisParameter> SampleAnalysisParameters { get; set; }
+        public DbSet<Entities.Genome.Mutations.AnalysisParameterOccurrence> SampleAnalysisParameterOccurrences { get; set; }
         public DbSet<Entities.Genome.Mutations.Mutation> Mutations { get; set; }
         public DbSet<Entities.Genome.Mutations.MutationOccurrence> MutationOccurrences { get; set; }
         public DbSet<Entities.Genome.Mutations.AffectedTranscript> AffectedTranscripts { get; set; }
@@ -55,7 +56,7 @@ namespace Unite.Data.Services
 
         public DbSet<Entities.Images.Image> Images { get; set; }
         public DbSet<Entities.Images.MriImage> MriImages { get; set; }
-        public DbSet<Entities.Images.Features.Sample> ImageSamples { get; set; }
+        public DbSet<Entities.Images.Features.AnalysedImage> AnalysedImages { get; set; }
         public DbSet<Entities.Images.Features.Analysis> ImageAnalyses { get; set; }
         public DbSet<Entities.Images.Features.AnalysisParameter> ImageAnalysisParameters { get; set; }
         public DbSet<Entities.Images.Features.AnalysisParameterOccurrence> ImageAnalysisParameterOccurrences { get; set; }
@@ -163,6 +164,7 @@ namespace Unite.Data.Services
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.Enums.ConsequenceImpactMapper());
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.Enums.MutationTypeMapper());
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.SampleMapper());
+            builder.ApplyConfiguration(new Mappers.Genome.Mutations.AnalysedSampleMapper());
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.AnalysisMapper());
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.AnalysisParameterMapper());
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.AnalysisParameterOccurrenceMapper());
@@ -179,7 +181,7 @@ namespace Unite.Data.Services
             builder.ApplyConfiguration(new Mappers.Images.MriImageMapper());
 
             builder.ApplyConfiguration(new Mappers.Images.Features.Enums.AnalysisTypeMapper());
-            builder.ApplyConfiguration(new Mappers.Images.Features.SampleMapper());
+            builder.ApplyConfiguration(new Mappers.Images.Features.AnalysedImageMapper());
             builder.ApplyConfiguration(new Mappers.Images.Features.AnalysisMapper());
             builder.ApplyConfiguration(new Mappers.Images.Features.AnalysisParameterMapper());
             builder.ApplyConfiguration(new Mappers.Images.Features.AnalysisParameterOccurrenceMapper());

@@ -9,27 +9,21 @@ namespace Unite.Data.Utilities.Mutations
         /// Generates HGVs mutation code.
         /// </summary>
         /// <param name="chr">Chromosome</param>
-        /// <param name="seq">Sequence type</param>
         /// <param name="pos">Position</param>
         /// <param name="refBase">Reference base</param>
         /// <param name="altBase">Alternate base</param>
         /// <returns>HGVs mutation code.</returns>
         public static string Generate(Chromosome chr, string pos, string refBase, string altBase)
         {
-            var chromosome = $"chr{chr.ToDefinitionString()}";
-            var sequenceType = "g";
-            var position = pos;
-            var referenceBase = refBase ?? "-";
-            var alternateBase = altBase ?? "-";
+            var position = PositionParser.Parse(pos);
 
-            return $"{chromosome}:{sequenceType}.{position}{referenceBase}>{alternateBase}";
+            return Generate(chr, position.Start, refBase, altBase);
         }
 
         /// <summary>
         /// Generates HGVs mutation code.
         /// </summary>
         /// <param name="chr">Chromosome</param>
-        /// <param name="seq">Sequence type</param>
         /// <param name="start">Mutation start</param>
         /// <param name="refBase">Reference base</param>
         /// <param name="altBase">Alternate base</param>

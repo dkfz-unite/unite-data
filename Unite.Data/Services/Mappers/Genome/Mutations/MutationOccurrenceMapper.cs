@@ -15,14 +15,14 @@ namespace Unite.Data.Services.Mappers.Genome.Mutations
             entity.HasAlternateKey(mutationOccurrence => new
             {
                 mutationOccurrence.MutationId,
-                mutationOccurrence.SampleId
+                mutationOccurrence.AnalysedSampleId
             });
 
             entity.Property(mutationOccurrence => mutationOccurrence.Id)
                   .IsRequired()
                   .ValueGeneratedOnAdd();
 
-            entity.Property(mutationOccurrence => mutationOccurrence.SampleId)
+            entity.Property(mutationOccurrence => mutationOccurrence.AnalysedSampleId)
                   .IsRequired()
                   .ValueGeneratedNever();
 
@@ -31,9 +31,9 @@ namespace Unite.Data.Services.Mappers.Genome.Mutations
                   .ValueGeneratedNever();
 
 
-            entity.HasOne(mutationOccurrence => mutationOccurrence.Sample)
+            entity.HasOne(mutationOccurrence => mutationOccurrence.AnalysedSample)
                   .WithMany(analysedSample => analysedSample.MutationOccurrences)
-                  .HasForeignKey(mutationOccurrence => mutationOccurrence.Sample);
+                  .HasForeignKey(mutationOccurrence => mutationOccurrence.AnalysedSample);
 
             entity.HasOne(mutationOccurrence => mutationOccurrence.Mutation)
                   .WithMany(mutation => mutation.MutationOccurrences)

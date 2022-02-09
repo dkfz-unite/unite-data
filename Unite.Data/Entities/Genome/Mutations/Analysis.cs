@@ -13,7 +13,7 @@ namespace Unite.Data.Entities.Genome.Mutations
 
 
         public virtual File File { get; set; }
-        public virtual ICollection<Sample> Samples { get; set; }
+        public virtual ICollection<AnalysedSample> AnalysedSamples { get; set; }
         public virtual ICollection<AnalysisParameterOccurrence> ParameterOccurrences { get; set; }
     }
 }

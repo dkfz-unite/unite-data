@@ -33,7 +33,7 @@ namespace Unite.Data.Services.Mappers.Genome.Mutations
 
             entity.HasOne(mutationOccurrence => mutationOccurrence.AnalysedSample)
                   .WithMany(analysedSample => analysedSample.MutationOccurrences)
-                  .HasForeignKey(mutationOccurrence => mutationOccurrence.AnalysedSample);
+                  .HasForeignKey(mutationOccurrence => mutationOccurrence.AnalysedSampleId);
 
             entity.HasOne(mutationOccurrence => mutationOccurrence.Mutation)
                   .WithMany(mutation => mutation.MutationOccurrences)

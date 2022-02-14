@@ -156,7 +156,7 @@ namespace Unite.Data.Services
             builder.ApplyConfiguration(new Mappers.Genome.TranscriptMapper());
             builder.ApplyConfiguration(new Mappers.Genome.TranscriptBiotypeMapper());
             builder.ApplyConfiguration(new Mappers.Genome.TranscriptInfoMapper());
-            builder.ApplyConfiguration(new Mappers.Genome.ProteinInfoMapper());
+            builder.ApplyConfiguration(new Mappers.Genome.ProteinMapper());
             builder.ApplyConfiguration(new Mappers.Genome.ProteinInfoMapper());
 
             builder.ApplyConfiguration(new Mappers.Genome.Mutations.Enums.AnalysisTypeMapper());

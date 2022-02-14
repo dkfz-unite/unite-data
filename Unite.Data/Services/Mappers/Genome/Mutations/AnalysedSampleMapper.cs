@@ -37,7 +37,7 @@ namespace Unite.Data.Services.Mappers.Genome.Mutations
                   .HasForeignKey(analysedSample => analysedSample.SampleId);
 
             entity.HasOne(analysedSample => analysedSample.MatchedSample)
-                  .WithMany(sample => sample.SampleAnalises)
+                  .WithMany()
                   .HasForeignKey(analysedSample => analysedSample.MatchedSampleId);
         }
     }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Unite.Data.Entities.Genome;
+using Unite.Data.Entities.Genome.Enums;
+using Unite.Data.Services.Models;
 
 namespace Unite.Data.Services.Mappers.Genome
 {
@@ -19,6 +21,10 @@ namespace Unite.Data.Services.Mappers.Genome
             entity.Property(gene => gene.ChromosomeId)
                   .HasConversion<int>();
 
+
+            entity.HasOne<EnumValue<Chromosome>>()
+                  .WithMany()
+                  .HasForeignKey(gene => gene.ChromosomeId);
 
             entity.HasOne(gene => gene.Biotype)
                   .WithMany()

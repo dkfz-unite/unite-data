@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unite.Data.Entities.Images.Features.Enums;
 
 namespace Unite.Data.Entities.Images.Features
@@ -9,10 +10,9 @@ namespace Unite.Data.Entities.Images.Features
         public string ReferenceId { get; set; }
 
         public AnalysisType? TypeId { get; set; }
-        public int? FileId { get; set; }
+        public DateTime? Date { get; set; }
 
 
-        public virtual File File { get; set; }
         public virtual AnalysedImage Sample { get; set; }
         public virtual ICollection<AnalysisParameterOccurrence> ParameterOccurrences { get; set; }
     }

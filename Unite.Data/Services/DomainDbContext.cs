@@ -8,7 +8,6 @@ namespace Unite.Data.Services
         private const string _database = "unite_data";
         private readonly string _connectionString;
 
-        public DbSet<Entities.File> Files { get; set; }
         public DbSet<Entities.Tasks.Task> Tasks { get; set; }
 
         public DbSet<Entities.Donors.Donor> Donors { get; set; }
@@ -91,8 +90,6 @@ namespace Unite.Data.Services
 
         private void Configure(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new Mappers.FileMapper());
-
             modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.TaskTypeMapper());
             modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.TaskTargetTypeMapper());
             modelBuilder.ApplyConfiguration(new Mappers.Tasks.TaskMapper());
@@ -187,7 +184,6 @@ namespace Unite.Data.Services
             builder.ApplyConfiguration(new Mappers.Images.Features.AnalysisParameterOccurrenceMapper());
             builder.ApplyConfiguration(new Mappers.Images.Features.FeatureMapper());
             builder.ApplyConfiguration(new Mappers.Images.Features.FeatureOccurrenceMapper());
-            
         }
     }
 }

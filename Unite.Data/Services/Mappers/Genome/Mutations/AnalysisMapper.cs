@@ -29,10 +29,6 @@ namespace Unite.Data.Services.Mappers.Genome.Mutations
                   .WithMany()
                   .HasForeignKey(analysis => analysis.TypeId);
 
-            entity.HasOne(analysis => analysis.File)
-                  .WithOne()
-                  .HasForeignKey<Analysis>(analysis => analysis.FileId);
-
 
             entity.HasIndex(analysis => analysis.ReferenceId);
         }

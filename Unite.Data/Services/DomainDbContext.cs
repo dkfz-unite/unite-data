@@ -13,8 +13,8 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Donors.Donor> Donors { get; set; }
     public DbSet<Entities.Donors.Study> Studies { get; set; }
     public DbSet<Entities.Donors.StudyDonor> StudyDonors { get; set; }
-    public DbSet<Entities.Donors.Project> Projects { get; set; }
-    public DbSet<Entities.Donors.ProjectDonor> ProjectDonors { get; set; }
+    public DbSet<Entities.Donors.WorkPackage> WorkPackages { get; set; }
+    public DbSet<Entities.Donors.WorkPackageDonor> WorkPackageDonors { get; set; }
     public DbSet<Entities.Donors.Clinical.ClinicalData> ClinicalData { get; set; }
     public DbSet<Entities.Donors.Clinical.TumorPrimarySite> TumorPrimarySites { get; set; }
     public DbSet<Entities.Donors.Clinical.TumorLocalization> TumorLocalizations { get; set; }
@@ -100,10 +100,10 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Donors.DonorMapper());
         builder.ApplyConfiguration(new Mappers.Donors.StudyMapper());
         builder.ApplyConfiguration(new Mappers.Donors.StudyDonorMapper());
-        builder.ApplyConfiguration(new Mappers.Donors.ProjectMapper());
-        builder.ApplyConfiguration(new Mappers.Donors.ProjectDonorMapper());
+        builder.ApplyConfiguration(new Mappers.Donors.WorkPackageMapper());
+        builder.ApplyConfiguration(new Mappers.Donors.WorkPackageDonorMapper());
 
-        builder.ApplyConfiguration(new Mappers.Donors.Clinical.Enums.SexMapper());
+        builder.ApplyConfiguration(new Mappers.Donors.Clinical.Enums.GenderMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.ClinicalDataMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.TumorPrimarySiteMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.TumorLocalizationMapper());

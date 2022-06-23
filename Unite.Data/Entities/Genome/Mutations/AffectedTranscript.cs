@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Unite.Data.Entities.Genome.Mutations;
+﻿namespace Unite.Data.Entities.Genome.Mutations;
 
 public class AffectedTranscript
 {

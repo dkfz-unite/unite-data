@@ -1,5 +1,4 @@
-﻿using System;
-using Unite.Data.Extensions;
+﻿using Unite.Data.Extensions;
 
 namespace Unite.Data.Services.Models;
 

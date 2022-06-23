@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Unite.Data.Entities.Genome.Mutations.Enums;
+﻿using Unite.Data.Entities.Genome.Mutations.Enums;
 
 namespace Unite.Data.Entities.Genome.Mutations;
 

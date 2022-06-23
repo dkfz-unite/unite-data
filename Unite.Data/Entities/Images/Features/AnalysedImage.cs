@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Unite.Data.Entities.Images.Features;
+﻿namespace Unite.Data.Entities.Images.Features;
 
 public class AnalysedImage
 {

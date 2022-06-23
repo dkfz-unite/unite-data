@@ -19,16 +19,16 @@ internal class ClinicalDataMapper : IEntityTypeConfiguration<ClinicalData>
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(clinicalData => clinicalData.SexId)
+        entity.Property(clinicalData => clinicalData.GenderId)
               .HasConversion<int>();
 
         entity.Property(clinicalData => clinicalData.Diagnosis)
               .HasMaxLength(255);
 
 
-        entity.HasOne<EnumValue<Sex>>()
+        entity.HasOne<EnumValue<Gender>>()
               .WithMany()
-              .HasForeignKey(clinicalData => clinicalData.SexId);
+              .HasForeignKey(clinicalData => clinicalData.GenderId);
 
         entity.HasOne(clinicalData => clinicalData.PrimarySite)
               .WithMany()

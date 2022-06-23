@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Unite.Data.Extensions;
+﻿namespace Unite.Data.Extensions;
 
 public static class DateTimeExtensions
 {

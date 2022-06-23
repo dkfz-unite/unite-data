@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities.Donors;
 using Unite.Data.Entities.Genome.Mutations;
 using Unite.Data.Entities.Specimens;
@@ -27,8 +26,8 @@ public static class QueryableExtensions
     public static IQueryable<Donor> IncludeWorkPackages(this IQueryable<Donor> query)
     {
         return query
-            .Include(donor => donor.DonorProjects)
-                .ThenInclude(donorWorkPackage => donorWorkPackage.Project);
+            .Include(donor => donor.DonorWorkPackages)
+                .ThenInclude(donorWorkPackage => donorWorkPackage.WorkPackage);
     }
 
     public static IQueryable<Donor> IncludeStudies(this IQueryable<Donor> query)

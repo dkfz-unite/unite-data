@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Unite.Data.Entities.Specimens.Xenografts.Enums;
+﻿using Unite.Data.Entities.Specimens.Xenografts.Enums;
 
 namespace Unite.Data.Entities.Specimens.Xenografts;
 

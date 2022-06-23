@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Unite.Data.Entities.Specimens.Organoids;
+﻿namespace Unite.Data.Entities.Specimens.Organoids;
 
 public class Intervention
 {

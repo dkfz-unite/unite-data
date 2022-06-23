@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Unite.Data.Entities.Specimens;
+﻿using Unite.Data.Entities.Specimens;
 
 namespace Unite.Data.Entities.Genome.Mutations;
 

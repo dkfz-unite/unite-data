@@ -1,5 +1,4 @@
-﻿using System;
-using Unite.Data.Entities.Donors.Clinical.Enums;
+﻿using Unite.Data.Entities.Donors.Clinical.Enums;
 
 namespace Unite.Data.Entities.Donors.Clinical;
 
@@ -7,7 +6,7 @@ public class ClinicalData
 {
     public int? DonorId { get; set; }
 
-    public Sex? SexId { get; set; }
+    public Gender? GenderId { get; set; }
     public int? Age { get; set; }
     public string Diagnosis { get; set; }
     public DateTime? DiagnosisDate { get; set; }

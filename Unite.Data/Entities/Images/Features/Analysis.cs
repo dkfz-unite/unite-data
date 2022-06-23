@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Unite.Data.Entities.Images.Features.Enums;
+﻿using Unite.Data.Entities.Images.Features.Enums;
 
 namespace Unite.Data.Entities.Images.Features;
 

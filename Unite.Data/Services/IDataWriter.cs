@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Unite.Data.Services;
+﻿namespace Unite.Data.Services;
 
 public interface IDataWriter<TModel> where TModel : class
 {

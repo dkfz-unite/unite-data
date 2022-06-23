@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Unite.Data.Entities.Donors;
+﻿using Unite.Data.Entities.Donors;
 using Unite.Data.Entities.Images.Features;
 
 namespace Unite.Data.Entities.Images;

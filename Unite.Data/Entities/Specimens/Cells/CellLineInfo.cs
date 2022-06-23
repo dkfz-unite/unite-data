@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Unite.Data.Entities.Specimens.Cells;
+﻿namespace Unite.Data.Entities.Specimens.Cells;
 
 public class CellLineInfo
 {

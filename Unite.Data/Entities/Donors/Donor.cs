@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Unite.Data.Entities.Donors.Clinical;
+﻿using Unite.Data.Entities.Donors.Clinical;
 using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Specimens;
 
@@ -16,6 +15,6 @@ public class Donor
     public virtual ICollection<Treatment> Treatments { get; set; }
     public virtual ICollection<Specimen> Specimens { get; set; }
     public virtual ICollection<Image> Images { get; set; }
-    public virtual ICollection<ProjectDonor> DonorProjects { get; set; }
+    public virtual ICollection<WorkPackageDonor> DonorWorkPackages { get; set; }
     public virtual ICollection<StudyDonor> DonorStudies { get; set; }
 }

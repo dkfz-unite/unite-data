@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Unite.Data.Extensions;
+﻿namespace Unite.Data.Extensions;
 
 public static class EnumerableExtensions
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Unite.Data.Entities.Donors.Clinical;
+﻿namespace Unite.Data.Entities.Donors.Clinical;
 
 public class Treatment
 {

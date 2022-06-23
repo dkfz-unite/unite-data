@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Donors.Clinical.Enums;
 
-public enum Sex
+public enum Gender
 {
     /// <summary>
     /// Other

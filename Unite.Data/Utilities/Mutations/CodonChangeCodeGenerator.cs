@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Unite.Data.Utilities.Mutations;
+﻿namespace Unite.Data.Utilities.Mutations;
 
 public static class CodonChangeCodeGenerator
 {

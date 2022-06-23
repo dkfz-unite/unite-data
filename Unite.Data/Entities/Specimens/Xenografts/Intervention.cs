@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Unite.Data.Entities.Specimens.Xenografts;
+﻿namespace Unite.Data.Entities.Specimens.Xenografts;
 
 public class Intervention
 {

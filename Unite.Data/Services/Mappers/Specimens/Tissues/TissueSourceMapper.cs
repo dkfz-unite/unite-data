@@ -2,25 +2,24 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Unite.Data.Entities.Specimens.Tissues;
 
-namespace Unite.Data.Services.Mappers.Specimens.Tissues
+namespace Unite.Data.Services.Mappers.Specimens.Tissues;
+
+internal class TissueSourceMapper : IEntityTypeConfiguration<TissueSource>
 {
-    internal class TissueSourceMapper : IEntityTypeConfiguration<TissueSource>
+    public void Configure(EntityTypeBuilder<TissueSource> entity)
     {
-        public void Configure(EntityTypeBuilder<TissueSource> entity)
-        {
-            entity.ToTable("TissueSources", DomainDbSchemaNames.Specimens);
+        entity.ToTable("TissueSources", DomainDbSchemaNames.Specimens);
 
-            entity.HasKey(tissueSource => tissueSource.Id);
+        entity.HasKey(tissueSource => tissueSource.Id);
 
-            entity.HasAlternateKey(tissueSource => tissueSource.Value);
+        entity.HasAlternateKey(tissueSource => tissueSource.Value);
 
-            entity.Property(tissueSource => tissueSource.Id)
-                  .IsRequired()
-                  .ValueGeneratedOnAdd();
+        entity.Property(tissueSource => tissueSource.Id)
+              .IsRequired()
+              .ValueGeneratedOnAdd();
 
-            entity.Property(tissueSource => tissueSource.Value)
-                  .IsRequired()
-                  .HasMaxLength(100);
-        }
+        entity.Property(tissueSource => tissueSource.Value)
+              .IsRequired()
+              .HasMaxLength(100);
     }
 }

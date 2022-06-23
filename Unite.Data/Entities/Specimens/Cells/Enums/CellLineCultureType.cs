@@ -1,16 +1,15 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Unite.Data.Entities.Specimens.Cells.Enums
+namespace Unite.Data.Entities.Specimens.Cells.Enums;
+
+public enum CellLineCultureType
 {
-    public enum CellLineCultureType
-    {
-        [EnumMember(Value = "Suspension")]
-        Suspension = 1,
+    [EnumMember(Value = "Suspension")]
+    Suspension = 1,
 
-        [EnumMember(Value = "Adherent")]
-        Adherent = 2,
+    [EnumMember(Value = "Adherent")]
+    Adherent = 2,
 
-        [EnumMember(Value = "Both")]
-        Both = 3,
-    }
+    [EnumMember(Value = "Both")]
+    Both = 3,
 }

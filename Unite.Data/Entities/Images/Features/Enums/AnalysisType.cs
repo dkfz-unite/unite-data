@@ -1,11 +1,10 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Unite.Data.Entities.Images.Features.Enums
+namespace Unite.Data.Entities.Images.Features.Enums;
+
+public enum AnalysisType
 {
-    public enum AnalysisType
-    {
-        // Radiomics Feature Extraction
-        [EnumMember(Value = "RFE")]
-        RFE = 1
-    }
+    // Radiomics Feature Extraction
+    [EnumMember(Value = "RFE")]
+    RFE = 1
 }

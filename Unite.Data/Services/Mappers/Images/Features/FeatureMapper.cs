@@ -2,25 +2,24 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Unite.Data.Entities.Images.Features;
 
-namespace Unite.Data.Services.Mappers.Images.Features
+namespace Unite.Data.Services.Mappers.Images.Features;
+
+internal class FeatureMapper : IEntityTypeConfiguration<Feature>
 {
-    internal class FeatureMapper : IEntityTypeConfiguration<Feature>
+    public void Configure(EntityTypeBuilder<Feature> entity)
     {
-        public void Configure(EntityTypeBuilder<Feature> entity)
-        {
-            entity.ToTable("Features", DomainDbSchemaNames.Images);
+        entity.ToTable("Features", DomainDbSchemaNames.Images);
 
-            entity.HasKey(feature => feature.Id);
+        entity.HasKey(feature => feature.Id);
 
-            entity.HasAlternateKey(feature => feature.Name);
+        entity.HasAlternateKey(feature => feature.Name);
 
-            entity.Property(feature => feature.Id)
-                  .IsRequired()
-                  .ValueGeneratedOnAdd();
+        entity.Property(feature => feature.Id)
+              .IsRequired()
+              .ValueGeneratedOnAdd();
 
-            entity.Property(feature => feature.Name)
-                  .IsRequired()
-                  .HasMaxLength(255);
-        }
+        entity.Property(feature => feature.Name)
+              .IsRequired()
+              .HasMaxLength(255);
     }
 }

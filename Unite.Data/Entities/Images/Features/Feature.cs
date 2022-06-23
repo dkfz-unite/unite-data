@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace Unite.Data.Entities.Images.Features
+namespace Unite.Data.Entities.Images.Features;
+
+public class Feature
 {
-    public class Feature
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        public string Name { get; set; }
+    public string Name { get; set; }
 
 
-        public ICollection<FeatureOccurrence> FeatureOccurrences { get; set; }
-    }
+    public ICollection<FeatureOccurrence> FeatureOccurrences { get; set; }
 }

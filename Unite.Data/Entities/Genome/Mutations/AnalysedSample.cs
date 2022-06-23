@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
 
-namespace Unite.Data.Entities.Genome.Mutations
+namespace Unite.Data.Entities.Genome.Mutations;
+
+public class AnalysedSample
 {
-    public class AnalysedSample
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        public int AnalysisId { get; set; }
-        public int SampleId { get; set; }
-        public int? MatchedSampleId { get; set; }
+    public int AnalysisId { get; set; }
+    public int SampleId { get; set; }
+    public int? MatchedSampleId { get; set; }
 
-        public virtual Analysis Analysis { get; set; }
-        public virtual Sample Sample { get; set; }
-        public virtual Sample MatchedSample { get; set; }
+    public virtual Analysis Analysis { get; set; }
+    public virtual Sample Sample { get; set; }
+    public virtual Sample MatchedSample { get; set; }
 
-        public virtual ICollection<MutationOccurrence> MutationOccurrences { get; set; }
-    }
+    public virtual ICollection<MutationOccurrence> MutationOccurrences { get; set; }
 }

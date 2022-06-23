@@ -4,66 +4,65 @@ using System.Linq;
 using System.Linq.Expressions;
 using Unite.Data.Entities.Tasks.Enums;
 
-namespace Unite.Data.Services.Tasks
+namespace Unite.Data.Services.Tasks;
+
+public abstract class TaskService
 {
-    public abstract class TaskService
+    protected readonly DomainDbContext _dbContext;
+
+    protected abstract int BucketSize { get; }
+
+
+    protected TaskService(DomainDbContext dbContext)
     {
-        protected readonly DomainDbContext _dbContext;
+        _dbContext = dbContext;
+    }
 
-        protected abstract int BucketSize { get; }
+
+    protected void CreateTasks<T>(
+        TaskType type,
+        TaskTargetType targetType,
+        IEnumerable<T> keys)
+    {
+        var tasks = keys
+            .Select(key => new Entities.Tasks.Task
+            {
+                TypeId = type,
+                TargetTypeId = targetType,
+                Target = key.ToString(),
+                Date = DateTime.UtcNow
+            })
+            .ToArray();
+
+        _dbContext.AddRange(tasks);
+        _dbContext.SaveChanges();
+    }
 
 
-        protected TaskService(DomainDbContext dbContext)
+    protected void IterateEntities<T, TKey>(
+        Expression<Func<T, bool>> condition,
+        Expression<Func<T, TKey>> selector,
+        Action<IEnumerable<TKey>> handler)
+        where T : class
+    {
+        var position = 0;
+
+        var entities = Enumerable.Empty<TKey>();
+
+        do
         {
-            _dbContext = dbContext;
-        }
-
-
-        protected void CreateTasks<T>(
-            TaskType type,
-            TaskTargetType targetType,
-            IEnumerable<T> keys)
-        {
-            var tasks = keys
-                .Select(key => new Entities.Tasks.Task
-                {
-                    TypeId = type,
-                    TargetTypeId = targetType,
-                    Target = key.ToString(),
-                    Date = DateTime.UtcNow
-                })
+            entities = _dbContext.Set<T>()
+                .Where(condition)
+                .Skip(position)
+                .Take(BucketSize)
+                .Select(selector)
                 .ToArray();
 
-            _dbContext.AddRange(tasks);
-            _dbContext.SaveChanges();
+            handler.Invoke(entities);
+
+            position += entities.Count();
+
         }
-
-
-        protected void IterateEntities<T, TKey>(
-            Expression<Func<T, bool>> condition,
-            Expression<Func<T, TKey>> selector,
-            Action<IEnumerable<TKey>> handler)
-            where T : class
-        {
-            var position = 0;
-
-            var entities = Enumerable.Empty<TKey>();
-
-            do
-            {
-                entities = _dbContext.Set<T>()
-                    .Where(condition)
-                    .Skip(position)
-                    .Take(BucketSize)
-                    .Select(selector)
-                    .ToArray();
-
-                handler.Invoke(entities);
-
-                position += entities.Count();
-
-            }
-            while (entities.Count() == BucketSize);
-        }
+        while (entities.Count() == BucketSize);
     }
 }

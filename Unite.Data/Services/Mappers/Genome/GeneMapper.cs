@@ -4,31 +4,30 @@ using Unite.Data.Entities.Genome;
 using Unite.Data.Entities.Genome.Enums;
 using Unite.Data.Services.Models;
 
-namespace Unite.Data.Services.Mappers.Genome
+namespace Unite.Data.Services.Mappers.Genome;
+
+internal class GeneMapper : IEntityTypeConfiguration<Gene>
 {
-    internal class GeneMapper : IEntityTypeConfiguration<Gene>
+    public void Configure(EntityTypeBuilder<Gene> entity)
     {
-        public void Configure(EntityTypeBuilder<Gene> entity)
-        {
-            entity.ToTable("Genes", DomainDbSchemaNames.Genome);
+        entity.ToTable("Genes", DomainDbSchemaNames.Genome);
 
-            entity.HasKey(gene => gene.Id);
+        entity.HasKey(gene => gene.Id);
 
-            entity.Property(gene => gene.Id)
-                  .IsRequired()
-                  .ValueGeneratedOnAdd();
+        entity.Property(gene => gene.Id)
+              .IsRequired()
+              .ValueGeneratedOnAdd();
 
-            entity.Property(gene => gene.ChromosomeId)
-                  .HasConversion<int>();
+        entity.Property(gene => gene.ChromosomeId)
+              .HasConversion<int>();
 
 
-            entity.HasOne<EnumValue<Chromosome>>()
-                  .WithMany()
-                  .HasForeignKey(gene => gene.ChromosomeId);
+        entity.HasOne<EnumValue<Chromosome>>()
+              .WithMany()
+              .HasForeignKey(gene => gene.ChromosomeId);
 
-            entity.HasOne(gene => gene.Biotype)
-                  .WithMany()
-                  .HasForeignKey(gene => gene.BiotypeId);
-        }
+        entity.HasOne(gene => gene.Biotype)
+              .WithMany()
+              .HasForeignKey(gene => gene.BiotypeId);
     }
 }

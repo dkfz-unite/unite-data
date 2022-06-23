@@ -1,134 +1,132 @@
 ﻿using System.Collections.Generic;
 
-namespace Unite.Data.Services
+namespace Unite.Data.Services;
+
+public abstract class DataWriter<TModel> : IDataWriter<TModel> where TModel : class
 {
-    public abstract class DataWriter<TModel> : IDataWriter<TModel>
-        where TModel : class
+    protected readonly DomainDbContext _dbContext;
+
+
+    public DataWriter(DomainDbContext dbContext)
     {
-        protected readonly DomainDbContext _dbContext;
+        _dbContext = dbContext;
+    }
 
 
-        public DataWriter(DomainDbContext dbContext)
+    public virtual void SaveData(in TModel model)
+    {
+        using var transaction = _dbContext.Database.BeginTransaction();
+
+        try
         {
-            _dbContext = dbContext;
+            ProcessModel(model);
+
+            transaction.Commit();
         }
-
-
-        public virtual void SaveData(in TModel model)
+        catch
         {
-            using var transaction = _dbContext.Database.BeginTransaction();
+            transaction.Rollback();
 
-            try
-            {
-                ProcessModel(model);
-
-                transaction.Commit();
-            }
-            catch
-            {
-                transaction.Rollback();
-
-                throw;
-            }
+            throw;
         }
+    }
 
-        public virtual void SaveData(in IEnumerable<TModel> models)
+    public virtual void SaveData(in IEnumerable<TModel> models)
+    {
+        using var transaction = _dbContext.Database.BeginTransaction();
+
+        try
         {
-            using var transaction = _dbContext.Database.BeginTransaction();
+            ProcessModels(models);
 
-            try
-            {
-                ProcessModels(models);
-
-                transaction.Commit();
-            }
-            catch
-            {
-                transaction.Rollback();
-
-                throw;
-            }
+            transaction.Commit();
         }
-
-
-        protected abstract void ProcessModel(TModel model);
-
-        protected virtual void ProcessModels(IEnumerable<TModel> models)
+        catch
         {
-            foreach (var model in models)
-            {
-                ProcessModel(model);
-            }
+            transaction.Rollback();
+
+            throw;
         }
     }
 
 
-    public abstract class DataWriter<TModel, TAudit> : IDataWriter<TModel, TAudit>
-        where TModel : class
-        where TAudit : class, new()
+    protected abstract void ProcessModel(TModel model);
+
+    protected virtual void ProcessModels(IEnumerable<TModel> models)
     {
-        protected readonly DomainDbContext _dbContext;
-
-
-        public DataWriter(DomainDbContext dbContext)
+        foreach (var model in models)
         {
-            _dbContext = dbContext;
+            ProcessModel(model);
         }
+    }
+}
 
 
-        public virtual void SaveData(in TModel model, out TAudit audit)
+public abstract class DataWriter<TModel, TAudit> : IDataWriter<TModel, TAudit>
+    where TModel : class
+    where TAudit : class, new()
+{
+    protected readonly DomainDbContext _dbContext;
+
+
+    public DataWriter(DomainDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+
+    public virtual void SaveData(in TModel model, out TAudit audit)
+    {
+        using var transaction = _dbContext.Database.BeginTransaction();
+
+        try
         {
-            using var transaction = _dbContext.Database.BeginTransaction();
+            audit = new TAudit();
 
-            try
-            {
-                audit = new TAudit();
+            ProcessModel(model, ref audit);
 
-                ProcessModel(model, ref audit);
-
-                transaction.Commit();
-            }
-            catch
-            {
-                audit = null;
-
-                transaction.Rollback();
-
-                throw;
-            }
+            transaction.Commit();
         }
-
-        public virtual void SaveData(in IEnumerable<TModel> models, out TAudit audit)
+        catch
         {
-            using var transaction = _dbContext.Database.BeginTransaction();
+            audit = null;
 
-            try
-            {
-                audit = new TAudit();
+            transaction.Rollback();
 
-                ProcessModels(models, ref audit);
-
-                transaction.Commit();
-            }
-            catch
-            {
-                audit = null;
-
-                transaction.Rollback();
-
-                throw;
-            }
+            throw;
         }
+    }
 
+    public virtual void SaveData(in IEnumerable<TModel> models, out TAudit audit)
+    {
+        using var transaction = _dbContext.Database.BeginTransaction();
 
-        protected abstract void ProcessModel(TModel model, ref TAudit audit);
-
-        protected virtual void ProcessModels(IEnumerable<TModel> models, ref TAudit audit)
+        try
         {
-            foreach (var model in models)
-            {
-                ProcessModel(model, ref audit);
-            }
+            audit = new TAudit();
+
+            ProcessModels(models, ref audit);
+
+            transaction.Commit();
+        }
+        catch
+        {
+            audit = null;
+
+            transaction.Rollback();
+
+            throw;
+        }
+    }
+
+
+    protected abstract void ProcessModel(TModel model, ref TAudit audit);
+
+    protected virtual void ProcessModels(IEnumerable<TModel> models, ref TAudit audit)
+    {
+        foreach (var model in models)
+        {
+            ProcessModel(model, ref audit);
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿namespace Unite.Data.Entities.Genome
-{
-    public class ProteinInfo
-    {
-        public int ProteinId { get; set; }
+﻿namespace Unite.Data.Entities.Genome;
 
-        public string EnsemblId { get; set; }
-    }
+public class ProteinInfo
+{
+    public int ProteinId { get; set; }
+
+    public string EnsemblId { get; set; }
 }

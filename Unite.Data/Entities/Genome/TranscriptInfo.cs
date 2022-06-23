@@ -1,9 +1,8 @@
-﻿namespace Unite.Data.Entities.Genome
-{
-    public class TranscriptInfo
-    {
-        public int TranscriptId { get; set; }
+﻿namespace Unite.Data.Entities.Genome;
 
-        public string EnsemblId { get; set; }
-    }
+public class TranscriptInfo
+{
+    public int TranscriptId { get; set; }
+
+    public string EnsemblId { get; set; }
 }

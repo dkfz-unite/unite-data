@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace Unite.Data.Entities.Donors
+namespace Unite.Data.Entities.Donors;
+
+public class Study
 {
-    public class Study
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        public string Name { get; set; }
+    public string Name { get; set; }
 
-        public ICollection<StudyDonor> StudyDonors { get; set; }
-    }
+    public ICollection<StudyDonor> StudyDonors { get; set; }
 }

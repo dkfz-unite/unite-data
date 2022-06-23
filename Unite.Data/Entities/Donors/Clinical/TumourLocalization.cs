@@ -1,9 +1,8 @@
-﻿namespace Unite.Data.Entities.Donors.Clinical
-{
-    public class TumorLocalization
-    {
-        public int Id { get; set; }
+﻿namespace Unite.Data.Entities.Donors.Clinical;
 
-        public string Value { get; set; }
-    }
+public class TumorLocalization
+{
+    public int Id { get; set; }
+
+    public string Value { get; set; }
 }

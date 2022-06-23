@@ -1,10 +1,9 @@
-﻿namespace Unite.Data.Services.Configuration.Options
+﻿namespace Unite.Data.Services.Configuration.Options;
+
+public interface ISqlOptions
 {
-    public interface ISqlOptions
-    {
-        string Host { get; }
-        string Port { get; }
-        string User { get; }
-        string Password { get; }
-    }
+    string Host { get; }
+    string Port { get; }
+    string User { get; }
+    string Password { get; }
 }

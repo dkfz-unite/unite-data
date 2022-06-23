@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
 
-namespace Unite.Data.Entities.Specimens.Organoids
+namespace Unite.Data.Entities.Specimens.Organoids;
+
+public class Organoid
 {
-    public class Organoid
-    {
-        public int SpecimenId { get; set; }
-        public string ReferenceId { get; set; }
+    public int SpecimenId { get; set; }
+    public string ReferenceId { get; set; }
 
-        public int? ImplantedCellsNumber { get; set; }
-        public bool? Tumorigenicity { get; set; }
-        public string Medium { get; set; }
+    public int? ImplantedCellsNumber { get; set; }
+    public bool? Tumorigenicity { get; set; }
+    public string Medium { get; set; }
 
-        public virtual ICollection<Intervention> Interventions { get; set; }
-    }
+    public virtual ICollection<Intervention> Interventions { get; set; }
 }

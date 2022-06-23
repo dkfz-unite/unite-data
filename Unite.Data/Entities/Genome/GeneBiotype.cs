@@ -1,9 +1,8 @@
-﻿namespace Unite.Data.Entities.Genome
-{
-    public class GeneBiotype
-    {
-        public int Id { get; set; }
+﻿namespace Unite.Data.Entities.Genome;
 
-        public string Value { get; set; }
-    }
+public class GeneBiotype
+{
+    public int Id { get; set; }
+
+    public string Value { get; set; }
 }

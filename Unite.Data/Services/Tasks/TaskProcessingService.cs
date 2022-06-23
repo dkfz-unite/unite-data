@@ -2,40 +2,39 @@
 using System.Linq;
 using Unite.Data.Entities.Tasks.Enums;
 
-namespace Unite.Data.Services.Tasks
+namespace Unite.Data.Services.Tasks;
+
+public class TasksProcessingService
 {
-    public class TasksProcessingService
+    private readonly DomainDbContext _dbContext;
+
+
+    public TasksProcessingService(DomainDbContext dbContext)
     {
-        private readonly DomainDbContext _dbContext;
+        _dbContext = dbContext;
+    }
 
 
-        public TasksProcessingService(DomainDbContext dbContext)
+    public void Process(TaskType type, TaskTargetType targetType, int bucketSize, Action<Unite.Data.Entities.Tasks.Task[]> handler)
+    {
+        while (true)
         {
-            _dbContext = dbContext;
-        }
+            var tasks = _dbContext.Tasks
+                .Where(task => task.TypeId == type && task.TargetTypeId == targetType)
+                .OrderByDescending(task => task.Date)
+                .Take(bucketSize)
+                .ToArray();
 
-
-        public void Process(TaskType type, TaskTargetType targetType, int bucketSize, Action<Unite.Data.Entities.Tasks.Task[]> handler)
-        {
-            while (true)
+            if (tasks != null && tasks.Any())
             {
-                var tasks = _dbContext.Tasks
-                    .Where(task => task.TypeId == type && task.TargetTypeId == targetType)
-                    .OrderByDescending(task => task.Date)
-                    .Take(bucketSize)
-                    .ToArray();
+                handler.Invoke(tasks);
 
-                if (tasks != null && tasks.Any())
-                {
-                    handler.Invoke(tasks);
-
-                    _dbContext.Tasks.RemoveRange(tasks);
-                    _dbContext.SaveChanges();
-                }
-                else
-                {
-                    return;
-                }
+                _dbContext.Tasks.RemoveRange(tasks);
+                _dbContext.SaveChanges();
+            }
+            else
+            {
+                return;
             }
         }
     }

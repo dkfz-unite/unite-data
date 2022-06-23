@@ -1,29 +1,30 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <ReleaseVersion>2.1.1</ReleaseVersion>
-    <Version>2.1.1</Version>
-    <SynchReleaseVersion>false</SynchReleaseVersion>
-    <RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
-    <Authors>Valiantsin Ulasau (DKFZ)</Authors>
-    <Description>Unite domain data entites and services package.</Description>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Entities\Images\Features\" />
-    <None Remove="Services\Mappers\Images\Features\" />
-    <None Remove="Services\Mappers\Images\Features\Enums\" />
-    <None Remove="Entities\Images\Features\Enums\" />
-    <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\Images\Features\" />
-    <Folder Include="Services\Mappers\Images\Features\" />
-    <Folder Include="Services\Mappers\Images\Features\Enums\" />
-    <Folder Include="Entities\Images\Features\Enums\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
-  </ItemGroup>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<ReleaseVersion>2.1.2</ReleaseVersion>
+		<Version>2.1.2</Version>
+		<SynchReleaseVersion>false</SynchReleaseVersion>
+		<RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
+		<Authors>Valiantsin Ulasau (DKFZ)</Authors>
+		<Description>Unite domain data entites and services package.</Description>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Entities\Images\Features\" />
+		<None Remove="Services\Mappers\Images\Features\" />
+		<None Remove="Services\Mappers\Images\Features\Enums\" />
+		<None Remove="Entities\Images\Features\Enums\" />
+		<None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
+		<None Remove="Services\Tasks\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Entities\Images\Features\" />
+		<Folder Include="Services\Mappers\Images\Features\" />
+		<Folder Include="Services\Mappers\Images\Features\Enums\" />
+		<Folder Include="Entities\Images\Features\Enums\" />
+		<Folder Include="Services\Tasks\" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
+	</ItemGroup>
 </Project>

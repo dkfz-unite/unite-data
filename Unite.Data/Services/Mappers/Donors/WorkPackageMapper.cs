@@ -4,21 +4,21 @@ using Unite.Data.Entities.Donors;
 
 namespace Unite.Data.Services.Mappers.Donors;
 
-internal class ProjectMapper : IEntityTypeConfiguration<Project>
+internal class WorkPackageMapper : IEntityTypeConfiguration<WorkPackage>
 {
-    public void Configure(EntityTypeBuilder<Project> entity)
+    public void Configure(EntityTypeBuilder<WorkPackage> entity)
     {
         entity.ToTable("WorkPackages", DomainDbSchemaNames.Donors);
 
-        entity.HasKey(project => project.Id);
+        entity.HasKey(workPackage => workPackage.Id);
 
-        entity.HasAlternateKey(project => project.Name);
+        entity.HasAlternateKey(workPackage => workPackage.Name);
 
-        entity.Property(project => project.Id)
+        entity.Property(workPackage => workPackage.Id)
               .IsRequired()
               .ValueGeneratedOnAdd();
 
-        entity.Property(project => project.Name)
+        entity.Property(workPackage => workPackage.Name)
               .IsRequired()
               .HasMaxLength(100);
     }

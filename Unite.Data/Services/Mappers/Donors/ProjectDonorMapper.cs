@@ -8,7 +8,7 @@ internal class ProjectDonorMapper : IEntityTypeConfiguration<ProjectDonor>
 {
     public void Configure(EntityTypeBuilder<ProjectDonor> entity)
     {
-        entity.ToTable("ProjectDonors", DomainDbSchemaNames.Donors);
+        entity.ToTable("WorkPackageDonors", DomainDbSchemaNames.Donors);
 
         entity.HasKey(projectDonor => new
         {

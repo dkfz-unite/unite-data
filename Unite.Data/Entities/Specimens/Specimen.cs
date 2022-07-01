@@ -13,7 +13,7 @@ public class Specimen
     public int? ParentId { get; set; }
     public int DonorId { get; set; }
 
-    public DateTime? CreationDate { get; set; }
+    public DateOnly? CreationDate { get; set; }
     public int? CreationDay { get; set; }
 
     public virtual Specimen Parent { get; set; }

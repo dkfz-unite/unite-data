@@ -8,7 +8,7 @@ public class Analysis
     public string ReferenceId { get; set; }
 
     public AnalysisType? TypeId { get; set; }
-    public DateTime? Date { get; set; }
+    public DateOnly? Date { get; set; }
 
 
     public virtual ICollection<AnalysedSample> AnalysedSamples { get; set; }

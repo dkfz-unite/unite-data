@@ -8,7 +8,7 @@ public class Image
     public int Id { get; set; }
     public int DonorId { get; set; }
 
-    public DateTime? ScanningDate { get; set; }
+    public DateOnly? ScanningDate { get; set; }
     public int? ScanningDay { get; set; }
 
 

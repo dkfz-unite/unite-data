@@ -26,5 +26,6 @@ public class Specimen
     public virtual Xenograft Xenograft { get; set; }
     public virtual MolecularData MolecularData { get; set; }
 
+    public virtual ICollection<DrugScreening> DrugScreenings { get; set; }
     public virtual ICollection<Sample> Samples { get; set; }
 }

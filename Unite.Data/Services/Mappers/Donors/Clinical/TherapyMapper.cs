@@ -4,7 +4,7 @@ using Unite.Data.Entities.Donors.Clinical;
 
 namespace Unite.Data.Services.Mappers.Donors.Clinical;
 
-internal class TherrapyMapper : IEntityTypeConfiguration<Therapy>
+internal class TherapyMapper : IEntityTypeConfiguration<Therapy>
 {
     public void Configure(EntityTypeBuilder<Therapy> entity)
     {

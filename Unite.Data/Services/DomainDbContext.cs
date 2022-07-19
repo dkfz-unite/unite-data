@@ -23,6 +23,8 @@ public class DomainDbContext : DbContext
 
     public DbSet<Entities.Specimens.Specimen> Specimens { get; set; }
     public DbSet<Entities.Specimens.MolecularData> MolecularData { get; set; }
+    public DbSet<Entities.Specimens.Drug> Drugs { get; set; }
+    public DbSet<Entities.Specimens.DrugScreening> DrugScreenings { get; set; }
     public DbSet<Entities.Specimens.Tissues.Tissue> Tissues { get; set; }
     public DbSet<Entities.Specimens.Tissues.TissueSource> TissueSources { get; set; }
     public DbSet<Entities.Specimens.Cells.CellLine> CellLines { get; set; }
@@ -107,7 +109,7 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.ClinicalDataMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.TumorPrimarySiteMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.TumorLocalizationMapper());
-        builder.ApplyConfiguration(new Mappers.Donors.Clinical.TherrapyMapper());
+        builder.ApplyConfiguration(new Mappers.Donors.Clinical.TherapyMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.TreatmentMapper());
     }
 
@@ -120,6 +122,8 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Specimens.Enums.MethylationSubtypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.SpecimenMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.MolecularDataMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.DrugMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.DrugScreeningMapper());
 
         builder.ApplyConfiguration(new Mappers.Specimens.Tissues.Enums.TissueTypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Tissues.Enums.TumorTypeMapper());

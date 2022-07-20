@@ -74,6 +74,13 @@ public static class QueryableExtensions
             .Include(specimen => specimen.MolecularData);
     }
 
+    public static IQueryable<Specimen> IncludeDrugScreeningData(this IQueryable<Specimen> query)
+    {
+        return query
+            .Include(specimen => specimen.DrugScreenings)
+                .ThenInclude(screening => screening.Drug);
+    }
+
 
     public static IQueryable<Mutation> IncludeAffectedTranscripts(this IQueryable<Mutation> query)
     {

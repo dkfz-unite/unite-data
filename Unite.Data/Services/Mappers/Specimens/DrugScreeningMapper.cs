@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Unite.Data.Entities.Specimens;
 
@@ -6,6 +8,8 @@ namespace Unite.Data.Services.Mappers.Specimens;
 
 public class DrugScreeningMapper : IEntityTypeConfiguration<DrugScreening>
 {
+    private static readonly JsonSerializerOptions _serializerOptions = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
+
     public void Configure(EntityTypeBuilder<DrugScreening> entity)
     {
         entity.ToTable("DrugScreenings", DomainDbSchemaNames.Specimens);
@@ -23,6 +27,12 @@ public class DrugScreeningMapper : IEntityTypeConfiguration<DrugScreening>
         entity.Property(drugScreening => drugScreening.DrugId)
               .IsRequired()
               .ValueGeneratedNever();
+
+        entity.Property(drugScreening => drugScreening.Inhibition)
+              .HasConversion(
+                value => JsonSerializer.Serialize<double[]>(value, _serializerOptions),
+                value => JsonSerializer.Deserialize<double[]>(value, _serializerOptions)
+              );
 
 
         entity.HasOne<Specimen>()

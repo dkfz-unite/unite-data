@@ -14,7 +14,10 @@ public class DrugScreening
     public double? AbsIC25 { get; set; }
     public double? AbsIC50 { get; set; }
     public double? AbsIC75 { get; set; }
-    public double[] Inhibition { get; set; }
+    public double[] Concentrations { get; set; }
+    public double[] Inhibitions { get; set; }
+    public double[] InhibitionsControl { get; set; }
+    public double[] InhibitionsSample { get; set; }
 
 
     public virtual Drug Drug { get; set; }

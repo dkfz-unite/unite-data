@@ -21,13 +21,12 @@ internal class GeneMapper : IEntityTypeConfiguration<Gene>
         entity.Property(gene => gene.ChromosomeId)
               .HasConversion<int>();
 
+        entity.Property(gene => gene.Biotype)
+              .HasMaxLength(100);
+
 
         entity.HasOne<EnumValue<Chromosome>>()
               .WithMany()
               .HasForeignKey(gene => gene.ChromosomeId);
-
-        entity.HasOne(gene => gene.Biotype)
-              .WithMany()
-              .HasForeignKey(gene => gene.BiotypeId);
     }
 }

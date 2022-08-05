@@ -3,23 +3,22 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Entities.Images.Features;
-using Unite.Data.Entities.Images.Features.Enums;
+using Unite.Data.Entities.Genome.Analysis.Enums;
 using Unite.Data.Services.Models;
 
 using Parameters = System.Collections.Generic.Dictionary<string, string>;
 
-namespace Unite.Data.Services.Mappers.Images.Features;
+namespace Unite.Data.Services.Mappers.Genome.Analysis;
 
-internal class AnalysisMapper : IEntityTypeConfiguration<Analysis>
+internal class AnalysisMapper : IEntityTypeConfiguration<Entities.Genome.Analysis.Analysis>
 {
     private static readonly JsonSerializerOptions _options = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
     private static readonly Expression<Func<Parameters, string>> _serialize = value => JsonSerializer.Serialize<Parameters>(value, _options);
     private static readonly Expression<Func<string, Parameters>> _deserialize = value => JsonSerializer.Deserialize<Parameters>(value, _options);
 
-    public void Configure(EntityTypeBuilder<Analysis> entity)
+    public void Configure(EntityTypeBuilder<Entities.Genome.Analysis.Analysis> entity)
     {
-        entity.ToTable("Analyses", DomainDbSchemaNames.Images);
+        entity.ToTable("Analyses", DomainDbSchemaNames.Genome);
 
         entity.HasKey(analysis => analysis.Id);
 

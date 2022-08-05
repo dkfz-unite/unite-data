@@ -1,4 +1,4 @@
-﻿using Unite.Data.Entities.Genome.Mutations.Enums;
+﻿using Unite.Data.Entities.Genome.Variants.SSM.Enums;
 
 namespace Unite.Data.Utilities.Mutations;
 

@@ -3,8 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<ReleaseVersion>3.2.3</ReleaseVersion>
-		<Version>3.2.3</Version>
+		<ReleaseVersion>3.2.4</ReleaseVersion>
+		<Version>3.2.4</Version>
 		<SynchReleaseVersion>false</SynchReleaseVersion>
 		<RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
 		<Authors>Valiantsin Ulasau (DKFZ)</Authors>
@@ -26,6 +26,6 @@
 		<Folder Include="Services\Tasks\" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.6" />
 	</ItemGroup>
 </Project>

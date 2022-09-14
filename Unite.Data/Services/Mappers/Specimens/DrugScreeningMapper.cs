@@ -32,16 +32,16 @@ public class DrugScreeningMapper : IEntityTypeConfiguration<DrugScreening>
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(drugScreening => drugScreening.Concentration)
+        entity.Property(drugScreening => drugScreening.Concentrations)
               .HasConversion(_serialize, _deserialize);
 
-        entity.Property(drugScreening => drugScreening.Inhibition)
+        entity.Property(drugScreening => drugScreening.Inhibitions)
               .HasConversion(_serialize, _deserialize);
 
-        entity.Property(drugScreening => drugScreening.Dose)
+        entity.Property(drugScreening => drugScreening.InhibitionsControl)
               .HasConversion(_serialize, _deserialize);
 
-        entity.Property(drugScreening => drugScreening.Response)
+        entity.Property(drugScreening => drugScreening.InhibitionsSample)
               .HasConversion(_serialize, _deserialize);
 
 

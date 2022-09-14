@@ -17,22 +17,6 @@
 		<None Remove="Entities\Images\Features\Enums\" />
 		<None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
 		<None Remove="Services\Tasks\" />
-		<None Remove="Entities\Genome\Proteomics\" />
-		<None Remove="Entities\Genome\Proteomics\Enums\" />
-		<None Remove="Entities\Genome\Analysis\" />
-		<None Remove="Entities\Genome\Analysis\Enums\" />
-		<None Remove="Entities\Genome\Variants\" />
-		<None Remove="Entities\Genome\Variants\SNV\" />
-		<None Remove="Entities\Genome\Variants\CNV\" />
-		<None Remove="Entities\Genome\Variants\SV\" />
-		<None Remove="Entities\Genome\Variants\SNV\Enums\" />
-		<None Remove="Entities\Genome\Enums\" />
-		<None Remove="Services\Mappers\Genome\Analysis\" />
-		<None Remove="Services\Mappers\Genome\Analysis\Enums\" />
-		<None Remove="Services\Mappers\Genome\Variants\" />
-		<None Remove="Services\Mappers\Genome\Variants\SSM\" />
-		<None Remove="Services\Mappers\Genome\Variants\SSM\Enums\" />
-		<None Remove="Services\Mappers\Genome\Transcriptome\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Entities\Images\Features\" />
@@ -40,21 +24,6 @@
 		<Folder Include="Services\Mappers\Images\Features\Enums\" />
 		<Folder Include="Entities\Images\Features\Enums\" />
 		<Folder Include="Services\Tasks\" />
-		<Folder Include="Entities\Genome\Transcriptome\" />
-		<Folder Include="Entities\Genome\Analysis\" />
-		<Folder Include="Entities\Genome\Analysis\Enums\" />
-		<Folder Include="Entities\Genome\Variants\" />
-		<Folder Include="Entities\Genome\Variants\SSM\" />
-		<Folder Include="Entities\Genome\Variants\CNV\" />
-		<Folder Include="Entities\Genome\Variants\SV\" />
-		<Folder Include="Entities\Genome\Variants\SSM\Enums\" />
-		<Folder Include="Entities\Genome\Enums\" />
-		<Folder Include="Services\Mappers\Genome\Analysis\" />
-		<Folder Include="Services\Mappers\Genome\Analysis\Enums\" />
-		<Folder Include="Services\Mappers\Genome\Variants\" />
-		<Folder Include="Services\Mappers\Genome\Variants\SSM\" />
-		<Folder Include="Services\Mappers\Genome\Variants\SSM\Enums\" />
-		<Folder Include="Services\Mappers\Genome\Transcriptome\" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.6" />

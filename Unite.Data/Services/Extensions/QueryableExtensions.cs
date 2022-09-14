@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities.Donors;
-using Unite.Data.Entities.Genome.Variants.SSM;
+using Unite.Data.Entities.Genome.Mutations;
 using Unite.Data.Entities.Specimens;
 
 namespace Unite.Data.Services.Extensions;
@@ -87,7 +87,14 @@ public static class QueryableExtensions
         return query
             .Include(mutation => mutation.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                    .ThenInclude(transcript => transcript.Biotype)
+            .Include(mutation => mutation.AffectedTranscripts)
+                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
                     .ThenInclude(transcript => transcript.Info)
+            .Include(mutation => mutation.AffectedTranscripts)
+                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                    .ThenInclude(transcript => transcript.Gene)
+                        .ThenInclude(gene => gene.Biotype)
             .Include(mutation => mutation.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
                     .ThenInclude(transcript => transcript.Gene)
@@ -95,6 +102,9 @@ public static class QueryableExtensions
             .Include(mutation => mutation.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
                     .ThenInclude(transcript => transcript.Protein)
-                        .ThenInclude(protein => protein.Info);
+                        .ThenInclude(protein => protein.Info)
+            .Include(mutation => mutation.AffectedTranscripts)
+                .ThenInclude(affectedTranscript => affectedTranscript.Consequences)
+                    .ThenInclude(affectedTranscriptConsequence => affectedTranscriptConsequence.Consequence);
     }
 }

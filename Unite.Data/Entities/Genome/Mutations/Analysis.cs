@@ -1,6 +1,6 @@
-﻿using Unite.Data.Entities.Images.Features.Enums;
+﻿using Unite.Data.Entities.Genome.Mutations.Enums;
 
-namespace Unite.Data.Entities.Images.Features;
+namespace Unite.Data.Entities.Genome.Mutations;
 
 public class Analysis
 {
@@ -11,6 +11,6 @@ public class Analysis
     public DateOnly? Date { get; set; }
 
 
-    public virtual AnalysedImage Sample { get; set; }
+    public virtual ICollection<AnalysedSample> AnalysedSamples { get; set; }
     public virtual ICollection<AnalysisParameterOccurrence> ParameterOccurrences { get; set; }
 }

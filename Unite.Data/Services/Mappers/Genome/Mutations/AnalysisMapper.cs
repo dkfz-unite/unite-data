@@ -1,16 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Entities.Images.Features;
-using Unite.Data.Entities.Images.Features.Enums;
+using Unite.Data.Entities.Genome.Mutations;
+using Unite.Data.Entities.Genome.Mutations.Enums;
 using Unite.Data.Services.Models;
 
-namespace Unite.Data.Services.Mappers.Images.Features;
+namespace Unite.Data.Services.Mappers.Genome.Mutations;
 
 internal class AnalysisMapper : IEntityTypeConfiguration<Analysis>
 {
     public void Configure(EntityTypeBuilder<Analysis> entity)
     {
-        entity.ToTable("Analyses", DomainDbSchemaNames.Images);
+        entity.ToTable("Analyses", DomainDbSchemaNames.Genome);
 
         entity.HasKey(analysis => analysis.Id);
 

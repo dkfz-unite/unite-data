@@ -21,9 +21,6 @@ internal class TranscriptMapper : IEntityTypeConfiguration<Transcript>
         entity.Property(transcript => transcript.ChromosomeId)
               .HasConversion<int>();
 
-        entity.Property(transcript => transcript.Biotype)
-              .HasMaxLength(100);
-
 
         entity.HasOne<EnumValue<Chromosome>>()
               .WithMany()
@@ -36,5 +33,9 @@ internal class TranscriptMapper : IEntityTypeConfiguration<Transcript>
         entity.HasOne(transcript => transcript.Protein)
               .WithMany()
               .HasForeignKey(transcript => transcript.ProteinId);
+
+        entity.HasOne(transcript => transcript.Biotype)
+              .WithMany()
+              .HasForeignKey(transcript => transcript.BiotypeId);
     }
 }

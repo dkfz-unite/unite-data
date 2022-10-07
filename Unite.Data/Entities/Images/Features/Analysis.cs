@@ -9,8 +9,8 @@ public class Analysis
 
     public AnalysisType? TypeId { get; set; }
     public DateOnly? Date { get; set; }
+    public Dictionary<string, string> Parameters { get; set; }
 
 
-    public virtual AnalysedImage Sample { get; set; }
-    public virtual ICollection<AnalysisParameterOccurrence> ParameterOccurrences { get; set; }
+    public virtual AnalysedImage AnalysedImage { get; set; }
 }

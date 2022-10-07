@@ -16,16 +16,20 @@ public abstract class TaskService
     }
 
 
+    /// <summary>
+    /// Create indexing tasks
+    /// </summary>
+    /// <typeparam name="T">Key type</typeparam>
+    /// <param name="type">Indexing task type</param>
+    /// <param name="keys">Collection of keys</param>
     protected void CreateTasks<T>(
-        TaskType type,
-        TaskTargetType targetType,
+        IndexingTaskType type,
         IEnumerable<T> keys)
     {
         var tasks = keys
             .Select(key => new Entities.Tasks.Task
             {
-                TypeId = type,
-                TargetTypeId = targetType,
+                IndexingTypeId = type,
                 Target = key.ToString(),
                 Date = DateTime.UtcNow
             })
@@ -35,7 +39,37 @@ public abstract class TaskService
         _dbContext.SaveChanges();
     }
 
+    /// <summary>
+    /// Create annotation tasks
+    /// </summary>
+    /// <typeparam name="T">Key type</typeparam>
+    /// <param name="type">Annotation task type</param>
+    /// <param name="keys">Collection of keys</param>
+    protected void CreateTasks<T>(
+        AnnotationTaskType type,
+        IEnumerable<T> keys)
+    {
+        var tasks = keys
+            .Select(key => new Entities.Tasks.Task
+            {
+                AnnotationTypeId = type,
+                Target = key.ToString(),
+                Date = DateTime.UtcNow
+            })
+            .ToArray();
 
+        _dbContext.AddRange(tasks);
+        _dbContext.SaveChanges();
+    }
+
+    /// <summary>
+    /// Iterate entities of the database in batches running handler for each batch
+    /// </summary>
+    /// <typeparam name="T">Entity type</typeparam>
+    /// <typeparam name="TKey">Entity key type</typeparam>
+    /// <param name="condition">Entity selection condition</param>
+    /// <param name="selector">Entity selector</param>
+    /// <param name="handler">Action handler</param>
     protected void IterateEntities<T, TKey>(
         Expression<Func<T, bool>> condition,
         Expression<Func<T, TKey>> selector,

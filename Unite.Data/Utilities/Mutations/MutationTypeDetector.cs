@@ -1,4 +1,4 @@
-﻿using Unite.Data.Entities.Genome.Mutations.Enums;
+﻿using Unite.Data.Entities.Genome.Variants.SSM.Enums;
 
 namespace Unite.Data.Utilities.Mutations;
 
@@ -10,34 +10,34 @@ public static class MutationTypeDetector
     /// <param name="referenceBase">Reference base</param>
     /// <param name="alternateBase">Alternate base</param>
     /// <returns>Mutation type (SNV, INS, DEL or MNV).</returns>
-    public static MutationType Detect(string referenceBase, string alternateBase)
+    public static SsmType Detect(string referenceBase, string alternateBase)
     {
         if (!string.IsNullOrWhiteSpace(referenceBase) && !string.IsNullOrWhiteSpace(alternateBase))
         {
             if (referenceBase.Length == 1 && alternateBase.Length == 1)
             {
-                return MutationType.SNV;
+                return SsmType.SNV;
             }
             else if (referenceBase.Length == 1 && alternateBase.Length > 1)
             {
-                return MutationType.INS;
+                return SsmType.INS;
             }
             else if (referenceBase.Length > 1 && alternateBase.Length == 1)
             {
-                return MutationType.DEL;
+                return SsmType.DEL;
             }
             else if (referenceBase.Length > 1 && alternateBase.Length > 1)
             {
-                return MutationType.MNV;
+                return SsmType.MNV;
             }
         }
         else if (string.IsNullOrWhiteSpace(referenceBase) && !string.IsNullOrWhiteSpace(alternateBase))
         {
-            return MutationType.INS;
+            return SsmType.INS;
         }
         else if (!string.IsNullOrWhiteSpace(referenceBase) && string.IsNullOrWhiteSpace(alternateBase))
         {
-            return MutationType.DEL;
+            return SsmType.DEL;
         }
 
         throw new NotImplementedException($"Can't detect mutation type: REF - '{referenceBase}', ALT - '{alternateBase}'");

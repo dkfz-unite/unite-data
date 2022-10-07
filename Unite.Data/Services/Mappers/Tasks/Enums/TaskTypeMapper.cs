@@ -6,16 +6,19 @@ using Unite.Data.Services.Models.Extensions;
 
 namespace Unite.Data.Services.Mappers.Tasks.Enums;
 
-internal class TaskTypeMapper : IEntityTypeConfiguration<EnumValue<TaskType>>
+internal class TaskTypeMapper : IEntityTypeConfiguration<EnumValue<AnnotationTaskType>>
 {
-    public void Configure(EntityTypeBuilder<EnumValue<TaskType>> entity)
+    public void Configure(EntityTypeBuilder<EnumValue<AnnotationTaskType>> entity)
     {
-        var data = new EnumValue<TaskType>[]
+        var data = new EnumValue<AnnotationTaskType>[]
         {
-            TaskType.Indexing.ToEnumValue(),
-            TaskType.Annotation.ToEnumValue()
+            AnnotationTaskType.SSM.ToEnumValue(),
+            AnnotationTaskType.CNV.ToEnumValue(),
+            AnnotationTaskType.SV.ToEnumValue(),
+            AnnotationTaskType.TEX.ToEnumValue(),
+            AnnotationTaskType.PEX.ToEnumValue()
         };
 
-        entity.BuildEnumEntity("TaskTypes", DomainDbSchemaNames.Common, data);
+        entity.BuildEnumEntity("AnnotationTaskTypes", DomainDbSchemaNames.Common, data);
     }
 }

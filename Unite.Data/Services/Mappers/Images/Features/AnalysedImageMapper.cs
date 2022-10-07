@@ -26,7 +26,7 @@ internal class AnalysedImageMapper : IEntityTypeConfiguration<AnalysedImage>
 
 
         entity.HasOne(sample => sample.Analysis)
-              .WithOne(analysis => analysis.Sample)
+              .WithOne(analysis => analysis.AnalysedImage)
               .HasForeignKey<AnalysedImage>(sample => sample.AnalysisId);
 
         entity.HasOne(sample => sample.Image)

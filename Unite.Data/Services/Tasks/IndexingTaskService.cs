@@ -29,42 +29,58 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     protected abstract IEnumerable<int> LoadRelatedDonors(IEnumerable<TKey> keys);
     protected abstract IEnumerable<int> LoadRelatedImages(IEnumerable<TKey> keys);
     protected abstract IEnumerable<int> LoadRelatedSpecimens(IEnumerable<TKey> keys);
-    protected abstract IEnumerable<long> LoadRelatedMutations(IEnumerable<TKey> keys);
     protected abstract IEnumerable<int> LoadRelatedGenes(IEnumerable<TKey> keys);
+    protected abstract IEnumerable<long> LoadRelatedMutations(IEnumerable<TKey> keys);
+    protected abstract IEnumerable<long> LoadRelatedCopyNumberVariants(IEnumerable<TKey> keys);
+    protected abstract IEnumerable<long> LoadRelatedStructuralVariants(IEnumerable<TKey> keys);
 
 
     protected virtual void CreateDonorIndexingTasks(IEnumerable<TKey> keys)
     {
         var donorIds = LoadRelatedDonors(keys);
 
-        CreateTasks(TaskType.Indexing, TaskTargetType.Donor, donorIds);
+        CreateTasks(IndexingTaskType.Donor, donorIds);
     }
 
     protected virtual void CreateImageIndexingTasks(IEnumerable<TKey> keys)
     {
         var imageIds = LoadRelatedImages(keys);
 
-        CreateTasks(TaskType.Indexing, TaskTargetType.Image, imageIds);
+        CreateTasks(IndexingTaskType.Image, imageIds);
     }
 
     protected virtual void CreateSpecimenIndexingTasks(IEnumerable<TKey> keys)
     {
         var specimenIds = LoadRelatedSpecimens(keys);
 
-        CreateTasks(TaskType.Indexing, TaskTargetType.Specimen, specimenIds);
-    }
-
-    protected virtual void CreateMutationIndexingTasks(IEnumerable<TKey> keys)
-    {
-        var mutationIds = LoadRelatedMutations(keys);
-
-        CreateTasks(TaskType.Indexing, TaskTargetType.Mutation, mutationIds);
+        CreateTasks(IndexingTaskType.Specimen, specimenIds);
     }
 
     protected virtual void CreateGeneIndexingTasks(IEnumerable<TKey> keys)
     {
         var geneIds = LoadRelatedGenes(keys);
 
-        CreateTasks(TaskType.Indexing, TaskTargetType.Gene, geneIds);
+        CreateTasks(IndexingTaskType.Gene, geneIds);
+    }
+
+    protected virtual void CreateMutationIndexingTasks(IEnumerable<TKey> keys)
+    {
+        var mutationIds = LoadRelatedMutations(keys);
+
+        CreateTasks(IndexingTaskType.SSM, mutationIds);
+    }
+
+    protected virtual void CreateCopyNumberVariantIndexingTasks(IEnumerable<TKey> keys)
+    {
+        var mutationIds = LoadRelatedMutations(keys);
+
+        CreateTasks(IndexingTaskType.CNV, mutationIds);
+    }
+
+    protected virtual void CreateStructuralVariantIndexingTasks(IEnumerable<TKey> keys)
+    {
+        var mutationIds = LoadRelatedMutations(keys);
+
+        CreateTasks(IndexingTaskType.CNV, mutationIds);
     }
 }

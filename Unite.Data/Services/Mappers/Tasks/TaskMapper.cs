@@ -19,13 +19,11 @@ internal class TaskMapper : IEntityTypeConfiguration<Task>
               .IsRequired()
               .ValueGeneratedOnAdd();
 
-        entity.Property(task => task.TypeId)
-              .IsRequired()
+        entity.Property(task => task.IndexingTypeId)
               .HasConversion<int>()
               .ValueGeneratedNever();
 
-        entity.Property(task => task.TargetTypeId)
-              .IsRequired()
+        entity.Property(task => task.AnnotationTypeId)
               .HasConversion<int>()
               .ValueGeneratedNever();
 
@@ -36,12 +34,12 @@ internal class TaskMapper : IEntityTypeConfiguration<Task>
               .IsRequired();
 
 
-        entity.HasOne<EnumValue<TaskType>>()
+        entity.HasOne<EnumValue<IndexingTaskType>>()
               .WithMany()
-              .HasForeignKey(task => task.TypeId);
+              .HasForeignKey(task => task.IndexingTypeId);
 
-        entity.HasOne<EnumValue<TaskTargetType>>()
+        entity.HasOne<EnumValue<AnnotationTaskType>>()
               .WithMany()
-              .HasForeignKey(task => task.TargetTypeId);
+              .HasForeignKey(task => task.AnnotationTypeId);
     }
 }

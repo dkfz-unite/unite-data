@@ -13,13 +13,20 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Donors.Donor> Donors { get; set; }
     public DbSet<Entities.Donors.Study> Studies { get; set; }
     public DbSet<Entities.Donors.StudyDonor> StudyDonors { get; set; }
-    public DbSet<Entities.Donors.WorkPackage> WorkPackages { get; set; }
-    public DbSet<Entities.Donors.WorkPackageDonor> WorkPackageDonors { get; set; }
+    public DbSet<Entities.Donors.Project> Projects { get; set; }
+    public DbSet<Entities.Donors.ProjectDonor> ProjectDonors { get; set; }
     public DbSet<Entities.Donors.Clinical.ClinicalData> ClinicalData { get; set; }
     public DbSet<Entities.Donors.Clinical.TumorPrimarySite> TumorPrimarySites { get; set; }
     public DbSet<Entities.Donors.Clinical.TumorLocalization> TumorLocalizations { get; set; }
     public DbSet<Entities.Donors.Clinical.Therapy> Therapies { get; set; }
     public DbSet<Entities.Donors.Clinical.Treatment> Treatments { get; set; }
+
+    public DbSet<Entities.Images.Image> Images { get; set; }
+    public DbSet<Entities.Images.MriImage> MriImages { get; set; }
+    public DbSet<Entities.Images.Features.AnalysedImage> AnalysedImages { get; set; }
+    public DbSet<Entities.Images.Features.Analysis> ImageAnalyses { get; set; }
+    public DbSet<Entities.Images.Features.Feature> ImageFeatures { get; set; }
+    public DbSet<Entities.Images.Features.FeatureOccurrence> ImageFeatureOccurrences { get; set; }
 
     public DbSet<Entities.Specimens.Specimen> Specimens { get; set; }
     public DbSet<Entities.Specimens.MolecularData> MolecularData { get; set; }
@@ -37,39 +44,30 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Specimens.Xenografts.InterventionType> XenograftInterventionTypes { get; set; }
 
     public DbSet<Entities.Genome.Gene> Genes { get; set; }
-    public DbSet<Entities.Genome.GeneBiotype> GeneBiotypes { get; set; }
     public DbSet<Entities.Genome.GeneInfo> GeneInfo { get; set; }
     public DbSet<Entities.Genome.Transcript> Transcripts { get; set; }
-    public DbSet<Entities.Genome.TranscriptBiotype> TranscriptBiotypes { get; set; }
     public DbSet<Entities.Genome.TranscriptInfo> TranscriptInfo { get; set; }
     public DbSet<Entities.Genome.Protein> Proteins { get; set; }
     public DbSet<Entities.Genome.ProteinInfo> ProteinInfo { get; set; }
-    public DbSet<Entities.Genome.Mutations.Sample> Samples { get; set; }
-    public DbSet<Entities.Genome.Mutations.AnalysedSample> AnalysedSamples { get; set; }
-    public DbSet<Entities.Genome.Mutations.Analysis> SampleAnalyses { get; set; }
-    public DbSet<Entities.Genome.Mutations.AnalysisParameter> SampleAnalysisParameters { get; set; }
-    public DbSet<Entities.Genome.Mutations.AnalysisParameterOccurrence> SampleAnalysisParameterOccurrences { get; set; }
-    public DbSet<Entities.Genome.Mutations.Mutation> Mutations { get; set; }
-    public DbSet<Entities.Genome.Mutations.MutationOccurrence> MutationOccurrences { get; set; }
-    public DbSet<Entities.Genome.Mutations.AffectedTranscript> AffectedTranscripts { get; set; }
-    public DbSet<Entities.Genome.Mutations.AffectedTranscriptConsequence> AffectedTranscriptConsequences { get; set; }
-    public DbSet<Entities.Genome.Mutations.Consequence> Consequences { get; set; }
-
-    public DbSet<Entities.Images.Image> Images { get; set; }
-    public DbSet<Entities.Images.MriImage> MriImages { get; set; }
-    public DbSet<Entities.Images.Features.AnalysedImage> AnalysedImages { get; set; }
-    public DbSet<Entities.Images.Features.Analysis> ImageAnalyses { get; set; }
-    public DbSet<Entities.Images.Features.AnalysisParameter> ImageAnalysisParameters { get; set; }
-    public DbSet<Entities.Images.Features.AnalysisParameterOccurrence> ImageAnalysisParameterOccurrences { get; set; }
-    public DbSet<Entities.Images.Features.Feature> ImageFeatures { get; set; }
-    public DbSet<Entities.Images.Features.FeatureOccurrence> ImageFeatureOccurrences { get; set; }
-
+    public DbSet<Entities.Genome.Analysis.Analysis> Analyses { get; set; }
+    public DbSet<Entities.Genome.Analysis.AnalysedSample> AnalysedSamples { get; set; }
+    public DbSet<Entities.Genome.Analysis.Sample> Samples { get; set; }
+    public DbSet<Entities.Genome.Variants.SSM.Variant> Mutations { get; set; }
+    public DbSet<Entities.Genome.Variants.SSM.VariantOccurrence> MutationOccurrences { get; set; }
+    public DbSet<Entities.Genome.Variants.SSM.AffectedTranscript> MutationAffectedTranscripts { get; set; }
+    public DbSet<Entities.Genome.Variants.CNV.Variant> CopyNumberVariants { get; set; }
+    public DbSet<Entities.Genome.Variants.CNV.VariantOccurrence> CopyNumberVariantOccurrences { get; set; }
+    public DbSet<Entities.Genome.Variants.CNV.AffectedTranscript> CopyNumberVariantAffectedTranscripts { get; set; }
+    public DbSet<Entities.Genome.Variants.SV.Variant> StructuralVariants { get; set; }
+    public DbSet<Entities.Genome.Variants.SV.VariantOccurrence> StructuralVariantOccurrences { get; set; }
+    public DbSet<Entities.Genome.Variants.SV.AffectedTranscript> StructuralVariantAffectedTranscripts { get; set; }
 
 
     public DomainDbContext(ISqlOptions options)
     {
         _connectionString = $"Host={options.Host};Port={options.Port};Database={_database};Username={options.User};Password={options.Password}";
     }
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -84,16 +82,16 @@ public class DomainDbContext : DbContext
 
         Configure(builder);
         ConfigureDonors(builder);
+        ConfigureImages(builder);
         ConfigureSpecimens(builder);
         ConfigureGenome(builder);
-        ConfigureImages(builder);
     }
 
 
     private void Configure(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.TaskTypeMapper());
-        modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.TaskTargetTypeMapper());
+        modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.IndexingTaskTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.TaskMapper());
     }
 
@@ -102,8 +100,8 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Donors.DonorMapper());
         builder.ApplyConfiguration(new Mappers.Donors.StudyMapper());
         builder.ApplyConfiguration(new Mappers.Donors.StudyDonorMapper());
-        builder.ApplyConfiguration(new Mappers.Donors.WorkPackageMapper());
-        builder.ApplyConfiguration(new Mappers.Donors.WorkPackageDonorMapper());
+        builder.ApplyConfiguration(new Mappers.Donors.ProjectMapper());
+        builder.ApplyConfiguration(new Mappers.Donors.ProjectDonorMapper());
 
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.Enums.GenderMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.ClinicalDataMapper());
@@ -111,6 +109,18 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.TumorLocalizationMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.TherapyMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.TreatmentMapper());
+    }
+
+    private void ConfigureImages(ModelBuilder builder)
+    {
+        builder.ApplyConfiguration(new Mappers.Images.ImageMapper());
+        builder.ApplyConfiguration(new Mappers.Images.MriImageMapper());
+
+        builder.ApplyConfiguration(new Mappers.Images.Features.Enums.AnalysisTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Images.Features.AnalysedImageMapper());
+        builder.ApplyConfiguration(new Mappers.Images.Features.AnalysisMapper());
+        builder.ApplyConfiguration(new Mappers.Images.Features.FeatureMapper());
+        builder.ApplyConfiguration(new Mappers.Images.Features.FeatureOccurrenceMapper());
     }
 
     private void ConfigureSpecimens(ModelBuilder builder)
@@ -152,41 +162,31 @@ public class DomainDbContext : DbContext
     {
         builder.ApplyConfiguration(new Mappers.Genome.Enums.ChromosomeMapper());
         builder.ApplyConfiguration(new Mappers.Genome.GeneMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.GeneBiotypeMapper());
         builder.ApplyConfiguration(new Mappers.Genome.GeneInfoMapper());
         builder.ApplyConfiguration(new Mappers.Genome.TranscriptMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.TranscriptBiotypeMapper());
         builder.ApplyConfiguration(new Mappers.Genome.TranscriptInfoMapper());
         builder.ApplyConfiguration(new Mappers.Genome.ProteinMapper());
         builder.ApplyConfiguration(new Mappers.Genome.ProteinInfoMapper());
 
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.Enums.AnalysisTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.Enums.ConsequenceTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.Enums.ConsequenceImpactMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.Enums.MutationTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.SampleMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.AnalysedSampleMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.AnalysisMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.AnalysisParameterMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.AnalysisParameterOccurrenceMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.MutationMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.MutationOccurrenceMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.AffectedTranscriptMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.AffectedTranscriptConsequenceMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Mutations.ConsequenceMapper());
-    }
+        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Enums.AnalysisTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Analysis.AnalysisMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Analysis.AnalysedSampleMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Analysis.SampleMapper());
 
-    private void ConfigureImages(ModelBuilder builder)
-    {
-        builder.ApplyConfiguration(new Mappers.Images.ImageMapper());
-        builder.ApplyConfiguration(new Mappers.Images.MriImageMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.SSM.Enums.SsmTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.SSM.VariantMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.SSM.VariantOccurrenceMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.SSM.AffectedTranscriptMapper());
 
-        builder.ApplyConfiguration(new Mappers.Images.Features.Enums.AnalysisTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Images.Features.AnalysedImageMapper());
-        builder.ApplyConfiguration(new Mappers.Images.Features.AnalysisMapper());
-        builder.ApplyConfiguration(new Mappers.Images.Features.AnalysisParameterMapper());
-        builder.ApplyConfiguration(new Mappers.Images.Features.AnalysisParameterOccurrenceMapper());
-        builder.ApplyConfiguration(new Mappers.Images.Features.FeatureMapper());
-        builder.ApplyConfiguration(new Mappers.Images.Features.FeatureOccurrenceMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.CNV.Enums.SvTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.CNV.Enums.CnaTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.CNV.VariantMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.CNV.VariantOccurrenceMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.CNV.AffectedTranscriptMapper());
+
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.SV.Enums.SvTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.SV.VariantMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.SV.VariantOccurrenceMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.SV.AffectedTranscriptMapper());
     }
 }

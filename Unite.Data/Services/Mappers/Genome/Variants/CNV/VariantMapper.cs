@@ -23,6 +23,15 @@ internal class VariantMapper : VariantMapperBase<Variant>
         entity.Property(variant => variant.CnaTypeId)
               .HasConversion<int>();
 
+        entity.Property(variant => variant.C1Mean)
+              .IsRequired();
+
+        entity.Property(variant => variant.C2Mean)
+              .IsRequired();
+
+        entity.Property(variant => variant.TcnMean)
+              .IsRequired();
+
 
         entity.HasOne<EnumValue<SvType>>()
               .WithMany()

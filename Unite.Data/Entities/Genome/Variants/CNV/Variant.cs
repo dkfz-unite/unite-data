@@ -18,29 +18,29 @@ public class Variant : VariantBase
     public CnaType? CnaTypeId { get; set; }
 
     /// <summary>
-    /// Loss of heterozygosity
+    /// Loss of heterozygosity (either C1 or C2 are 0)
     /// </summary>
     public bool? LOH { get; set; }
 
     /// <summary>
-    /// Homozygous deletion
+    /// Homozygous deletion (both C1 and C2 are 0)
     /// </summary>
     public bool? HomoDEL { get; set; }
 
     /// <summary>
     /// Mean number of copies in minor allele
     /// </summary>
-    public double? C1Mean { get; set; }
+    public double C1Mean { get; set; }
 
     /// <summary>
     /// Mean number of copies in major allele
     /// </summary>
-    public double? C2Mean { get; set; }
+    public double C2Mean { get; set; }
 
     /// <summary>
-    /// Mean total number of copies
+    /// Mean total number of copies (C1Mean + C2Mean)
     /// </summary>
-    public double? TcnMean { get; set; }
+    public double TcnMean { get; set; }
 
     /// <summary>
     /// Rounded number of copies in minor allele (-1 for subclonal values if values is 0.3+ far from closest integer)

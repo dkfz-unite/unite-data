@@ -4,24 +4,24 @@ namespace Unite.Data.Entities.Genome.Variants.CNV.Enums;
 
 
 /// <summary>
-/// Copy number alteration type
+/// Copy number alteration type (calculated based on TCN and sample ploidy)
 /// </summary>
 public enum CnaType
 {
     /// <summary>
-    /// Total number of copies has increased
+    /// Total number of copies has increased (TCN > ploidy)
     /// </summary>
     [EnumMember(Value = "Gain")]
     Gain = 1,
 
     /// <summary>
-    /// Total number of copies has decreased
+    /// Total number of copies has decreased (TCN < ploidy)
     /// </summary>
     [EnumMember(Value = "Loss")]
     Loss = 2,
 
     /// <summary>
-    /// Total number of copies didn't change
+    /// Total number of copies didn't change (TCN = ploidy)
     /// </summary>
     [EnumMember(Value = "Neutral")]
     Neutral = 3

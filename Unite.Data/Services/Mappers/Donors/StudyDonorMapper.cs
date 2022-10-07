@@ -12,25 +12,25 @@ internal class StudyDonorMapper : IEntityTypeConfiguration<StudyDonor>
 
         entity.HasKey(studyDonor => new
         {
-            studyDonor.StudyId,
-            studyDonor.DonorId
+            studyDonor.DonorId,
+            studyDonor.StudyId
         });
-
-        entity.Property(studyDonor => studyDonor.StudyId)
-              .IsRequired()
-              .ValueGeneratedNever();
 
         entity.Property(studyDonor => studyDonor.DonorId)
               .IsRequired()
               .ValueGeneratedNever();
 
+        entity.Property(studyDonor => studyDonor.StudyId)
+              .IsRequired()
+              .ValueGeneratedNever();
 
-        entity.HasOne(studyDonor => studyDonor.Study)
-              .WithMany(study => study.StudyDonors)
-              .HasForeignKey(studyDonor => studyDonor.StudyId);
 
         entity.HasOne(studyDonor => studyDonor.Donor)
               .WithMany(donor => donor.DonorStudies)
               .HasForeignKey(studyDonor => studyDonor.DonorId);
+
+        entity.HasOne(studyDonor => studyDonor.Study)
+              .WithMany(study => study.StudyDonors)
+              .HasForeignKey(studyDonor => studyDonor.StudyId);
     }
 }

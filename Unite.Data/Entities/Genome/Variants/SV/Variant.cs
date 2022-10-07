@@ -26,7 +26,7 @@ public class Variant : VariantBase
     /// <summary>
     /// Structural variant type
     /// </summary>
-    public SvType? TypeId { get; set; }
+    public SvType TypeId { get; set; }
 
     /// <summary>
     /// Reference genomic sequence of chromosome region

@@ -12,25 +12,25 @@ internal class ProjectDonorMapper : IEntityTypeConfiguration<ProjectDonor>
 
         entity.HasKey(projectDonor => new
         {
-            projectDonor.ProjectId,
-            projectDonor.DonorId
+            projectDonor.DonorId,
+            projectDonor.ProjectId
         });
-
-        entity.Property(projectDonor => projectDonor.ProjectId)
-              .IsRequired()
-              .ValueGeneratedNever();
 
         entity.Property(projectDonor => projectDonor.DonorId)
               .IsRequired()
               .ValueGeneratedNever();
 
+        entity.Property(projectDonor => projectDonor.ProjectId)
+              .IsRequired()
+              .ValueGeneratedNever();
 
-        entity.HasOne(projectDonor => projectDonor.Project)
-              .WithMany(project => project.ProjectDonors)
-              .HasForeignKey(projectDonor => projectDonor.ProjectId);
 
         entity.HasOne(projectDonor => projectDonor.Donor)
               .WithMany(donor => donor.DonorProjects)
               .HasForeignKey(projectDonor => projectDonor.DonorId);
+
+        entity.HasOne(projectDonor => projectDonor.Project)
+              .WithMany(project => project.ProjectDonors)
+              .HasForeignKey(projectDonor => projectDonor.ProjectId);
     }
 }

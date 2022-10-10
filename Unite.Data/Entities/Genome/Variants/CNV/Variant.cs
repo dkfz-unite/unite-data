@@ -40,7 +40,7 @@ public class Variant : VariantBase
     /// <summary>
     /// Mean total number of copies (C1Mean + C2Mean)
     /// </summary>
-    public double TcnMean { get; set; }
+    public double? TcnMean { get; set; }
 
     /// <summary>
     /// Rounded number of copies in minor allele (-1 for subclonal values if values is 0.3+ far from closest integer)

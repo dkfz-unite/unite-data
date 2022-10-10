@@ -20,12 +20,12 @@ public class Variant : VariantBase
     /// <summary>
     /// Loss of heterozygosity (either C1 or C2 are 0)
     /// </summary>
-    public bool? LOH { get; set; }
+    public bool? Loh { get; set; }
 
     /// <summary>
     /// Homozygous deletion (both C1 and C2 are 0)
     /// </summary>
-    public bool? HomoDEL { get; set; }
+    public bool? HomoDel { get; set; }
 
     /// <summary>
     /// Mean number of copies in minor allele

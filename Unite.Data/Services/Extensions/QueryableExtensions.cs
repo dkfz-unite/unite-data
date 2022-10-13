@@ -87,17 +87,17 @@ public static class QueryableExtensions
     {
         return query
             .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Biotype)
             .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Info)
             .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Gene)
                         .ThenInclude(gene => gene.Info)
             .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Protein)
                         .ThenInclude(protein => protein.Info);
     }
@@ -106,17 +106,17 @@ public static class QueryableExtensions
     {
         return query
             .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Biotype)
             .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Info)
             .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Gene)
                         .ThenInclude(gene => gene.Info)
             .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Protein)
                         .ThenInclude(protein => protein.Info);
     }
@@ -125,17 +125,17 @@ public static class QueryableExtensions
     {
         return query
             .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Biotype)
             .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Info)
             .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Gene)
                         .ThenInclude(gene => gene.Info)
             .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Transcript)
+                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Protein)
                         .ThenInclude(protein => protein.Info);
     }

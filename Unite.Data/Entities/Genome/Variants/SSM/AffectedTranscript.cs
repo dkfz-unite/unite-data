@@ -3,7 +3,7 @@
 /// <summary>
 /// Simple somatic mutation (SSM) affected transcript
 /// </summary>
-public class AffectedTranscript : AffectedTranscriptBase<Variant>
+public class AffectedTranscript : VariantAffectedFeature<Variant, Transcript>
 {
     public int? CDNAStart { get; set; }
     public int? CDNAEnd { get; set; }

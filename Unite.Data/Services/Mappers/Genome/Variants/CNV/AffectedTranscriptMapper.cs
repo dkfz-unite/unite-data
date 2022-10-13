@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Unite.Data.Entities.Genome;
 using Unite.Data.Entities.Genome.Variants.CNV;
 
 namespace Unite.Data.Services.Mappers.Genome.Variants.CNV;
@@ -6,7 +7,7 @@ namespace Unite.Data.Services.Mappers.Genome.Variants.CNV;
 /// <summary>
 /// CNV affected transcript mapper
 /// </summary>
-internal class AffectedTranscriptMapper : AffectedTranscriptMapperBase<AffectedTranscript, Variant>
+internal class AffectedTranscriptMapper : VariantAffectedFeatureMapper<AffectedTranscript, Variant, Transcript>
 {
     public override string TableName => "CnvAffectedTranscripts";
 

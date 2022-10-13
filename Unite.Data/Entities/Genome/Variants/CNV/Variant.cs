@@ -5,7 +5,7 @@ namespace Unite.Data.Entities.Genome.Variants.CNV;
 /// <summary>
 /// Copy number variant (CNV)
 /// </summary>
-public class Variant : VariantBase
+public class Variant : Variants.Variant
 {
     /// <summary>
     /// Structural variant type (SV.Type)

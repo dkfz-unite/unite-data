@@ -6,7 +6,7 @@ namespace Unite.Data.Services.Mappers.Genome.Variants.SV;
 /// <summary>
 /// SV occurrence mapper
 /// </summary>
-internal class VariantOccurrenceMapper : VariantOccurrenceMapperBase<VariantOccurrence, Variant>
+internal class VariantOccurrenceMapper : VariantOccurrenceMapper<VariantOccurrence, Variant>
 {
     public override string TableName => "SvOccurrences";
 

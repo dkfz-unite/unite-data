@@ -6,7 +6,7 @@ namespace Unite.Data.Entities.Genome.Variants.SV;
 /// <summary>
 /// Structural variant (SV)
 /// </summary>
-public class Variant : VariantBase
+public class Variant : Variants.Variant
 {
     /// <summary>
     /// New chromosome (for translocated or duplicated regions)

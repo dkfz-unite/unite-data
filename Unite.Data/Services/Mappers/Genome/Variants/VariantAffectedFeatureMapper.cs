@@ -3,18 +3,21 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Unite.Data.Entities.Genome;
 using Unite.Data.Entities.Genome.Variants;
 
 namespace Unite.Data.Services.Mappers.Genome.Variants;
 
 /// <summary>
-/// Affected transcript mapper
+/// Affected feature mapper
 /// </summary>
-/// <typeparam name="TAffectedTranscript">Affected transcript type</typeparam>
+/// <typeparam name="TVariantAffectedFeature">Affected feature type</typeparam>
 /// <typeparam name="TVariant">Variant type</typeparam>
-internal abstract class AffectedTranscriptMapperBase<TAffectedTranscript, TVariant> : IEntityTypeConfiguration<TAffectedTranscript>
-    where TAffectedTranscript : AffectedTranscriptBase<TVariant>
-    where TVariant : VariantBase
+/// <typeparam name="TFeature">Feature type</typeparam>
+internal abstract class VariantAffectedFeatureMapper<TVariantAffectedFeature, TVariant, TFeature> : IEntityTypeConfiguration<TVariantAffectedFeature>
+    where TVariantAffectedFeature : VariantAffectedFeature<TVariant, TFeature>
+    where TVariant : Variant
+    where TFeature : Feature
 {
     protected static readonly JsonSerializerOptions _options = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
     protected static readonly Expression<Func<Consequence[], string>> _serialize = value => JsonSerializer.Serialize<Consequence[]>(value, _options);
@@ -23,30 +26,30 @@ internal abstract class AffectedTranscriptMapperBase<TAffectedTranscript, TVaria
     public abstract string TableName { get; }
 
 
-    public virtual void Configure(EntityTypeBuilder<TAffectedTranscript> entity)
+    public virtual void Configure(EntityTypeBuilder<TVariantAffectedFeature> entity)
     {
         entity.ToTable(TableName, DomainDbSchemaNames.Genome);
 
-        entity.HasKey(affectedTranscript => new
+        entity.HasKey(affectedFeature => new
         {
-            affectedTranscript.VariantId,
-            affectedTranscript.TranscriptId
+            affectedFeature.VariantId,
+            affectedFeature.FeatureId
         });
 
-        entity.Property(affectedTranscript => affectedTranscript.VariantId)
+        entity.Property(affectedFeature => affectedFeature.VariantId)
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(affectedTranscript => affectedTranscript.TranscriptId)
+        entity.Property(affectedFeature => affectedFeature.FeatureId)
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(affectedTranscript => affectedTranscript.Consequences)
+        entity.Property(affectedFeature => affectedFeature.Consequences)
               .HasConversion(_serialize, _deserialize);
 
 
-        entity.HasOne(affectedTranscript => affectedTranscript.Transcript)
+        entity.HasOne(affectedFeature => affectedFeature.Feature)
               .WithMany()
-              .HasForeignKey(affectedTranscript => affectedTranscript.TranscriptId);
+              .HasForeignKey(affectedFeature => affectedFeature.FeatureId);
     }
 }

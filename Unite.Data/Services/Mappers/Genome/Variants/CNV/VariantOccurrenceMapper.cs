@@ -6,7 +6,7 @@ namespace Unite.Data.Services.Mappers.Genome.Variants.CNV;
 /// <summary>
 /// CNV occurrence mapper
 /// </summary>
-internal class VariantOccurrenceMapper : VariantOccurrenceMapperBase<VariantOccurrence, Variant>
+internal class VariantOccurrenceMapper : VariantOccurrenceMapper<VariantOccurrence, Variant>
 {
     public override string TableName => "CnvOccurrences";
 

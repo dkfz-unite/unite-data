@@ -9,9 +9,9 @@ namespace Unite.Data.Services.Mappers.Genome.Variants;
 /// </summary>
 /// <typeparam name="TVariantOccurrence">Variant occurrence type</typeparam>
 /// <typeparam name="TVariant">Variant type</typeparam>
-internal abstract class VariantOccurrenceMapperBase<TVariantOccurrence, TVariant> : IEntityTypeConfiguration<TVariantOccurrence>
-    where TVariantOccurrence : VariantOccurrenceBase<TVariant>
-    where TVariant : VariantBase
+internal abstract class VariantOccurrenceMapper<TVariantOccurrence, TVariant> : IEntityTypeConfiguration<TVariantOccurrence>
+    where TVariantOccurrence : VariantOccurrence<TVariant>
+    where TVariant : Variant
 {
     public abstract string TableName { get; }
 

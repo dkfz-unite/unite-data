@@ -10,8 +10,8 @@ namespace Unite.Data.Services.Mappers.Genome.Variants;
 /// Variant mapper
 /// </summary>
 /// <typeparam name="TVariant">Variant type</typeparam>
-internal abstract class VariantMapperBase<TVariant> : IEntityTypeConfiguration<TVariant>
-    where TVariant : VariantBase
+internal abstract class VariantMapper<TVariant> : IEntityTypeConfiguration<TVariant>
+    where TVariant : Variant
 {
     public abstract string TableName { get; }
 

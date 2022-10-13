@@ -5,12 +5,13 @@ namespace Unite.Data.Entities.Genome.Variants;
 /// <summary>
 /// Variant occurrence
 /// </summary>
-/// <typeparam name="T">Variant type</typeparam>
-public abstract class VariantOccurrenceBase<T> where T : VariantBase
+/// <typeparam name="TVariant">Variant type</typeparam>
+public abstract class VariantOccurrence<TVariant>
+    where TVariant : Variant
 {
     public long VariantId { get; set; }
     public int AnalysedSampleId { get; set; }
 
-    public virtual T Variant { get; set; }
+    public virtual TVariant Variant { get; set; }
     public virtual AnalysedSample AnalysedSample { get; set; }
 }

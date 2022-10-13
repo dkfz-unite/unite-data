@@ -8,7 +8,7 @@ namespace Unite.Data.Services.Mappers.Genome.Variants.SSM;
 /// <summary>
 /// SSM mapper
 /// </summary>
-internal class VariantMapper : VariantMapperBase<Variant>
+internal class VariantMapper : VariantMapper<Variant>
 {
     public override string TableName => "SSMs";
 

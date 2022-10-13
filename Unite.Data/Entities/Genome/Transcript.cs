@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Genome;
 
-public class Transcript
+public class Transcript : Feature
 {
     public int Id { get; set; }
 

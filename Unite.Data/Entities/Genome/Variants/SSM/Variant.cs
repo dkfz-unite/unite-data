@@ -5,7 +5,7 @@ namespace Unite.Data.Entities.Genome.Variants.SSM;
 /// <summary>
 /// Simple somatic mutation (SSM) 
 /// </summary>
-public class Variant : VariantBase
+public class Variant : Variants.Variant
 {
     /// <summary>
     /// Variant code in HGVS notation

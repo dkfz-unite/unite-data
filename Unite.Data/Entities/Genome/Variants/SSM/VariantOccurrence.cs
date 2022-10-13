@@ -3,6 +3,6 @@
 /// <summary>
 /// Simple somatic mutation (SSM) occurrence
 /// </summary>
-public class VariantOccurrence : VariantOccurrenceBase<Variant>
+public class VariantOccurrence : VariantOccurrence<Variant>
 {
 }

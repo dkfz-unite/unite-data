@@ -3,11 +3,11 @@
 public static class EnumerableExtensions
 {
     /// <summary>
-    /// Executes given action for each element of collection
+    /// Executes given action for each element of collection.
     /// </summary>
-    /// <typeparam name="T">Element type</typeparam>
-    /// <param name="items">Source collection of elements</param>
-    /// <param name="action">Action to execute</param>
+    /// <typeparam name="T">Element type.</typeparam>
+    /// <param name="items">Source collection of elements.</param>
+    /// <param name="action">Action to execute.</param>
     public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
     {
         foreach (var item in items)
@@ -17,18 +17,24 @@ public static class EnumerableExtensions
     }
 
     /// <summary>
-    /// Selects unique elements of collection by given property
+    /// Checks if collection null or empty.
     /// </summary>
-    /// <typeparam name="T">Element type</typeparam>
-    /// <typeparam name="TProp">Property type</typeparam>
-    /// <param name="items">Source collection of elements</param>
-    /// <param name="property">Property selector</param>
-    /// <returns>Unique elements of collection selected by given property.</returns>
-    public static IEnumerable<T> DistinctBy<T, TProp>(this IEnumerable<T> items, Func<T, TProp> property)
-        where T : class
+    /// <typeparam name="T">Collection element type.</typeparam>
+    /// <param name="items">Source collection of elements.</param>
+    /// <returns>'true' if collection is either null or empty, 'false' otherwise.</returns>
+    public static bool IsEmpty<T>(this IEnumerable<T> items)
     {
-        return items
-            .GroupBy(property)
-            .Select(group => group.First());
+        return items == null || !items.Any();
+    }
+
+    /// <summary>
+    /// Checks if collection is not null and have elements.
+    /// </summary>
+    /// <typeparam name="T">Collection element type.</typeparam>
+    /// <param name="items">Source collection of epements.</param>
+    /// <returns>'true' if colletion is not null and has elements, 'false' otherwise.</returns>
+    public static bool IsNotEmpty<T>(this IEnumerable<T> items)
+    {
+        return items != null && items.Any();
     }
 }

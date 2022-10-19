@@ -90,7 +90,7 @@ public class DomainDbContext : DbContext
 
     private void Configure(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.TaskTypeMapper());
+        modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.AnnotationTaskTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.IndexingTaskTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.TaskMapper());
     }

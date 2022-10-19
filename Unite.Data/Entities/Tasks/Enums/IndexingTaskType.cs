@@ -29,8 +29,20 @@ public enum IndexingTaskType
     Gene = 4,
 
     /// <summary>
-    /// Variant
+    /// SSM
     /// </summary>
-    [EnumMember(Value = "Variant")]
-    Variant = 5
+    [EnumMember(Value = "SSM")]
+    SSM = 5,
+
+    /// <summary>
+    /// CNV
+    /// </summary>
+    [EnumMember(Value = "CNV")]
+    CNV = 6,
+
+    /// <summary>
+    /// SV
+    /// </summary>
+    [EnumMember(Value = "SV")]
+    SV = 7
 }

@@ -6,7 +6,7 @@ using Unite.Data.Services.Models.Extensions;
 
 namespace Unite.Data.Services.Mappers.Tasks.Enums;
 
-internal class TaskTypeMapper : IEntityTypeConfiguration<EnumValue<AnnotationTaskType>>
+internal class AnnotationTaskTypeMapper : IEntityTypeConfiguration<EnumValue<AnnotationTaskType>>
 {
     public void Configure(EntityTypeBuilder<EnumValue<AnnotationTaskType>> entity)
     {

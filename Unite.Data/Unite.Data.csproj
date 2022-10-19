@@ -3,8 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<ReleaseVersion>3.4.11</ReleaseVersion>
-		<Version>3.4.11</Version>
+		<ReleaseVersion>3.4.12</ReleaseVersion>
+		<Version>3.4.12</Version>
 		<SynchReleaseVersion>false</SynchReleaseVersion>
 		<RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
 		<Authors>Valiantsin Ulasau (DKFZ)</Authors>

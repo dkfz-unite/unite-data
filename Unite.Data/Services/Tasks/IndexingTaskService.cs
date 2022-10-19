@@ -128,16 +128,16 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     {
         var mutationIds = LoadRelatedMutations(keys);
 
-        CreateTasks(IndexingTaskType.Variant, mutationIds);
+        CreateTasks(IndexingTaskType.SSM, mutationIds);
 
 
         var copyNumberVariantIds = LoadRelatedCopyNumberVariants(keys);
 
-        CreateTasks(IndexingTaskType.Variant, copyNumberVariantIds);
+        CreateTasks(IndexingTaskType.CNV, copyNumberVariantIds);
 
 
         var structuralVariantIds = LoadRelatedStructuralVariants(keys);
 
-        CreateTasks(IndexingTaskType.Variant, structuralVariantIds);
+        CreateTasks(IndexingTaskType.SV, structuralVariantIds);
     }
 }

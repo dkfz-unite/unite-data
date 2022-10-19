@@ -24,11 +24,11 @@ public static class QueryableExtensions
                 .ThenInclude(treatment => treatment.Therapy);
     }
 
-    public static IQueryable<Donor> IncludeWorkPackages(this IQueryable<Donor> query)
+    public static IQueryable<Donor> IncludeProjects(this IQueryable<Donor> query)
     {
         return query
             .Include(donor => donor.DonorProjects)
-                .ThenInclude(donorWorkPackage => donorWorkPackage.Project);
+                .ThenInclude(donorProject => donorProject.Project);
     }
 
     public static IQueryable<Donor> IncludeStudies(this IQueryable<Donor> query)
@@ -83,20 +83,32 @@ public static class QueryableExtensions
     }
 
 
+    public static IQueryable<TVariant> IncludeAffectedTranscripts<TVariant>(this IQueryable<TVariant> query) where TVariant : Entities.Genome.Variants.Variant
+    {
+        switch (query)
+        {
+            case IQueryable<Variants.SSM.Variant> mutations:
+                return (IQueryable<TVariant>)mutations.IncludeAffectedTranscripts();
+            case IQueryable<Variants.CNV.Variant> copyNumberVariants:
+                return (IQueryable<TVariant>)copyNumberVariants.IncludeAffectedTranscripts();
+            case IQueryable<Variants.SV.Variant> structuralVariants:
+                return (IQueryable<TVariant>)structuralVariants.IncludeAffectedTranscripts();
+            default:
+                return query;
+        }
+    }
+
     public static IQueryable<Variants.SSM.Variant> IncludeAffectedTranscripts(this IQueryable<Variants.SSM.Variant> query)
     {
         return query
-            .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
-                    .ThenInclude(transcript => transcript.Biotype)
-            .Include(mutation => mutation.AffectedTranscripts)
+            .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Info)
-            .Include(mutation => mutation.AffectedTranscripts)
+            .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Gene)
                         .ThenInclude(gene => gene.Info)
-            .Include(mutation => mutation.AffectedTranscripts)
+            .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Protein)
                         .ThenInclude(protein => protein.Info);
@@ -105,17 +117,14 @@ public static class QueryableExtensions
     public static IQueryable<Variants.CNV.Variant> IncludeAffectedTranscripts(this IQueryable<Variants.CNV.Variant> query)
     {
         return query
-            .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
-                    .ThenInclude(transcript => transcript.Biotype)
-            .Include(mutation => mutation.AffectedTranscripts)
+            .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Info)
-            .Include(mutation => mutation.AffectedTranscripts)
+            .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Gene)
                         .ThenInclude(gene => gene.Info)
-            .Include(mutation => mutation.AffectedTranscripts)
+            .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Protein)
                         .ThenInclude(protein => protein.Info);
@@ -124,17 +133,14 @@ public static class QueryableExtensions
     public static IQueryable<Variants.SV.Variant> IncludeAffectedTranscripts(this IQueryable<Variants.SV.Variant> query)
     {
         return query
-            .Include(mutation => mutation.AffectedTranscripts)
-                .ThenInclude(affectedTranscript => affectedTranscript.Feature)
-                    .ThenInclude(transcript => transcript.Biotype)
-            .Include(mutation => mutation.AffectedTranscripts)
+            .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Info)
-            .Include(mutation => mutation.AffectedTranscripts)
+            .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Gene)
                         .ThenInclude(gene => gene.Info)
-            .Include(mutation => mutation.AffectedTranscripts)
+            .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Protein)
                         .ThenInclude(protein => protein.Info);

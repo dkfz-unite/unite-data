@@ -29,20 +29,8 @@ public enum IndexingTaskType
     Gene = 4,
 
     /// <summary>
-    /// Simple somatic mutation
+    /// Variant
     /// </summary>
-    [EnumMember(Value = "SSM")]
-    SSM = 5,
-
-    /// <summary>
-    /// Copy number variant
-    /// </summary>
-    [EnumMember(Value = "CNV")]
-    CNV = 6,
-
-    /// <summary>
-    /// Structural variant
-    /// </summary>
-    [EnumMember(Value = "SV")]
-    SV = 7
+    [EnumMember(Value = "Variant")]
+    Variant = 5
 }

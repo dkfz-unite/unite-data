@@ -88,7 +88,7 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     }
 
     /// <summary>
-    /// Creates images indexing tasks for all donors depeding on entities of given type with given keys.
+    /// Creates images indexing tasks for all images depeding on entities of given type with given keys.
     /// </summary>
     /// <param name="keys">Entities keys.</param>
     protected virtual void CreateImageIndexingTasks(IEnumerable<TKey> keys)
@@ -99,7 +99,7 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     }
 
     /// <summary>
-    /// Creates specimens indexing tasks for all donors depeding on entities of given type with given keys.
+    /// Creates specimens indexing tasks for all specimens depeding on entities of given type with given keys.
     /// </summary>
     /// <param name="keys">Entities keys.</param>
     protected virtual void CreateSpecimenIndexingTasks(IEnumerable<TKey> keys)
@@ -110,7 +110,7 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     }
 
     /// <summary>
-    /// Creates genes indexing tasks for all donors depeding on entities of given type with given keys.
+    /// Creates genes indexing tasks for all genes depeding on entities of given type with given keys.
     /// </summary>
     /// <param name="keys">Entities keys.</param>
     protected virtual void CreateGeneIndexingTasks(IEnumerable<TKey> keys)
@@ -121,13 +121,23 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     }
 
     /// <summary>
-    /// Creates variants indexing tasks for all donors depeding on entities of given type with given keys.
+    /// Creates variants indexing tasks for all variants depeding on entities of given type with given keys.
     /// </summary>
     /// <param name="keys">Entities keys.</param>
     protected virtual void CreateVariantIndexingTasks(IEnumerable<TKey> keys)
     {
-        var variantIds = LoadRelatedMutations(keys);
+        var mutationIds = LoadRelatedMutations(keys);
 
-        CreateTasks(IndexingTaskType.Variant, variantIds);
+        CreateTasks(IndexingTaskType.Variant, mutationIds);
+
+
+        var copyNumberVariantIds = LoadRelatedCopyNumberVariants(keys);
+
+        CreateTasks(IndexingTaskType.Variant, copyNumberVariantIds);
+
+
+        var structuralVariantIds = LoadRelatedStructuralVariants(keys);
+
+        CreateTasks(IndexingTaskType.Variant, structuralVariantIds);
     }
 }

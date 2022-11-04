@@ -15,7 +15,7 @@ public class Variant : Variants.Variant
     /// <summary>
     /// Copy number alteration type (CNA.Type)
     /// </summary>
-    public CnaType CnaTypeId { get; set; }
+    public CnaType? CnaTypeId { get; set; }
 
     /// <summary>
     /// Loss of heterozygosity (either C1 or C2 are 0)

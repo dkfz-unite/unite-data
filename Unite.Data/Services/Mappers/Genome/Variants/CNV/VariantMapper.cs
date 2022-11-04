@@ -21,8 +21,7 @@ internal class VariantMapper : VariantMapper<Variant>
               .HasConversion<int>();
 
         entity.Property(variant => variant.CnaTypeId)
-              .HasConversion<int>()
-              .IsRequired();
+              .HasConversion<int>();
 
 
         entity.HasOne<EnumValue<SvType>>()

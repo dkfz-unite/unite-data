@@ -16,12 +16,12 @@ public class Variant : Variants.Variant
     /// <summary>
     /// Second breakpoint start
     /// </summary>
-    public double OtherStart { get; set; }
+    public int OtherStart { get; set; }
 
     /// <summary>
     /// Second breakpoint end
     /// </summary>
-    public double OtherEnd { get; set; }
+    public int OtherEnd { get; set; }
 
     /// <summary>
     /// Structural variant type

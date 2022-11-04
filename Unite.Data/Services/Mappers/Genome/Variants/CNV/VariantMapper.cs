@@ -21,12 +21,7 @@ internal class VariantMapper : VariantMapper<Variant>
               .HasConversion<int>();
 
         entity.Property(variant => variant.CnaTypeId)
-              .HasConversion<int>();
-
-        entity.Property(variant => variant.C1Mean)
-              .IsRequired();
-
-        entity.Property(variant => variant.C2Mean)
+              .HasConversion<int>()
               .IsRequired();
 
 

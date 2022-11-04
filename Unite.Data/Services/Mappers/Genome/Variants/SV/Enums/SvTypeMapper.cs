@@ -13,6 +13,7 @@ internal class SvTypeMapper : IEntityTypeConfiguration<EnumValue<SvType>>
         var data = new EnumValue<SvType>[]
         {
             SvType.DUP.ToEnumValue(name: "Duplication"),
+            SvType.TDUP.ToEnumValue(name: "Tandem duplication"),
             SvType.INS.ToEnumValue(name: "Insertion"),
             SvType.DEL.ToEnumValue(name: "Deletion"),
             SvType.INV.ToEnumValue(name: "Inversion"),

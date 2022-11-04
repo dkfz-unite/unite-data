@@ -14,38 +14,44 @@ public enum SvType
     DUP = 1,
 
     /// <summary>
+    /// Tandem duplication
+    /// </summary>
+    [EnumMember(Value = "TDUP")]
+    TDUP = 2,
+
+    /// <summary>
     /// Insertion
     /// </summary>
     [EnumMember(Value = "INS")]
-    INS = 2,
+    INS = 3,
 
     /// <summary>
     /// Deletion
     /// </summary>
     [EnumMember(Value = "DEL")]
-    DEL = 3,
+    DEL = 4,
 
     /// <summary>
     /// Inversion
     /// </summary>
     [EnumMember(Value = "INV")]
-    INV = 4,
+    INV = 5,
 
     /// <summary>
     /// Intra-chromosomal translocation
     /// </summary>
     [EnumMember(Value = "ITX")]
-    ITX = 5,
+    ITX = 6,
 
     /// <summary>
     /// Inter-chromosomal translocation
     /// </summary>
     [EnumMember(Value = "CTX")]
-    CTX = 6,
+    CTX = 7,
 
     /// <summary>
     /// Complex
     /// </summary>
     [EnumMember(Value = "COM")]
-    COM = 7
+    COM = 8
 }

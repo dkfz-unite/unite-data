@@ -15,7 +15,7 @@ public class Variant : Variants.Variant
     /// <summary>
     /// Copy number alteration type (CNA.Type)
     /// </summary>
-    public CnaType? CnaTypeId { get; set; }
+    public CnaType CnaTypeId { get; set; }
 
     /// <summary>
     /// Loss of heterozygosity (either C1 or C2 are 0)
@@ -30,12 +30,12 @@ public class Variant : Variants.Variant
     /// <summary>
     /// Mean number of copies in minor allele
     /// </summary>
-    public double C1Mean { get; set; }
+    public double? C1Mean { get; set; }
 
     /// <summary>
     /// Mean number of copies in major allele
     /// </summary>
-    public double C2Mean { get; set; }
+    public double? C2Mean { get; set; }
 
     /// <summary>
     /// Mean total number of copies (C1Mean + C2Mean)

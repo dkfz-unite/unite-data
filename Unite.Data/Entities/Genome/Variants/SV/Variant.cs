@@ -9,19 +9,19 @@ namespace Unite.Data.Entities.Genome.Variants.SV;
 public class Variant : Variants.Variant
 {
     /// <summary>
-    /// New chromosome (for translocated or duplicated regions)
+    /// Second breakpoint chromosome
     /// </summary>
-    public Chromosome? NewChromosomeId { get; set; }
+    public Chromosome OtherChromosomeId { get; set; }
 
     /// <summary>
-    /// New chromosome region start (for translocated or duplicated regions)
+    /// Second breakpoint start
     /// </summary>
-    public double? NewStart { get; set; }
+    public double OtherStart { get; set; }
 
     /// <summary>
-    /// New chromosome region end (for translocated or duplicated regions)
+    /// Second breakpoint end
     /// </summary>
-    public double? NewEnd { get; set; }
+    public double OtherEnd { get; set; }
 
     /// <summary>
     /// Structural variant type
@@ -29,14 +29,19 @@ public class Variant : Variants.Variant
     public SvType TypeId { get; set; }
 
     /// <summary>
-    /// Reference genomic sequence of chromosome region
+    /// Whether event is inverted or not
     /// </summary>
-    public string ReferenceBase { get; set; }
+    public bool? Inverted { get; set; }
 
     /// <summary>
-    /// Alternate genomic sequence of chromosome region
+    /// Flanking genomic sequence 200bp around first breakpoint
     /// </summary>
-    public string AlternateBase { get; set; }
+    public string FlankingSequenceFrom { get; set; }
+
+    /// <summary>
+    /// Flanking genomic sequence 200bp around second breakpoint
+    /// </summary>
+    public string FlankingSequenceTo { get; set; }
 
 
     /// <summary>

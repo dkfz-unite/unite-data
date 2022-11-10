@@ -18,12 +18,6 @@ internal class VariantMapper : VariantMapper<Variant>
         base.Configure(entity);
 
 
-        entity.HasAlternateKey(variant => variant.Code);
-
-        entity.Property(variant => variant.Code)
-              .IsRequired()
-              .HasMaxLength(500);
-
         entity.Property(variant => variant.TypeId)
               .IsRequired()
               .HasConversion<int>();

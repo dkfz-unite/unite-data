@@ -8,11 +8,6 @@ namespace Unite.Data.Entities.Genome.Variants.SSM;
 public class Variant : Variants.Variant
 {
     /// <summary>
-    /// Variant code in HGVS notation
-    /// </summary>
-    public string Code { get; set; }
-
-    /// <summary>
     /// Simple somatic mutation type
     /// </summary>
     public SsmType TypeId { get; set; }

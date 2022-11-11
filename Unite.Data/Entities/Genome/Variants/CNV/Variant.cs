@@ -58,6 +58,11 @@ public class Variant : Variants.Variant
     public int? Tcn { get; set; }
 
     /// <summary>
+    /// Ratio of total number of copies to sample ploidy
+    /// </summary>
+    public double? TcnRatio { get; set; }
+
+    /// <summary>
     /// Estimated maximum decrease of heterozygosity
     /// </summary>
     public double? DhMax { get; set; }

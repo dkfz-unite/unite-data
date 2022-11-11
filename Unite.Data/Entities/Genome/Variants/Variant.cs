@@ -23,4 +23,9 @@ public abstract class Variant
     /// Chromosome region end
     /// </summary>
     public int End { get; set; }
+
+    /// <summary>
+    /// Number of base pairs affected by the variant
+    /// </summary>
+    public int? Length { get; set; }
 }

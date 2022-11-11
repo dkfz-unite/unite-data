@@ -13,18 +13,38 @@ public class TasksProcessingService
     }
 
     /// <summary>
-    /// Process indexing tasks in batches running handler for each batch
+    /// Verifies whether there are indexing tasks in the database.
     /// </summary>
-    /// <param name="type">Indexing task type</param>
-    /// <param name="bucketSize">Bucket size</param>
-    /// <param name="handler">Processing handler</param>
-    public void Process(IndexingTaskType type, int bucketSize, Action<Unite.Data.Entities.Tasks.Task[]> handler)
+    /// <returns>True, if indexing tasks exist in the database, False otherwise.</returns>
+    public bool HasIndexingTasks()
+    {
+        return _dbContext.Set<Entities.Tasks.Task>()
+            .Any(task => task.IndexingTypeId != null);
+    }
+
+    /// <summary>
+    /// Verifies whether there are annotation tasks in the database.
+    /// </summary>
+    /// <returns>True, if annotation tasks exist in the database, False otherwise.</returns>
+    public bool HasAnnotationTasks()
+    {
+        return _dbContext.Set<Entities.Tasks.Task>()
+            .Any(task => task.AnnotationTypeId != null);
+    }
+
+    /// <summary>
+    /// Process indexing tasks in batches running handler for each batch.
+    /// </summary>
+    /// <param name="type">Indexing task type.</param>
+    /// <param name="bucketSize">Bucket size.</param>
+    /// <param name="handler">Processing handler.</param>
+    public void Process(IndexingTaskType type, int bucketSize, Action<Entities.Tasks.Task[]> handler)
     {
         while (true)
         {
             var tasks = _dbContext.Tasks
                 .Where(task => task.IndexingTypeId == type)
-                .OrderByDescending(task => task.Date)
+                .OrderBy(task => task.Target)
                 .Take(bucketSize)
                 .ToArray();
 
@@ -43,18 +63,19 @@ public class TasksProcessingService
     }
 
     /// <summary>
-    /// Process annotation tasks in batches running handler for each batch
+    /// Process annotation tasks in batches running handler for each batch.
     /// </summary>
-    /// <param name="type">Annotation task type</param>
-    /// <param name="bucketSize">Bucket size</param>
-    /// <param name="handler">Processing handler</param>
-    public void Process(AnnotationTaskType type, int bucketSize, Action<Unite.Data.Entities.Tasks.Task[]> handler)
+    /// <param name="type">Annotation task type.</param>
+    /// <param name="bucketSize">Bucket size.</param>
+    /// <param name="handler">Processing handler.</param>
+    public void Process(AnnotationTaskType type, int bucketSize, Action<Entities.Tasks.Task[]> handler)
     {
         while (true)
         {
             var tasks = _dbContext.Tasks
                 .Where(task => task.AnnotationTypeId == type)
-                .OrderByDescending(task => task.Date)
+                .OrderBy(task => task.Date)
+                .ThenBy(task => task.Target)
                 .Take(bucketSize)
                 .ToArray();
 

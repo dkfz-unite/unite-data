@@ -26,14 +26,25 @@ public abstract class TaskService
         IndexingTaskType type,
         IEnumerable<T> keys)
     {
-        var tasks = keys
-            .Select(key => new Entities.Tasks.Task
+        var tasks = new List<Entities.Tasks.Task>();
+
+        foreach (var key in keys)
+        {
+            var exists = _dbContext.Set<Entities.Tasks.Task>().Any(task =>
+                task.IndexingTypeId == type &&
+                task.Target == key.ToString()
+            );
+
+            if (!exists)
             {
-                IndexingTypeId = type,
-                Target = key.ToString(),
-                Date = DateTime.UtcNow
-            })
-            .ToArray();
+                tasks.Add(new Entities.Tasks.Task
+                {
+                    IndexingTypeId = type,
+                    Target = key.ToString(),
+                    Date = DateTime.UtcNow
+                });
+            }
+        }
 
         _dbContext.AddRange(tasks);
         _dbContext.SaveChanges();
@@ -49,14 +60,25 @@ public abstract class TaskService
         AnnotationTaskType type,
         IEnumerable<T> keys)
     {
-        var tasks = keys
-            .Select(key => new Entities.Tasks.Task
+        var tasks = new List<Entities.Tasks.Task>();
+
+        foreach (var key in keys)
+        {
+            var exists = _dbContext.Set<Entities.Tasks.Task>().Any(task =>
+                task.AnnotationTypeId == type &&
+                task.Target == key.ToString()
+            );
+
+            if (!exists)
             {
-                AnnotationTypeId = type,
-                Target = key.ToString(),
-                Date = DateTime.UtcNow
-            })
-            .ToArray();
+                tasks.Add(new Entities.Tasks.Task
+                {
+                    AnnotationTypeId = type,
+                    Target = key.ToString(),
+                    Date = DateTime.UtcNow
+                });
+            }
+        }
 
         _dbContext.AddRange(tasks);
         _dbContext.SaveChanges();

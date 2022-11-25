@@ -24,6 +24,9 @@ internal class TranscriptMapper : IEntityTypeConfiguration<Transcript>
         entity.Property(transcript => transcript.Biotype)
               .HasMaxLength(100);
 
+        entity.Property(transcript => transcript.IsAnnotated)
+              .HasDefaultValue(false);
+
 
         entity.HasOne<EnumValue<Chromosome>>()
               .WithMany()

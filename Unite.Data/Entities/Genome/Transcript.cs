@@ -14,11 +14,10 @@ public class Transcript : Feature
     public int? End { get; set; }
     public bool? Strand { get; set; }
     public string Biotype { get; set; }
-
+    public bool IsAnnotated { get; set; }
 
     public virtual Gene Gene { get; set; }
     public virtual Protein Protein { get; set; }
-
 
     public virtual TranscriptInfo Info { get; set; }
 }

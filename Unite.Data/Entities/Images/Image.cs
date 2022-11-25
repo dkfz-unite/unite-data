@@ -11,7 +11,6 @@ public class Image
     public DateOnly? ScanningDate { get; set; }
     public int? ScanningDay { get; set; }
 
-
     public virtual Donor Donor { get; set; }
     public virtual MriImage MriImage { get; set; }
     public virtual ICollection<AnalysedImage> ImageAnalyses { get; set; }

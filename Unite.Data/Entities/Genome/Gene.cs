@@ -12,7 +12,6 @@ public class Gene
     public int? End { get; set; }
     public bool? Strand { get; set; }
     public string Biotype { get; set; }
-    public bool IsAnnotated { get; set; }
 
     public virtual GeneInfo Info { get; set; }
 }

@@ -24,9 +24,6 @@ internal class GeneMapper : IEntityTypeConfiguration<Gene>
         entity.Property(gene => gene.Biotype)
               .HasMaxLength(100);
 
-        entity.Property(gene => gene.IsAnnotated)
-              .HasDefaultValue(false);
-
 
         entity.HasOne<EnumValue<Chromosome>>()
               .WithMany()

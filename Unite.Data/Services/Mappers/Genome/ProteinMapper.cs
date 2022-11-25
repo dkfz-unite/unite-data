@@ -15,8 +15,5 @@ internal class ProteinMapper : IEntityTypeConfiguration<Protein>
         entity.Property(protein => protein.Id)
               .IsRequired()
               .ValueGeneratedOnAdd();
-
-        entity.Property(protein => protein.IsAnnotated)
-              .HasDefaultValue(false);
     }
 }

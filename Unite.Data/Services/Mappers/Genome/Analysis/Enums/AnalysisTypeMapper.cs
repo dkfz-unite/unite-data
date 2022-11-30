@@ -17,7 +17,7 @@ internal class AnalysisTypeMapper : IEntityTypeConfiguration<EnumValue<AnalysisT
             AnalysisType.WES.ToEnumValue(name: "Whole Exome Sequencing"),
             AnalysisType.RNASeq.ToEnumValue(name: "RNA Sequencing"),
             AnalysisType.MS.ToEnumValue(name: "Mass Spectrometry"),
-            AnalysisType.Microarray.ToEnumValue("Microarray Analysis")
+            AnalysisType.Microarray.ToEnumValue(name: "Microarray Analysis")
         };
 
         entity.BuildEnumEntity("AnalysisTypes", DomainDbSchemaNames.Genome, data);

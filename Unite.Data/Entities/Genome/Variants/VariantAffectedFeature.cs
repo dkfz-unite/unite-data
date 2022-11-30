@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="TVariant">Variant type</typeparam>
 /// <typeparam name="TFeature">Feature type</typeparam>
-public class VariantAffectedFeature<TVariant, TFeature>
+public abstract class VariantAffectedFeature<TVariant, TFeature>
     where TVariant : Variant
     where TFeature : Feature
 {

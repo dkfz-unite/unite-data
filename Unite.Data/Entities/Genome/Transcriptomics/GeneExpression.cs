@@ -4,6 +4,7 @@ namespace Unite.Data.Entities.Genome.Transcriptomics;
 
 public class GeneExpression
 {
+    public long Id { get; set; }
 	public int GeneId { get; set; }
     public int AnalysedSampleId { get; set; }
 

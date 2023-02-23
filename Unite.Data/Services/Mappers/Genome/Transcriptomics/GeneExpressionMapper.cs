@@ -10,11 +10,7 @@ internal class GeneExpressionMapper : IEntityTypeConfiguration<GeneExpression>
     {
         entity.ToTable("GeneExpressions", DomainDbSchemaNames.Genome);
 
-        entity.HasKey(geneExpression => new
-        {
-            geneExpression.GeneId,
-            geneExpression.AnalysedSampleId
-        });
+        entity.HasKey(geneExpression => geneExpression.Id);
 
         entity.Property(geneExpression => geneExpression.GeneId)
               .IsRequired()

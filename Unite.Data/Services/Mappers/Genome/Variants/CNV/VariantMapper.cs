@@ -17,19 +17,12 @@ internal class VariantMapper : VariantMapper<Variant>
     {
         base.Configure(entity);
 
-        entity.Property(variant => variant.SvTypeId)
-              .HasConversion<int>();
-
-        entity.Property(variant => variant.CnaTypeId)
+        entity.Property(variant => variant.TypeId)
               .HasConversion<int>();
 
 
-        entity.HasOne<EnumValue<SvType>>()
+        entity.HasOne<EnumValue<CnvType>>()
               .WithMany()
-              .HasForeignKey(variant => variant.SvTypeId);
-
-        entity.HasOne<EnumValue<CnaType>>()
-              .WithMany()
-              .HasForeignKey(variant => variant.CnaTypeId);
+              .HasForeignKey(variant => variant.TypeId);
     }
 }

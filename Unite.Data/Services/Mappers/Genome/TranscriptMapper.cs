@@ -14,9 +14,15 @@ internal class TranscriptMapper : IEntityTypeConfiguration<Transcript>
 
         entity.HasKey(transcript => transcript.Id);
 
+        entity.HasAlternateKey(transcript => transcript.StableId);
+
         entity.Property(transcript => transcript.Id)
               .IsRequired()
               .ValueGeneratedOnAdd();
+
+        entity.Property(transcript => transcript.StableId)
+              .IsRequired()
+              .HasMaxLength(100);
 
         entity.Property(transcript => transcript.ChromosomeId)
               .HasConversion<int>();

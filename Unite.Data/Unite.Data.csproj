@@ -3,8 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<ReleaseVersion>4.2.0</ReleaseVersion>
-		<Version>4.2.0</Version>
+		<ReleaseVersion>4.3.0</ReleaseVersion>
+		<Version>4.3.0</Version>
 		<SynchReleaseVersion>false</SynchReleaseVersion>
 		<RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
 		<Authors>Valiantsin Ulasau (DKFZ)</Authors>
@@ -34,6 +34,8 @@
 		<None Remove="Entities\Genome\Variants\SV\Enums\" />
 		<None Remove="Services\Mappers\Genome\Variants\CNV\Enums\" />
 		<None Remove="Services\Mappers\Genome\Variants\SV\Enums\" />
+		<None Remove="Entities\Genome\Transcriptomics\" />
+		<None Remove="Services\Mappers\Genome\Transcriptomics\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Entities\Images\Features\" />
@@ -58,6 +60,8 @@
 		<Folder Include="Entities\Genome\Variants\SV\Enums\" />
 		<Folder Include="Services\Mappers\Genome\Variants\CNV\Enums\" />
 		<Folder Include="Services\Mappers\Genome\Variants\SV\Enums\" />
+		<Folder Include="Entities\Genome\Transcriptomics\" />
+		<Folder Include="Services\Mappers\Genome\Transcriptomics\" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />

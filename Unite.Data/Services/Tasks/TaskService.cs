@@ -17,11 +17,11 @@ public abstract class TaskService
 
 
     /// <summary>
-    /// Create indexing tasks
+    /// Create indexing tasks.
     /// </summary>
-    /// <typeparam name="T">Key type</typeparam>
-    /// <param name="type">Indexing task type</param>
-    /// <param name="keys">Collection of keys</param>
+    /// <typeparam name="T">Key type.</typeparam>
+    /// <param name="type">Indexing task type.</param>
+    /// <param name="keys">Collection of keys.</param>
     protected void CreateTasks<T>(
         IndexingTaskType type,
         IEnumerable<T> keys)
@@ -51,11 +51,11 @@ public abstract class TaskService
     }
 
     /// <summary>
-    /// Create annotation tasks
+    /// Create annotation tasks.
     /// </summary>
-    /// <typeparam name="T">Key type</typeparam>
-    /// <param name="type">Annotation task type</param>
-    /// <param name="keys">Collection of keys</param>
+    /// <typeparam name="T">Key type.</typeparam>
+    /// <param name="type">Annotation task type.</param>
+    /// <param name="keys">Collection of keys.</param>
     protected void CreateTasks<T>(
         AnnotationTaskType type,
         IEnumerable<T> keys)
@@ -74,6 +74,40 @@ public abstract class TaskService
                 tasks.Add(new Entities.Tasks.Task
                 {
                     AnnotationTypeId = type,
+                    Target = key.ToString(),
+                    Date = DateTime.UtcNow
+                });
+            }
+        }
+
+        _dbContext.AddRange(tasks);
+        _dbContext.SaveChanges();
+    }
+
+    /// <summary>
+    /// Create submission tasks.
+    /// </summary>
+    /// <typeparam name="T">Key type.</typeparam>
+    /// <param name="type">Submission task type.</param>
+    /// <param name="keys">Collection of keys.</param>
+    protected void CreateTasks<T>(
+        SubmissionTaskType type,
+        IEnumerable<T> keys)
+    {
+        var tasks = new List<Entities.Tasks.Task>();
+
+        foreach (var key in keys)
+        {
+            var exists = _dbContext.Set<Entities.Tasks.Task>().Any(task =>
+                task.SubmissionTypeId == type &&
+                task.Target == key.ToString()
+            );
+
+            if (!exists)
+            {
+                tasks.Add(new Entities.Tasks.Task
+                {
+                    SubmissionTypeId = type,
                     Target = key.ToString(),
                     Date = DateTime.UtcNow
                 });

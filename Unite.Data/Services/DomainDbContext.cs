@@ -44,11 +44,8 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Specimens.Xenografts.InterventionType> XenograftInterventionTypes { get; set; }
 
     public DbSet<Entities.Genome.Gene> Genes { get; set; }
-    public DbSet<Entities.Genome.GeneInfo> GeneInfo { get; set; }
     public DbSet<Entities.Genome.Transcript> Transcripts { get; set; }
-    public DbSet<Entities.Genome.TranscriptInfo> TranscriptInfo { get; set; }
     public DbSet<Entities.Genome.Protein> Proteins { get; set; }
-    public DbSet<Entities.Genome.ProteinInfo> ProteinInfo { get; set; }
     public DbSet<Entities.Genome.Analysis.Analysis> Analyses { get; set; }
     public DbSet<Entities.Genome.Analysis.AnalysedSample> AnalysedSamples { get; set; }
     public DbSet<Entities.Genome.Analysis.Sample> Samples { get; set; }
@@ -61,6 +58,7 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Genome.Variants.SV.Variant> StructuralVariants { get; set; }
     public DbSet<Entities.Genome.Variants.SV.VariantOccurrence> StructuralVariantOccurrences { get; set; }
     public DbSet<Entities.Genome.Variants.SV.AffectedTranscript> StructuralVariantAffectedTranscripts { get; set; }
+    public DbSet<Entities.Genome.Transcriptomics.GeneExpression> GeneExpressions { get; set; }
 
 
     public DomainDbContext(ISqlOptions options)
@@ -90,6 +88,7 @@ public class DomainDbContext : DbContext
 
     private void Configure(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.SubmissionTaskTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.AnnotationTaskTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.IndexingTaskTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.TaskMapper());
@@ -162,11 +161,8 @@ public class DomainDbContext : DbContext
     {
         builder.ApplyConfiguration(new Mappers.Genome.Enums.ChromosomeMapper());
         builder.ApplyConfiguration(new Mappers.Genome.GeneMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.GeneInfoMapper());
         builder.ApplyConfiguration(new Mappers.Genome.TranscriptMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.TranscriptInfoMapper());
         builder.ApplyConfiguration(new Mappers.Genome.ProteinMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.ProteinInfoMapper());
 
         builder.ApplyConfiguration(new Mappers.Genome.Analysis.Enums.AnalysisTypeMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Analysis.AnalysisMapper());
@@ -178,8 +174,7 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Genome.Variants.SSM.VariantOccurrenceMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Variants.SSM.AffectedTranscriptMapper());
 
-        builder.ApplyConfiguration(new Mappers.Genome.Variants.CNV.Enums.SvTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Variants.CNV.Enums.CnaTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Variants.CNV.Enums.CnvTypeMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Variants.CNV.VariantMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Variants.CNV.VariantOccurrenceMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Variants.CNV.AffectedTranscriptMapper());
@@ -188,5 +183,7 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Genome.Variants.SV.VariantMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Variants.SV.VariantOccurrenceMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Variants.SV.AffectedTranscriptMapper());
+
+        builder.ApplyConfiguration(new Mappers.Genome.Transcriptomics.GeneExpressionMapper());
     }
 }

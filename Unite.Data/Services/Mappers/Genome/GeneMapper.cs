@@ -14,9 +14,15 @@ internal class GeneMapper : IEntityTypeConfiguration<Gene>
 
         entity.HasKey(gene => gene.Id);
 
+        entity.HasAlternateKey(gene => gene.StableId);
+
         entity.Property(gene => gene.Id)
               .IsRequired()
               .ValueGeneratedOnAdd();
+
+        entity.Property(gene => gene.StableId)
+              .IsRequired()
+              .HasMaxLength(100);
 
         entity.Property(gene => gene.ChromosomeId)
               .HasConversion<int>();

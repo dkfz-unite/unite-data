@@ -8,14 +8,9 @@ namespace Unite.Data.Entities.Genome.Variants.CNV;
 public class Variant : Variants.Variant
 {
     /// <summary>
-    /// Structural variant type (SV.Type)
+    /// Copy number alteration type
     /// </summary>
-    public SvType? SvTypeId { get; set; }
-
-    /// <summary>
-    /// Copy number alteration type (CNA.Type)
-    /// </summary>
-    public CnaType? CnaTypeId { get; set; }
+    public CnvType? TypeId { get; set; }
 
     /// <summary>
     /// Loss of heterozygosity (either C1 or C2 are 0)

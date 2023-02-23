@@ -34,6 +34,10 @@ internal class TaskMapper : IEntityTypeConfiguration<Task>
               .IsRequired();
 
 
+        entity.HasOne<EnumValue<SubmissionTaskType>>()
+              .WithMany()
+              .HasForeignKey(task => task.SubmissionTypeId);
+
         entity.HasOne<EnumValue<IndexingTaskType>>()
               .WithMany()
               .HasForeignKey(task => task.IndexingTypeId);

@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Tasks.Enums;
 
-public enum AnnotationTaskType
+public enum SubmissionTaskType
 {
     /// <summary>
     /// Simple somatic mutation
@@ -20,5 +20,11 @@ public enum AnnotationTaskType
     /// Structural variant
     /// </summary>
     [EnumMember(Value = "SV")]
-    SV = 3
+    SV = 3,
+
+    /// <summary>
+    /// Transcript expression
+    /// </summary>
+    [EnumMember(Value = "TEX")]
+    TEX = 4
 }

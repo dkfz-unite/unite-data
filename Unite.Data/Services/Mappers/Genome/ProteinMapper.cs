@@ -12,8 +12,14 @@ internal class ProteinMapper : IEntityTypeConfiguration<Protein>
 
         entity.HasKey(protein => protein.Id);
 
+        entity.HasAlternateKey(protein => protein.StableId);
+
         entity.Property(protein => protein.Id)
               .IsRequired()
               .ValueGeneratedOnAdd();
+
+        entity.Property(protein => protein.StableId)
+              .IsRequired()
+              .HasMaxLength(100);
     }
 }

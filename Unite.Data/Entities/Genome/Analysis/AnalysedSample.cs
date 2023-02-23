@@ -1,4 +1,6 @@
-﻿namespace Unite.Data.Entities.Genome.Analysis;
+﻿using Unite.Data.Entities.Genome.Transcriptomics;
+
+namespace Unite.Data.Entities.Genome.Analysis;
 
 public class AnalysedSample
 {
@@ -26,4 +28,5 @@ public class AnalysedSample
     public virtual ICollection<Variants.SSM.VariantOccurrence> MutationOccurrences { get; set; }
     public virtual ICollection<Variants.CNV.VariantOccurrence> CopyNumberVariantOccurrences { get; set; }
     public virtual ICollection<Variants.SV.VariantOccurrence> StructuralVariantOccurrences { get; set; }
+    public virtual ICollection<GeneExpression> GeneExpressions { get; set; }
 }

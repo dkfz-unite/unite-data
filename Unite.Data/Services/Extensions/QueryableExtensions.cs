@@ -103,15 +103,12 @@ public static class QueryableExtensions
         return query
             .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
-                    .ThenInclude(transcript => transcript.Info)
             .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Gene)
-                        .ThenInclude(gene => gene.Info)
             .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
-                    .ThenInclude(transcript => transcript.Protein)
-                        .ThenInclude(protein => protein.Info);
+                    .ThenInclude(transcript => transcript.Protein);
     }
 
     public static IQueryable<Variants.CNV.Variant> IncludeAffectedTranscripts(this IQueryable<Variants.CNV.Variant> query)
@@ -119,15 +116,12 @@ public static class QueryableExtensions
         return query
             .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
-                    .ThenInclude(transcript => transcript.Info)
             .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Gene)
-                        .ThenInclude(gene => gene.Info)
             .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
-                    .ThenInclude(transcript => transcript.Protein)
-                        .ThenInclude(protein => protein.Info);
+                    .ThenInclude(transcript => transcript.Protein);
     }
 
     public static IQueryable<Variants.SV.Variant> IncludeAffectedTranscripts(this IQueryable<Variants.SV.Variant> query)
@@ -135,14 +129,11 @@ public static class QueryableExtensions
         return query
             .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
-                    .ThenInclude(transcript => transcript.Info)
             .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
                     .ThenInclude(transcript => transcript.Gene)
-                        .ThenInclude(gene => gene.Info)
             .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature)
-                    .ThenInclude(transcript => transcript.Protein)
-                        .ThenInclude(protein => protein.Info);
+                    .ThenInclude(transcript => transcript.Protein);
     }
 }

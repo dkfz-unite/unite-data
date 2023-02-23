@@ -14,9 +14,7 @@ internal class AnnotationTaskTypeMapper : IEntityTypeConfiguration<EnumValue<Ann
         {
             AnnotationTaskType.SSM.ToEnumValue(),
             AnnotationTaskType.CNV.ToEnumValue(),
-            AnnotationTaskType.SV.ToEnumValue(),
-            AnnotationTaskType.TEX.ToEnumValue(),
-            AnnotationTaskType.PEX.ToEnumValue()
+            AnnotationTaskType.SV.ToEnumValue()
         };
 
         entity.BuildEnumEntity("AnnotationTaskTypes", DomainDbSchemaNames.Common, data);

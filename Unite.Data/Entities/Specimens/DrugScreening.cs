@@ -2,7 +2,7 @@
 
 public class DrugScreening
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
     public int SpecimenId { get; set; }
     public int DrugId { get; set; }
 

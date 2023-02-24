@@ -30,7 +30,11 @@ internal abstract class VariantAffectedFeatureMapper<TVariantAffectedFeature, TV
     {
         entity.ToTable(TableName, DomainDbSchemaNames.Genome);
 
-        entity.HasKey(affectedFeature => affectedFeature.Id);
+        entity.HasKey(affectedFeature => new
+        {
+            affectedFeature.VariantId,
+            affectedFeature.FeatureId
+        });
 
         entity.Property(affectedFeature => affectedFeature.VariantId)
               .IsRequired()

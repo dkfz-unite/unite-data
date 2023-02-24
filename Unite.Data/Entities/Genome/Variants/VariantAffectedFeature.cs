@@ -9,7 +9,6 @@ public abstract class VariantAffectedFeature<TVariant, TFeature>
     where TVariant : Variant
     where TFeature : Feature
 {
-    public long Id { get; set; }
     public long VariantId { get; set; }
     public int FeatureId { get; set; }
 

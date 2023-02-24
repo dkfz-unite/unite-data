@@ -20,7 +20,11 @@ internal abstract class VariantOccurrenceMapper<TVariantOccurrence, TVariant> : 
     {
         entity.ToTable(TableName, DomainDbSchemaNames.Genome);
 
-        entity.HasKey(variantOccurrence => variantOccurrence.Id);
+        entity.HasKey(variantOccurrence => new
+        {
+            variantOccurrence.VariantId,
+            variantOccurrence.AnalysedSampleId
+        });
 
         entity.Property(variantOccurrence => variantOccurrence.VariantId)
               .IsRequired()

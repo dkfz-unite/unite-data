@@ -9,7 +9,6 @@ namespace Unite.Data.Entities.Genome.Variants;
 public abstract class VariantOccurrence<TVariant>
     where TVariant : Variant
 {
-    public long Id { get; set; }
     public long VariantId { get; set; }
     public int AnalysedSampleId { get; set; }
 

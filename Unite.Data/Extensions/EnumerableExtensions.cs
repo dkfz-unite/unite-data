@@ -37,4 +37,28 @@ public static class EnumerableExtensions
     {
         return items != null && items.Any();
     }
+
+    /// <summary>
+    /// Iterates collection with given bucket size.
+    /// </summary>
+    /// <typeparam name="T">Collection element type.</typeparam>
+    /// <param name="items">Source collection of elements.</param>
+    /// <param name="buketSize">Bucket size.</param>
+    /// <param name="handler">Bucket processing handler.</param>
+    public static void Iterate<T>(this IEnumerable<T> items, int buketSize, Action<IEnumerable<T>> handler)
+    {
+        var position = 0;
+
+        var entities = Enumerable.Empty<T>();
+
+        do
+        {
+            entities = items.Take(buketSize).Skip(position);
+
+            handler(entities);
+
+            position += entities.Count();
+
+        } while (entities.Count() == buketSize);
+    }
 }

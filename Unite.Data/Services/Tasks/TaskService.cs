@@ -1,5 +1,7 @@
 ﻿using System.Linq.Expressions;
+using System.Text.Json;
 using Unite.Data.Entities.Tasks.Enums;
+using Unite.Data.Extensions;
 
 namespace Unite.Data.Services.Tasks;
 
@@ -15,6 +17,98 @@ public abstract class TaskService
         _dbContext = dbContext;
     }
 
+    /// <summary>
+    /// Creates indexing task.
+    /// </summary>
+    /// <typeparam name="TKey">Key type.</typeparam>
+    /// <typeparam name="TData">Data type.</typeparam>
+    /// <param name="type">Indexing task type.</param>
+    /// <param name="key">Key.</param>
+    /// <param name="data">Data.</param>
+    protected void CreateTask<TKey, TData>(
+        IndexingTaskType type,
+        TKey key,
+        TData data = null)
+        where TData : class
+    {
+        var exists = _dbContext.Set<Entities.Tasks.Task>()
+            .Any(task => task.IndexingTypeId == type && task.Target == key.ToString());
+
+        if (!exists)
+        {
+            var task = new Entities.Tasks.Task
+            {
+                IndexingTypeId = type,
+                Target = key.ToString(),
+                Data = data != null ? JsonSerializer.Serialize(data) : null
+            };
+
+            _dbContext.Add(task);
+            _dbContext.SaveChanges();
+        }
+    }
+
+    /// <summary>
+    /// Creates annotation task.
+    /// </summary>
+    /// <typeparam name="TKey">Key type.</typeparam>
+    /// <typeparam name="TData">Data type.</typeparam>
+    /// <param name="type">Indexing task type.</param>
+    /// <param name="key">Key.</param>
+    /// <param name="data">Data.</param>
+    protected void CreateTask<TKey, TData>(
+        AnnotationTaskType type,
+        TKey key,
+        TData data = null)
+        where TData : class
+    {
+        var exists = _dbContext.Set<Entities.Tasks.Task>()
+            .Any(task => task.AnnotationTypeId == type && task.Target == key.ToString());
+
+        if (!exists)
+        {
+            var task = new Entities.Tasks.Task
+            {
+                AnnotationTypeId = type,
+                Target = key.ToString(),
+                Data = data != null ? JsonSerializer.Serialize(data) : null
+            };
+
+            _dbContext.Add(task);
+            _dbContext.SaveChanges();
+        }
+    }
+
+    /// <summary>
+    /// Creates submission task.
+    /// </summary>
+    /// <typeparam name="TKey">Key type.</typeparam>
+    /// <typeparam name="TData">Data type.</typeparam>
+    /// <param name="type">Indexing task type.</param>
+    /// <param name="key">Key.</param>
+    /// <param name="data">Data.</param>
+    protected void CreateTask<TKey, TData>(
+        SubmissionTaskType type,
+        TKey key,
+        TData data = null)
+        where TData : class
+    {
+        var exists = _dbContext.Set<Entities.Tasks.Task>()
+            .Any(task => task.SubmissionTypeId == type && task.Target == key.ToString());
+
+        if (!exists)
+        {
+            var task = new Entities.Tasks.Task
+            {
+                SubmissionTypeId = type,
+                Target = key.ToString(),
+                Data = data != null ? JsonSerializer.Serialize(data) : null
+            };
+
+            _dbContext.Add(task);
+            _dbContext.SaveChanges();
+        }
+    }
 
     /// <summary>
     /// Create indexing tasks.
@@ -26,28 +120,34 @@ public abstract class TaskService
         IndexingTaskType type,
         IEnumerable<T> keys)
     {
-        var tasks = new List<Entities.Tasks.Task>();
-
-        foreach (var key in keys)
+        keys.Iterate(BucketSize, (chunkKeys) =>
         {
-            var exists = _dbContext.Set<Entities.Tasks.Task>().Any(task =>
-                task.IndexingTypeId == type &&
-                task.Target == key.ToString()
-            );
+            var targets = chunkKeys.Select(key => key.ToString());
 
-            if (!exists)
+            var existingTasks = _dbContext.Set<Entities.Tasks.Task>()
+                .Where(task => task.IndexingTypeId == type && targets.Contains(task.Target))
+                .ToArray();
+
+            var newTasks = new List<Entities.Tasks.Task>();
+
+            foreach (var key in chunkKeys)
             {
-                tasks.Add(new Entities.Tasks.Task
-                {
-                    IndexingTypeId = type,
-                    Target = key.ToString(),
-                    Date = DateTime.UtcNow
-                });
-            }
-        }
+                var exists = existingTasks.Any(task => task.IndexingTypeId == type && task.Target == key.ToString());
 
-        _dbContext.AddRange(tasks);
-        _dbContext.SaveChanges();
+                if (!exists)
+                {
+                    newTasks.Add(new Entities.Tasks.Task
+                    {
+                        IndexingTypeId = type,
+                        Target = key.ToString(),
+                        Date = DateTime.UtcNow
+                    });
+                }
+            }
+
+            _dbContext.AddRange(newTasks);
+            _dbContext.SaveChanges();
+        });
     }
 
     /// <summary>
@@ -60,28 +160,34 @@ public abstract class TaskService
         AnnotationTaskType type,
         IEnumerable<T> keys)
     {
-        var tasks = new List<Entities.Tasks.Task>();
-
-        foreach (var key in keys)
+        keys.Iterate(BucketSize, (chunkKeys) =>
         {
-            var exists = _dbContext.Set<Entities.Tasks.Task>().Any(task =>
-                task.AnnotationTypeId == type &&
-                task.Target == key.ToString()
-            );
+            var targets = chunkKeys.Select(key => key.ToString());
 
-            if (!exists)
+            var existingTasks = _dbContext.Set<Entities.Tasks.Task>()
+                .Where(task => task.AnnotationTypeId == type && targets.Contains(task.Target))
+                .ToArray();
+
+            var newTasks = new List<Entities.Tasks.Task>();
+
+            foreach (var key in chunkKeys)
             {
-                tasks.Add(new Entities.Tasks.Task
-                {
-                    AnnotationTypeId = type,
-                    Target = key.ToString(),
-                    Date = DateTime.UtcNow
-                });
-            }
-        }
+                var exists = existingTasks.Any(task => task.AnnotationTypeId == type && task.Target == key.ToString());
 
-        _dbContext.AddRange(tasks);
-        _dbContext.SaveChanges();
+                if (!exists)
+                {
+                    newTasks.Add(new Entities.Tasks.Task
+                    {
+                        AnnotationTypeId = type,
+                        Target = key.ToString(),
+                        Date = DateTime.UtcNow
+                    });
+                }
+            }
+
+            _dbContext.AddRange(newTasks);
+            _dbContext.SaveChanges();
+        });
     }
 
     /// <summary>
@@ -94,34 +200,41 @@ public abstract class TaskService
         SubmissionTaskType type,
         IEnumerable<T> keys)
     {
-        var tasks = new List<Entities.Tasks.Task>();
-
-        foreach (var key in keys)
+        keys.Iterate(BucketSize, (chunkKeys) =>
         {
-            var exists = _dbContext.Set<Entities.Tasks.Task>().Any(task =>
-                task.SubmissionTypeId == type &&
-                task.Target == key.ToString()
-            );
+            var targets = chunkKeys.Select(key => key.ToString());
 
-            if (!exists)
+            var existingTasks = _dbContext.Set<Entities.Tasks.Task>()
+                .Where(task => task.SubmissionTypeId == type && targets.Contains(task.Target))
+                .ToArray();
+
+            var newTasks = new List<Entities.Tasks.Task>();
+
+            foreach (var key in chunkKeys)
             {
-                tasks.Add(new Entities.Tasks.Task
-                {
-                    SubmissionTypeId = type,
-                    Target = key.ToString(),
-                    Date = DateTime.UtcNow
-                });
-            }
-        }
+                var exists = existingTasks.Any(task => task.SubmissionTypeId == type && task.Target == key.ToString());
 
-        _dbContext.AddRange(tasks);
-        _dbContext.SaveChanges();
+                if (!exists)
+                {
+                    newTasks.Add(new Entities.Tasks.Task
+                    {
+                        SubmissionTypeId = type,
+                        Target = key.ToString(),
+                        Date = DateTime.UtcNow
+                    });
+                }
+            }
+
+            _dbContext.AddRange(newTasks);
+            _dbContext.SaveChanges();
+        });
     }
 
+
     /// <summary>
-    /// Iterate entities of the database in batches running handler for each batch
+    /// Iterate entities of the database in batches running handler for each batch.
     /// </summary>
-    /// <typeparam name="T">Entity type</typeparam>
+    /// <typeparam name="T">Entity type.</typeparam>
     /// <typeparam name="TKey">Entity key type</typeparam>
     /// <param name="condition">Entity selection condition</param>
     /// <param name="selector">Entity selector</param>

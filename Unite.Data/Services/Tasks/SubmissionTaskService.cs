@@ -11,13 +11,13 @@ public class SubmissionTaskService : TaskService
     {
     }
 
-    public void CreateTask(string key, SubmissionTaskType type)
+    public void CreateTask(SubmissionTaskType type, string key)
     {
-        CreateTask<object>(key, SubmissionTaskType.CNV, null);
+        CreateTask<string, object>(SubmissionTaskType.CNV, key, null);
     }
 
-    public void CreateTask<TData>(string key, SubmissionTaskType type, TData data = null) where TData : class
+    public void CreateTask<TData>(SubmissionTaskType type, string key, TData data = null) where TData : class
     {
-        CreateTask(key, type, data);
+        CreateTask<string, TData>(type, key, data);
     }
 }

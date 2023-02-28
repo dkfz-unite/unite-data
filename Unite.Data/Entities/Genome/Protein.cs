@@ -8,4 +8,5 @@ public class Protein
     public int? Start { get; set; }
     public int? End { get; set; }
     public int? Length { get; set; }
+    public int? IsCanonical { get; set; }
 }

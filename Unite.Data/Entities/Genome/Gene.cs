@@ -12,6 +12,7 @@ public class Gene
     public int? Start { get; set; }
     public int? End { get; set; }
     public bool? Strand { get; set; }
+    public int? ExonicLength { get; set; }
 
     public string Symbol { get; set; }
     public string Description { get; set; }

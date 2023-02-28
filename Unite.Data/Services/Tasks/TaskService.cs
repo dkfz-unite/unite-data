@@ -40,7 +40,8 @@ public abstract class TaskService
             {
                 IndexingTypeId = type,
                 Target = key.ToString(),
-                Data = data != null ? JsonSerializer.Serialize(data) : null
+                Data = data != null ? JsonSerializer.Serialize(data) : null,
+                Date = DateTime.UtcNow
             };
 
             _dbContext.Add(task);
@@ -71,7 +72,8 @@ public abstract class TaskService
             {
                 AnnotationTypeId = type,
                 Target = key.ToString(),
-                Data = data != null ? JsonSerializer.Serialize(data) : null
+                Data = data != null ? JsonSerializer.Serialize(data) : null,
+                Date = DateTime.UtcNow
             };
 
             _dbContext.Add(task);
@@ -102,7 +104,8 @@ public abstract class TaskService
             {
                 SubmissionTypeId = type,
                 Target = key.ToString(),
-                Data = data != null ? JsonSerializer.Serialize(data) : null
+                Data = data != null ? JsonSerializer.Serialize(data) : null,
+                Date = DateTime.UtcNow
             };
 
             _dbContext.Add(task);

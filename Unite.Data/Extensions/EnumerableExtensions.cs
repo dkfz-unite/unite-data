@@ -53,7 +53,7 @@ public static class EnumerableExtensions
 
         do
         {
-            entities = items.Take(buketSize).Skip(position);
+            entities = items.Take(buketSize).Skip(position).ToArray();
 
             handler(entities);
 

@@ -125,7 +125,7 @@ public abstract class TaskService
     {
         keys.Iterate(BucketSize, (chunkKeys) =>
         {
-            var targets = chunkKeys.Select(key => key.ToString());
+            var targets = chunkKeys.Select(key => key.ToString()).ToArray();
 
             var existingTasks = _dbContext.Set<Entities.Tasks.Task>()
                 .Where(task => task.IndexingTypeId == type && targets.Contains(task.Target))
@@ -168,7 +168,7 @@ public abstract class TaskService
     {
         keys.Iterate(BucketSize, (chunkKeys) =>
         {
-            var targets = chunkKeys.Select(key => key.ToString());
+            var targets = chunkKeys.Select(key => key.ToString()).ToArray();
 
             var existingTasks = _dbContext.Set<Entities.Tasks.Task>()
                 .Where(task => task.AnnotationTypeId == type && targets.Contains(task.Target))
@@ -212,7 +212,7 @@ public abstract class TaskService
     {
         keys.Iterate(BucketSize, (chunkKeys) =>
         {
-            var targets = chunkKeys.Select(key => key.ToString());
+            var targets = chunkKeys.Select(key => key.ToString()).ToArray();
 
             var existingTasks = _dbContext.Set<Entities.Tasks.Task>()
                 .Where(task => task.SubmissionTypeId == type && targets.Contains(task.Target))

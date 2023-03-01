@@ -119,6 +119,8 @@ public abstract class TaskService
         IndexingTaskType type,
         IEnumerable<T> keys)
     {
+        var transaction = _dbContext.Database.BeginTransaction();
+
         var allTargets = keys.Select(key => key.ToString()).ToArray();
 
         var existingTargets = _dbContext.Set<Entities.Tasks.Task>()
@@ -141,6 +143,8 @@ public abstract class TaskService
             _dbContext.AddRange(tasks);
             _dbContext.SaveChanges();
         }
+
+        transaction.Commit();
     }
 
     /// <summary>
@@ -153,6 +157,8 @@ public abstract class TaskService
         AnnotationTaskType type,
         IEnumerable<T> keys)
     {
+        var transaction = _dbContext.Database.BeginTransaction();
+
         var allTargets = keys.Select(key => key.ToString()).ToArray();
 
         var existingTargets = _dbContext.Set<Entities.Tasks.Task>()
@@ -175,6 +181,8 @@ public abstract class TaskService
             _dbContext.AddRange(tasks);
             _dbContext.SaveChanges();
         }
+
+        transaction.Commit();
     }
 
     /// <summary>
@@ -187,6 +195,8 @@ public abstract class TaskService
         SubmissionTaskType type,
         IEnumerable<T> keys)
     {
+        var transaction = _dbContext.Database.BeginTransaction();
+
         var allTargets = keys.Select(key => key.ToString()).ToArray();
 
         var existingTargets = _dbContext.Set<Entities.Tasks.Task>()
@@ -209,6 +219,8 @@ public abstract class TaskService
             _dbContext.AddRange(tasks);
             _dbContext.SaveChanges();
         }
+
+        transaction.Commit();
     }
 
 

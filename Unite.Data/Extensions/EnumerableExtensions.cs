@@ -45,20 +45,15 @@ public static class EnumerableExtensions
     /// <param name="items">Source collection of elements.</param>
     /// <param name="buketSize">Bucket size.</param>
     /// <param name="handler">Bucket processing handler.</param>
-    public static void Iterate<T>(this IEnumerable<T> items, int buketSize, Action<IEnumerable<T>> handler)
+    public static void Iterate<T>(this IEnumerable<T> items, int buketSize, Action<T[]> handler)
     {
-        var position = 0;
+        var queue = new Queue<T>(items);
 
-        var entities = Enumerable.Empty<T>();
-
-        do
+        while (queue.Any())
         {
-            entities = items.Take(buketSize).Skip(position).ToArray();
+            var chunk = queue.Dequeue(buketSize).ToArray();
 
-            handler(entities);
-
-            position += entities.Count();
-
-        } while (entities.Count() == buketSize);
+            handler(chunk);
+        }
     }
 }

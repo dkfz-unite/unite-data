@@ -133,16 +133,16 @@ public abstract class TaskService
 
             var newTasks = new List<Entities.Tasks.Task>();
 
-            foreach (var key in chunkKeys)
+            foreach (var target in targets)
             {
-                var exists = existingTasks.Any(task => task.IndexingTypeId == type && task.Target == key.ToString());
+                var exists = existingTasks.Any(task => task.Target == target);
 
                 if (!exists)
                 {
                     newTasks.Add(new Entities.Tasks.Task
                     {
                         IndexingTypeId = type,
-                        Target = key.ToString(),
+                        Target = target,
                         Date = DateTime.UtcNow
                     });
                 }
@@ -176,16 +176,16 @@ public abstract class TaskService
 
             var newTasks = new List<Entities.Tasks.Task>();
 
-            foreach (var key in chunkKeys)
+            foreach (var target in targets)
             {
-                var exists = existingTasks.Any(task => task.AnnotationTypeId == type && task.Target == key.ToString());
+                var exists = existingTasks.Any(task => task.Target == target);
 
                 if (!exists)
                 {
                     newTasks.Add(new Entities.Tasks.Task
                     {
                         AnnotationTypeId = type,
-                        Target = key.ToString(),
+                        Target = target,
                         Date = DateTime.UtcNow
                     });
                 }
@@ -197,7 +197,6 @@ public abstract class TaskService
                 _dbContext.SaveChanges();
             }
         });
-
     }
 
     /// <summary>
@@ -220,16 +219,16 @@ public abstract class TaskService
 
             var newTasks = new List<Entities.Tasks.Task>();
 
-            foreach (var key in chunkKeys)
+            foreach (var target in targets)
             {
-                var exists = existingTasks.Any(task => task.SubmissionTypeId == type && task.Target == key.ToString());
+                var exists = existingTasks.Any(task => task.Target == target);
 
                 if (!exists)
                 {
                     newTasks.Add(new Entities.Tasks.Task
                     {
                         SubmissionTypeId = type,
-                        Target = key.ToString(),
+                        Target = target,
                         Date = DateTime.UtcNow
                     });
                 }

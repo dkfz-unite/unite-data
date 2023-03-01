@@ -148,8 +148,11 @@ public abstract class TaskService
                 }
             }
 
-            _dbContext.AddRange(newTasks);
-            _dbContext.SaveChanges();
+            if (newTasks.Any())
+            {
+                _dbContext.AddRange(newTasks);
+                _dbContext.SaveChanges();
+            }
         });
     }
 
@@ -188,9 +191,13 @@ public abstract class TaskService
                 }
             }
 
-            _dbContext.AddRange(newTasks);
-            _dbContext.SaveChanges();
+            if (newTasks.Any())
+            {
+                _dbContext.AddRange(newTasks);
+                _dbContext.SaveChanges();
+            }
         });
+
     }
 
     /// <summary>
@@ -228,8 +235,11 @@ public abstract class TaskService
                 }
             }
 
-            _dbContext.AddRange(newTasks);
-            _dbContext.SaveChanges();
+            if (newTasks.Any())
+            {
+                _dbContext.AddRange(newTasks);
+                _dbContext.SaveChanges();
+            }
         });
     }
 

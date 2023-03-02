@@ -48,7 +48,7 @@ public class TasksProcessingService
     /// <param name="type">Submission task type.</param>
     /// <param name="bucketSize">Bucket size.</param>
     /// <param name="handler">Processing handler.</param>
-    public void Process(SubmissionTaskType type, int bucketSize, Action<Entities.Tasks.Task[]> handler)
+    public void Process(SubmissionTaskType type, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
         while (true)
         {
@@ -60,10 +60,13 @@ public class TasksProcessingService
 
             if (tasks != null && tasks.Any())
             {
-                handler.Invoke(tasks);
+                var success = handler.Invoke(tasks);
 
-                _dbContext.Tasks.RemoveRange(tasks);
-                _dbContext.SaveChanges();
+                if (success)
+                {
+                    _dbContext.Tasks.RemoveRange(tasks);
+                    _dbContext.SaveChanges();
+                }
             }
             else
             {
@@ -78,7 +81,7 @@ public class TasksProcessingService
     /// <param name="type">Annotation task type.</param>
     /// <param name="bucketSize">Bucket size.</param>
     /// <param name="handler">Processing handler.</param>
-    public void Process(AnnotationTaskType type, int bucketSize, Action<Entities.Tasks.Task[]> handler)
+    public void Process(AnnotationTaskType type, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
         while (true)
         {
@@ -91,10 +94,13 @@ public class TasksProcessingService
 
             if (tasks != null && tasks.Any())
             {
-                handler.Invoke(tasks);
+                var success = handler.Invoke(tasks);
 
-                _dbContext.Tasks.RemoveRange(tasks);
-                _dbContext.SaveChanges();
+                if (success)
+                {
+                    _dbContext.Tasks.RemoveRange(tasks);
+                    _dbContext.SaveChanges();
+                }
             }
             else
             {
@@ -109,7 +115,7 @@ public class TasksProcessingService
     /// <param name="type">Indexing task type.</param>
     /// <param name="bucketSize">Bucket size.</param>
     /// <param name="handler">Processing handler.</param>
-    public void Process(IndexingTaskType type, int bucketSize, Action<Entities.Tasks.Task[]> handler)
+    public void Process(IndexingTaskType type, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
         while (true)
         {
@@ -121,10 +127,13 @@ public class TasksProcessingService
 
             if (tasks != null && tasks.Any())
             {
-                handler.Invoke(tasks);
+                var success = handler.Invoke(tasks);
 
-                _dbContext.Tasks.RemoveRange(tasks);
-                _dbContext.SaveChanges();
+                if (success)
+                {
+                    _dbContext.Tasks.RemoveRange(tasks);
+                    _dbContext.SaveChanges();
+                }
             }
             else
             {

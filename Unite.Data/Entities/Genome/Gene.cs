@@ -19,5 +19,6 @@ public class Gene : IStableEntry, IStrandedDnaEntity
     public string Description { get; set; }
     public string Biotype { get; set; }
 
+    public virtual ICollection<Transcript> Transcripts { get; set; }
     public virtual ICollection<GeneExpression> GeneExpressions { get; set; }
 }

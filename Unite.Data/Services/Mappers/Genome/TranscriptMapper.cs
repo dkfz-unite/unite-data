@@ -36,11 +36,7 @@ internal class TranscriptMapper : IEntityTypeConfiguration<Transcript>
               .HasForeignKey(transcript => transcript.ChromosomeId);
 
         entity.HasOne(transcript => transcript.Gene)
-              .WithMany()
+              .WithMany(gene => gene.Transcripts)
               .HasForeignKey(transcript => transcript.GeneId);
-
-        entity.HasOne(transcript => transcript.Protein)
-              .WithMany()
-              .HasForeignKey(transcript => transcript.ProteinId);
     }
 }

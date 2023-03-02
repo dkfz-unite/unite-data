@@ -9,7 +9,6 @@ public class Transcript : Feature, IStableEntry, IStrandedDnaEntity
     public string StableId { get; set; }
 
     public int? GeneId { get; set; }
-    public int? ProteinId { get; set; }
 
     public Chromosome? ChromosomeId { get; set; }
     public int? Start { get; set; }

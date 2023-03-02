@@ -1,9 +1,10 @@
-﻿using Unite.Data.Entities.Genome.Enums;
+﻿using Unite.Data.Entities.Genome.Abstractions;
+using Unite.Data.Entities.Genome.Enums;
 using Unite.Data.Entities.Genome.Transcriptomics;
 
 namespace Unite.Data.Entities.Genome;
 
-public class Gene
+public class Gene : IStableEntry, IStrandedDnaEntity
 {
     public int Id { get; set; }
     public string StableId { get; set; }

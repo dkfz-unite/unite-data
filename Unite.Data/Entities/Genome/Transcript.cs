@@ -1,8 +1,9 @@
-﻿using Unite.Data.Entities.Genome.Enums;
+﻿using Unite.Data.Entities.Genome.Abstractions;
+using Unite.Data.Entities.Genome.Enums;
 
 namespace Unite.Data.Entities.Genome;
 
-public class Transcript : Feature
+public class Transcript : Feature, IStableEntry, IStrandedDnaEntity
 {
     public int Id { get; set; }
     public string StableId { get; set; }

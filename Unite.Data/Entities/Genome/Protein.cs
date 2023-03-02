@@ -1,6 +1,8 @@
-﻿namespace Unite.Data.Entities.Genome;
+﻿using Unite.Data.Entities.Genome.Abstractions;
 
-public class Protein
+namespace Unite.Data.Entities.Genome;
+
+public class Protein : IStableEntry
 {
     public int Id { get; set; }
     public string StableId { get; set; }

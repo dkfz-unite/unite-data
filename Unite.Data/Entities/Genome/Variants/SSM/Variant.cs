@@ -15,12 +15,12 @@ public class Variant : Variants.Variant
     /// <summary>
     /// Reference genomic sequence of chromosome region
     /// </summary>
-    public string ReferenceBase { get; set; }
+    public string Ref { get; set; }
 
     /// <summary>
     /// Alternate genomic sequence of chromosome region
     /// </summary>
-    public string AlternateBase { get; set; }
+    public string Alt { get; set; }
 
 
     /// <summary>

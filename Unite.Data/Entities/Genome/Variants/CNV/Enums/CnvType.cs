@@ -30,5 +30,5 @@ public enum CnvType
     /// Not determined
     /// </summary>
     [EnumMember(Value = "Undetermined")]
-    Undetermined = 3
+    Undetermined = 4
 }

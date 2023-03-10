@@ -22,10 +22,10 @@ internal class VariantMapper : VariantMapper<Variant>
               .IsRequired()
               .HasConversion<int>();
 
-        entity.Property(variant => variant.ReferenceBase)
+        entity.Property(variant => variant.Ref)
               .HasMaxLength(200);
 
-        entity.Property(variant => variant.AlternateBase)
+        entity.Property(variant => variant.Alt)
               .HasMaxLength(200);
 
 

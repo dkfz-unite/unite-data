@@ -10,7 +10,7 @@
 		<Authors>Valiantsin Ulasau (DKFZ)</Authors>
 		<Description>Unite domain data entites and services package.</Description>
 	</PropertyGroup>
-	<ItemGroup>
+	<!-- <ItemGroup>
 		<None Remove="Entities\Images\Features\" />
 		<None Remove="Services\Mappers\Images\Features\" />
 		<None Remove="Services\Mappers\Images\Features\Enums\" />
@@ -64,7 +64,7 @@
 		<Folder Include="Entities\Genome\Transcriptomics\" />
 		<Folder Include="Services\Mappers\Genome\Transcriptomics\" />
 		<Folder Include="Entities\Genome\Abstractions\" />
-	</ItemGroup>
+	</ItemGroup> -->
 	<ItemGroup>
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
 	</ItemGroup>

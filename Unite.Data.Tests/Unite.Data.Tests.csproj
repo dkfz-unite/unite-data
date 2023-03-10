@@ -15,13 +15,13 @@
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 	</ItemGroup>
-	<ItemGroup>
+	<!-- <ItemGroup>
 		<None Remove="Unite\" />
 		<None Remove="Extensions\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Extensions\" />
-	</ItemGroup>
+	</ItemGroup> -->
 	<ItemGroup>
 		<ProjectReference Include="..\Unite.Data\Unite.Data.csproj" />
 	</ItemGroup>

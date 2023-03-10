@@ -10,7 +10,7 @@ public class Variant : Variants.Variant
     /// <summary>
     /// Copy number alteration type
     /// </summary>
-    public CnvType? TypeId { get; set; }
+    public CnvType TypeId { get; set; }
 
     /// <summary>
     /// Loss of heterozygosity (either C1 or C2 are 0)

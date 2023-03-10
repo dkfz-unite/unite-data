@@ -9,20 +9,26 @@ namespace Unite.Data.Entities.Genome.Variants.CNV.Enums;
 public enum CnvType
 {
     /// <summary>
-    /// Total number of copies has increased (TCN > ploidy)
+    /// Total number of copies is certainly higher than ploidy (TCN > ploidy)
     /// </summary>
     [EnumMember(Value = "Gain")]
     Gain = 1,
 
     /// <summary>
-    /// Total number of copies has decreased (TCN < ploidy)
+    /// Total number of copies is certainly lower than ploidy (TCN < ploidy)
     /// </summary>
     [EnumMember(Value = "Loss")]
     Loss = 2,
 
     /// <summary>
-    /// Total number of copies didn't change (TCN ~ ploidy)
+    /// Total number of copies is nearly equal to ploidy  (TCN ~ ploidy)
     /// </summary>
     [EnumMember(Value = "Neutral")]
-    Neutral = 3
+    Neutral = 3,
+
+    /// <summary>
+    /// Not determined
+    /// </summary>
+    [EnumMember(Value = "Undetermined")]
+    Undetermined = 3
 }

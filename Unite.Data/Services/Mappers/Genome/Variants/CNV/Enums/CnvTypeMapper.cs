@@ -14,7 +14,8 @@ internal class CnvTypeMapper : IEntityTypeConfiguration<EnumValue<CnvType>>
         {
             CnvType.Gain.ToEnumValue(name: "TCN gain"),
             CnvType.Loss.ToEnumValue(name: "TCN loss"),
-            CnvType.Neutral.ToEnumValue(name: "TCN neutral")
+            CnvType.Neutral.ToEnumValue(name: "TCN neutral"),
+            CnvType.Undetermined.ToEnumValue(name: "Undetermined")
         };
 
         entity.BuildEnumEntity("CnvTypes", DomainDbSchemaNames.Genome, data);

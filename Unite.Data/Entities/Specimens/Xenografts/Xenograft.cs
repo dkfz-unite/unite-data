@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Specimens.Xenografts;
 
-public class Xenograft
+public record Xenograft
 {
     public int SpecimenId { get; set; }
     public string ReferenceId { get; set; }

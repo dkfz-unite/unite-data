@@ -3,6 +3,6 @@
 /// <summary>
 /// Copy number variant (CNV) occurrence
 /// </summary>
-public class VariantOccurrence : VariantOccurrence<Variant>
+public record VariantOccurrence : VariantOccurrence<Variant>
 {
 }

@@ -5,7 +5,7 @@ namespace Unite.Data.Entities.Genome.Variants.SSM;
 /// <summary>
 /// Simple somatic mutation (SSM) 
 /// </summary>
-public class Variant : Variants.Variant
+public record Variant : Variants.Variant
 {
     /// <summary>
     /// Simple somatic mutation type

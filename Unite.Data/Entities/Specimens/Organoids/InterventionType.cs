@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Specimens.Organoids;
 
-public class InterventionType
+public record InterventionType
 {
     public int Id { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Donors;
 
-public class ProjectDonor
+public record ProjectDonor
 {
     public int DonorId { get; set; }
     public int ProjectId { get; set; }

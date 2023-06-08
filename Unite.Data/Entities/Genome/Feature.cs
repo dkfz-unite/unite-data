@@ -1,5 +1,5 @@
 ﻿namespace Unite.Data.Entities.Genome;
 
-public abstract class Feature
+public abstract record Feature
 {
 }

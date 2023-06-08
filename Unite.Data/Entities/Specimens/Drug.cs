@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Specimens;
 
-public class Drug
+public record Drug
 {
     public int Id { get; set; }
 

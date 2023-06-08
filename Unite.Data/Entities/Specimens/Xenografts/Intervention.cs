@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Specimens.Xenografts;
 
-public class Intervention
+public record Intervention
 {
     public int Id { get; set; }
 

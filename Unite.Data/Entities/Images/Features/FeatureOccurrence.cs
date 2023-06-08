@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Images.Features;
 
-public class FeatureOccurrence
+public record FeatureOccurrence
 {
     public long Id { get; set; }
 

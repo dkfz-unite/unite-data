@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Genome.Analysis;
 
-public class AnalysedSample
+public record AnalysedSample
 {
     public int Id { get; set; }
 

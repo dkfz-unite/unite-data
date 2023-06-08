@@ -3,7 +3,7 @@
 /// <summary>
 /// Simple somatic mutation (SSM) affected transcript
 /// </summary>
-public class AffectedTranscript : VariantAffectedFeature<Variant, Transcript>
+public record AffectedTranscript : VariantAffectedFeature<Variant, Transcript>
 {
     public int? Distance { get; set; }
 

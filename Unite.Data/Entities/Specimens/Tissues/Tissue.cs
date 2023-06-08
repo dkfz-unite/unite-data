@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Specimens.Tissues;
 
-public class Tissue
+public record Tissue
 {
     public int SpecimenId { get; set; }
     public string ReferenceId { get; set; }

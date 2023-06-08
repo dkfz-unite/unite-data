@@ -6,7 +6,7 @@ namespace Unite.Data.Entities.Genome.Variants;
 /// Variant occurrence
 /// </summary>
 /// <typeparam name="TVariant">Variant type</typeparam>
-public abstract class VariantOccurrence<TVariant>
+public abstract record VariantOccurrence<TVariant>
     where TVariant : Variant
 {
     public long VariantId { get; set; }

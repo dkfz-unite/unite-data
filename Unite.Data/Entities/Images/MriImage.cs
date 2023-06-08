@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Images;
 
-public class MriImage
+public record MriImage
 {
     public int ImageId { get; set; }
     public string ReferenceId { get; set; }

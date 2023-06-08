@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Specimens;
 
-public class MolecularData
+public record MolecularData
 {
     public int? SpecimenId { get; set; }
 

@@ -6,7 +6,7 @@ namespace Unite.Data.Entities.Genome.Variants.SV;
 /// <summary>
 /// Structural variant (SV)
 /// </summary>
-public class Variant : Variants.Variant
+public record Variant : Variants.Variant
 {
     /// <summary>
     /// Second breakpoint chromosome

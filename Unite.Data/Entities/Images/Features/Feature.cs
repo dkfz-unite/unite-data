@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Images.Features;
 
-public class Feature
+public record Feature
 {
     public int Id { get; set; }
 

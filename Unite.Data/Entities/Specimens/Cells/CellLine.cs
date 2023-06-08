@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Specimens.Cells;
 
-public class CellLine
+public record CellLine
 {
     public int SpecimenId { get; set; }
     public string ReferenceId { get; set; }

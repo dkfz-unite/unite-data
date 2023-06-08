@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Genome;
 
-public class Protein : IStableEntry
+public record Protein : IStableEntry
 {
     public int Id { get; set; }
     public string StableId { get; set; }

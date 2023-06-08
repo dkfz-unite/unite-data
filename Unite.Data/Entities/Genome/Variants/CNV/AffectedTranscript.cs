@@ -3,7 +3,7 @@
 /// <summary>
 /// Copy number variant (CNV) affected transcript
 /// </summary>
-public class AffectedTranscript : VariantAffectedFeature<Variant, Transcript>
+public record AffectedTranscript : VariantAffectedFeature<Variant, Transcript>
 {
     public int? Distance { get; set; }
     public int? OverlapBpNumber { get; set; }

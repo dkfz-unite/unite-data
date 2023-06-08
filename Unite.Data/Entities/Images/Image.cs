@@ -3,7 +3,7 @@ using Unite.Data.Entities.Images.Features;
 
 namespace Unite.Data.Entities.Images;
 
-public class Image
+public record Image
 {
     public int Id { get; set; }
     public int DonorId { get; set; }

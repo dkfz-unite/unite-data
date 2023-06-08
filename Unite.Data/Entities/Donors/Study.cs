@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Donors;
 
-public class Study
+public record Study
 {
     public int Id { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Donors.Clinical;
 
-public class TumorLocalization
+public record TumorLocalization
 {
     public int Id { get; set; }
 

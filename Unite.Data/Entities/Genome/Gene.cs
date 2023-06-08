@@ -4,7 +4,7 @@ using Unite.Data.Entities.Genome.Transcriptomics;
 
 namespace Unite.Data.Entities.Genome;
 
-public class Gene : IStableEntry, IStrandedDnaEntity
+public record Gene : IStableEntry, IStrandedDnaEntity
 {
     public int Id { get; set; }
     public string StableId { get; set; }

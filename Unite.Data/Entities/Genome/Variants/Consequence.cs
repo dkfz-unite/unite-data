@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Genome.Variants;
 
-public class Consequence
+public record Consequence
 {
     private static class Impacts
     {

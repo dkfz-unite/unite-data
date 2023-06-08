@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Donors.Clinical;
 
-public class ClinicalData
+public record ClinicalData
 {
     public int? DonorId { get; set; }
 

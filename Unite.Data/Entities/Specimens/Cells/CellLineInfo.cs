@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Specimens.Cells;
 
-public class CellLineInfo
+public record CellLineInfo
 {
     public int SpecimenId { get; set; }
 

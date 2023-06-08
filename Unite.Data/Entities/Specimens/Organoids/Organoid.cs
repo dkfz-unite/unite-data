@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Specimens.Organoids;
 
-public class Organoid
+public record Organoid
 {
     public int SpecimenId { get; set; }
     public string ReferenceId { get; set; }

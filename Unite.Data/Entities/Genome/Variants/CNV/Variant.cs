@@ -5,7 +5,7 @@ namespace Unite.Data.Entities.Genome.Variants.CNV;
 /// <summary>
 /// Copy number variant (CNV)
 /// </summary>
-public class Variant : Variants.Variant
+public record Variant : Variants.Variant
 {
     /// <summary>
     /// Copy number alteration type

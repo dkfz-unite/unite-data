@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Tasks;
 
-public class Task
+public record Task
 {
     public long Id { get; set; }
     public SubmissionTaskType? SubmissionTypeId { get; set; }

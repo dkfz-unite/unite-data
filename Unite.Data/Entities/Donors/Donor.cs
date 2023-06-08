@@ -4,7 +4,7 @@ using Unite.Data.Entities.Specimens;
 
 namespace Unite.Data.Entities.Donors;
 
-public class Donor
+public record Donor
 {
     public int Id { get; set; }
     public string ReferenceId { get; set; }

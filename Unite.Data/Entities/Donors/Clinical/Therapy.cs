@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Donors.Clinical;
 
-public class Therapy
+public record Therapy
 {
     public int Id { get; set; }
 

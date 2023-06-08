@@ -3,68 +3,13 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<ReleaseVersion>4.6.0</ReleaseVersion>
-		<Version>4.6.0</Version>
+		<ReleaseVersion>5.0.0</ReleaseVersion>
+		<Version>5.0.0</Version>
 		<SynchReleaseVersion>false</SynchReleaseVersion>
 		<RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
 		<Authors>Valiantsin Ulasau (DKFZ)</Authors>
 		<Description>Unite domain data entites and services package.</Description>
 	</PropertyGroup>
-	<!-- <ItemGroup>
-		<None Remove="Entities\Images\Features\" />
-		<None Remove="Services\Mappers\Images\Features\" />
-		<None Remove="Services\Mappers\Images\Features\Enums\" />
-		<None Remove="Entities\Images\Features\Enums\" />
-		<None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
-		<None Remove="Services\Tasks\" />
-		<None Remove="Entities\Genome\Analysis\" />
-		<None Remove="Entities\Genome\Analysis\Enums\" />
-		<None Remove="Entities\Genome\Variants\SSM\" />
-		<None Remove="Entities\Genome\Variants\CNV\" />
-		<None Remove="Entities\Genome\Variants\SV\" />
-		<None Remove="Entities\Genome\Variants\SSM\Enums\" />
-		<None Remove="Services\Mappers\Genome\Analysis\" />
-		<None Remove="Services\Mappers\Genome\Analysis\Enums\" />
-		<None Remove="Services\Mappers\Genome\Variants\" />
-		<None Remove="Services\Mappers\Genome\Variants\SSM\" />
-		<None Remove="Services\Mappers\Genome\Variants\CNV\" />
-		<None Remove="Services\Mappers\Genome\Variants\SV\" />
-		<None Remove="Services\Mappers\Genome\Variants\SSM\Enums\" />
-		<None Remove="Entities\Genome\Variants\CNV\Enums\" />
-		<None Remove="Entities\Genome\Variants\SV\Enums\" />
-		<None Remove="Services\Mappers\Genome\Variants\CNV\Enums\" />
-		<None Remove="Services\Mappers\Genome\Variants\SV\Enums\" />
-		<None Remove="Entities\Genome\Transcriptomics\" />
-		<None Remove="Services\Mappers\Genome\Transcriptomics\" />
-		<None Remove="Entities\Genome\Abstractions\" />
-	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="Entities\Images\Features\" />
-		<Folder Include="Services\Mappers\Images\Features\" />
-		<Folder Include="Services\Mappers\Images\Features\Enums\" />
-		<Folder Include="Entities\Images\Features\Enums\" />
-		<Folder Include="Services\Tasks\" />
-		<Folder Include="Entities\Genome\Analysis\" />
-		<Folder Include="Entities\Genome\Analysis\Enums\" />
-		<Folder Include="Entities\Genome\Variants\SSM\" />
-		<Folder Include="Entities\Genome\Variants\CNV\" />
-		<Folder Include="Entities\Genome\Variants\SV\" />
-		<Folder Include="Entities\Genome\Variants\SSM\Enums\" />
-		<Folder Include="Services\Mappers\Genome\Analysis\" />
-		<Folder Include="Services\Mappers\Genome\Analysis\Enums\" />
-		<Folder Include="Services\Mappers\Genome\Variants\" />
-		<Folder Include="Services\Mappers\Genome\Variants\SSM\" />
-		<Folder Include="Services\Mappers\Genome\Variants\CNV\" />
-		<Folder Include="Services\Mappers\Genome\Variants\SV\" />
-		<Folder Include="Services\Mappers\Genome\Variants\SSM\Enums\" />
-		<Folder Include="Entities\Genome\Variants\CNV\Enums\" />
-		<Folder Include="Entities\Genome\Variants\SV\Enums\" />
-		<Folder Include="Services\Mappers\Genome\Variants\CNV\Enums\" />
-		<Folder Include="Services\Mappers\Genome\Variants\SV\Enums\" />
-		<Folder Include="Entities\Genome\Transcriptomics\" />
-		<Folder Include="Services\Mappers\Genome\Transcriptomics\" />
-		<Folder Include="Entities\Genome\Abstractions\" />
-	</ItemGroup> -->
 	<ItemGroup>
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
 	</ItemGroup>

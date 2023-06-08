@@ -7,7 +7,7 @@ using Unite.Data.Entities.Specimens.Xenografts;
 
 namespace Unite.Data.Entities.Specimens;
 
-public class Specimen
+public record Specimen
 {
     public int Id { get; set; }
     public int? ParentId { get; set; }

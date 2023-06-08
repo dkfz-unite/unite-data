@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Specimens.Tissues;
 
-public class TissueSource
+public record TissueSource
 {
     public int Id { get; set; }
 

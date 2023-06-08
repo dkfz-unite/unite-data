@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Genome.Analysis;
 
-public class Analysis
+public record Analysis
 {
     public int Id { get; set; }
     public string ReferenceId { get; set; }

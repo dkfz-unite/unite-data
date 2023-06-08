@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Services.Models;
 
-internal class EnumValue<T> where T : Enum
+internal record EnumValue<T> where T : Enum
 {
     public T Id { get; set; }
     public string Value { get; set; }

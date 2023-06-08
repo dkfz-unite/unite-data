@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Genome.Variants;
 
-public abstract class Variant
+public abstract record Variant
 {
     /// <summary>
     /// Variant identifier

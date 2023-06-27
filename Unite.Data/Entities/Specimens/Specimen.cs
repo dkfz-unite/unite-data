@@ -1,6 +1,7 @@
 ﻿using Unite.Data.Entities.Donors;
 using Unite.Data.Entities.Genome.Analysis;
 using Unite.Data.Entities.Specimens.Cells;
+using Unite.Data.Entities.Specimens.Enums;
 using Unite.Data.Entities.Specimens.Organoids;
 using Unite.Data.Entities.Specimens.Tissues;
 using Unite.Data.Entities.Specimens.Xenografts;
@@ -16,6 +17,8 @@ public record Specimen
     public DateOnly? CreationDate { get; set; }
     public int? CreationDay { get; set; }
 
+    public SpecimenType? Type => GetSpecimenType();
+
     public virtual Specimen Parent { get; set; }
     public virtual ICollection<Specimen> Children { get; set; }
 
@@ -28,4 +31,14 @@ public record Specimen
 
     public virtual ICollection<DrugScreening> DrugScreenings { get; set; }
     public virtual ICollection<Sample> Samples { get; set; }
+
+
+    private SpecimenType? GetSpecimenType()
+    {
+        return Tissue != null ? SpecimenType.Tissue :
+            CellLine != null ? SpecimenType.CellLine :
+            Organoid != null ? SpecimenType.Organoid :
+            Xenograft != null ? SpecimenType.Xenograft :
+            null;
+    }
 }

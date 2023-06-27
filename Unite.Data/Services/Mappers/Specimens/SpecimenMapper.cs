@@ -20,6 +20,8 @@ internal class SpecimenMapper : IEntityTypeConfiguration<Specimen>
               .IsRequired()
               .ValueGeneratedNever();
 
+        entity.Ignore(specimen => specimen.Type);
+
 
         entity.HasOne(specimen => specimen.Parent)
               .WithMany(specimen => specimen.Children)

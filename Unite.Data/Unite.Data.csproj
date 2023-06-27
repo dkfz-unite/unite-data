@@ -1,16 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<ReleaseVersion>5.0.0</ReleaseVersion>
-		<Version>5.0.0</Version>
-		<SynchReleaseVersion>false</SynchReleaseVersion>
-		<RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
-		<Authors>Valiantsin Ulasau (DKFZ)</Authors>
-		<Description>Unite domain data entites and services package.</Description>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
-	</ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ReleaseVersion>5.0.1</ReleaseVersion>
+    <Version>5.0.1</Version>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
+    <Authors>Valiantsin Ulasau (DKFZ)</Authors>
+    <Description>Unite domain data entites and services package.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
+  </ItemGroup>
 </Project>

@@ -20,6 +20,9 @@ internal class SpecimenMapper : IEntityTypeConfiguration<Specimen>
               .IsRequired()
               .ValueGeneratedNever();
 
+
+        entity.Ignore(specimen => specimen.ReferenceId);
+
         entity.Ignore(specimen => specimen.Type);
 
 

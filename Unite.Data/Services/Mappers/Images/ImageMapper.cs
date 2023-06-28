@@ -20,6 +20,9 @@ internal class ImageMapper : IEntityTypeConfiguration<Image>
               .IsRequired()
               .ValueGeneratedNever();
 
+
+        entity.Ignore(image => image.ReferenceId);
+
         entity.Ignore(image => image.Type);
 
 

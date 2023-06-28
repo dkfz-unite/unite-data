@@ -45,7 +45,7 @@ public class DrugScreeningMapper : IEntityTypeConfiguration<DrugScreening>
               .HasConversion(_serialize, _deserialize);
 
 
-        entity.HasOne<Specimen>()
+        entity.HasOne(drugScreening => drugScreening.Specimen)
               .WithMany(specimen => specimen.DrugScreenings)
               .HasForeignKey(drugScreening => drugScreening.SpecimenId);
 

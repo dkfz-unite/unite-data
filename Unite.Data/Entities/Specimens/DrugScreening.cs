@@ -68,6 +68,6 @@ public record DrugScreening
     public double[] Response { get; set; }
 
 
-
+    public virtual Specimen Specimen { get; set; }
     public virtual Drug Drug { get; set; }
 }

@@ -55,7 +55,7 @@ internal class MolecularDataMapper : IEntityTypeConfiguration<MolecularData>
               .HasForeignKey(molecularData => molecularData.MethylationSubtypeId);
 
 
-        entity.HasOne<Specimen>()
+        entity.HasOne(molecularData => molecularData.Specimen)
               .WithOne(specimen => specimen.MolecularData)
               .HasForeignKey<MolecularData>(molecularData => molecularData.SpecimenId);
     }

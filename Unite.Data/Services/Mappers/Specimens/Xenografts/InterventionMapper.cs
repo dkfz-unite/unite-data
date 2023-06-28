@@ -25,7 +25,7 @@ internal class InterventionMapper : IEntityTypeConfiguration<Intervention>
               .ValueGeneratedNever();
 
 
-        entity.HasOne<Xenograft>()
+        entity.HasOne(intervention => intervention.Xenograft)
               .WithMany(xenograft => xenograft.Interventions)
               .HasForeignKey(intervention => intervention.SpecimenId);
 

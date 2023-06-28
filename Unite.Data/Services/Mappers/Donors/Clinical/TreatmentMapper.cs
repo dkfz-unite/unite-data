@@ -26,7 +26,7 @@ internal class TreatmentMapper : IEntityTypeConfiguration<Treatment>
               .ValueGeneratedNever();
 
 
-        entity.HasOne<Donor>()
+        entity.HasOne(treatment => treatment.Donor)
               .WithMany(donor => donor.Treatments)
               .HasForeignKey(treatment => treatment.DonorId);
 

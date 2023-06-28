@@ -12,4 +12,7 @@ public record MolecularData
     public GeneExpressionSubtype? GeneExpressionSubtypeId { get; set; }
     public MethylationSubtype? MethylationSubtypeId { get; set; }
     public bool? GcimpMethylation { get; set; }
+
+
+    public virtual Specimen Specimen { get; set; }
 }

@@ -36,7 +36,7 @@ internal class CellLineMapper : IEntityTypeConfiguration<CellLine>
               .HasForeignKey(cellLine => cellLine.CultureTypeId);
 
 
-        entity.HasOne<Specimen>()
+        entity.HasOne(cellLine => cellLine.Specimen)
               .WithOne(specimen => specimen.CellLine)
               .HasForeignKey<CellLine>(cellLine => cellLine.SpecimenId)
               .IsRequired();

@@ -21,7 +21,7 @@ internal class OrganoidMapper : IEntityTypeConfiguration<Organoid>
               .HasMaxLength(255);
 
 
-        entity.HasOne<Specimen>()
+        entity.HasOne(organoid => organoid.Specimen)
               .WithOne(specimen => specimen.Organoid)
               .HasForeignKey<Organoid>(organoid => organoid.SpecimenId)
               .IsRequired();

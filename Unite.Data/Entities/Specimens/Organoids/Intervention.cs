@@ -19,5 +19,6 @@ public record Intervention
     public string Results { get; set; }
 
 
+    public virtual Organoid Organoid { get; set; }
     public virtual InterventionType Type { get; set; }
 }

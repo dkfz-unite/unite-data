@@ -9,5 +9,7 @@ public record Organoid
     public bool? Tumorigenicity { get; set; }
     public string Medium { get; set; }
 
+
+    public virtual Specimen Specimen { get; set; }
     public virtual ICollection<Intervention> Interventions { get; set; }
 }

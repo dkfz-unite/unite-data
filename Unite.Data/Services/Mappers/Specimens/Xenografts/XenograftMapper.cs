@@ -48,7 +48,7 @@ internal class XenograftMapper : IEntityTypeConfiguration<Xenograft>
               .HasForeignKey(xenograft => xenograft.TumorGrowthFormId);
 
 
-        entity.HasOne<Specimen>()
+        entity.HasOne(xenograft => xenograft.Specimen)
               .WithOne(specimen => specimen.Xenograft)
               .HasForeignKey<Xenograft>(xenograft => xenograft.SpecimenId)
               .IsRequired();

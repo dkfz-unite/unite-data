@@ -4,7 +4,7 @@ namespace Unite.Data.Entities.Donors.Clinical;
 
 public record ClinicalData
 {
-    public int? DonorId { get; set; }
+    public int DonorId { get; set; }
 
     public Gender? GenderId { get; set; }
     public int? Age { get; set; }
@@ -21,6 +21,8 @@ public record ClinicalData
     public int? KpsBaseline { get; set; }
     public bool? SteroidsBaseline { get; set; }
 
+
+    public virtual Donor Donor { get; set; }
     public virtual TumorPrimarySite PrimarySite { get; set; }
     public virtual TumorLocalization Localization { get; set; }
 }

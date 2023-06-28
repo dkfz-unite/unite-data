@@ -41,7 +41,7 @@ internal class TissueMapper : IEntityTypeConfiguration<Tissue>
               .WithMany()
               .HasForeignKey(tissue => tissue.SourceId);
 
-        entity.HasOne<Specimen>()
+        entity.HasOne(tissue => tissue.Specimen)
               .WithOne(specimen => specimen.Tissue)
               .HasForeignKey<Tissue>(tissue => tissue.SpecimenId)
               .IsRequired();

@@ -11,5 +11,7 @@ public record Tissue
     public TissueType? TypeId { get; set; }
     public TumorType? TumorTypeId { get; set; }
 
+
+    public virtual Specimen Specimen { get; set; }
     public virtual TissueSource Source { get; set; }
 }

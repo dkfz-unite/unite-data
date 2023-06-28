@@ -18,5 +18,6 @@ public record Treatment
     public string Results { get; set; }
 
 
+    public virtual Donor Donor { get; set; }
     public virtual Therapy Therapy { get; set; }
 }

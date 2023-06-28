@@ -38,7 +38,7 @@ internal class ClinicalDataMapper : IEntityTypeConfiguration<ClinicalData>
               .WithMany()
               .HasForeignKey(clinicalData => clinicalData.LocalizationId);
 
-        entity.HasOne<Donor>()
+        entity.HasOne(clinicalData => clinicalData.Donor)
               .WithOne(donor => donor.ClinicalData)
               .HasForeignKey<ClinicalData>(clinicalData => clinicalData.DonorId);
     }

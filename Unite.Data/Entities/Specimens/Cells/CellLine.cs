@@ -11,5 +11,7 @@ public record CellLine
     public CellLineType? TypeId { get; set; }
     public CellLineCultureType? CultureTypeId { get; set; }
 
+
+    public virtual Specimen Specimen { get; set; }
     public virtual CellLineInfo Info { get; set; }
 }

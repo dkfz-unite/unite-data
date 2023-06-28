@@ -20,6 +20,8 @@ internal class ImageMapper : IEntityTypeConfiguration<Image>
               .IsRequired()
               .ValueGeneratedNever();
 
+        entity.Ignore(image => image.Type);
+
 
         entity.HasOne(image => image.Donor)
               .WithMany(donor => donor.Images)

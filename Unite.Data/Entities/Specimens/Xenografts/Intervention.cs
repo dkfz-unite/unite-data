@@ -18,5 +18,7 @@ public record Intervention
 
     public string Results { get; set; }
 
+
+    public virtual Xenograft Xenograft { get; set; }
     public virtual InterventionType Type { get; set; }
 }

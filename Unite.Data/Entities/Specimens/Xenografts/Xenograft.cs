@@ -17,5 +17,7 @@ public record Xenograft
     public int? SurvivalDaysFrom { get; set; }
     public int? SurvivalDaysTo { get; set; }
 
+
+    public virtual Specimen Specimen { get; set; }
     public virtual ICollection<Intervention> Interventions { get; set; }
 }

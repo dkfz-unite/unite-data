@@ -6,10 +6,72 @@ using SSM = Unite.Data.Entities.Genome.Variants.SSM;
 using CNV = Unite.Data.Entities.Genome.Variants.CNV;
 using SV = Unite.Data.Entities.Genome.Variants.SV;
 
-namespace Unite.Data.Services.Genome;
+namespace Unite.Data.Services.Extensions;
 
 public static class VariantOccurrenceQueryExtensions
 {
+    /// <summary>
+    /// Filters variants by specimen ids.
+    /// </summary>
+    /// <param name="query">Source query.</param>
+    /// <param name="specimenIds">Specimen ids.</param>
+    /// <typeparam name="TVO">Variant occurrence type.</typeparam>
+    /// <typeparam name="TV">Variant type.</typeparam>
+    /// <returns>Query with variants filtered by specimen ids.</returns>
+    public static IQueryable<TVO> FilterBySpecimenIds<TVO, TV>(this IQueryable<TVO> query, IEnumerable<int> specimenIds)
+        where TVO : VariantOccurrence<TV>
+        where TV : Variant
+    {
+        if (typeof(TVO) == typeof(SSM.VariantOccurrence))
+        {
+            return FilterBySpecimenIds((IQueryable<SSM.VariantOccurrence>)query, specimenIds).Cast<TVO>();
+        }
+        else if (typeof(TVO) == typeof(CNV.VariantOccurrence))
+        {
+            return FilterBySpecimenIds((IQueryable<CNV.VariantOccurrence>)query, specimenIds).Cast<TVO>();
+        }
+        else if (typeof(TVO) == typeof(SV.VariantOccurrence))
+        {
+            return FilterBySpecimenIds((IQueryable<SV.VariantOccurrence>)query, specimenIds).Cast<TVO>();
+        }
+
+        throw new ArgumentException($"Unsupported variant type: {typeof(TV).Name}");
+    }
+
+    /// <summary>
+    /// Filters SSMs by specimen ids.
+    /// </summary>
+    /// <param name="query">Source query.</param>
+    /// <param name="specimenIds">Specimen ids.</param>
+    /// <returns>Query with SSMs filtered by specimen ids.</returns>
+    public static IQueryable<SSM.VariantOccurrence> FilterBySpecimenIds(this IQueryable<SSM.VariantOccurrence> query, IEnumerable<int> specimenIds)
+    {
+        return query.Where(occurrence => specimenIds.Contains(occurrence.AnalysedSample.Sample.SpecimenId));
+    }
+
+    /// <summary>
+    /// Filters CNVs by specimen ids.
+    /// </summary>
+    /// <param name="query">Source query.</param>
+    /// <param name="specimenIds">Specimen ids.</param>
+    /// <returns>Query with CNVs filtered by specimen ids.</returns>
+    public static IQueryable<CNV.VariantOccurrence> FilterBySpecimenIds(this IQueryable<CNV.VariantOccurrence> query, IEnumerable<int> specimenIds)
+    {
+        return query.Where(occurrence => specimenIds.Contains(occurrence.AnalysedSample.Sample.SpecimenId));
+    }
+
+    /// <summary>
+    /// Filters SVs by specimen ids.
+    /// </summary>
+    /// <param name="query">Source query.</param>
+    /// <param name="specimenIds">Specimen ids.</param>
+    /// <returns>Query with SVs filtered by specimen ids.</returns>
+    public static IQueryable<SV.VariantOccurrence> FilterBySpecimenIds(this IQueryable<SV.VariantOccurrence> query, IEnumerable<int> specimenIds)
+    {
+        return query.Where(occurrence => specimenIds.Contains(occurrence.AnalysedSample.Sample.SpecimenId));
+    }
+
+
     /// <summary>
     /// Filters variants by range.
     /// </summary>
@@ -24,17 +86,17 @@ public static class VariantOccurrenceQueryExtensions
         where TVO : VariantOccurrence<TV>
         where TV : Variant
     {
-        if (typeof(TV) == typeof(SSM.Variant))
+        if (typeof(TVO) == typeof(SSM.VariantOccurrence))
         {
-            return FilterByRange(query.Cast<SSM.VariantOccurrence>(), chromosomeId, start, end).Cast<TVO>();
+            return FilterByRange((IQueryable<SSM.VariantOccurrence>)query, chromosomeId, start, end).Cast<TVO>();
         }
-        else if (typeof(TV) == typeof(CNV.Variant))
+        else if (typeof(TVO) == typeof(CNV.VariantOccurrence))
         {
-            return FilterByRange(query.Cast<CNV.VariantOccurrence>(), chromosomeId, start, end).Cast<TVO>();
+            return FilterByRange((IQueryable<CNV.VariantOccurrence>)query, chromosomeId, start, end).Cast<TVO>();
         }
-        else if (typeof(TV) == typeof(SV.Variant))
+        else if (typeof(TVO) == typeof(SV.VariantOccurrence))
         {
-            return FilterByRange(query.Cast<SV.VariantOccurrence>(), chromosomeId, start, end).Cast<TVO>();
+            return FilterByRange((IQueryable<SV.VariantOccurrence>)query, chromosomeId, start, end).Cast<TVO>();
         }
 
         throw new ArgumentException($"Unsupported variant type: {typeof(TV).Name}");

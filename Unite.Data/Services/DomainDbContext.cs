@@ -91,6 +91,8 @@ public class DomainDbContext : DbContext
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.SubmissionTaskTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.AnnotationTaskTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.IndexingTaskTypeMapper());
+        modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.AnalysisTaskTypeMapper());
+        modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.TaskStatusTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.TaskMapper());
     }
 

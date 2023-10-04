@@ -8,6 +8,8 @@ public record Task
     public SubmissionTaskType? SubmissionTypeId { get; set; }
     public AnnotationTaskType? AnnotationTypeId { get; set; }
     public IndexingTaskType? IndexingTypeId { get; set; }
+    public AnalysisTaskType? AnalysisTypeId { get; set; }
+    public TaskStatusType? Status { get; set; }
     public string Target { get; set; }
     public string Data { get; set; }
     public DateTime Date { get; set; }

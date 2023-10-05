@@ -5,26 +5,26 @@ namespace Unite.Data.Entities.Tasks.Enums;
 public enum TaskStatusType
 {
     /// <summary>
-    /// Created task.
-    /// </summary>
-    [EnumMember(Value = "Created")]
-    Created = 1, 
-
-    /// <summary>
-    /// Preparing of the task.
+    /// Preparing the task for processing.
     /// </summary>
     [EnumMember(Value = "Preparing")]
-    Preparing = 2,
+    Preparing = 1, 
 
     /// <summary>
-    /// Processing of the task.
+    /// Prepared the task for processing.
+    /// </summary>
+    [EnumMember(Value = "Prepared")]
+    Prepared = 2,
+
+    /// <summary>
+    /// Processing the task.
     /// </summary>
     [EnumMember(Value = "Processing")]
     Processing = 3,
 
     /// <summary>
-    /// Completed task.
+    /// Processed task.
     /// </summary>
-    [EnumMember(Value = "Completed")]
-    Completed = 4
+    [EnumMember(Value = "Processed")]
+    Processed = 4
 }

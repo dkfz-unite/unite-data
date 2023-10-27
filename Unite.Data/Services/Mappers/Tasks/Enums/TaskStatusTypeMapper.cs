@@ -15,7 +15,8 @@ internal class TaskStatusTypeMapper : IEntityTypeConfiguration<EnumValue<TaskSta
             TaskStatusType.Preparing.ToEnumValue(),
             TaskStatusType.Prepared.ToEnumValue(),
             TaskStatusType.Processing.ToEnumValue(),
-            TaskStatusType.Processed.ToEnumValue()
+            TaskStatusType.Processed.ToEnumValue(),
+            TaskStatusType.Failed.ToEnumValue(),
         };
 
         entity.BuildEnumEntity("TaskStatusTypes", DomainDbSchemaNames.Common, data);

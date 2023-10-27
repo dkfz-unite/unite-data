@@ -26,5 +26,11 @@ public enum TaskStatusType
     /// Processed task.
     /// </summary>
     [EnumMember(Value = "Processed")]
-    Processed = 4
+    Processed = 4,
+
+    /// <summary>
+    /// Failed task.
+    /// </summary>
+    [EnumMember(Value = "Failed")]
+    Failed = 5,
 }

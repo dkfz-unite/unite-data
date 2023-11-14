@@ -10,6 +10,7 @@ namespace Unite.Data.Services.Mappers.Genome.Variants.CNV;
 internal class AffectedTranscriptMapper : VariantAffectedFeatureMapper<AffectedTranscript, Variant, Transcript>
 {
     public override string TableName => "CnvAffectedTranscripts";
+    public override string FeatureColumnName => "TranscriptId";
 
 
     public override void Configure(EntityTypeBuilder<AffectedTranscript> entity)
@@ -17,8 +18,8 @@ internal class AffectedTranscriptMapper : VariantAffectedFeatureMapper<AffectedT
         base.Configure(entity);
 
 
-        entity.HasOne(affectedTranscript => affectedTranscript.Variant)
+        entity.HasOne(affectedFeature => affectedFeature.Variant)
               .WithMany(variant => variant.AffectedTranscripts)
-              .HasForeignKey(affectedTranscript => affectedTranscript.VariantId);
+              .HasForeignKey(affectedFeature => affectedFeature.VariantId);
     }
 }

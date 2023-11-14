@@ -10,9 +10,9 @@ internal class MriImageMapper : IEntityTypeConfiguration<MriImage>
     {
         entity.ToTable("MriImages", DomainDbSchemaNames.Images);
 
-        entity.HasKey(mriImage => mriImage.ImageId);
+        entity.HasKey(mriImage => mriImage.Id);
 
-        entity.Property(mriImage => mriImage.ImageId)
+        entity.Property(mriImage => mriImage.Id)
               .IsRequired()
               .ValueGeneratedNever();
 
@@ -22,7 +22,6 @@ internal class MriImageMapper : IEntityTypeConfiguration<MriImage>
 
         entity.HasOne(mriImage => mriImage.Image)
               .WithOne(image => image.MriImage)
-              .HasForeignKey<MriImage>(mriImage => mriImage.ImageId)
-              .IsRequired();
+              .HasForeignKey<MriImage>(mriImage => mriImage.Id);
     }
 }

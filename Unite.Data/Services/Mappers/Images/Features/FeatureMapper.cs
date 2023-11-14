@@ -4,9 +4,9 @@ using Unite.Data.Entities.Images.Features;
 
 namespace Unite.Data.Services.Mappers.Images.Features;
 
-internal class FeatureMapper : IEntityTypeConfiguration<Feature>
+internal class FeatureMapper : IEntityTypeConfiguration<RadiomicsFeature>
 {
-    public void Configure(EntityTypeBuilder<Feature> entity)
+    public void Configure(EntityTypeBuilder<RadiomicsFeature> entity)
     {
         entity.ToTable("Features", DomainDbSchemaNames.Images);
 

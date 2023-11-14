@@ -5,8 +5,8 @@ namespace Unite.Data.Entities.Images.Enums;
 public enum ImageType
 {
     [EnumMember(Value = "MRI")]
-    MRI = 1,
+    Mri = 1,
 
     [EnumMember(Value = "CT")]
-    CT = 2
+    Ct = 2
 }

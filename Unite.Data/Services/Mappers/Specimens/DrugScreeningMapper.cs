@@ -1,56 +1,48 @@
 ﻿using System.Linq.Expressions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Unite.Data.Entities.Specimens;
+using Unite.Data.Services.Mappers.Base;
 
 namespace Unite.Data.Services.Mappers.Specimens;
 
-public class DrugScreeningMapper : IEntityTypeConfiguration<DrugScreening>
+internal class DrugScreeningMapper : SampleFeatureEntryMapper<DrugScreening, Drug>
 {
     private static readonly JsonSerializerOptions _options = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
     private static readonly Expression<Func<double[], string>> _serialize = value => JsonSerializer.Serialize<double[]>(value, _options);
     private static readonly Expression<Func<string, double[]>> _deserialize = value => JsonSerializer.Deserialize<double[]>(value, _options);
 
+    public override string TableName => "DrugScreenings";
+    public override string SchemaName => DomainDbSchemaNames.Specimens;
 
-    public void Configure(EntityTypeBuilder<DrugScreening> entity)
+    public override string FeatureColumnName => "DrugId";
+    public override string SampleColumnName => "SpecimenId";
+
+
+    public override void Configure(EntityTypeBuilder<DrugScreening> entity)
     {
-        entity.ToTable("DrugScreenings", DomainDbSchemaNames.Specimens);
+        base.Configure(entity);
 
-        entity.HasKey(drugScreening => drugScreening.Id);
-
-        entity.Property(drugScreening => drugScreening.Id)
-              .IsRequired()
-              .ValueGeneratedOnAdd();
-
-        entity.Property(drugScreening => drugScreening.SpecimenId)
-              .IsRequired()
-              .ValueGeneratedNever();
-
-        entity.Property(drugScreening => drugScreening.DrugId)
-              .IsRequired()
-              .ValueGeneratedNever();
-
-        entity.Property(drugScreening => drugScreening.Concentration)
+        entity.Property(entry => entry.Concentration)
               .HasConversion(_serialize, _deserialize);
 
-        entity.Property(drugScreening => drugScreening.Inhibition)
+        entity.Property(entry => entry.Inhibition)
               .HasConversion(_serialize, _deserialize);
 
-        entity.Property(drugScreening => drugScreening.Dose)
+        entity.Property(entry => entry.ConcentrationLine)
               .HasConversion(_serialize, _deserialize);
 
-        entity.Property(drugScreening => drugScreening.Response)
+        entity.Property(entry => entry.InhibitionLine)
               .HasConversion(_serialize, _deserialize);
 
 
-        entity.HasOne(drugScreening => drugScreening.Specimen)
+        entity.HasOne(entry => entry.Sample)
               .WithMany(specimen => specimen.DrugScreenings)
-              .HasForeignKey(drugScreening => drugScreening.SpecimenId);
+              .HasForeignKey(entry => entry.SampleId);
 
-        entity.HasOne(drugScreening => drugScreening.Drug)
+        entity.HasOne(entry => entry.Feature)
               .WithMany()
-              .HasForeignKey(drugScreening => drugScreening.DrugId);
+              .HasForeignKey(entry => entry.FeatureId);
     }
 }

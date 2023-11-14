@@ -66,7 +66,7 @@ public record Variant : Variants.Variant
     /// <summary>
     /// Occurrences of the variant in analysed sample
     /// </summary>
-    public virtual ICollection<VariantOccurrence> Occurrences { get; set; }
+    public virtual ICollection<VariantEntry> Entries { get; set; }
 
     /// <summary>
     /// Transcripts affected by the variant

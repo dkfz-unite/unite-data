@@ -1,12 +1,7 @@
 ﻿namespace Unite.Data.Entities.Specimens;
 
-public record DrugScreening
+public record DrugScreening : Base.SampleFeatureEntry<Specimen, Drug>
 {
-    public int Id { get; set; }
-    public int SpecimenId { get; set; }
-    public int DrugId { get; set; }
-
-
     /// <summary>
     /// Drug sensitivity score
     /// </summary>
@@ -60,14 +55,10 @@ public record DrugScreening
     /// <summary>
     /// Concentration (dose) at corresponding inhibition (response) percent from Response array (line of drug response curve)
     /// </summary>
-    public double[] Dose { get; set; }
+    public double[] ConcentrationLine { get; set; }
 
     /// <summary>
     /// Percent inhibition (response) at corresponding concentration (dose) from Dose array (line of drug response curve)
     /// </summary>
-    public double[] Response { get; set; }
-
-
-    public virtual Specimen Specimen { get; set; }
-    public virtual Drug Drug { get; set; }
+    public double[] InhibitionLine { get; set; }
 }

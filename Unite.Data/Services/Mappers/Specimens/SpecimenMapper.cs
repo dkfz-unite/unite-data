@@ -1,29 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Unite.Data.Entities.Specimens;
+using Unite.Data.Entities.Specimens.Enums;
+using Unite.Data.Services.Mappers.Base;
 
 namespace Unite.Data.Services.Mappers.Specimens;
 
-internal class SpecimenMapper : IEntityTypeConfiguration<Specimen>
+internal class SpecimenMapper : SampleMapper<Specimen, SpecimenType>
 {
-    public void Configure(EntityTypeBuilder<Specimen> entity)
+    public override string TableName => "Specimens";
+    public override string SchemaName => DomainDbSchemaNames.Specimens;
+
+    public override void Configure(EntityTypeBuilder<Specimen> entity)
     {
-        entity.ToTable("Specimens", DomainDbSchemaNames.Specimens);
-
-        entity.HasKey(specimen => specimen.Id);
-
-        entity.Property(specimen => specimen.Id)
-              .IsRequired()
-              .ValueGeneratedOnAdd();
+        base.Configure(entity);
 
         entity.Property(specimen => specimen.DonorId)
               .IsRequired()
               .ValueGeneratedNever();
-
-
-        entity.Ignore(specimen => specimen.ReferenceId);
-
-        entity.Ignore(specimen => specimen.Type);
 
 
         entity.HasOne(specimen => specimen.Parent)

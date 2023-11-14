@@ -6,7 +6,7 @@ public record ClinicalData
 {
     public int DonorId { get; set; }
 
-    public Gender? GenderId { get; set; }
+    public Sex? SexId { get; set; }
     public int? Age { get; set; }
     public string Diagnosis { get; set; }
     public DateOnly? DiagnosisDate { get; set; }

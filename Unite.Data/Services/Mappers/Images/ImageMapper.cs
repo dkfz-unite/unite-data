@@ -1,29 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Unite.Data.Entities.Images;
+using Unite.Data.Entities.Images.Enums;
+using Unite.Data.Services.Mappers.Base;
 
 namespace Unite.Data.Services.Mappers.Images;
 
-internal class ImageMapper : IEntityTypeConfiguration<Image>
+internal class ImageMapper : SampleMapper<Image, ImageType>
 {
-    public void Configure(EntityTypeBuilder<Image> entity)
+    public override string TableName => "Images";
+    public override string SchemaName => DomainDbSchemaNames.Images;
+
+    public override void Configure(EntityTypeBuilder<Image> entity)
     {
-        entity.ToTable("Images", DomainDbSchemaNames.Images);
-
-        entity.HasKey(image => image.Id);
-
-        entity.Property(image => image.Id)
-              .IsRequired()
-              .ValueGeneratedOnAdd();
+        base.Configure(entity);
 
         entity.Property(image => image.DonorId)
               .IsRequired()
               .ValueGeneratedNever();
-
-
-        entity.Ignore(image => image.ReferenceId);
-
-        entity.Ignore(image => image.Type);
 
 
         entity.HasOne(image => image.Donor)

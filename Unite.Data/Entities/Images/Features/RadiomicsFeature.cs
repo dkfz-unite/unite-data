@@ -1,9 +1,7 @@
 ﻿namespace Unite.Data.Entities.Images.Features;
 
-public record RadiomicsFeature
+public record RadiomicsFeature : Base.Entity<int>
 {
-    public int Id { get; set; }
-
     public string Name { get; set; }
 
 

@@ -1,31 +1,33 @@
+using System.Numerics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Unite.Data.Entities.Base;
 
 namespace Unite.Data.Services.Mappers.Base;
 
-internal abstract class AnalysisFeatureEntryMapper<TFeatureEntry, TFeature> : IEntityTypeConfiguration<TFeatureEntry>
-    where TFeatureEntry : Entities.Base.AnalysisFeatureEntry
-    where TFeature : class
+internal abstract class AnalysisEntityEntryMapper<TEntityEntry, TEntity, T> : IEntityTypeConfiguration<TEntityEntry>
+    where TEntityEntry : AnalysisEntityEntry<T>
+    where TEntity : Entity<T>
 {
     public abstract string TableName { get; }
     public abstract string SchemaName { get; }
     
-    public virtual string FeatureColumnName => "FeatureId";
+    public virtual string EntityColumnName => "EntityId";
     public virtual string AnalysedSampleColumnName => "AnalysedSampleId";
 
 
-    public virtual void Configure(EntityTypeBuilder<TFeatureEntry> entity)
+    public virtual void Configure(EntityTypeBuilder<TEntityEntry> entity)
     {
         entity.ToTable(TableName, SchemaName);
 
         entity.HasKey(entry => new
         {
-            entry.FeatureId,
+            entry.EntityId,
             entry.AnalysedSampleId
         });
 
-        entity.Property(entry => entry.FeatureId)
-              .HasColumnName(FeatureColumnName)
+        entity.Property(entry => entry.EntityId)
+              .HasColumnName(EntityColumnName)
               .IsRequired()
               .ValueGeneratedNever();
 

@@ -1,12 +1,12 @@
-﻿using Unite.Data.Entities.Genome.Base;
+﻿using Unite.Data.Entities.Base;
+using Unite.Data.Entities.Genome.Base;
 using Unite.Data.Entities.Genome.Enums;
 using Unite.Data.Entities.Genome.Expressions;
 
 namespace Unite.Data.Entities.Genome;
 
-public record Gene : IStableEntity, IStrandedDnaEntity
+public record Gene : Entity<int>, IStableEntity, IStrandedDnaEntity
 {
-    public int Id { get; set; }
     public string StableId { get; set; }
 
     public Chromosome? ChromosomeId { get; set; }

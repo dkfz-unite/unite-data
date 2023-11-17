@@ -5,12 +5,12 @@ using Unite.Data.Services.Mappers.Base;
 
 namespace Unite.Data.Services.Mappers.Genome.Expressions;
 
-internal class BulkExpressionMapper : AnalysisFeatureEntryMapper<BulkExpression, Gene>
+internal class BulkExpressionMapper : AnalysisEntityEntryMapper<BulkExpression, Gene, int>
 {
     public override string TableName => "BulkExpressions";
     public override string SchemaName => DomainDbSchemaNames.Genome;
 
-    public override string FeatureColumnName => "GeneId";
+    public override string EntityColumnName => "GeneId";
     public override string AnalysedSampleColumnName => "AnalysedSampleId";
     
 
@@ -18,9 +18,9 @@ internal class BulkExpressionMapper : AnalysisFeatureEntryMapper<BulkExpression,
     {
         base.Configure(entity);
 
-        entity.HasOne(entry => entry.Feature)
+        entity.HasOne(entry => entry.Entity)
               .WithMany(feature => feature.BulkExpressions)
-              .HasForeignKey(entry => entry.FeatureId);
+              .HasForeignKey(entry => entry.EntityId);
 
         entity.HasOne(entry => entry.AnalysedSample)
               .WithMany(analysedSample => analysedSample.BulkExpressions)

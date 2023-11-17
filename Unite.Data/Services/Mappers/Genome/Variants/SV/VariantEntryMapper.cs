@@ -7,12 +7,12 @@ namespace Unite.Data.Services.Mappers.Genome.Variants.SV;
 /// <summary>
 /// SV entry mapper
 /// </summary>
-internal class VariantEntryMapper : AnalysisFeatureEntryMapper<VariantEntry, Variant>
+internal class VariantEntryMapper : AnalysisEntityEntryMapper<VariantEntry, Variant, long>
 {
     public override string TableName => "SvEntries";
     public override string SchemaName => DomainDbSchemaNames.Genome;
 
-    public override string FeatureColumnName => "VariantId";
+    public override string EntityColumnName => "VariantId";
     public override string AnalysedSampleColumnName => "AnalysedSampleId";
 
 
@@ -21,9 +21,9 @@ internal class VariantEntryMapper : AnalysisFeatureEntryMapper<VariantEntry, Var
         base.Configure(entity);
 
 
-        entity.HasOne(entry => entry.Feature)
+        entity.HasOne(entry => entry.Entity)
               .WithMany(variant => variant.Entries)
-              .HasForeignKey(entry => entry.FeatureId);
+              .HasForeignKey(entry => entry.EntityId);
 
         entity.HasOne(entry => entry.AnalysedSample)
               .WithMany(analysedSample => analysedSample.SvEntries)

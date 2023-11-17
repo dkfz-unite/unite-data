@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Specimens;
 
-public record DrugScreening : Base.SampleFeatureEntry<Specimen, Drug>
+public record DrugScreening : Base.SampleEntityEntry<Specimen, Drug, int>
 {
     /// <summary>
     /// Drug sensitivity score

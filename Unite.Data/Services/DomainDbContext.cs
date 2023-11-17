@@ -119,8 +119,8 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Images.Analysis.Enums.AnalysisTypeMapper());
         builder.ApplyConfiguration(new Mappers.Images.Analysis.AnalysedSampleMapper());
         builder.ApplyConfiguration(new Mappers.Images.Analysis.AnalysisMapper());
-        builder.ApplyConfiguration(new Mappers.Images.Features.FeatureMapper());
-        builder.ApplyConfiguration(new Mappers.Images.Features.FeatureEntryMapper());
+        builder.ApplyConfiguration(new Mappers.Images.Features.RadiomicsFeatureMapper());
+        builder.ApplyConfiguration(new Mappers.Images.Features.RadiomicsFeatureEntryMapper());
     }
 
     private static void ConfigureSpecimens(ModelBuilder builder)

@@ -109,11 +109,11 @@ public static class VariantEntryQueryExtensions
     public static IQueryable<SSM.VariantEntry> FilterByRange(this IQueryable<SSM.VariantEntry> query, Chromosome chromosomeId, int start, int end)
     {
         return query
-            .Where(entry => entry.Feature.ChromosomeId == chromosomeId)
-            .Where(entry => (entry.Feature.End >= start && entry.Feature.End <= end) ||
-                            (entry.Feature.Start >= start && entry.Feature.Start <= end) ||
-                            (entry.Feature.Start >= start && entry.Feature.End <= end) ||
-                            (entry.Feature.Start <= start && entry.Feature.End >= end));
+            .Where(entry => entry.Entity.ChromosomeId == chromosomeId)
+            .Where(entry => (entry.Entity.End >= start && entry.Entity.End <= end) ||
+                            (entry.Entity.Start >= start && entry.Entity.Start <= end) ||
+                            (entry.Entity.Start >= start && entry.Entity.End <= end) ||
+                            (entry.Entity.Start <= start && entry.Entity.End >= end));
     }
 
     /// <summary>
@@ -127,11 +127,11 @@ public static class VariantEntryQueryExtensions
     public static IQueryable<CNV.VariantEntry> FilterByRange(this IQueryable<CNV.VariantEntry> query, Chromosome chromosomeId, int start, int end)
     {
         return query
-            .Where(entry => entry.Feature.ChromosomeId == chromosomeId)
-            .Where(entry => (entry.Feature.End >= start && entry.Feature.End <= end) ||
-                                 (entry.Feature.Start >= start && entry.Feature.Start <= end) ||
-                                 (entry.Feature.Start >= start && entry.Feature.End <= end) ||
-                                 (entry.Feature.Start <= start && entry.Feature.End >= end));
+            .Where(entry => entry.Entity.ChromosomeId == chromosomeId)
+            .Where(entry => (entry.Entity.End >= start && entry.Entity.End <= end) ||
+                                 (entry.Entity.Start >= start && entry.Entity.Start <= end) ||
+                                 (entry.Entity.Start >= start && entry.Entity.End <= end) ||
+                                 (entry.Entity.Start <= start && entry.Entity.End >= end));
     }
 
     /// <summary>
@@ -156,12 +156,12 @@ public static class VariantEntryQueryExtensions
         //            S1 E1          S2 E2
 
         return query
-            .Where(entry => !ignoreTypes.Contains(entry.Feature.TypeId))
-            .Where(entry => entry.Feature.ChromosomeId == chromosomeId && entry.Feature.OtherChromosomeId == chromosomeId)
-            .Where(entry => (entry.Feature.OtherStart >= start && entry.Feature.OtherStart <= end) ||
-                            (entry.Feature.End >= start && entry.Feature.End <= end) ||
-                            (entry.Feature.End >= start && entry.Feature.OtherStart <= end) ||
-                            (entry.Feature.End <= start && entry.Feature.OtherStart >= end)
+            .Where(entry => !ignoreTypes.Contains(entry.Entity.TypeId))
+            .Where(entry => entry.Entity.ChromosomeId == chromosomeId && entry.Entity.OtherChromosomeId == chromosomeId)
+            .Where(entry => (entry.Entity.OtherStart >= start && entry.Entity.OtherStart <= end) ||
+                            (entry.Entity.End >= start && entry.Entity.End <= end) ||
+                            (entry.Entity.End >= start && entry.Entity.OtherStart <= end) ||
+                            (entry.Entity.End <= start && entry.Entity.OtherStart >= end)
             );
     }
 }

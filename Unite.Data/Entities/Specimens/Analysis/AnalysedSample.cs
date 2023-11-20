@@ -1,4 +1,4 @@
-﻿using Unite.Data.Entities.Genome.Expressions;
+﻿using Unite.Data.Entities.Genome.Transcriptomics;
 
 namespace Unite.Data.Entities.Specimens.Analysis;
 

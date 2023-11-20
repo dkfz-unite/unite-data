@@ -1,4 +1,4 @@
-﻿namespace Unite.Data.Entities.Genome.Expressions;
+﻿namespace Unite.Data.Entities.Genome.Transcriptomics;
 
 public record BulkExpression : GeneEntry
 {

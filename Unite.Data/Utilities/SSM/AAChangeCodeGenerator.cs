@@ -1,4 +1,4 @@
-﻿namespace Unite.Data.Utilities.Mutations;
+﻿namespace Unite.Data.Utilities.SSM;
 
 public static class AAChangeCodeGenerator
 {

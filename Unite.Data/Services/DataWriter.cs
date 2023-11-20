@@ -1,6 +1,7 @@
 ﻿namespace Unite.Data.Services;
 
-public abstract class DataWriter<TModel> : IDataWriter<TModel> where TModel : class
+public abstract class DataWriter<TModel> : IDataWriter<TModel> 
+    where TModel : class
 {
     protected readonly DomainDbContext _dbContext;
 

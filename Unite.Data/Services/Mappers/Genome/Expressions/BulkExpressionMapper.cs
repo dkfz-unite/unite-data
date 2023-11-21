@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Unite.Data.Entities.Genome;
-using Unite.Data.Entities.Genome.Transcriptomics;
+using Unite.Data.Entities.Genome.Expressions;
 using Unite.Data.Services.Mappers.Base;
 
-namespace Unite.Data.Services.Mappers.Genome.Transcriptomics;
+namespace Unite.Data.Services.Mappers.Genome.Expressions;
 
 internal class BulkExpressionMapper : AnalysisEntityEntryMapper<BulkExpression, Gene, int>
 {

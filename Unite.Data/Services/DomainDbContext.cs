@@ -57,7 +57,7 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Genome.Variants.SV.Variant> Svs { get; set; }
     public DbSet<Entities.Genome.Variants.SV.VariantEntry> SvEntries { get; set; }
     public DbSet<Entities.Genome.Variants.SV.AffectedTranscript> SvAffectedTranscripts { get; set; }
-    public DbSet<Entities.Genome.Transcriptomics.BulkExpression> BulkExpressions { get; set; }
+    public DbSet<Entities.Genome.Expressions.BulkExpression> BulkExpressions { get; set; }
 
 
     public DomainDbContext(ISqlOptions options)
@@ -184,6 +184,6 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Genome.Variants.SV.VariantEntryMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Variants.SV.AffectedTranscriptMapper());
 
-        builder.ApplyConfiguration(new Mappers.Genome.Transcriptomics.BulkExpressionMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Expressions.BulkExpressionMapper());
     }
 }

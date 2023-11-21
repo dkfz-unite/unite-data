@@ -1,7 +1,7 @@
 ﻿using Unite.Data.Entities.Base;
 using Unite.Data.Entities.Genome.Base;
 using Unite.Data.Entities.Genome.Enums;
-using Unite.Data.Entities.Genome.Transcriptomics;
+using Unite.Data.Entities.Genome.Expressions;
 
 namespace Unite.Data.Entities.Genome;
 

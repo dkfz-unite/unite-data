@@ -38,10 +38,10 @@ public class DrugScreeningMapper : IEntityTypeConfiguration<DrugScreening>
         entity.Property(drugScreening => drugScreening.Inhibition)
               .HasConversion(_serialize, _deserialize);
 
-        entity.Property(drugScreening => drugScreening.Dose)
+        entity.Property(drugScreening => drugScreening.ConcentrationLine)
               .HasConversion(_serialize, _deserialize);
 
-        entity.Property(drugScreening => drugScreening.Response)
+        entity.Property(drugScreening => drugScreening.InhibitionLine)
               .HasConversion(_serialize, _deserialize);
 
 

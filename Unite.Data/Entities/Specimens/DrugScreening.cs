@@ -60,12 +60,12 @@ public record DrugScreening
     /// <summary>
     /// Concentration (dose) at corresponding inhibition (response) percent from Response array (line of drug response curve)
     /// </summary>
-    public double[] Dose { get; set; }
+    public double[] ConcentrationLine { get; set; }
 
     /// <summary>
     /// Percent inhibition (response) at corresponding concentration (dose) from Dose array (line of drug response curve)
     /// </summary>
-    public double[] Response { get; set; }
+    public double[] InhibitionLine { get; set; }
 
 
     public virtual Specimen Specimen { get; set; }

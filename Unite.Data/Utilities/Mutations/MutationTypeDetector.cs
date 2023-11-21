@@ -1,15 +1,15 @@
 ﻿using Unite.Data.Entities.Genome.Variants.SSM.Enums;
 
-namespace Unite.Data.Utilities.SSM;
+namespace Unite.Data.Utilities.Mutations;
 
-public static class TypeDetector
+public static class MutationTypeDetector
 {
     /// <summary>
-    /// Indentifies SSM type based on reference and alternate base.
+    /// Indentifies mutation type based on reference and alternate base.
     /// </summary>
     /// <param name="referenceBase">Reference base</param>
     /// <param name="alternateBase">Alternate base</param>
-    /// <returns>SSM type (SNV, INS, DEL or MNV).</returns>
+    /// <returns>Mutation type (SNV, INS, DEL or MNV).</returns>
     public static SsmType Detect(string referenceBase, string alternateBase)
     {
         if (!string.IsNullOrWhiteSpace(referenceBase) && !string.IsNullOrWhiteSpace(alternateBase))

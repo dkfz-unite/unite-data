@@ -1,4 +1,4 @@
-﻿namespace Unite.Data.Utilities.SSM;
+﻿namespace Unite.Data.Utilities.Mutations;
 
 public static class CodonChangeCodeGenerator
 {

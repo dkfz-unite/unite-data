@@ -30,50 +30,50 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     /// Loads donors related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependent donors identifiers.</returns>
+    /// <returns>Collection of dependint donors identifiers.</returns>
     protected abstract IEnumerable<int> LoadRelatedDonors(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads images related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependent images identifiers.</returns>
+    /// <returns>Collection of dependint images identifiers.</returns>
     protected abstract IEnumerable<int> LoadRelatedImages(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads specimens related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependent specimens identifiers.</returns>
+    /// <returns>Collection of dependint specimens identifiers.</returns>
     protected abstract IEnumerable<int> LoadRelatedSpecimens(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads genes related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependent genes identifiers.</returns>
+    /// <returns>Collection of dependint genes identifiers.</returns>
     protected abstract IEnumerable<int> LoadRelatedGenes(IEnumerable<TKey> keys);
 
     /// <summary>
-    /// Loads SSMs related to entities of given tasks with given keys.
+    /// Loads mutations related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependent SSMs identifiers.</returns>
-    protected abstract IEnumerable<long> LoadRelatedSsms(IEnumerable<TKey> keys);
+    /// <returns>Collection of dependint mutations identifiers.</returns>
+    protected abstract IEnumerable<long> LoadRelatedMutations(IEnumerable<TKey> keys);
 
     /// <summary>
-    /// Loads CNVs related to entities of given tasks with given keys.
+    /// Loads copy number variants related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependent CNVs identifiers.</returns>
-    protected abstract IEnumerable<long> LoadRelatedCnvs(IEnumerable<TKey> keys);
+    /// <returns>Collection of dependint copy number variants identifiers.</returns>
+    protected abstract IEnumerable<long> LoadRelatedCopyNumberVariants(IEnumerable<TKey> keys);
 
     /// <summary>
-    /// Loads SVs related to entities of given tasks with given keys.
+    /// Loads structural variants related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependent SVs identifiers.</returns>
-    protected abstract IEnumerable<long> LoadRelatedSvs(IEnumerable<TKey> keys);
+    /// <returns>Collection of dependint structural variants identifiers.</returns>
+    protected abstract IEnumerable<long> LoadRelatedStructuralVariants(IEnumerable<TKey> keys);
 
 
     /// <summary>
@@ -126,17 +126,17 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     /// <param name="keys">Identifiers of entities.</param>
     protected virtual void CreateVariantIndexingTasks(IEnumerable<TKey> keys)
     {
-        var mutationIds = LoadRelatedSsms(keys);
+        var mutationIds = LoadRelatedMutations(keys);
 
         CreateTasks(IndexingTaskType.SSM, mutationIds);
 
 
-        var copyNumberVariantIds = LoadRelatedCnvs(keys);
+        var copyNumberVariantIds = LoadRelatedCopyNumberVariants(keys);
 
         CreateTasks(IndexingTaskType.CNV, copyNumberVariantIds);
 
 
-        var structuralVariantIds = LoadRelatedSvs(keys);
+        var structuralVariantIds = LoadRelatedStructuralVariants(keys);
 
         CreateTasks(IndexingTaskType.SV, structuralVariantIds);
     }

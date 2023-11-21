@@ -1,7 +1,7 @@
 ﻿using Unite.Data.Entities.Genome.Enums;
 using Unite.Data.Extensions;
 
-namespace Unite.Data.Utilities.SSM;
+namespace Unite.Data.Utilities.Mutations;
 
 public static class HGVsCodeGenerator
 {

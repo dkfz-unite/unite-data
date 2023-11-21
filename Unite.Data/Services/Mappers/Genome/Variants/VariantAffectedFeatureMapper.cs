@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Unite.Data.Entities.Genome;
 using Unite.Data.Entities.Genome.Variants;
 
 namespace Unite.Data.Services.Mappers.Genome.Variants;
@@ -16,15 +17,13 @@ namespace Unite.Data.Services.Mappers.Genome.Variants;
 internal abstract class VariantAffectedFeatureMapper<TVariantAffectedFeature, TVariant, TFeature> : IEntityTypeConfiguration<TVariantAffectedFeature>
     where TVariantAffectedFeature : VariantAffectedFeature<TVariant, TFeature>
     where TVariant : Variant
-    where TFeature : class
+    where TFeature : Feature
 {
     protected static readonly JsonSerializerOptions _options = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
     protected static readonly Expression<Func<Consequence[], string>> _serialize = value => JsonSerializer.Serialize<Consequence[]>(value, _options);
     protected static readonly Expression<Func<string, Consequence[]>> _deserialize = value => JsonSerializer.Deserialize<Consequence[]>(value, _options);
 
     public abstract string TableName { get; }
-    
-    public virtual string FeatureColumnName => "FeatureId";
 
 
     public virtual void Configure(EntityTypeBuilder<TVariantAffectedFeature> entity)
@@ -42,7 +41,6 @@ internal abstract class VariantAffectedFeatureMapper<TVariantAffectedFeature, TV
               .ValueGeneratedNever();
 
         entity.Property(affectedFeature => affectedFeature.FeatureId)
-              .HasColumnName(FeatureColumnName)
               .IsRequired()
               .ValueGeneratedNever();
 

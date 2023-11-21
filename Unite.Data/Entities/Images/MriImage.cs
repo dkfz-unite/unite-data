@@ -2,7 +2,7 @@
 
 public record MriImage
 {
-    public int Id { get; set; }
+    public int ImageId { get; set; }
     public string ReferenceId { get; set; }
 
     public double? WholeTumor { get; set; }

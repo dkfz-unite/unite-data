@@ -1,9 +1,9 @@
-﻿using Unite.Data.Entities.Genome.Base;
+﻿using Unite.Data.Entities.Genome.Abstractions;
 using Unite.Data.Entities.Genome.Enums;
 
 namespace Unite.Data.Entities.Genome;
 
-public record Transcript : IStableEntity, IStrandedDnaEntity
+public record Transcript : Feature, IStableEntry, IStrandedDnaEntity
 {
     public int Id { get; set; }
     public string StableId { get; set; }

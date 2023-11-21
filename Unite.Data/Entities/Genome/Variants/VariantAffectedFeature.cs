@@ -7,7 +7,7 @@
 /// <typeparam name="TFeature">Feature type</typeparam>
 public abstract record VariantAffectedFeature<TVariant, TFeature>
     where TVariant : Variant
-    where TFeature : class
+    where TFeature : Feature
 {
     public long VariantId { get; set; }
     public int FeatureId { get; set; }

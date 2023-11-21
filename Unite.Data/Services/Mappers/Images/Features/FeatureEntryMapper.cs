@@ -4,9 +4,9 @@ using Unite.Data.Services.Mappers.Base;
 
 namespace Unite.Data.Services.Mappers.Images.Features;
 
-internal class RadiomicsFeatureEntryMapper : AnalysisEntityEntryMapper<RadiomicsFeatureEntry, RadiomicsFeature, int>
+internal class FeatureEntryMapper : AnalysisFeatureEntryMapper<RadiomicsFeatureEntry, RadiomicsFeature>
 {
-    public override string TableName => "RadiomicsFeatureEntries";
+    public override string TableName => "FeatureEntries";
     public override string SchemaName => DomainDbSchemaNames.Images;
 
     public override void Configure(EntityTypeBuilder<RadiomicsFeatureEntry> entity)
@@ -20,8 +20,8 @@ internal class RadiomicsFeatureEntryMapper : AnalysisEntityEntryMapper<Radiomics
               .WithMany(analysedSample => analysedSample.RadiomicsFeatureEntries)
               .HasForeignKey(entry => entry.AnalysedSampleId);
 
-        entity.HasOne(entry => entry.Entity)
+        entity.HasOne(entry => entry.Feature)
               .WithMany(feature => feature.Entries)
-              .HasForeignKey(entry => entry.EntityId);
+              .HasForeignKey(entry => entry.FeatureId);
     }
 }

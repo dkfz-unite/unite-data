@@ -7,7 +7,7 @@ using Unite.Data.Services.Mappers.Base;
 
 namespace Unite.Data.Services.Mappers.Specimens;
 
-internal class DrugScreeningMapper : SampleEntityEntryMapper<DrugScreening, Drug, int>
+internal class DrugScreeningMapper : SampleFeatureEntryMapper<DrugScreening, Drug>
 {
     private static readonly JsonSerializerOptions _options = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
     private static readonly Expression<Func<double[], string>> _serialize = value => JsonSerializer.Serialize<double[]>(value, _options);
@@ -16,7 +16,7 @@ internal class DrugScreeningMapper : SampleEntityEntryMapper<DrugScreening, Drug
     public override string TableName => "DrugScreenings";
     public override string SchemaName => DomainDbSchemaNames.Specimens;
 
-    public override string EntityColumnName => "DrugId";
+    public override string FeatureColumnName => "DrugId";
     public override string SampleColumnName => "SpecimenId";
 
 
@@ -41,8 +41,8 @@ internal class DrugScreeningMapper : SampleEntityEntryMapper<DrugScreening, Drug
               .WithMany(specimen => specimen.DrugScreenings)
               .HasForeignKey(entry => entry.SampleId);
 
-        entity.HasOne(entry => entry.Entity)
+        entity.HasOne(entry => entry.Feature)
               .WithMany()
-              .HasForeignKey(entry => entry.EntityId);
+              .HasForeignKey(entry => entry.FeatureId);
     }
 }

@@ -7,20 +7,20 @@ namespace Unite.Data.Services.Mappers.Genome.Variants.CNV;
 /// <summary>
 /// CNV entry mapper
 /// </summary>
-internal class VariantEntryMapper : AnalysisEntityEntryMapper<VariantEntry, Variant, long>
+internal class VariantEntryMapper : AnalysisFeatureEntryMapper<VariantEntry, Variant>
 {
     public override string TableName => "CnvEntries";
     public override string SchemaName => DomainDbSchemaNames.Genome;
 
-    public override string EntityColumnName => "VariantId";
+    public override string FeatureColumnName => "VariantId";
     public override string AnalysedSampleColumnName => "AnalysedSampleId";
 
 
     public override void Configure(EntityTypeBuilder<VariantEntry> entity)
     {
-        entity.HasOne(entry => entry.Entity)
+        entity.HasOne(entry => entry.Feature)
               .WithMany(variant => variant.Entries)
-              .HasForeignKey(entry => entry.EntityId);
+              .HasForeignKey(entry => entry.FeatureId);
 
         entity.HasOne(entry => entry.AnalysedSample)
               .WithMany(analysedSample => analysedSample.CnvEntries)

@@ -1,10 +1,14 @@
-﻿using Unite.Data.Entities.Base;
-using Unite.Data.Entities.Genome.Enums;
+﻿using Unite.Data.Entities.Genome.Enums;
 
 namespace Unite.Data.Entities.Genome.Variants;
 
-public abstract record Variant : Entity<long>
+public abstract record Variant
 {
+    /// <summary>
+    /// Variant identifier
+    /// </summary>
+    public long Id { get; set; }
+
     /// <summary>
     /// Chromosome
     /// </summary>

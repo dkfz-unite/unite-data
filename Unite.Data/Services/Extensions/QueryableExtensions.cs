@@ -79,7 +79,7 @@ public static class QueryableExtensions
     {
         return query
             .Include(specimen => specimen.DrugScreenings)
-                .ThenInclude(screening => screening.Entity);
+                .ThenInclude(screening => screening.Feature);
     }
 
 

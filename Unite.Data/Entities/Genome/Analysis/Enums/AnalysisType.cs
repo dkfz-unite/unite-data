@@ -13,12 +13,9 @@ public enum AnalysisType
     [EnumMember(Value = "WES")]
     WES = 3,
 
-    [EnumMember(Value = "RNA-Seq")]
+    [EnumMember(Value = "RNASeq")]
     RNASeq = 4,
 
-    [EnumMember(Value = "MS")]
-    MS = 5,
-
-    [EnumMember(Value = "Microarray")]
-    Microarray = 6
+    [EnumMember(Value = "ScRNASeq")]
+    ScRNASeq = 5
 }

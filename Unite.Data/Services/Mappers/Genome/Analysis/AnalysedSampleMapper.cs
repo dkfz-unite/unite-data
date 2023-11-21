@@ -20,7 +20,7 @@ internal class AnalysedSampleMapper : IEntityTypeConfiguration<AnalysedSample>
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(analysedSample => analysedSample.SampleId)
+        entity.Property(analysedSample => analysedSample.TargetSampleId)
               .IsRequired()
               .ValueGeneratedNever();
 
@@ -32,9 +32,9 @@ internal class AnalysedSampleMapper : IEntityTypeConfiguration<AnalysedSample>
               .WithMany(analysis => analysis.AnalysedSamples)
               .HasForeignKey(analysedSample => analysedSample.AnalysisId);
 
-        entity.HasOne(analysedSample => analysedSample.Sample)
+        entity.HasOne(analysedSample => analysedSample.TargetSample)
               .WithMany()
-              .HasForeignKey(analysedSample => analysedSample.SampleId);
+              .HasForeignKey(analysedSample => analysedSample.TargetSampleId);
 
         entity.HasOne(analysedSample => analysedSample.MatchedSample)
               .WithMany()

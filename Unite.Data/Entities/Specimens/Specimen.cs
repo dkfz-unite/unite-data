@@ -12,13 +12,11 @@ public record Specimen
 {
     public int Id { get; set; }
     public int? ParentId { get; set; }
+    public string ReferenceId { get; set; }
     public int DonorId { get; set; }
-
+    public SpecimenType TypeId { get; set; }
     public DateOnly? CreationDate { get; set; }
     public int? CreationDay { get; set; }
-
-    public string ReferenceId => GetSpecimenId();
-    public SpecimenType? Type => GetSpecimenType();
 
     public virtual Specimen Parent { get; set; }
     public virtual ICollection<Specimen> Children { get; set; }
@@ -32,23 +30,4 @@ public record Specimen
 
     public virtual ICollection<DrugScreening> DrugScreenings { get; set; }
     public virtual ICollection<Sample> Samples { get; set; }
-
-
-    private string GetSpecimenId()
-    {
-        return Tissue != null ? Tissue.ReferenceId
-             : CellLine != null ? CellLine.ReferenceId
-             : Organoid != null ? Organoid.ReferenceId
-             : Xenograft != null ? Xenograft.ReferenceId
-             : throw new Exception("Could not determine specimen 'ReferenceId'. Most likely not all specific specimen tables were joined.");
-    }
-
-    private SpecimenType? GetSpecimenType()
-    {
-        return Tissue != null ? SpecimenType.Tissue
-             : CellLine != null ? SpecimenType.CellLine
-             : Organoid != null ? SpecimenType.Organoid
-             : Xenograft != null ? SpecimenType.Xenograft
-             : throw new Exception("Could not determine specimen 'Type'. Most likely not all specific specimen tables were joined.");
-    }
 }

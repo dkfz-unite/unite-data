@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Unite.Data.Entities.Specimens;
+using Unite.Data.Entities.Specimens.Enums;
+using Unite.Data.Services.Models;
 
 namespace Unite.Data.Services.Mappers.Specimens;
 
@@ -16,14 +18,18 @@ internal class SpecimenMapper : IEntityTypeConfiguration<Specimen>
               .IsRequired()
               .ValueGeneratedOnAdd();
 
+        entity.Property(specimen => specimen.ReferenceId)
+              .IsRequired()
+              .HasMaxLength(255)
+              .ValueGeneratedNever();
+
         entity.Property(specimen => specimen.DonorId)
               .IsRequired()
               .ValueGeneratedNever();
 
-
-        entity.Ignore(specimen => specimen.ReferenceId);
-
-        entity.Ignore(specimen => specimen.Type);
+        entity.Property(specimen => specimen.TypeId)
+              .IsRequired()
+              .HasConversion<int>();
 
 
         entity.HasOne(specimen => specimen.Parent)
@@ -33,5 +39,12 @@ internal class SpecimenMapper : IEntityTypeConfiguration<Specimen>
         entity.HasOne(specimen => specimen.Donor)
               .WithMany(donor => donor.Specimens)
               .HasForeignKey(specimen => specimen.DonorId);
+
+        entity.HasOne<EnumValue<SpecimenType>>()
+              .WithMany()
+              .HasForeignKey(specimen => specimen.TypeId);
+
+        
+        entity.HasIndex(specimen => specimen.ReferenceId);
     }
 }

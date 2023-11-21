@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Entities.Images.Features;
+using Unite.Data.Entities.Images.Analysis;
 
-namespace Unite.Data.Services.Mappers.Images.Features;
+namespace Unite.Data.Services.Mappers.Images.Analysis;
 
 internal class AnalysedImageMapper : IEntityTypeConfiguration<AnalysedImage>
 {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IsPackable>false</IsPackable>
 		<ReleaseVersion>1.0.0</ReleaseVersion>
@@ -15,13 +15,6 @@
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 	</ItemGroup>
-	<!-- <ItemGroup>
-		<None Remove="Unite\" />
-		<None Remove="Extensions\" />
-	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="Extensions\" />
-	</ItemGroup> -->
 	<ItemGroup>
 		<ProjectReference Include="..\Unite.Data\Unite.Data.csproj" />
 	</ItemGroup>

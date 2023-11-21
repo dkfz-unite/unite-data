@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Unite.Data.Entities.Images.Features.Enums;
+namespace Unite.Data.Entities.Images.Analysis.Enums;
 
 public enum AnalysisType
 {

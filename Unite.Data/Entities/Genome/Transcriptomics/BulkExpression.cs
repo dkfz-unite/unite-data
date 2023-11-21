@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Genome.Transcriptomics;
 
-public record GeneExpression
+public record BulkExpression
 {
 	public int GeneId { get; set; }
     public int AnalysedSampleId { get; set; }

@@ -20,5 +20,5 @@ public record Gene : IStableEntry, IStrandedDnaEntity
     public string Biotype { get; set; }
 
     public virtual ICollection<Transcript> Transcripts { get; set; }
-    public virtual ICollection<GeneExpression> GeneExpressions { get; set; }
+    public virtual ICollection<BulkExpression> BulkExpressions { get; set; }
 }

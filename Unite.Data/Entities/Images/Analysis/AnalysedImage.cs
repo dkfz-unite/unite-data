@@ -1,4 +1,6 @@
-﻿namespace Unite.Data.Entities.Images.Features;
+﻿using Unite.Data.Entities.Images.Features;
+
+namespace Unite.Data.Entities.Images.Analysis;
 
 public record AnalysedImage
 {
@@ -11,5 +13,5 @@ public record AnalysedImage
     public virtual Analysis Analysis { get; set; }
     public virtual Image Image { get; set; }
 
-    public virtual ICollection<FeatureOccurrence> FeatureOccurrences { get; set; }
+    public virtual ICollection<RadiomicsFeatureEntry> RadiomicsFeatureEntries { get; set; }
 }

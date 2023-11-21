@@ -4,11 +4,11 @@ using Unite.Data.Entities.Genome.Transcriptomics;
 
 namespace Unite.Data.Services.Mappers.Genome.Transcriptomics;
 
-internal class GeneExpressionMapper : IEntityTypeConfiguration<GeneExpression>
+internal class BulkExpressionMapper : IEntityTypeConfiguration<BulkExpression>
 {
-    public void Configure(EntityTypeBuilder<GeneExpression> entity)
+    public void Configure(EntityTypeBuilder<BulkExpression> entity)
     {
-        entity.ToTable("GeneExpressions", DomainDbSchemaNames.Genome);
+        entity.ToTable("BulkGeneExpressions", DomainDbSchemaNames.Genome);
 
         entity.HasKey(geneExpression => new
         {
@@ -25,11 +25,11 @@ internal class GeneExpressionMapper : IEntityTypeConfiguration<GeneExpression>
               .ValueGeneratedNever();
 
         entity.HasOne(geneExpression => geneExpression.Gene)
-              .WithMany(gene => gene.GeneExpressions)
+              .WithMany(gene => gene.BulkExpressions)
               .HasForeignKey(geneExpression => geneExpression.GeneId);
 
         entity.HasOne(geneExpression => geneExpression.AnalysedSample)
-              .WithMany(analysedSample => analysedSample.GeneExpressions)
+              .WithMany(analysedSample => analysedSample.BulkExpressions)
               .HasForeignKey(geneExpression => geneExpression.AnalysedSampleId);
     }
 }

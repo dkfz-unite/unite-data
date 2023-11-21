@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Entities.Images.Features.Enums;
+using Unite.Data.Entities.Images.Analysis.Enums;
 using Unite.Data.Services.Models;
 using Unite.Data.Services.Models.Extensions;
 
-namespace Unite.Data.Services.Mappers.Images.Features.Enums;
+namespace Unite.Data.Services.Mappers.Images.Analysis.Enums;
 
 internal class AnalysisTypeMapper : IEntityTypeConfiguration<EnumValue<AnalysisType>>
 {

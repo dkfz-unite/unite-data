@@ -1,35 +1,26 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Unite.Data.Entities.Genome;
+using Unite.Data.Entities.Genome.Analysis;
 using Unite.Data.Entities.Genome.Transcriptomics;
 
 namespace Unite.Data.Services.Mappers.Genome.Transcriptomics;
 
-internal class BulkExpressionMapper : IEntityTypeConfiguration<BulkExpression>
+internal class BulkExpressionMapper : Base.AnalysedSampleEntryMapper<BulkExpression, AnalysedSample, Gene, int>
 {
-    public void Configure(EntityTypeBuilder<BulkExpression> entity)
+    protected override string TableName => "BulkGeneExpressions";
+    protected override string AnalysedSampleColumnName => "AnalysedSampleId";
+    protected override string EntityColumnName => "GeneId";
+    
+    public override void Configure(EntityTypeBuilder<BulkExpression> entity)
     {
-        entity.ToTable("BulkGeneExpressions", DomainDbSchemaNames.Genome);
+        base.Configure(entity);
 
-        entity.HasKey(geneExpression => new
-        {
-            geneExpression.GeneId,
-            geneExpression.AnalysedSampleId
-        });
-
-        entity.Property(geneExpression => geneExpression.GeneId)
-              .IsRequired()
-              .ValueGeneratedNever();
-
-        entity.Property(geneExpression => geneExpression.AnalysedSampleId)
-              .IsRequired()
-              .ValueGeneratedNever();
-
-        entity.HasOne(geneExpression => geneExpression.Gene)
-              .WithMany(gene => gene.BulkExpressions)
-              .HasForeignKey(geneExpression => geneExpression.GeneId);
-
-        entity.HasOne(geneExpression => geneExpression.AnalysedSample)
+        entity.HasOne(expression => expression.AnalysedSample)
               .WithMany(analysedSample => analysedSample.BulkExpressions)
-              .HasForeignKey(geneExpression => geneExpression.AnalysedSampleId);
+              .HasForeignKey(expression => expression.AnalysedSampleId);
+
+        entity.HasOne(expression => expression.Entity)
+              .WithMany(gene => gene.BulkExpressions)
+              .HasForeignKey(expression => expression.EntityId);
     }
 }

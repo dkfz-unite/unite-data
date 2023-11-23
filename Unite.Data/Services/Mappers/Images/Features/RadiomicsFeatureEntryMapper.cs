@@ -1,39 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Unite.Data.Entities.Images.Analysis;
 using Unite.Data.Entities.Images.Features;
 
 namespace Unite.Data.Services.Mappers.Images.Features;
 
-internal class RadiomicsFeatureEntryMapper : IEntityTypeConfiguration<RadiomicsFeatureEntry>
+internal class RadiomicsFeatureEntryMapper : Base.AnalysedSampleEntryMapper<RadiomicsFeatureEntry, AnalysedSample, RadiomicsFeature, int>
 {
-    public void Configure(EntityTypeBuilder<RadiomicsFeatureEntry> entity)
+    protected override string TableName => "RadiomicsFeatureEntries";
+    protected override string EntityColumnName => "FeatureId";
+
+    public override void Configure(EntityTypeBuilder<RadiomicsFeatureEntry> entity)
     {
-        entity.ToTable("RadiomicsFeatureEntries", DomainDbSchemaNames.Images);
-
-        entity.HasKey(entry => new
-        {
-            entry.FeatureId,
-            entry.AnalysedImageId
-        });
-
-        entity.Property(entry => entry.AnalysedImageId)
-              .IsRequired()
-              .ValueGeneratedNever();
-
-        entity.Property(entry => entry.FeatureId)
-              .IsRequired()
-              .ValueGeneratedNever();
+        base.Configure(entity);
 
         entity.Property(entry => entry.Value)
               .IsRequired();
 
 
-        entity.HasOne(entry => entry.AnalysedImage)
+        entity.HasOne(entry => entry.AnalysedSample)
               .WithMany(analysedImage => analysedImage.RadiomicsFeatureEntries)
-              .HasForeignKey(entry => entry.AnalysedImageId);
+              .HasForeignKey(entry => entry.AnalysedSampleId);
 
-        entity.HasOne(entry => entry.Feature)
+        entity.HasOne(entry => entry.Entity)
               .WithMany(feature => feature.Entries)
-              .HasForeignKey(entry => entry.FeatureId);
+              .HasForeignKey(entry => entry.EntityId);
     }
 }

@@ -46,7 +46,7 @@ public static class VariantEntryQueryExtensions
     /// <returns>Query with SSMs filtered by specimen ids.</returns>
     public static IQueryable<SSM.VariantEntry> FilterBySpecimenIds(this IQueryable<SSM.VariantEntry> query, IEnumerable<int> specimenIds)
     {
-        return query.Where(entry => specimenIds.Contains(entry.AnalysedSample.TargetSample.SpecimenId));
+        return query.Where(entry => specimenIds.Contains(entry.AnalysedSample.TargetSampleId));
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public static class VariantEntryQueryExtensions
     /// <returns>Query with CNVs filtered by specimen ids.</returns>
     public static IQueryable<CNV.VariantEntry> FilterBySpecimenIds(this IQueryable<CNV.VariantEntry> query, IEnumerable<int> specimenIds)
     {
-        return query.Where(entry => specimenIds.Contains(entry.AnalysedSample.TargetSample.SpecimenId));
+        return query.Where(entry => specimenIds.Contains(entry.AnalysedSample.TargetSampleId));
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ public static class VariantEntryQueryExtensions
     /// <returns>Query with SVs filtered by specimen ids.</returns>
     public static IQueryable<SV.VariantEntry> FilterBySpecimenIds(this IQueryable<SV.VariantEntry> query, IEnumerable<int> specimenIds)
     {
-        return query.Where(entry => specimenIds.Contains(entry.AnalysedSample.TargetSample.SpecimenId));
+        return query.Where(entry => specimenIds.Contains(entry.AnalysedSample.TargetSampleId));
     }
 
 
@@ -113,11 +113,11 @@ public static class VariantEntryQueryExtensions
     public static IQueryable<SSM.VariantEntry> FilterByRange(this  IQueryable<SSM.VariantEntry> query, Chromosome chromosomeId, int start, int end)
     {
         return query
-            .Where(entry => entry.Variant.ChromosomeId == chromosomeId)
-            .Where(entry => (entry.Variant.End >= start && entry.Variant.End <= end) ||
-                                 (entry.Variant.Start >= start && entry.Variant.Start <= end) ||
-                                 (entry.Variant.Start >= start && entry.Variant.End <= end) ||
-                                 (entry.Variant.Start <= start && entry.Variant.End >= end));
+            .Where(entry => entry.Entity.ChromosomeId == chromosomeId)
+            .Where(entry => (entry.Entity.End >= start && entry.Entity.End <= end) ||
+                                 (entry.Entity.Start >= start && entry.Entity.Start <= end) ||
+                                 (entry.Entity.Start >= start && entry.Entity.End <= end) ||
+                                 (entry.Entity.Start <= start && entry.Entity.End >= end));
     }
 
     /// <summary>
@@ -131,11 +131,11 @@ public static class VariantEntryQueryExtensions
     public static IQueryable<CNV.VariantEntry> FilterByRange(this IQueryable<CNV.VariantEntry> query, Chromosome chromosomeId, int start, int end)
     {
         return query
-            .Where(entry => entry.Variant.ChromosomeId == chromosomeId)
-            .Where(entry => (entry.Variant.End >= start && entry.Variant.End <= end) ||
-                                 (entry.Variant.Start >= start && entry.Variant.Start <= end) ||
-                                 (entry.Variant.Start >= start && entry.Variant.End <= end) ||
-                                 (entry.Variant.Start <= start && entry.Variant.End >= end));
+            .Where(entry => entry.Entity.ChromosomeId == chromosomeId)
+            .Where(entry => (entry.Entity.End >= start && entry.Entity.End <= end) ||
+                                 (entry.Entity.Start >= start && entry.Entity.Start <= end) ||
+                                 (entry.Entity.Start >= start && entry.Entity.End <= end) ||
+                                 (entry.Entity.Start <= start && entry.Entity.End >= end));
     }
 
     /// <summary>
@@ -160,12 +160,12 @@ public static class VariantEntryQueryExtensions
         //            S1 E1          S2 E2
 
         return query
-            .Where(entry => !ignoreTypes.Contains(entry.Variant.TypeId))
-            .Where(entry => entry.Variant.ChromosomeId == chromosomeId && entry.Variant.OtherChromosomeId == chromosomeId)
-            .Where(entry => (entry.Variant.OtherStart >= start && entry.Variant.OtherStart <= end) ||
-                                 (entry.Variant.End >= start && entry.Variant.End <= end) ||
-                                 (entry.Variant.End >= start && entry.Variant.OtherStart <= end) ||
-                                 (entry.Variant.End <= start && entry.Variant.OtherStart >= end)
+            .Where(entry => !ignoreTypes.Contains(entry.Entity.TypeId))
+            .Where(entry => entry.Entity.ChromosomeId == chromosomeId && entry.Entity.OtherChromosomeId == chromosomeId)
+            .Where(entry => (entry.Entity.OtherStart >= start && entry.Entity.OtherStart <= end) ||
+                                 (entry.Entity.End >= start && entry.Entity.End <= end) ||
+                                 (entry.Entity.End >= start && entry.Entity.OtherStart <= end) ||
+                                 (entry.Entity.End <= start && entry.Entity.OtherStart >= end)
             );
     }
 }

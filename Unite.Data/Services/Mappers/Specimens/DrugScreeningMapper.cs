@@ -18,11 +18,7 @@ public class DrugScreeningMapper : IEntityTypeConfiguration<DrugScreening>
     {
         entity.ToTable("DrugScreenings", DomainDbSchemaNames.Specimens);
 
-        entity.HasKey(drugScreening => drugScreening.Id);
-
-        entity.Property(drugScreening => drugScreening.Id)
-              .IsRequired()
-              .ValueGeneratedOnAdd();
+        entity.HasKey(drugScreening => new { drugScreening.SpecimenId, drugScreening.DrugId });
 
         entity.Property(drugScreening => drugScreening.SpecimenId)
               .IsRequired()

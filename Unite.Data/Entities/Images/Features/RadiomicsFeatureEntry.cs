@@ -2,13 +2,7 @@
 
 namespace Unite.Data.Entities.Images.Features;
 
-public record RadiomicsFeatureEntry
+public record RadiomicsFeatureEntry : Base.AnalysedSampleEntry<AnalysedSample, RadiomicsFeature, int>
 {
-    public int FeatureId { get; set; }
-    public int AnalysedImageId { get; set; }
-
     public string Value { get; set; }
-
-    public virtual RadiomicsFeature Feature { get; set; }
-    public virtual AnalysedImage AnalysedImage { get; set; }
 }

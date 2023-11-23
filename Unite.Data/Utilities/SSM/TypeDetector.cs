@@ -1,8 +1,8 @@
 ﻿using Unite.Data.Entities.Genome.Variants.SSM.Enums;
 
-namespace Unite.Data.Utilities.Mutations;
+namespace Unite.Data.Utilities.SSM;
 
-public static class MutationTypeDetector
+public static class TypeDetector
 {
     /// <summary>
     /// Indentifies mutation type based on reference and alternate base.

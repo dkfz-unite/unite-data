@@ -2,13 +2,8 @@
 
 namespace Unite.Data.Entities.Genome.Variants;
 
-public abstract record Variant
+public abstract record Variant : Base.Entity<long>
 {
-    /// <summary>
-    /// Variant identifier
-    /// </summary>
-    public long Id { get; set; }
-
     /// <summary>
     /// Chromosome
     /// </summary>

@@ -4,5 +4,5 @@ namespace Unite.Data.Entities.Genome.Analysis;
 
 public record Analysis : Base.Analysis<AnalysisType>
 {
-    public virtual ICollection<AnalysedSample> AnalysedSamples { get; set; }
+    public virtual AnalysedSample AnalysedSample { get; set; }
 }

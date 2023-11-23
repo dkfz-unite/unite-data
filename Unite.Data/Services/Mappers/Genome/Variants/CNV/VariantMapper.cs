@@ -10,8 +10,7 @@ namespace Unite.Data.Services.Mappers.Genome.Variants.CNV;
 /// </summary>
 internal class VariantMapper : VariantMapper<Variant>
 {
-    public override string TableName => "CNVs";
-
+    protected override string TableName => "CNVs";
 
     public override void Configure(EntityTypeBuilder<Variant> entity)
     {

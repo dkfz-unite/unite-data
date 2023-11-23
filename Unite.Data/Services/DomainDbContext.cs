@@ -23,7 +23,7 @@ public class DomainDbContext : DbContext
 
     public DbSet<Entities.Images.Image> Images { get; set; }
     public DbSet<Entities.Images.MriImage> MriImages { get; set; }
-    public DbSet<Entities.Images.Analysis.AnalysedImage> AnalysedImages { get; set; }
+    public DbSet<Entities.Images.Analysis.AnalysedSample> AnalysedImages { get; set; }
     public DbSet<Entities.Images.Analysis.Analysis> ImageAnalyses { get; set; }
     public DbSet<Entities.Images.Features.RadiomicsFeature> RadiomicsFeatures { get; set; }
     public DbSet<Entities.Images.Features.RadiomicsFeatureEntry> RadiomicsFeatureEntries { get; set; }
@@ -48,7 +48,6 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Genome.Protein> Proteins { get; set; }
     public DbSet<Entities.Genome.Analysis.Analysis> Analyses { get; set; }
     public DbSet<Entities.Genome.Analysis.AnalysedSample> AnalysedSamples { get; set; }
-    public DbSet<Entities.Genome.Analysis.Sample> Samples { get; set; }
     public DbSet<Entities.Genome.Variants.SSM.Variant> Ssms { get; set; }
     public DbSet<Entities.Genome.Variants.SSM.VariantEntry> SsmEntries { get; set; }
     public DbSet<Entities.Genome.Variants.SSM.AffectedTranscript> SsmAffectedTranscripts { get; set; }
@@ -119,7 +118,7 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Images.MriImageMapper());
 
         builder.ApplyConfiguration(new Mappers.Images.Analysis.Enums.AnalysisTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Images.Analysis.AnalysedImageMapper());
+        builder.ApplyConfiguration(new Mappers.Images.Analysis.AnalysedSampleMapper());
         builder.ApplyConfiguration(new Mappers.Images.Analysis.AnalysisMapper());
         
         builder.ApplyConfiguration(new Mappers.Images.Features.RadiomicsFeatureMapper());
@@ -172,7 +171,6 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Genome.Analysis.Enums.AnalysisTypeMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Analysis.AnalysisMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Analysis.AnalysedSampleMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.SampleMapper());
 
         builder.ApplyConfiguration(new Mappers.Genome.Variants.SSM.Enums.SsmTypeMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Variants.SSM.VariantMapper());

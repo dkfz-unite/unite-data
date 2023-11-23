@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Entities.Genome.Analysis;
+using Unite.Data.Entities.Images.Analysis;
 
-namespace Unite.Data.Services.Mappers.Genome.Analysis;
+namespace Unite.Data.Services.Mappers.Images.Analysis;
 
 internal class AnalysedSampleMapper : Base.AnalysedSampleMapper<AnalysedSample>
 {
-    protected override string TableName => "AnalysedSpecimens";
-    protected override string TargetSampleColumnName => "TargetSpecimenId";
-    protected override string MatchedSampleColumnName => "MatchedSpecimenId";
+    protected override string TableName => "AnalysedImages";
+    protected override string TargetSampleColumnName => "TargetImageId";
+    protected override string MatchedSampleColumnName => "MatchedImageId";
 
     public override void Configure(EntityTypeBuilder<AnalysedSample> entity)
     {
@@ -18,11 +18,11 @@ internal class AnalysedSampleMapper : Base.AnalysedSampleMapper<AnalysedSample>
               .HasForeignKey<AnalysedSample>(analysedSample => analysedSample.AnalysisId);
 
         entity.HasOne(analysedSample => analysedSample.TargetSample)
-              .WithMany(specimen => specimen.AnalysedSamples)
+              .WithMany(image => image.AnalysedSamples)
               .HasForeignKey(analysedSample => analysedSample.TargetSampleId);
 
         entity.HasOne(analysedSample => analysedSample.MatchedSample)
-              .WithMany(specimen => specimen.MatchedSamples)
+              .WithMany(image => image.MatchedSamples)
               .HasForeignKey(analysedSample => analysedSample.MatchedSampleId);
     }
 }

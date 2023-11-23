@@ -4,9 +4,8 @@ using Unite.Data.Entities.Genome.Transcriptomics;
 
 namespace Unite.Data.Entities.Genome;
 
-public record Gene : IStableEntry, IStrandedDnaEntity
+public record Gene : Base.Entity<int>, IStableEntry, IStrandedDnaEntity
 {
-    public int Id { get; set; }
     public string StableId { get; set; }
 
     public Chromosome? ChromosomeId { get; set; }

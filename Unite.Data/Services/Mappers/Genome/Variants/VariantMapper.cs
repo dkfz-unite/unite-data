@@ -10,21 +10,12 @@ namespace Unite.Data.Services.Mappers.Genome.Variants;
 /// Variant mapper
 /// </summary>
 /// <typeparam name="TVariant">Variant type</typeparam>
-internal abstract class VariantMapper<TVariant> : IEntityTypeConfiguration<TVariant>
+internal abstract class VariantMapper<TVariant> : Base.EntityMapper<TVariant, long>
     where TVariant : Variant
 {
-    public abstract string TableName { get; }
-
-
-    public virtual void Configure(EntityTypeBuilder<TVariant> entity)
+    public override void Configure(EntityTypeBuilder<TVariant> entity)
     {
         entity.ToTable(TableName, DomainDbSchemaNames.Genome);
-
-        entity.HasKey(variant => variant.Id);
-
-        entity.Property(variant => variant.Id)
-              .IsRequired()
-              .ValueGeneratedOnAdd();
 
         entity.Property(variant => variant.ChromosomeId)
               .IsRequired()

@@ -2,7 +2,6 @@
 
 public record DrugScreening
 {
-    public int Id { get; set; }
     public int SpecimenId { get; set; }
     public int DrugId { get; set; }
 

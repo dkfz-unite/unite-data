@@ -11,7 +11,7 @@ namespace Unite.Data.Services.Mappers.Genome.Variants.SV;
 /// </summary>
 internal class VariantMapper : VariantMapper<Variant>
 {
-    public override string TableName => "SVs";
+    protected override string TableName => "SVs";
 
 
     public override void Configure(EntityTypeBuilder<Variant> entity)

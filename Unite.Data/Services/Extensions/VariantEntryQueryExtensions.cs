@@ -110,7 +110,7 @@ public static class VariantEntryQueryExtensions
     /// <param name="start">Range start.</param>
     /// <param name="end">Range end.</param>
     /// <returns>Query with SSMs filtered by range.</returns>
-    public static IQueryable<SSM.VariantEntry> FilterByRange(this  IQueryable<SSM.VariantEntry> query, Chromosome chromosomeId, int start, int end)
+    public static IQueryable<SSM.VariantEntry> FilterByRange(this IQueryable<SSM.VariantEntry> query, Chromosome chromosomeId, int start, int end)
     {
         return query
             .Where(entry => entry.Entity.ChromosomeId == chromosomeId)

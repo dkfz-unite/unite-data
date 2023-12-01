@@ -14,7 +14,7 @@ public static class ServicesExtensions
         return services;
     }
 
-    public static IServiceCollection AddDatabaseFactory(IServiceCollection services, ISqlOptions options)
+    public static IServiceCollection AddDatabaseFactory(this IServiceCollection services, ISqlOptions options)
     {
         services.AddDbContextFactory<DomainDbContext>(builder =>
         {

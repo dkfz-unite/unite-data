@@ -7,9 +7,12 @@
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
     <Authors>Valiantsin Ulasau (DKFZ)</Authors>
-    <Description>Unite domain data entites package.</Description>
+    <Description>Unite domain data context and services package.</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    <ProjectReference Include="..\Unite.Data\Unite.Data.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Unite.Essentials" Version="1.1.0" />
   </ItemGroup>
 </Project>

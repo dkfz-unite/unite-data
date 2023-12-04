@@ -1,10 +1,11 @@
-﻿using Unite.Data.Entities.Tasks.Enums;
+﻿using Microsoft.EntityFrameworkCore;
+using Unite.Data.Entities.Tasks.Enums;
 
 namespace Unite.Data.Context.Services.Tasks;
 
 public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
 {
-    protected IndexingTaskService(DomainDbContext dbContext) : base(dbContext)
+    protected IndexingTaskService(IDbContextFactory<DomainDbContext> dbContextFactory) : base(dbContextFactory)
     {
     }
 

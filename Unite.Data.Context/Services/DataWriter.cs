@@ -1,19 +1,22 @@
-﻿namespace Unite.Data.Context.Services;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Unite.Data.Context.Services;
 
 public abstract class DataWriter<TModel> : IDataWriter<TModel> where TModel : class
 {
-    protected readonly DomainDbContext _dbContext;
+    protected readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
 
 
-    public DataWriter(DomainDbContext dbContext)
+    public DataWriter(IDbContextFactory<DomainDbContext> dbContextFactory)
     {
-        _dbContext = dbContext;
+        _dbContextFactory = dbContextFactory;
     }
 
 
     public virtual void SaveData(in TModel model)
     {
-        using var transaction = _dbContext.Database.BeginTransaction();
+        using var dbContext = _dbContextFactory.CreateDbContext();
+        using var transaction = dbContext.Database.BeginTransaction();
 
         try
         {
@@ -31,7 +34,8 @@ public abstract class DataWriter<TModel> : IDataWriter<TModel> where TModel : cl
 
     public virtual void SaveData(in IEnumerable<TModel> models)
     {
-        using var transaction = _dbContext.Database.BeginTransaction();
+        using var dbContext = _dbContextFactory.CreateDbContext();
+        using var transaction = dbContext.Database.BeginTransaction();
 
         try
         {
@@ -64,18 +68,19 @@ public abstract class DataWriter<TModel, TAudit> : IDataWriter<TModel, TAudit>
     where TModel : class
     where TAudit : class, new()
 {
-    protected readonly DomainDbContext _dbContext;
+    protected readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
 
 
-    public DataWriter(DomainDbContext dbContext)
+    public DataWriter(IDbContextFactory<DomainDbContext> dbContextFactory)
     {
-        _dbContext = dbContext;
+        _dbContextFactory = dbContextFactory;
     }
 
 
     public virtual void SaveData(in TModel model, out TAudit audit)
     {
-        using var transaction = _dbContext.Database.BeginTransaction();
+        using var dbContext = _dbContextFactory.CreateDbContext();
+        using var transaction = dbContext.Database.BeginTransaction();
 
         try
         {
@@ -97,7 +102,8 @@ public abstract class DataWriter<TModel, TAudit> : IDataWriter<TModel, TAudit>
 
     public virtual void SaveData(in IEnumerable<TModel> models, out TAudit audit)
     {
-        using var transaction = _dbContext.Database.BeginTransaction();
+        using var dbContext = _dbContextFactory.CreateDbContext();
+        using var transaction = dbContext.Database.BeginTransaction();
 
         try
         {

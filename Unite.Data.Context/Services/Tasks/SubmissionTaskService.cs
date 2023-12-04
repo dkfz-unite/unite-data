@@ -1,4 +1,5 @@
-﻿using Unite.Data.Entities.Tasks.Enums;
+﻿using Microsoft.EntityFrameworkCore;
+using Unite.Data.Entities.Tasks.Enums;
 
 namespace Unite.Data.Context.Services.Tasks;
 
@@ -7,7 +8,7 @@ public class SubmissionTaskService : TaskService
     protected override int BucketSize => 1;
 
 
-    public SubmissionTaskService(DomainDbContext dbContext) : base(dbContext)
+    public SubmissionTaskService(IDbContextFactory<DomainDbContext> dbContextFactory) : base(dbContextFactory)
     {
     }
 

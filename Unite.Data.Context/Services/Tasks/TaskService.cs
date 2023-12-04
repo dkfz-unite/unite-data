@@ -1,19 +1,20 @@
 ﻿using System.Linq.Expressions;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities.Tasks.Enums;
 
 namespace Unite.Data.Context.Services.Tasks;
 
 public abstract class TaskService
 {
-    protected readonly DomainDbContext _dbContext;
+    protected readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
 
     protected abstract int BucketSize { get; }
 
 
-    protected TaskService(DomainDbContext dbContext)
+    protected TaskService(IDbContextFactory<DomainDbContext> dbContextFactory)
     {
-        _dbContext = dbContext;
+        _dbContextFactory = dbContextFactory;
     }
 
 
@@ -31,7 +32,9 @@ public abstract class TaskService
         TData data = null)
         where TData : class
     {
-        var exists = _dbContext.Set<Entities.Tasks.Task>().Any(task => task.IndexingTypeId == type && task.Target == key.ToString());
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var exists = dbContext.Set<Entities.Tasks.Task>().Any(task => task.IndexingTypeId == type && task.Target == key.ToString());
 
         if (!exists)
         {
@@ -43,8 +46,8 @@ public abstract class TaskService
                 Date = DateTime.UtcNow
             };
 
-            _dbContext.Add(task);
-            _dbContext.SaveChanges();
+            dbContext.Add(task);
+            dbContext.SaveChanges();
         }
     }
 
@@ -62,7 +65,9 @@ public abstract class TaskService
         TData data = null)
         where TData : class
     {
-        var exists = _dbContext.Set<Entities.Tasks.Task>().Any(task => task.AnnotationTypeId == type && task.Target == key.ToString());
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var exists = dbContext.Set<Entities.Tasks.Task>().Any(task => task.AnnotationTypeId == type && task.Target == key.ToString());
 
         if (!exists)
         {
@@ -74,8 +79,8 @@ public abstract class TaskService
                 Date = DateTime.UtcNow
             };
 
-            _dbContext.Add(task);
-            _dbContext.SaveChanges();
+            dbContext.Add(task);
+            dbContext.SaveChanges();
         }
     }
 
@@ -93,7 +98,9 @@ public abstract class TaskService
         TData data = null)
         where TData : class
     {
-        var exists = _dbContext.Set<Entities.Tasks.Task>().Any(task => task.SubmissionTypeId == type && task.Target == key.ToString());
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var exists = dbContext.Set<Entities.Tasks.Task>().Any(task => task.SubmissionTypeId == type && task.Target == key.ToString());
 
         if (!exists)
         {
@@ -105,8 +112,8 @@ public abstract class TaskService
                 Date = DateTime.UtcNow
             };
 
-            _dbContext.Add(task);
-            _dbContext.SaveChanges();
+            dbContext.Add(task);
+            dbContext.SaveChanges();
         }
     }
 
@@ -120,9 +127,11 @@ public abstract class TaskService
         IndexingTaskType type,
         IEnumerable<T> keys)
     {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
         var allTargets = keys.Select(key => key.ToString()).ToArray();
 
-        var existingTargets = _dbContext.Set<Entities.Tasks.Task>()
+        var existingTargets = dbContext.Set<Entities.Tasks.Task>()
             .Where(task => task.IndexingTypeId == type && allTargets.Contains(task.Target))
             .Select(task => task.Target)
             .ToArray();
@@ -139,8 +148,8 @@ public abstract class TaskService
 
             }).ToArray();
 
-            _dbContext.AddRange(tasks);
-            _dbContext.SaveChanges();
+            dbContext.AddRange(tasks);
+            dbContext.SaveChanges();
         }
     }
 
@@ -154,9 +163,11 @@ public abstract class TaskService
         AnnotationTaskType type,
         IEnumerable<T> keys)
     {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
         var allTargets = keys.Select(key => key.ToString()).ToArray();
 
-        var existingTargets = _dbContext.Set<Entities.Tasks.Task>()
+        var existingTargets = dbContext.Set<Entities.Tasks.Task>()
             .Where(task => task.AnnotationTypeId == type && allTargets.Contains(task.Target))
             .Select(task => task.Target)
             .ToArray();
@@ -173,8 +184,8 @@ public abstract class TaskService
 
             }).ToArray();
 
-            _dbContext.AddRange(tasks);
-            _dbContext.SaveChanges();
+            dbContext.AddRange(tasks);
+            dbContext.SaveChanges();
         }
     }
 
@@ -188,9 +199,11 @@ public abstract class TaskService
         SubmissionTaskType type,
         IEnumerable<T> keys)
     {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
         var allTargets = keys.Select(key => key.ToString()).ToArray();
 
-        var existingTargets = _dbContext.Set<Entities.Tasks.Task>()
+        var existingTargets = dbContext.Set<Entities.Tasks.Task>()
             .Where(task => task.SubmissionTypeId == type && allTargets.Contains(task.Target))
             .Select(task => task.Target)
             .ToArray();
@@ -207,8 +220,8 @@ public abstract class TaskService
 
             }).ToArray();
 
-            _dbContext.AddRange(tasks);
-            _dbContext.SaveChanges();
+            dbContext.AddRange(tasks);
+            dbContext.SaveChanges();
         }
     }
 
@@ -227,13 +240,15 @@ public abstract class TaskService
         Action<TKey[]> handler)
         where T : class
     {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
         var position = 0;
 
         var entities = Array.Empty<TKey>();
 
         do
         {
-            entities = _dbContext.Set<T>()
+            entities = dbContext.Set<T>()
                 .Where(condition)
                 .Skip(position)
                 .Take(BucketSize)

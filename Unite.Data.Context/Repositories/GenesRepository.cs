@@ -11,7 +11,6 @@ using SSM = Unite.Data.Entities.Genome.Variants.SSM;
 using CNV = Unite.Data.Entities.Genome.Variants.CNV;
 using SV = Unite.Data.Entities.Genome.Variants.SV;
 
-
 namespace Unite.Data.Context.Repositories;
 
 public class GenesRepository

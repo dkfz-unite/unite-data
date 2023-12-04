@@ -1,15 +1,16 @@
-﻿using Unite.Data.Entities.Tasks.Enums;
+﻿using Microsoft.EntityFrameworkCore;
+using Unite.Data.Entities.Tasks.Enums;
 
 namespace Unite.Data.Context.Services.Tasks;
 
 public class TasksProcessingService
 {
-    private readonly DomainDbContext _dbContext;
+    private readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
 
 
-    public TasksProcessingService(DomainDbContext dbContext)
+    public TasksProcessingService(IDbContextFactory<DomainDbContext> dbContextFactory)
     {
-        _dbContext = dbContext;
+        _dbContextFactory = dbContextFactory;
     }
 
     /// <summary>
@@ -18,7 +19,9 @@ public class TasksProcessingService
     /// <returns>True, if submission tasks exist in the database, False otherwise.</returns>
     public bool HasSubmissionTasks()
     {
-        return _dbContext.Set<Entities.Tasks.Task>()
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return dbContext.Set<Entities.Tasks.Task>()
             .Any(task => task.SubmissionTypeId != null);
     }
 
@@ -28,7 +31,9 @@ public class TasksProcessingService
     /// <returns>True, if annotation tasks exist in the database, False otherwise.</returns>
     public bool HasAnnotationTasks()
     {
-        return _dbContext.Set<Entities.Tasks.Task>()
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return dbContext.Set<Entities.Tasks.Task>()
             .Any(task => task.AnnotationTypeId != null);
     }
 
@@ -38,7 +43,9 @@ public class TasksProcessingService
     /// <returns>True, if indexing tasks exist in the database, False otherwise.</returns>
     public bool HasIndexingTasks()
     {
-        return _dbContext.Set<Entities.Tasks.Task>()
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return dbContext.Set<Entities.Tasks.Task>()
             .Any(task => task.IndexingTypeId != null);
     }
 
@@ -50,9 +57,11 @@ public class TasksProcessingService
     /// <param name="handler">Processing handler.</param>
     public void Process(SubmissionTaskType type, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
         while (true)
         {
-            var tasks = _dbContext.Tasks
+            var tasks = dbContext.Tasks
                 .Where(task => task.SubmissionTypeId == type)
                 .OrderBy(task => task.Target)
                 .Take(bucketSize)
@@ -64,8 +73,8 @@ public class TasksProcessingService
 
                 if (success)
                 {
-                    _dbContext.Tasks.RemoveRange(tasks);
-                    _dbContext.SaveChanges();
+                    dbContext.Tasks.RemoveRange(tasks);
+                    dbContext.SaveChanges();
                 }
             }
             else
@@ -83,9 +92,11 @@ public class TasksProcessingService
     /// <param name="handler">Processing handler.</param>
     public void Process(AnnotationTaskType type, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
         while (true)
         {
-            var tasks = _dbContext.Tasks
+            var tasks = dbContext.Tasks
                 .Where(task => task.AnnotationTypeId == type)
                 .OrderBy(task => task.Date)
                 .ThenBy(task => task.Target)
@@ -98,8 +109,8 @@ public class TasksProcessingService
 
                 if (success)
                 {
-                    _dbContext.Tasks.RemoveRange(tasks);
-                    _dbContext.SaveChanges();
+                    dbContext.Tasks.RemoveRange(tasks);
+                    dbContext.SaveChanges();
                 }
             }
             else
@@ -117,9 +128,11 @@ public class TasksProcessingService
     /// <param name="handler">Processing handler.</param>
     public void Process(IndexingTaskType type, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
         while (true)
         {
-            var tasks = _dbContext.Tasks
+            var tasks = dbContext.Tasks
                 .Where(task => task.IndexingTypeId == type)
                 .OrderBy(task => task.Target)
                 .Take(bucketSize)
@@ -131,8 +144,8 @@ public class TasksProcessingService
 
                 if (success)
                 {
-                    _dbContext.Tasks.RemoveRange(tasks);
-                    _dbContext.SaveChanges();
+                    dbContext.Tasks.RemoveRange(tasks);
+                    dbContext.SaveChanges();
                 }
             }
             else

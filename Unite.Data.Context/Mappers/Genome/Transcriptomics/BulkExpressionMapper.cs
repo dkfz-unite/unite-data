@@ -7,6 +7,7 @@ namespace Unite.Data.Context.Mappers.Genome.Transcriptomics;
 
 internal class BulkExpressionMapper : Base.AnalysedSampleEntryMapper<BulkExpression, AnalysedSample, Gene, int>
 {
+    protected override string SchemaName => DomainDbSchemaNames.Genome;
     protected override string TableName => "BulkGeneExpressions";
     protected override string AnalysedSampleColumnName => "AnalysedSampleId";
     protected override string EntityColumnName => "GeneId";

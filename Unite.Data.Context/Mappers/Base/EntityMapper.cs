@@ -8,11 +8,12 @@ internal abstract class EntityMapper<TEntity, T> : IEntityTypeConfiguration<TEnt
     where TEntity : Entity<T>
     where T : struct
 {
+    protected abstract string SchemaName { get; }
     protected abstract string TableName { get; }
 
     public virtual void Configure(EntityTypeBuilder<TEntity> entity)
     {
-        entity.ToTable(TableName);
+        entity.ToTable(TableName, SchemaName);
 
         entity.HasKey(entity => entity.Id);
 

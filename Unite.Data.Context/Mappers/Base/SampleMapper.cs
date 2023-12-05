@@ -9,11 +9,12 @@ internal abstract class SampleMapper<TSample, TSampleType> : IEntityTypeConfigur
     where TSample : Sample<TSampleType>
     where TSampleType : struct, Enum
 {
+    protected abstract string SchemaName { get; }
     protected abstract string TableName { get; }
 
     public virtual void Configure(EntityTypeBuilder<TSample> entity)
     {
-        entity.ToTable(TableName);
+        entity.ToTable(TableName, SchemaName);
 
         entity.HasKey(sample => sample.Id);
 

@@ -18,11 +18,12 @@ internal abstract class AnalysisMapper<TAnalysis, TAnalysisType> : IEntityTypeCo
     private static readonly Expression<Func<Parameters, string>> _serialize = value => JsonSerializer.Serialize<Parameters>(value, _options);
     private static readonly Expression<Func<string, Parameters>> _deserialize = value => JsonSerializer.Deserialize<Parameters>(value, _options);
 
+    protected abstract string SchemaName { get; }
     protected virtual string TableName => "Analyses";
-
+    
     public virtual void Configure(EntityTypeBuilder<TAnalysis> entity)
     {
-        entity.ToTable(TableName);
+        entity.ToTable(TableName, SchemaName);
 
         entity.HasKey(analysis => analysis.Id);
 

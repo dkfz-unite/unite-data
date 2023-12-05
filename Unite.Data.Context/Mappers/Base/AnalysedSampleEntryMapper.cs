@@ -10,6 +10,7 @@ internal abstract class AnalysedSampleEntryMapper<TAnalysedSampleEntry, TAnalyse
     where TEntity : Entity<T>
     where T : struct
 {
+    protected abstract string SchemaName { get; }
     protected abstract string TableName { get; }
     
     protected virtual string AnalysedSampleColumnName => "AnalysedSampleId";
@@ -17,7 +18,7 @@ internal abstract class AnalysedSampleEntryMapper<TAnalysedSampleEntry, TAnalyse
 
     public virtual void Configure(EntityTypeBuilder<TAnalysedSampleEntry> entity)
     {
-        entity.ToTable(TableName);
+        entity.ToTable(TableName, SchemaName);
 
         entity.HasKey(entity => new { entity.AnalysedSampleId, entity.EntityId });
 

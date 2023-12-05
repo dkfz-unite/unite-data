@@ -5,6 +5,7 @@ namespace Unite.Data.Context.Mappers.Genome.Analysis;
 
 internal class AnalysedSampleMapper : Base.AnalysedSampleMapper<AnalysedSample>
 {
+    protected override string SchemaName => DomainDbSchemaNames.Genome;
     protected override string TableName => "AnalysedSpecimens";
     protected override string TargetSampleColumnName => "TargetSpecimenId";
     protected override string MatchedSampleColumnName => "MatchedSpecimenId";

@@ -11,7 +11,6 @@ internal class AffectedTranscriptMapper : VariantAffectedFeatureMapper<AffectedT
 {
     public override string TableName => "SvAffectedTranscripts";
 
-
     public override void Configure(EntityTypeBuilder<AffectedTranscript> entity)
     {
         base.Configure(entity);

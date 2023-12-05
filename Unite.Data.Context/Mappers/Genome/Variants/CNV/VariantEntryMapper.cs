@@ -9,6 +9,7 @@ namespace Unite.Data.Context.Mappers.Genome.Variants.CNV;
 /// </summary>
 internal class VariantEntryMapper : Base.AnalysedSampleEntryMapper<VariantEntry, AnalysedSample, Variant, long>
 {
+    protected override string SchemaName => DomainDbSchemaNames.Genome;
     protected override string TableName => "CnvEntries";
     protected override string EntityColumnName => "VariantId";
 

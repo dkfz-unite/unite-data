@@ -13,7 +13,6 @@ internal class VariantMapper : VariantMapper<Variant>
 {
     protected override string TableName => "SVs";
 
-
     public override void Configure(EntityTypeBuilder<Variant> entity)
     {
         base.Configure(entity);

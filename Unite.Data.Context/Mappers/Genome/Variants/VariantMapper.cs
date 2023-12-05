@@ -13,6 +13,8 @@ namespace Unite.Data.Context.Mappers.Genome.Variants;
 internal abstract class VariantMapper<TVariant> : Base.EntityMapper<TVariant, long>
     where TVariant : Variant
 {
+    protected override string SchemaName => DomainDbSchemaNames.Genome;
+    
     public override void Configure(EntityTypeBuilder<TVariant> entity)
     {
         entity.ToTable(TableName, DomainDbSchemaNames.Genome);

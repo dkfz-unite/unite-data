@@ -5,6 +5,7 @@ namespace Unite.Data.Context.Mappers.Images.Analysis;
 
 internal class AnalysedSampleMapper : Base.AnalysedSampleMapper<AnalysedSample>
 {
+    protected override string SchemaName => DomainDbSchemaNames.Images;
     protected override string TableName => "AnalysedImages";
     protected override string TargetSampleColumnName => "TargetImageId";
     protected override string MatchedSampleColumnName => "MatchedImageId";

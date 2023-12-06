@@ -9,7 +9,4 @@
     <Authors>Valiantsin Ulasau (DKFZ)</Authors>
     <Description>Unite domain data entites package.</Description>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
-  </ItemGroup>
 </Project>

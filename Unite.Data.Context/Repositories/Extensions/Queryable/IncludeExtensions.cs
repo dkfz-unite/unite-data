@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities.Donors;
+using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Specimens;
 
 using Variants = Unite.Data.Entities.Genome.Variants;
@@ -36,6 +37,13 @@ public static class IncludeExtensions
         return query
             .Include(donor => donor.DonorStudies)
                 .ThenInclude(donorStudy => donorStudy.Study);
+    }
+
+
+    public static IQueryable<Image> IncludeMriImage(this IQueryable<Image> query)
+    {
+        return query
+            .Include(image => image.MriImage);
     }
 
 
@@ -83,7 +91,7 @@ public static class IncludeExtensions
     }
 
 
-    public static IQueryable<TVariant> IncludeAffectedTranscripts<TVariant>(this IQueryable<TVariant> query) where TVariant : Entities.Genome.Variants.Variant
+    public static IQueryable<TVariant> IncludeAffectedTranscripts<TVariant>(this IQueryable<TVariant> query) where TVariant : Variants.Variant
     {
         switch (query)
         {

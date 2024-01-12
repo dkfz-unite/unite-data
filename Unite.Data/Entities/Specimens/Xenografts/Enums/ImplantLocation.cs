@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Specimens.Xenografts.Enums;
 
-public enum TissueLocation
+public enum ImplantLocation
 {
     [EnumMember(Value = "Other")]
     Other = 1,

@@ -10,7 +10,7 @@ public record Xenograft
     public string MouseStrain { get; set; }
     public int? GroupSize { get; set; }
     public ImplantType? ImplantTypeId { get; set; }
-    public TissueLocation? TissueLocationId { get; set; }
+    public ImplantLocation? ImplantLocationId { get; set; }
     public int? ImplantedCellsNumber { get; set; }
     public bool? Tumorigenicity { get; set; }
     public TumorGrowthForm? TumorGrowthFormId { get; set; }

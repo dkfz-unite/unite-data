@@ -160,7 +160,7 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Specimens.Organoids.InterventionTypeMapper());
 
         builder.ApplyConfiguration(new Mappers.Specimens.Xenografts.Enums.ImplantTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Xenografts.Enums.TissueLocationMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Xenografts.Enums.ImplantLocationMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Xenografts.Enums.TumorGrowthFormMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Xenografts.XenograftMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Xenografts.InterventionMapper());

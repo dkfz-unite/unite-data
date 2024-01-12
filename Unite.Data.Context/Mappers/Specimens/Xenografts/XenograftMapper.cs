@@ -24,7 +24,7 @@ internal class XenograftMapper : IEntityTypeConfiguration<Xenograft>
         entity.Property(xenograft => xenograft.ImplantTypeId)
               .HasConversion<int>();
 
-        entity.Property(xenograft => xenograft.TissueLocationId)
+        entity.Property(xenograft => xenograft.ImplantLocationId)
               .HasConversion<int>();
 
         entity.Property(xenograft => xenograft.ImplantTypeId)
@@ -38,9 +38,9 @@ internal class XenograftMapper : IEntityTypeConfiguration<Xenograft>
               .WithMany()
               .HasForeignKey(xenograft => xenograft.ImplantTypeId);
 
-        entity.HasOne<EnumEntity<TissueLocation>>()
+        entity.HasOne<EnumEntity<ImplantLocation>>()
               .WithMany()
-              .HasForeignKey(xenograft => xenograft.TissueLocationId);
+              .HasForeignKey(xenograft => xenograft.ImplantLocationId);
 
         entity.HasOne<EnumEntity<TumorGrowthForm>>()
               .WithMany()

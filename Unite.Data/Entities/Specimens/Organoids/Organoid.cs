@@ -11,5 +11,4 @@ public record Organoid
 
 
     public virtual Specimen Specimen { get; set; }
-    public virtual ICollection<Intervention> Interventions { get; set; }
 }

@@ -31,6 +31,8 @@ public class DomainDbContext : DbContext
 
     public DbSet<Entities.Specimens.Specimen> Specimens { get; set; }
     public DbSet<Entities.Specimens.MolecularData> MolecularData { get; set; }
+    public DbSet<Entities.Specimens.InterventionType> InterventionTypes { get; set; }
+    public DbSet<Entities.Specimens.Intervention> Interventions { get; set; }
     public DbSet<Entities.Specimens.Drug> Drugs { get; set; }
     public DbSet<Entities.Specimens.DrugScreening> DrugScreenings { get; set; }
     public DbSet<Entities.Specimens.Tissues.Tissue> Tissues { get; set; }
@@ -38,11 +40,7 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Specimens.Cells.CellLine> CellLines { get; set; }
     public DbSet<Entities.Specimens.Cells.CellLineInfo> CellLineInfo { get; set; }
     public DbSet<Entities.Specimens.Organoids.Organoid> Organoids { get; set; }
-    public DbSet<Entities.Specimens.Organoids.Intervention> OrganoidInterventions { get; set; }
-    public DbSet<Entities.Specimens.Organoids.InterventionType> OrganoidInterventionTypes { get; set; }
     public DbSet<Entities.Specimens.Xenografts.Xenograft> Xenografts { get; set; }
-    public DbSet<Entities.Specimens.Xenografts.Intervention> XenograftInterventions { get; set; }
-    public DbSet<Entities.Specimens.Xenografts.InterventionType> XenograftInterventionTypes { get; set; }
 
     public DbSet<Entities.Genome.Gene> Genes { get; set; }
     public DbSet<Entities.Genome.Transcript> Transcripts { get; set; }
@@ -141,6 +139,8 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Specimens.Enums.MethylationSubtypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.SpecimenMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.MolecularDataMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.InterventionTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.InterventionMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.DrugMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.DrugScreeningMapper());
 
@@ -156,15 +156,11 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Specimens.Cells.CellLineInfoMapper());
 
         builder.ApplyConfiguration(new Mappers.Specimens.Organoids.OrganoidMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Organoids.InterventionMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Organoids.InterventionTypeMapper());
 
         builder.ApplyConfiguration(new Mappers.Specimens.Xenografts.Enums.ImplantTypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Xenografts.Enums.ImplantLocationMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Xenografts.Enums.TumorGrowthFormMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Xenografts.XenograftMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Xenografts.InterventionMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Xenografts.InterventionTypeMapper());
     }
 
     private static void ConfigureGenome(ModelBuilder builder)

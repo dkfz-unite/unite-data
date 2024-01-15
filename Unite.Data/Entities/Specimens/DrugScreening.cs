@@ -5,7 +5,6 @@ public record DrugScreening
     public int SpecimenId { get; set; }
     public int DrugId { get; set; }
 
-
     /// <summary>
     /// Drug sensitivity score
     /// </summary>

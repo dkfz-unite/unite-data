@@ -20,6 +20,7 @@ public record Specimen : Base.Sample<SpecimenType>
     public virtual Xenograft Xenograft { get; set; }
     public virtual MolecularData MolecularData { get; set; }
 
+    public virtual ICollection<Intervention> Interventions { get; set; }
     public virtual ICollection<DrugScreening> DrugScreenings { get; set; }
     public virtual ICollection<AnalysedSample> AnalysedSamples { get; set; }
     public virtual ICollection<AnalysedSample> MatchedSamples { get; set; }

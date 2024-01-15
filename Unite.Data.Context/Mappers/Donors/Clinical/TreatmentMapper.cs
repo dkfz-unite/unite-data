@@ -10,11 +10,7 @@ internal class TreatmentMapper : IEntityTypeConfiguration<Treatment>
     {
         entity.ToTable("Treatments", DomainDbSchemaNames.Donors);
 
-        entity.HasKey(treatment => treatment.Id);
-
-        entity.Property(treatment => treatment.Id)
-              .IsRequired()
-              .ValueGeneratedOnAdd();
+        entity.HasKey(treatment => new { treatment.DonorId, treatment.TherapyId });
 
         entity.Property(treatment => treatment.DonorId)
               .IsRequired()

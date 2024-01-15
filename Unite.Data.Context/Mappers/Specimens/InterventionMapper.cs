@@ -1,20 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Entities.Specimens.Xenografts;
+using Unite.Data.Entities.Specimens;
 
-namespace Unite.Data.Context.Mappers.Specimens.Xenografts;
+namespace Unite.Data.Context.Mappers.Specimens;
 
 internal class InterventionMapper : IEntityTypeConfiguration<Intervention>
 {
     public void Configure(EntityTypeBuilder<Intervention> entity)
     {
-        entity.ToTable("XenograftInterventions", DomainDbSchemaNames.Specimens);
+        entity.ToTable("Interventions", DomainDbSchemaNames.Specimens);
 
-        entity.HasKey(intervention => intervention.Id);
-
-        entity.Property(intervention => intervention.Id)
-              .IsRequired()
-              .ValueGeneratedOnAdd();
+        entity.HasKey(intervention => new { intervention.SpecimenId, intervention.TypeId });
 
         entity.Property(intervention => intervention.SpecimenId)
               .IsRequired()
@@ -25,8 +21,8 @@ internal class InterventionMapper : IEntityTypeConfiguration<Intervention>
               .ValueGeneratedNever();
 
 
-        entity.HasOne(intervention => intervention.Xenograft)
-              .WithMany(xenograft => xenograft.Interventions)
+        entity.HasOne(intervention => intervention.Specimen)
+              .WithMany(specimen => specimen.Interventions)
               .HasForeignKey(intervention => intervention.SpecimenId);
 
         entity.HasOne(intervention => intervention.Type)

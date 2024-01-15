@@ -64,17 +64,13 @@ public static class IncludeExtensions
     public static IQueryable<Specimen> IncludeOrganoid(this IQueryable<Specimen> query)
     {
         return query
-            .Include(specimen => specimen.Organoid)
-                .ThenInclude(organoid => organoid.Interventions)
-                    .ThenInclude(intervention => intervention.Type);
+            .Include(specimen => specimen.Organoid);
     }
 
     public static IQueryable<Specimen> IncludeXenograft(this IQueryable<Specimen> query)
     {
         return query
-            .Include(specimen => specimen.Xenograft)
-                 .ThenInclude(xenograft => xenograft.Interventions)
-                    .ThenInclude(intervention => intervention.Type);
+            .Include(specimen => specimen.Xenograft);
     }
 
     public static IQueryable<Specimen> IncludeMolecularData(this IQueryable<Specimen> query)
@@ -88,6 +84,13 @@ public static class IncludeExtensions
         return query
             .Include(specimen => specimen.DrugScreenings)
                 .ThenInclude(screening => screening.Drug);
+    }
+
+    public static IQueryable<Specimen> IncludeInterventions(this IQueryable<Specimen> query)
+    {
+        return query
+            .Include(specimen => specimen.Interventions)
+                .ThenInclude(intervention => intervention.Type);
     }
 
 

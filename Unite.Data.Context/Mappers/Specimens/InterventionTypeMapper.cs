@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Entities.Specimens.Organoids;
+using Unite.Data.Entities.Specimens;
 
-namespace Unite.Data.Context.Mappers.Specimens.Organoids;
+namespace Unite.Data.Context.Mappers.Specimens;
 
 internal class InterventionTypeMapper : IEntityTypeConfiguration<InterventionType>
 {
     public void Configure(EntityTypeBuilder<InterventionType> entity)
     {
-        entity.ToTable("OrganoidInterventionTypes", DomainDbSchemaNames.Specimens);
+        entity.ToTable("InterventionTypes", DomainDbSchemaNames.Specimens);
 
         entity.HasKey(interventionType => interventionType.Id);
 

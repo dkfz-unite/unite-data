@@ -47,18 +47,18 @@ public static class IncludeExtensions
     }
 
 
-    public static IQueryable<Specimen> IncludeTissue(this IQueryable<Specimen> query)
+    public static IQueryable<Specimen> IncludeMaterial(this IQueryable<Specimen> query)
     {
         return query
-            .Include(specimen => specimen.Tissue)
-                .ThenInclude(tissue => tissue.Source);
+            .Include(specimen => specimen.Material)
+                .ThenInclude(material => material.Source);
     }
 
-    public static IQueryable<Specimen> IncludeCellLine(this IQueryable<Specimen> query)
+    public static IQueryable<Specimen> IncludeLine(this IQueryable<Specimen> query)
     {
         return query
-            .Include(specimen => specimen.CellLine)
-                .ThenInclude(cellLine => cellLine.Info);
+            .Include(specimen => specimen.Line)
+                .ThenInclude(line => line.Info);
     }
 
     public static IQueryable<Specimen> IncludeOrganoid(this IQueryable<Specimen> query)
@@ -79,7 +79,7 @@ public static class IncludeExtensions
             .Include(specimen => specimen.MolecularData);
     }
 
-    public static IQueryable<Specimen> IncludeDrugScreeningData(this IQueryable<Specimen> query)
+    public static IQueryable<Specimen> IncludeDrugScreenings(this IQueryable<Specimen> query)
     {
         return query
             .Include(specimen => specimen.DrugScreenings)

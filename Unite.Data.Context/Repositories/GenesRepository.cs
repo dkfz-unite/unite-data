@@ -37,7 +37,7 @@ public class GenesRepository
 
     public async Task<int[]> GetRelatedImages(IEnumerable<int> ids, ImageType? typeId = null)
     {
-        var specimens = await GetRelatedSpecimens(ids, SpecimenType.Tissue);
+        var specimens = await GetRelatedSpecimens(ids, SpecimenType.Material);
 
         return await _specimensRepository.GetRelatedImages(specimens, typeId);
     }

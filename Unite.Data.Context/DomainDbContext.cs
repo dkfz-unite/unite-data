@@ -35,10 +35,10 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Specimens.Intervention> Interventions { get; set; }
     public DbSet<Entities.Specimens.Drug> Drugs { get; set; }
     public DbSet<Entities.Specimens.DrugScreening> DrugScreenings { get; set; }
-    public DbSet<Entities.Specimens.Tissues.Tissue> Tissues { get; set; }
-    public DbSet<Entities.Specimens.Tissues.TissueSource> TissueSources { get; set; }
-    public DbSet<Entities.Specimens.Cells.CellLine> CellLines { get; set; }
-    public DbSet<Entities.Specimens.Cells.CellLineInfo> CellLineInfo { get; set; }
+    public DbSet<Entities.Specimens.Materials.Material> Materials { get; set; }
+    public DbSet<Entities.Specimens.Materials.MaterialSource> MaterialSources { get; set; }
+    public DbSet<Entities.Specimens.Lines.Line> Lines { get; set; }
+    public DbSet<Entities.Specimens.Lines.LineInfo> LineInfos { get; set; }
     public DbSet<Entities.Specimens.Organoids.Organoid> Organoids { get; set; }
     public DbSet<Entities.Specimens.Xenografts.Xenograft> Xenografts { get; set; }
 
@@ -144,16 +144,16 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Specimens.DrugMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.DrugScreeningMapper());
 
-        builder.ApplyConfiguration(new Mappers.Specimens.Tissues.Enums.TissueTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Tissues.Enums.TumorTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Tissues.TissueSourceMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Tissues.TissueMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Materials.Enums.MaterialTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Materials.Enums.TumorTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Materials.MaterialSourceMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Materials.MaterialMapper());
 
-        builder.ApplyConfiguration(new Mappers.Specimens.Cells.Enums.CellLineTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Cells.Enums.CellLineCultureTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Cells.Enums.SpeciesMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Cells.CellLineMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Cells.CellLineInfoMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Lines.Enums.CellsTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Lines.Enums.CellsCultureTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Lines.Enums.CellsSpeciesMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Lines.LineMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Lines.LineInfoMapper());
 
         builder.ApplyConfiguration(new Mappers.Specimens.Organoids.OrganoidMapper());
 

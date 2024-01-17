@@ -1,8 +1,8 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Unite.Data.Entities.Specimens.Cells.Enums;
+namespace Unite.Data.Entities.Specimens.Lines.Enums;
 
-public enum CellLineCultureType
+public enum CellsCultureType
 {
     [EnumMember(Value = "Suspension")]
     Suspension = 1,

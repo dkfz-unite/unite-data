@@ -12,8 +12,8 @@ internal class SpecimenTypeMapper : IEntityTypeConfiguration<EnumEntity<Specimen
     {
         var data = new EnumEntity<SpecimenType>[]
         {
-            SpecimenType.Tissue.ToEnumValue(),
-            SpecimenType.CellLine.ToEnumValue(),
+            SpecimenType.Material.ToEnumValue(),
+            SpecimenType.Line.ToEnumValue(),
             SpecimenType.Organoid.ToEnumValue(),
             SpecimenType.Xenograft.ToEnumValue()
         };

@@ -38,7 +38,7 @@ public class ImagesRepository
 
         return await dbContext.Set<Specimen>()
             .AsNoTracking()
-            .Include(specimen => specimen.Tissue)
+            .Include(specimen => specimen.Material)
             .Where(Predicates.IsImageRelatedSpecimen)
             .Where(specimen => donors.Contains(specimen.DonorId))
             .Select(specimen => specimen.Id)

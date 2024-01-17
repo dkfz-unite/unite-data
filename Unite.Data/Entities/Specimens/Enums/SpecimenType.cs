@@ -4,11 +4,11 @@ namespace Unite.Data.Entities.Specimens.Enums;
 
 public enum SpecimenType
 {
-    [EnumMember(Value = "Tissue")]
-    Tissue = 1,
+    [EnumMember(Value = "Material")]
+    Material = 1,
 
-    [EnumMember(Value = "CellLine")]
-    CellLine = 2,
+    [EnumMember(Value = "Line")]
+    Line = 2,
 
     [EnumMember(Value = "Organoid")]
     Organoid = 3,

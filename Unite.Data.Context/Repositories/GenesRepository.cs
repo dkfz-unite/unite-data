@@ -19,12 +19,14 @@ public class GenesRepository
 
     private readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
     private readonly SpecimensRepository _specimensRepository;
+    private readonly DonorsRepository _donorsRepository;
 
 
     public GenesRepository(IDbContextFactory<DomainDbContext> dbContextFactory)
     {
         _dbContextFactory = dbContextFactory;
         _specimensRepository = new SpecimensRepository(dbContextFactory);
+        _donorsRepository = new DonorsRepository(dbContextFactory);
     }
 
 
@@ -146,5 +148,12 @@ public class GenesRepository
             .Where(affectedFeature => ids.Contains(affectedFeature.Feature.GeneId.Value))
             .Select(affectedFeature => affectedFeature.VariantId)
             .ToArrayAsync();
+    }
+
+    public async Task<int[]> GetRelatedProjects(IEnumerable<int> ids)
+    {
+        var donors = await GetRelatedDonors(ids);
+
+        return await _donorsRepository.GetRelatedProjects(donors);
     }
 }

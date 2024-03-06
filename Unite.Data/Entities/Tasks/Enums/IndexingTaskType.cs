@@ -44,5 +44,11 @@ public enum IndexingTaskType
     /// SV
     /// </summary>
     [EnumMember(Value = "SV")]
-    SV = 7
+    SV = 7,
+
+    /// <summary>
+    /// Projects
+    /// </summary>
+    [EnumMember(Value = "Projects")]
+    Projects = 8
 }

@@ -19,11 +19,13 @@ public class VariantsRepository
     private readonly Expression<Func<CNV.VariantEntry, CNV.Variant>> _variantEntryCnv = entry => entry.Entity;
 
     private readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
+    private readonly DonorsRepository _donorsRepository;
 
 
     public VariantsRepository(IDbContextFactory<DomainDbContext> dbContextFactory)
     {
         _dbContextFactory = dbContextFactory;
+        _donorsRepository = new DonorsRepository(dbContextFactory);
     }
 
 
@@ -167,5 +169,12 @@ public class VariantsRepository
             .Where(affectedFeature => ids.Contains(affectedFeature.VariantId))
             .Select(affectedFeature => affectedFeature.FeatureId)
             .ToArrayAsync();
+    }
+
+    public async Task<int[]> GetRelatedProjects<TV>(IEnumerable<long> ids)
+    {
+        var donors = await GetRelatedDonors<TV>(ids);
+
+        return await _donorsRepository.GetRelatedProjects(donors);
     }
 }

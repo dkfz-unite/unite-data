@@ -10,12 +10,14 @@ public class ImagesRepository
 {
     private readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
     private readonly SpecimensRepository _specimensRepository;
+    private readonly DonorsRepository _donorsRepository;
 
 
     public ImagesRepository(IDbContextFactory<DomainDbContext> dbContextFactory)
     {
         _dbContextFactory = dbContextFactory;
         _specimensRepository = new SpecimensRepository(dbContextFactory);
+        _donorsRepository = new DonorsRepository(dbContextFactory);
     }
 
 
@@ -80,5 +82,12 @@ public class ImagesRepository
         var specimens = await GetRelatedSpecimens(ids);
 
         return await _specimensRepository.GetRelatedVariants<TV>(specimens);
+    }
+
+    public async Task<int[]> GetRelatedProjects(IEnumerable<int> ids)
+    {
+        var donors = await GetRelatedDonors(ids);
+
+        return await _donorsRepository.GetRelatedProjects(donors);
     }
 }

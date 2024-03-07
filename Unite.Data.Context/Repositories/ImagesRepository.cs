@@ -21,6 +21,13 @@ public class ImagesRepository
     }
 
 
+    public async Task<int[]> GetRelatedProjects(IEnumerable<int> ids)
+    {
+        var donors = await GetRelatedDonors(ids);
+
+        return await _donorsRepository.GetRelatedProjects(donors);
+    }
+
     public async Task<int[]> GetRelatedDonors(IEnumerable<int> ids)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
@@ -82,12 +89,5 @@ public class ImagesRepository
         var specimens = await GetRelatedSpecimens(ids);
 
         return await _specimensRepository.GetRelatedVariants<TV>(specimens);
-    }
-
-    public async Task<int[]> GetRelatedProjects(IEnumerable<int> ids)
-    {
-        var donors = await GetRelatedDonors(ids);
-
-        return await _donorsRepository.GetRelatedProjects(donors);
     }
 }

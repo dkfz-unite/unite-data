@@ -19,13 +19,11 @@ public class VariantsRepository
     private readonly Expression<Func<CNV.VariantEntry, CNV.Variant>> _variantEntryCnv = entry => entry.Entity;
 
     private readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
-    private readonly DonorsRepository _donorsRepository;
 
 
     public VariantsRepository(IDbContextFactory<DomainDbContext> dbContextFactory)
     {
         _dbContextFactory = dbContextFactory;
-        _donorsRepository = new DonorsRepository(dbContextFactory);
     }
 
 
@@ -33,7 +31,14 @@ public class VariantsRepository
     {
         var donors = await GetRelatedDonors<TV>(ids);
 
-        return await _donorsRepository.GetRelatedProjects(donors);
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<Entities.Donors.ProjectDonor>()
+            .AsNoTracking()
+            .Where(projectDonor => donors.Contains(projectDonor.DonorId))
+            .Select(projectDonor => projectDonor.ProjectId)
+            .Distinct()
+            .ToArrayAsync();
     }
 
     public async Task<int[]> GetRelatedDonors<TV>(IEnumerable<long> ids)

@@ -10,14 +10,12 @@ public class ImagesRepository
 {
     private readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
     private readonly SpecimensRepository _specimensRepository;
-    private readonly DonorsRepository _donorsRepository;
 
 
     public ImagesRepository(IDbContextFactory<DomainDbContext> dbContextFactory)
     {
         _dbContextFactory = dbContextFactory;
         _specimensRepository = new SpecimensRepository(dbContextFactory);
-        _donorsRepository = new DonorsRepository(dbContextFactory);
     }
 
 
@@ -25,7 +23,14 @@ public class ImagesRepository
     {
         var donors = await GetRelatedDonors(ids);
 
-        return await _donorsRepository.GetRelatedProjects(donors);
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<Entities.Donors.ProjectDonor>()
+            .AsNoTracking()
+            .Where(projectDonor => donors.Contains(projectDonor.DonorId))
+            .Select(projectDonor => projectDonor.ProjectId)
+            .Distinct()
+            .ToArrayAsync();
     }
 
     public async Task<int[]> GetRelatedDonors(IEnumerable<int> ids)

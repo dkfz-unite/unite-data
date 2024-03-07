@@ -30,6 +30,13 @@ public class GenesRepository
     }
 
 
+    public async Task<int[]> GetRelatedProjects(IEnumerable<int> ids)
+    {
+        var donors = await GetRelatedDonors(ids);
+
+        return await _donorsRepository.GetRelatedProjects(donors);
+    }
+
     public async Task<int[]> GetRelatedDonors(IEnumerable<int> ids)
     {
         var specimens = await GetRelatedSpecimens(ids);
@@ -148,12 +155,5 @@ public class GenesRepository
             .Where(affectedFeature => ids.Contains(affectedFeature.Feature.GeneId.Value))
             .Select(affectedFeature => affectedFeature.VariantId)
             .ToArrayAsync();
-    }
-
-    public async Task<int[]> GetRelatedProjects(IEnumerable<int> ids)
-    {
-        var donors = await GetRelatedDonors(ids);
-
-        return await _donorsRepository.GetRelatedProjects(donors);
     }
 }

@@ -37,8 +37,9 @@ public class SpecimensRepository
 
         return await dbContext.Set<Entities.Donors.ProjectDonor>()
             .AsNoTracking()
-            .Where(projectDonor => ids.Contains(projectDonor.DonorId))
+            .Where(projectDonor => donors.Contains(projectDonor.DonorId))
             .Select(projectDonor => projectDonor.ProjectId)
+            .Distinct()
             .ToArrayAsync();
     }
 

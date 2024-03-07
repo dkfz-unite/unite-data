@@ -157,6 +157,6 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     {
         var projectIds = LoadRelatedProjects(keys);
 
-        CreateTasks(IndexingTaskType.Projects, projectIds);
+        CreateTasks(IndexingTaskType.Project, projectIds);
     }
 }

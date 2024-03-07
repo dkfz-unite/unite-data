@@ -21,6 +21,17 @@ public class DonorsRepository
     }
 
 
+    public async Task<int[]> GetRelatedProjects(IEnumerable<int> ids)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<ProjectDonor>()
+            .AsNoTracking()
+            .Where(projectDonor => ids.Contains(projectDonor.DonorId))
+            .Select(projectDonor => projectDonor.ProjectId)
+            .ToArrayAsync();
+    }
+
     public async Task<int[]> GetRelatedImages(IEnumerable<int> ids, ImageType? typeId = null)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
@@ -58,16 +69,5 @@ public class DonorsRepository
         var specimens = await GetRelatedSpecimens(ids);
 
         return await _specimensRepository.GetRelatedVariants<TV>(specimens);
-    }
-
-    public async Task<int[]> GetRelatedProjects(IEnumerable<int> ids)
-    {
-        using var dbContext = _dbContextFactory.CreateDbContext();
-
-        return await dbContext.Set<ProjectDonor>()
-            .AsNoTracking()
-            .Where(projectDonor => ids.Contains(projectDonor.DonorId))
-            .Select(projectDonor => projectDonor.ProjectId)
-            .ToArrayAsync();
     }
 }

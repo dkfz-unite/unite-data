@@ -29,6 +29,7 @@ public class DonorsRepository
             .AsNoTracking()
             .Where(projectDonor => ids.Contains(projectDonor.DonorId))
             .Select(projectDonor => projectDonor.ProjectId)
+            .Distinct()
             .ToArrayAsync();
     }
 

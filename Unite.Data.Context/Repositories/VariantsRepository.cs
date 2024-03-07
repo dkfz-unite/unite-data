@@ -29,6 +29,13 @@ public class VariantsRepository
     }
 
 
+    public async Task<int[]> GetRelatedProjects<TV>(IEnumerable<long> ids)
+    {
+        var donors = await GetRelatedDonors<TV>(ids);
+
+        return await _donorsRepository.GetRelatedProjects(donors);
+    }
+
     public async Task<int[]> GetRelatedDonors<TV>(IEnumerable<long> ids)
     {
         var type = typeof(TV);
@@ -169,12 +176,5 @@ public class VariantsRepository
             .Where(affectedFeature => ids.Contains(affectedFeature.VariantId))
             .Select(affectedFeature => affectedFeature.FeatureId)
             .ToArrayAsync();
-    }
-
-    public async Task<int[]> GetRelatedProjects<TV>(IEnumerable<long> ids)
-    {
-        var donors = await GetRelatedDonors<TV>(ids);
-
-        return await _donorsRepository.GetRelatedProjects(donors);
     }
 }

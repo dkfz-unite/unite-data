@@ -32,7 +32,7 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     /// </summary>
     /// <param name="keys"></param>
     /// <returns></returns>
-    protected abstract IEnumerable<long> LoadRelatedProjects(IEnumerable<TKey> keys);
+    protected abstract IEnumerable<int> LoadRelatedProjects(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads donors related to entities of given tasks with given keys.

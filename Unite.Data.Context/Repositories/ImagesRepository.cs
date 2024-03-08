@@ -6,15 +6,13 @@ using Unite.Data.Entities.Specimens;
 
 namespace Unite.Data.Context.Repositories;
 
-public class ImagesRepository
+public class ImagesRepository : Repository
 {
-    private readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
     private readonly SpecimensRepository _specimensRepository;
 
 
-    public ImagesRepository(IDbContextFactory<DomainDbContext> dbContextFactory)
+    public ImagesRepository(IDbContextFactory<DomainDbContext> dbContextFactory) : base(dbContextFactory)
     {
-        _dbContextFactory = dbContextFactory;
         _specimensRepository = new SpecimensRepository(dbContextFactory);
     }
 
@@ -23,14 +21,7 @@ public class ImagesRepository
     {
         var donors = await GetRelatedDonors(ids);
 
-        using var dbContext = _dbContextFactory.CreateDbContext();
-
-        return await dbContext.Set<Entities.Donors.ProjectDonor>()
-            .AsNoTracking()
-            .Where(projectDonor => donors.Contains(projectDonor.DonorId))
-            .Select(projectDonor => projectDonor.ProjectId)
-            .Distinct()
-            .ToArrayAsync();
+        return await GetDonorRelatedProjects(donors);
     }
 
     public async Task<int[]> GetRelatedDonors(IEnumerable<int> ids)

@@ -28,6 +28,13 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
 
 
     /// <summary>
+    /// Loads projects related to entities of given tasks with given keys.
+    /// </summary>
+    /// <param name="keys"></param>
+    /// <returns></returns>
+    protected abstract IEnumerable<long> LoadRelatedProjects(IEnumerable<TKey> keys);
+
+    /// <summary>
     /// Loads donors related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
@@ -76,13 +83,17 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     /// <returns>Collection of dependint SVs identifiers.</returns>
     protected abstract IEnumerable<long> LoadRelatedSvs(IEnumerable<TKey> keys);
 
+
     /// <summary>
-    /// Loads projects related to entities of given tasks with given keys.
+    /// Creates projects indexing tasks for all projects depeding on entities of given type with given keys.
     /// </summary>
     /// <param name="keys"></param>
-    /// <returns></returns>
-    protected abstract IEnumerable<long> LoadRelatedProjects(IEnumerable<TKey> keys);
+    protected virtual void CreateProjectIndexingTasks(IEnumerable<TKey> keys)
+    {
+        var projectIds = LoadRelatedProjects(keys);
 
+        CreateTasks(IndexingTaskType.Project, projectIds);
+    }
 
     /// <summary>
     /// Creates donors indexing tasks for all donors depeding on entities of given type with given keys.
@@ -147,16 +158,5 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
         var structuralVariantIds = LoadRelatedSvs(keys);
 
         CreateTasks(IndexingTaskType.SV, structuralVariantIds);
-    }
-
-    /// <summary>
-    /// Creates projects indexing tasks for all projects depeding on entities of given type with given keys.
-    /// </summary>
-    /// <param name="keys"></param>
-    protected virtual void CreateProjectIndexingTasks(IEnumerable<TKey> keys)
-    {
-        var projectIds = LoadRelatedProjects(keys);
-
-        CreateTasks(IndexingTaskType.Project, projectIds);
     }
 }

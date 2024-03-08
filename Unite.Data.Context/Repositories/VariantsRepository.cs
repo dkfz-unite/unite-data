@@ -13,17 +13,14 @@ using SV = Unite.Data.Entities.Genome.Variants.SV;
 
 namespace Unite.Data.Context.Repositories;
 
-public class VariantsRepository
+public class VariantsRepository : Repository
 {
     private readonly Expression<Func<CNV.AffectedTranscript, CNV.Variant>> _affectedTranscriptCnv = affectedFeature => affectedFeature.Variant;
     private readonly Expression<Func<CNV.VariantEntry, CNV.Variant>> _variantEntryCnv = entry => entry.Entity;
 
-    private readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
 
-
-    public VariantsRepository(IDbContextFactory<DomainDbContext> dbContextFactory)
+    public VariantsRepository(IDbContextFactory<DomainDbContext> dbContextFactory) : base(dbContextFactory)
     {
-        _dbContextFactory = dbContextFactory;
     }
 
 
@@ -31,14 +28,7 @@ public class VariantsRepository
     {
         var donors = await GetRelatedDonors<TV>(ids);
 
-        using var dbContext = _dbContextFactory.CreateDbContext();
-
-        return await dbContext.Set<Entities.Donors.ProjectDonor>()
-            .AsNoTracking()
-            .Where(projectDonor => donors.Contains(projectDonor.DonorId))
-            .Select(projectDonor => projectDonor.ProjectId)
-            .Distinct()
-            .ToArrayAsync();
+        return await GetDonorRelatedProjects(donors);
     }
 
     public async Task<int[]> GetRelatedDonors<TV>(IEnumerable<long> ids)

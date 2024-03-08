@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Unite.Data.Entities.Donors;
 using Unite.Data.Entities.Genome.Variants;
 using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Images.Enums;
@@ -7,18 +8,21 @@ using Unite.Data.Entities.Specimens.Enums;
 
 namespace Unite.Data.Context.Repositories;
 
-public class DonorsRepository
+public class DonorsRepository : Repository
 {
-    private readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
     private readonly SpecimensRepository _specimensRepository;
     
 
-    public DonorsRepository(IDbContextFactory<DomainDbContext> dbContextFactory)
+    public DonorsRepository(IDbContextFactory<DomainDbContext> dbContextFactory) : base(dbContextFactory)
     {
-        _dbContextFactory = dbContextFactory;
         _specimensRepository = new SpecimensRepository(dbContextFactory);
     }
 
+
+    public async Task<int[]> GetRelatedProjects(IEnumerable<int> ids)
+    {
+        return await GetDonorRelatedProjects(ids);
+    }
 
     public async Task<int[]> GetRelatedImages(IEnumerable<int> ids, ImageType? typeId = null)
     {

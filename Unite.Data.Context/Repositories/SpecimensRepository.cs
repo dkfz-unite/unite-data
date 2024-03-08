@@ -14,20 +14,24 @@ using SV = Unite.Data.Entities.Genome.Variants.SV;
 
 namespace Unite.Data.Context.Repositories;
 
-public class SpecimensRepository
+public class SpecimensRepository : Repository
 {
     private readonly Expression<Func<CNV.VariantEntry, CNV.Variant>> _variantEntryCnv = entry => entry.Entity;
-
-    private readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
     private readonly VariantsRepository _variantsRepository;
 
 
-    public SpecimensRepository(IDbContextFactory<DomainDbContext> dbContextFactory)
+    public SpecimensRepository(IDbContextFactory<DomainDbContext> dbContextFactory) : base(dbContextFactory)
     {
-        _dbContextFactory = dbContextFactory;
         _variantsRepository = new VariantsRepository(dbContextFactory);
     }
 
+
+    public async Task<int[]> GetRelatedProjects(IEnumerable<int> ids)
+    {
+        var donors = await GetRelatedDonors(ids);
+
+        return await GetDonorRelatedProjects(donors);
+    }
 
     public async Task<int[]> GetRelatedDonors(IEnumerable<int> ids)
     {

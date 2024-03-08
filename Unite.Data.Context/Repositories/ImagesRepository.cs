@@ -6,18 +6,23 @@ using Unite.Data.Entities.Specimens;
 
 namespace Unite.Data.Context.Repositories;
 
-public class ImagesRepository
+public class ImagesRepository : Repository
 {
-    private readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
     private readonly SpecimensRepository _specimensRepository;
 
 
-    public ImagesRepository(IDbContextFactory<DomainDbContext> dbContextFactory)
+    public ImagesRepository(IDbContextFactory<DomainDbContext> dbContextFactory) : base(dbContextFactory)
     {
-        _dbContextFactory = dbContextFactory;
         _specimensRepository = new SpecimensRepository(dbContextFactory);
     }
 
+
+    public async Task<int[]> GetRelatedProjects(IEnumerable<int> ids)
+    {
+        var donors = await GetRelatedDonors(ids);
+
+        return await GetDonorRelatedProjects(donors);
+    }
 
     public async Task<int[]> GetRelatedDonors(IEnumerable<int> ids)
     {

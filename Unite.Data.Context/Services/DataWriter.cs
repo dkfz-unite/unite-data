@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Context.Services;
 
-public abstract class DataWriter<TModel> : IDataWriter<TModel> where TModel : class
+public abstract class DataWriter<TModel> : IDataWriter<TModel>
 {
     protected readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
 
@@ -13,10 +13,14 @@ public abstract class DataWriter<TModel> : IDataWriter<TModel> where TModel : cl
     }
 
 
+    public abstract void Initialize(DomainDbContext dbContext);
+
     public virtual void SaveData(in TModel model)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
         using var transaction = dbContext.Database.BeginTransaction();
+
+        Initialize(dbContext);
 
         try
         {
@@ -36,6 +40,8 @@ public abstract class DataWriter<TModel> : IDataWriter<TModel> where TModel : cl
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
         using var transaction = dbContext.Database.BeginTransaction();
+
+        Initialize(dbContext);
 
         try
         {
@@ -65,7 +71,6 @@ public abstract class DataWriter<TModel> : IDataWriter<TModel> where TModel : cl
 
 
 public abstract class DataWriter<TModel, TAudit> : IDataWriter<TModel, TAudit>
-    where TModel : class
     where TAudit : class, new()
 {
     protected readonly IDbContextFactory<DomainDbContext> _dbContextFactory;
@@ -77,10 +82,14 @@ public abstract class DataWriter<TModel, TAudit> : IDataWriter<TModel, TAudit>
     }
 
 
+    public abstract void Initialize(DomainDbContext dbContext);
+
     public virtual void SaveData(in TModel model, out TAudit audit)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
         using var transaction = dbContext.Database.BeginTransaction();
+
+        Initialize(dbContext);
 
         try
         {
@@ -104,6 +113,8 @@ public abstract class DataWriter<TModel, TAudit> : IDataWriter<TModel, TAudit>
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
         using var transaction = dbContext.Database.BeginTransaction();
+
+        Initialize(dbContext);
 
         try
         {

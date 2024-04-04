@@ -12,9 +12,7 @@ public abstract class DataWriter<TModel> : IDataWriter<TModel>
         _dbContextFactory = dbContextFactory;
     }
 
-
-    public abstract void Initialize(DomainDbContext dbContext);
-
+    
     public virtual void SaveData(in TModel model)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
@@ -58,6 +56,8 @@ public abstract class DataWriter<TModel> : IDataWriter<TModel>
     }
 
 
+    protected abstract void Initialize(DomainDbContext dbContext);
+
     protected abstract void ProcessModel(TModel model);
 
     protected virtual void ProcessModels(IEnumerable<TModel> models)
@@ -81,8 +81,6 @@ public abstract class DataWriter<TModel, TAudit> : IDataWriter<TModel, TAudit>
         _dbContextFactory = dbContextFactory;
     }
 
-
-    public abstract void Initialize(DomainDbContext dbContext);
 
     public virtual void SaveData(in TModel model, out TAudit audit)
     {
@@ -134,6 +132,8 @@ public abstract class DataWriter<TModel, TAudit> : IDataWriter<TModel, TAudit>
         }
     }
 
+
+    protected abstract void Initialize(DomainDbContext dbContext);
 
     protected abstract void ProcessModel(TModel model, ref TAudit audit);
 

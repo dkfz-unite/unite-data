@@ -53,7 +53,7 @@ public class TasksProcessingService
     }
 
     /// <summary>
-    /// Process submission tasks in batches running handler for each batch.
+    /// Process submission tasks in batches running handler for each batch if worker is active.
     /// </summary>
     /// <param name="type">Submission task type.</param>
     /// <param name="bucketSize">Bucket size.</param>
@@ -61,6 +61,11 @@ public class TasksProcessingService
     public void Process(SubmissionTaskType type, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
+
+        if (!IsActive(WorkerType.Submission))
+        {
+            return;
+        }
 
         while (true)
         {
@@ -73,10 +78,11 @@ public class TasksProcessingService
             if (tasks != null && tasks.Any())
             {
                 var success = handler.Invoke(tasks);
+                var active = IsActive(WorkerType.Submission);
 
-                if (success)
+                if (success && active)
                 {
-                    dbContext.Tasks.RemoveRange(tasks);
+                    dbContext.RemoveRange(tasks);
                     dbContext.SaveChanges();
                 }
             }
@@ -88,7 +94,7 @@ public class TasksProcessingService
     }
 
     /// <summary>
-    /// Process annotation tasks in batches running handler for each batch.
+    /// Process annotation tasks in batches running handler for each batch if worker is active.
     /// </summary>
     /// <param name="type">Annotation task type.</param>
     /// <param name="bucketSize">Bucket size.</param>
@@ -96,6 +102,11 @@ public class TasksProcessingService
     public void Process(AnnotationTaskType type, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
+
+        if (!IsActive(WorkerType.Submission))
+        {
+            return;
+        }
 
         while (true)
         {
@@ -109,10 +120,11 @@ public class TasksProcessingService
             if (tasks != null && tasks.Any())
             {
                 var success = handler.Invoke(tasks);
+                var active = IsActive(WorkerType.Annotation);
 
-                if (success)
+                if (success && active)
                 {
-                    dbContext.Tasks.RemoveRange(tasks);
+                    dbContext.RemoveRange(tasks);
                     dbContext.SaveChanges();
                 }
             }
@@ -124,7 +136,7 @@ public class TasksProcessingService
     }
 
     /// <summary>
-    /// Process indexing tasks in batches running handler for each batch.
+    /// Process indexing tasks in batches running handler for each batch if worker is active.
     /// </summary>
     /// <param name="type">Indexing task type.</param>
     /// <param name="bucketSize">Bucket size.</param>
@@ -132,6 +144,11 @@ public class TasksProcessingService
     public void Process(IndexingTaskType type, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
+
+        if (!IsActive(WorkerType.Indexing))
+        {
+            return;
+        }
 
         while (true)
         {
@@ -144,10 +161,11 @@ public class TasksProcessingService
             if (tasks != null && tasks.Any())
             {
                 var success = handler.Invoke(tasks);
+                var active = IsActive(WorkerType.Indexing);
 
-                if (success)
+                if (success && active)
                 {
-                    dbContext.Tasks.RemoveRange(tasks);
+                    dbContext.RemoveRange(tasks);
                     dbContext.SaveChanges();
                 }
             }

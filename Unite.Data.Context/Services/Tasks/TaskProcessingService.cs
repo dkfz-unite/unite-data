@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities.Tasks.Enums;
 
 namespace Unite.Data.Context.Services.Tasks;
@@ -13,40 +14,42 @@ public class TasksProcessingService
         _dbContextFactory = dbContextFactory;
     }
 
+
     /// <summary>
-    /// Verifies whether there are submission tasks in the database.
+    /// Verifies if worker of given type is active.
     /// </summary>
-    /// <returns>True, if submission tasks exist in the database, False otherwise.</returns>
-    public bool HasSubmissionTasks()
+    /// <param name="type">Worker type.</param>
+    /// <returns>True, if worker is active, False otherwise.</returns>
+    public bool IsActive(WorkerType type)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
-        return dbContext.Set<Entities.Tasks.Task>()
-            .Any(task => task.SubmissionTypeId != null);
+        return dbContext.Set<Entities.Tasks.Worker>()
+            .AsNoTracking()
+            .Where(worker => worker.TypeId == type)
+            .Where(worker => worker.Active)
+            .Any();
     }
 
     /// <summary>
-    /// Verifies whether there are annotation tasks in the database.
+    /// Verifies if there are any tasks for given worker type.
     /// </summary>
-    /// <returns>True, if annotation tasks exist in the database, False otherwise.</returns>
-    public bool HasAnnotationTasks()
+    /// <param name="type">Worker type.</param>
+    /// <returns>True, if there are tasks for given worker type, False otherwise.</returns>
+    public bool HasTasks(WorkerType type)
     {
+        Expression<Func<Entities.Tasks.Task, bool>> predicate = 
+            type == WorkerType.Submission ? task => task.SubmissionTypeId != null :
+            type == WorkerType.Annotation ? task => task.AnnotationTypeId != null :
+            type == WorkerType.Indexing ? task => task.IndexingTypeId != null :
+            task => false;
+                        
         using var dbContext = _dbContextFactory.CreateDbContext();
 
         return dbContext.Set<Entities.Tasks.Task>()
-            .Any(task => task.AnnotationTypeId != null);
-    }
-
-    /// <summary>
-    /// Verifies whether there are indexing tasks in the database.
-    /// </summary>
-    /// <returns>True, if indexing tasks exist in the database, False otherwise.</returns>
-    public bool HasIndexingTasks()
-    {
-        using var dbContext = _dbContextFactory.CreateDbContext();
-
-        return dbContext.Set<Entities.Tasks.Task>()
-            .Any(task => task.IndexingTypeId != null);
+            .AsNoTracking()
+            .Where(predicate)
+            .Any();
     }
 
     /// <summary>

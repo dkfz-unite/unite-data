@@ -10,6 +10,7 @@ public class DomainDbContext : DbContext
     public const string DatabaseName = "unite_data";
 
     public DbSet<Entities.Tasks.Task> Tasks { get; set; }
+    public DbSet<Entities.Tasks.Worker> Workers { get; set; }
 
     public DbSet<Entities.Donors.Donor> Donors { get; set; }
     public DbSet<Entities.Donors.Study> Studies { get; set; }
@@ -96,7 +97,9 @@ public class DomainDbContext : DbContext
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.IndexingTaskTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.AnalysisTaskTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.TaskStatusTypeMapper());
+        modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.WorkerTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.TaskMapper());
+        modelBuilder.ApplyConfiguration(new Mappers.Tasks.WorkerMapper());
     }
 
     private static void ConfigureDonors(ModelBuilder builder)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Unite.Data.Entities.Tasks;
 using Unite.Data.Entities.Tasks.Enums;
 
 namespace Unite.Data.Context.Services.Tasks;
@@ -7,6 +8,24 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
 {
     protected IndexingTaskService(IDbContextFactory<DomainDbContext> dbContextFactory) : base(dbContextFactory)
     {
+    }
+
+
+    /// <summary>
+    /// Modifies activation status of worker.
+    /// </summary>
+    public void ChangeStatus(bool active)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var worker = dbContext.Set<Worker>()
+            .AsNoTracking()
+            .First(worker => worker.TypeId == WorkerType.Indexing);
+
+        worker.Active = active;
+
+        dbContext.Update(worker);
+        dbContext.SaveChanges();
     }
 
     /// <summary>
@@ -145,18 +164,18 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     /// <param name="keys">Identifiers of entities.</param>
     protected virtual void CreateVariantIndexingTasks(IEnumerable<TKey> keys)
     {
-        var mutationIds = LoadRelatedSsms(keys);
+        var ssmIds = LoadRelatedSsms(keys);
 
-        CreateTasks(IndexingTaskType.SSM, mutationIds);
-
-
-        var copyNumberVariantIds = LoadRelatedCnvs(keys);
-
-        CreateTasks(IndexingTaskType.CNV, copyNumberVariantIds);
+        CreateTasks(IndexingTaskType.SSM, ssmIds);
 
 
-        var structuralVariantIds = LoadRelatedSvs(keys);
+        var cnvIds = LoadRelatedCnvs(keys);
 
-        CreateTasks(IndexingTaskType.SV, structuralVariantIds);
+        CreateTasks(IndexingTaskType.CNV, cnvIds);
+
+
+        var svIds = LoadRelatedSvs(keys);
+
+        CreateTasks(IndexingTaskType.SV, svIds);
     }
 }

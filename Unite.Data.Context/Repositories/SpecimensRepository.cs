@@ -11,6 +11,7 @@ using Unite.Essentials.Extensions;
 using SSM = Unite.Data.Entities.Genome.Variants.SSM;
 using CNV = Unite.Data.Entities.Genome.Variants.CNV;
 using SV = Unite.Data.Entities.Genome.Variants.SV;
+using Unite.Data.Entities.Specimens.Enums;
 
 namespace Unite.Data.Context.Repositories;
 
@@ -56,6 +57,13 @@ public class SpecimensRepository : Repository
             .Where(image => ids.Contains(image.DonorId))
             .Select(image => image.Id)
             .ToArrayAsync();
+    }
+
+    public async Task<int[]> GetRelatedSpecimens(IEnumerable<int> ids, SpecimenType? typeId = null)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await GetChildSpecimens(dbContext, ids, typeId);
     }
 
     public async Task<int[]> GetRelatedGenes(IEnumerable<int> ids)
@@ -137,5 +145,24 @@ public class SpecimensRepository : Repository
                 .Where(entry => ids.Contains(entry.AnalysedSample.TargetSampleId))
                 .Select(entry => entry.EntityId)
                 .ToArrayAsync();
+    }
+
+
+    private async Task<int[]> GetChildSpecimens(DomainDbContext dbContext, IEnumerable<int> ids, SpecimenType? typeId = null)
+    {
+        var specimens = await dbContext.Set<Specimen>()
+            .AsNoTracking()
+            .Where(specimen => typeId == null || specimen.TypeId == typeId)
+            .Where(specimen => specimen.ParentId != null)
+            .Where(specimen => ids.Contains(specimen.ParentId.Value))
+            .Select(specimen => specimen.Id)
+            .ToListAsync();
+
+        if (specimens.IsNotEmpty())
+        {
+            specimens.AddRange(await GetChildSpecimens(dbContext, specimens, typeId));
+        }
+
+        return specimens.ToArray();
     }
 }

@@ -15,7 +15,8 @@ internal class SubmissionTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Su
             SubmissionTaskType.SSM.ToEnumValue(),
             SubmissionTaskType.CNV.ToEnumValue(),
             SubmissionTaskType.SV.ToEnumValue(),
-            SubmissionTaskType.TEX.ToEnumValue()
+            SubmissionTaskType.BGE.ToEnumValue(),
+            SubmissionTaskType.CGE.ToEnumValue()
         };
 
         entity.BuildEnumEntity("SubmissionTaskTypes", DomainDbSchemaNames.Common, data);

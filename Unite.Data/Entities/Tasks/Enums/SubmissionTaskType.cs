@@ -23,8 +23,14 @@ public enum SubmissionTaskType
     SV = 3,
 
     /// <summary>
-    /// Transcript expression
+    /// Bulk gene expression
     /// </summary>
-    [EnumMember(Value = "TEX")]
-    TEX = 4
+    [EnumMember(Value = "BGE")]
+    BGE = 4,
+
+    /// <summary>
+    /// Single cell gene expression
+    /// </summary>
+    [EnumMember(Value = "CGE")]
+    CGE = 5
 }

@@ -15,6 +15,18 @@ public record AnalysedSample : Base.AnalysedSample<Analysis, Specimen>
     /// </summary>
     public double? Ploidy { get; set; }
 
+    /// <summary>
+    /// Number of cells in the sample (for single cell sequencing).
+    /// </summary>
+    public int? CellsNumber { get; set; }
+
+    /// <summary>
+    /// Genes model for the sample (for single cell sequencing).
+    /// </summary>
+    public string GenesModel { get; set; }
+
+
+    public virtual ICollection<AnalysedSampleResource> Resources { get; set; }
     public virtual ICollection<Variants.SSM.VariantEntry> SsmEntries { get; set; }
     public virtual ICollection<Variants.CNV.VariantEntry> CnvEntries { get; set; }
     public virtual ICollection<Variants.SV.VariantEntry> SvEntries { get; set; }

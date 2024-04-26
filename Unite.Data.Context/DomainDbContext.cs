@@ -48,6 +48,7 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Genome.Protein> Proteins { get; set; }
     public DbSet<Entities.Genome.Analysis.Analysis> Analyses { get; set; }
     public DbSet<Entities.Genome.Analysis.AnalysedSample> AnalysedSamples { get; set; }
+    public DbSet<Entities.Genome.Analysis.AnalysedSampleResource> AnalysedSampleResources { get; set; }
     public DbSet<Entities.Genome.Variants.SSM.Variant> Ssms { get; set; }
     public DbSet<Entities.Genome.Variants.SSM.VariantEntry> SsmEntries { get; set; }
     public DbSet<Entities.Genome.Variants.SSM.AffectedTranscript> SsmAffectedTranscripts { get; set; }
@@ -176,6 +177,8 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Genome.Analysis.Enums.AnalysisTypeMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Analysis.AnalysisMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Analysis.AnalysedSampleMapper());
+        
+        builder.ApplyConfiguration(new Mappers.Genome.Analysis.AnalysedSampleResourceMapper());
 
         builder.ApplyConfiguration(new Mappers.Genome.Variants.SSM.Enums.SsmTypeMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Variants.SSM.VariantMapper());

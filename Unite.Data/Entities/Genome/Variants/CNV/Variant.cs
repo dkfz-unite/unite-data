@@ -20,7 +20,7 @@ public record Variant : Variants.Variant
     /// <summary>
     /// Homozygous deletion (both C1 and C2 are 0).
     /// </summary>
-    public bool? HomoDel { get; set; }
+    public bool? Del { get; set; }
 
     /// <summary>
     /// Mean number of copies in minor allele.

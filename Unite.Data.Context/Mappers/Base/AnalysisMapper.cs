@@ -31,9 +31,6 @@ internal abstract class AnalysisMapper<TAnalysis, TAnalysisType> : IEntityTypeCo
               .IsRequired()
               .ValueGeneratedOnAdd();
 
-        entity.Property(analysis => analysis.ReferenceId)
-              .HasMaxLength(255);
-
         entity.Property(analysis => analysis.TypeId)
               .IsRequired()
               .HasConversion<int>();
@@ -45,8 +42,5 @@ internal abstract class AnalysisMapper<TAnalysis, TAnalysisType> : IEntityTypeCo
         entity.HasOne<EnumEntity<TAnalysisType>>()
               .WithMany()
               .HasForeignKey(analysis => analysis.TypeId);
-
-        
-        entity.HasIndex(analysis => analysis.ReferenceId);
     }
 }

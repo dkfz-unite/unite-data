@@ -3,7 +3,6 @@ namespace Unite.Data.Entities.Base;
 public abstract record Analysis
 {
     public int Id { get; set; }
-    public string ReferenceId { get; set; }
 
     public DateOnly? Date { get; set; }
     public int? Day { get; set; }

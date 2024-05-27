@@ -3,7 +3,7 @@ using Unite.Data.Entities.Specimens;
 using Unite.Data.Entities.Specimens.Enums;
 using Unite.Data.Entities.Specimens.Materials.Enums;
 
-using CNV = Unite.Data.Entities.Genome.Variants.CNV;
+using Cnv = Unite.Data.Entities.Genome.Analysis.Dna.Cnv;
 
 namespace Unite.Data.Context.Repositories.Constants;
 
@@ -16,9 +16,9 @@ public static class Predicates
         specimen.Material.TypeId == MaterialType.Tumor
     );
 
-    public readonly static Expression<Func<CNV.Variant, bool>> IsInfluentCnv = variant =>
+    public readonly static Expression<Func<Cnv.Variant, bool>> IsInfluentCnv = variant =>
     !(
-        variant.TypeId == CNV.Enums.CnvType.Neutral &&
+        variant.TypeId == Cnv.Enums.CnvType.Neutral &&
         variant.Loh == false
     );
 }

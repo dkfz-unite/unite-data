@@ -18,9 +18,6 @@ internal class LineMapper : IEntityTypeConfiguration<Line>
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(line => line.ReferenceId)
-              .HasMaxLength(255);
-
 
         entity.HasOne<EnumEntity<CellsSpecies>>()
               .WithMany()
@@ -39,8 +36,5 @@ internal class LineMapper : IEntityTypeConfiguration<Line>
               .WithOne(specimen => specimen.Line)
               .HasForeignKey<Line>(line => line.SpecimenId)
               .IsRequired();
-
-
-        entity.HasIndex(line => line.ReferenceId);
     }
 }

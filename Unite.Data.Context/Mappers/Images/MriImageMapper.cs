@@ -16,9 +16,6 @@ internal class MriImageMapper : IEntityTypeConfiguration<MriImage>
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(mriImage => mriImage.ReferenceId)
-              .HasMaxLength(255);
-
 
         entity.HasOne(mriImage => mriImage.Image)
               .WithOne(image => image.MriImage)

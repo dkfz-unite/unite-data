@@ -18,9 +18,6 @@ internal class XenograftMapper : IEntityTypeConfiguration<Xenograft>
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(xenograft => xenograft.ReferenceId)
-              .HasMaxLength(255);
-
         entity.Property(xenograft => xenograft.ImplantTypeId)
               .HasConversion<int>();
 
@@ -51,8 +48,5 @@ internal class XenograftMapper : IEntityTypeConfiguration<Xenograft>
               .WithOne(specimen => specimen.Xenograft)
               .HasForeignKey<Xenograft>(xenograft => xenograft.SpecimenId)
               .IsRequired();
-
-
-        entity.HasIndex(xenograft => xenograft.ReferenceId);
     }
 }

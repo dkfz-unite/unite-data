@@ -1,10 +1,9 @@
-﻿using Unite.Data.Entities.Genome.Abstractions;
+﻿using Unite.Data.Entities.Genome.Analysis.Rna;
 using Unite.Data.Entities.Genome.Enums;
-using Unite.Data.Entities.Genome.Transcriptomics;
 
 namespace Unite.Data.Entities.Genome;
 
-public record Gene : Base.Entity<int>, IStableEntry, IStrandedDnaEntity
+public record Gene : Base.Entity
 {
     public string StableId { get; set; }
 
@@ -19,5 +18,5 @@ public record Gene : Base.Entity<int>, IStableEntry, IStrandedDnaEntity
     public string Biotype { get; set; }
 
     public virtual ICollection<Transcript> Transcripts { get; set; }
-    public virtual ICollection<BulkExpression> BulkExpressions { get; set; }
+    public virtual ICollection<GeneExpression> GeneExpressions { get; set; }
 }

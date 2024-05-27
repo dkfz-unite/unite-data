@@ -1,23 +1,23 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Unite.Essentials.Extensions;
 using Unite.Data.Context.Repositories.Constants;
-using Unite.Data.Entities.Genome.Variants;
-using Unite.Data.Entities.Genome.Transcriptomics;
+using Unite.Data.Entities.Genome.Analysis.Dna;
+using Unite.Data.Entities.Genome.Analysis.Rna;
 using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Images.Enums;
 using Unite.Data.Entities.Specimens;
-using Unite.Essentials.Extensions;
-
-using SSM = Unite.Data.Entities.Genome.Variants.SSM;
-using CNV = Unite.Data.Entities.Genome.Variants.CNV;
-using SV = Unite.Data.Entities.Genome.Variants.SV;
 using Unite.Data.Entities.Specimens.Enums;
+
+using Ssm = Unite.Data.Entities.Genome.Analysis.Dna.Ssm;
+using Cnv = Unite.Data.Entities.Genome.Analysis.Dna.Cnv;
+using Sv = Unite.Data.Entities.Genome.Analysis.Dna.Sv;
 
 namespace Unite.Data.Context.Repositories;
 
 public class SpecimensRepository : Repository
 {
-    private readonly Expression<Func<CNV.VariantEntry, CNV.Variant>> _variantEntryCnv = entry => entry.Entity;
+    private readonly Expression<Func<Cnv.VariantEntry, Cnv.Variant>> _variantEntryCnv = entry => entry.Entity;
     private readonly VariantsRepository _variantsRepository;
 
 
@@ -84,9 +84,9 @@ public class SpecimensRepository : Repository
     {
         var results = await Task.WhenAll
         (
-            GetVariantRelatedGenes<SSM.Variant>(ids),
-            GetVariantRelatedGenes<CNV.Variant>(ids),
-            GetVariantRelatedGenes<SV.Variant>(ids)
+            GetVariantRelatedGenes<Ssm.Variant>(ids),
+            GetVariantRelatedGenes<Cnv.Variant>(ids),
+            GetVariantRelatedGenes<Sv.Variant>(ids)
         );
 
         return results
@@ -107,42 +107,42 @@ public class SpecimensRepository : Repository
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
-        return await dbContext.Set<BulkExpression>()
+        return await dbContext.Set<GeneExpression>()
             .AsNoTracking()
-            .Where(expression => ids.Contains(expression.AnalysedSampleId))
+            .Where(expression => ids.Contains(expression.SampleId))
             .Select(expression => expression.EntityId)
             .Distinct()
             .ToArrayAsync();
     }
 
-    public async Task<long[]> GetRelatedVariants<TV>(IEnumerable<int> ids)
+    public async Task<int[]> GetRelatedVariants<TV>(IEnumerable<int> ids)
     {
         var type = typeof(TV);
 
-        if (type == typeof(SSM.Variant))
-            return await GetRelatedVariants<SSM.VariantEntry, SSM.Variant>(ids);
-        else if (type == typeof(CNV.Variant))
-            return await GetRelatedVariants<CNV.VariantEntry, CNV.Variant>(ids);
-        else if (type == typeof(SV.Variant))
-            return await GetRelatedVariants<SV.VariantEntry, SV.Variant>(ids);
+        if (type == typeof(Ssm.Variant))
+            return await GetRelatedVariants<Ssm.VariantEntry, Ssm.Variant>(ids);
+        else if (type == typeof(Cnv.Variant))
+            return await GetRelatedVariants<Cnv.VariantEntry, Cnv.Variant>(ids);
+        else if (type == typeof(Sv.Variant))
+            return await GetRelatedVariants<Sv.VariantEntry, Sv.Variant>(ids);
         else
             return [];
     }
 
-    public async Task<long[]> GetRelatedVariants<TVE, TV>(IEnumerable<int> ids)
+    public async Task<int[]> GetRelatedVariants<TVE, TV>(IEnumerable<int> ids)
         where TVE : VariantEntry<TV>
         where TV : Variant
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
-        var predicate = typeof(TV) == typeof(CNV.Variant)
+        var predicate = typeof(TV) == typeof(Cnv.Variant)
             ? _variantEntryCnv.Join(Predicates.IsInfluentCnv) as Expression<Func<TVE, bool>> 
             : entry => true;
 
         return await dbContext.Set<TVE>()
                 .AsNoTracking()
                 .Where(predicate)
-                .Where(entry => ids.Contains(entry.AnalysedSample.TargetSampleId))
+                .Where(entry => ids.Contains(entry.Sample.SpecimenId))
                 .Select(entry => entry.EntityId)
                 .ToArrayAsync();
     }

@@ -5,7 +5,6 @@ namespace Unite.Data.Entities.Specimens.Materials;
 public record Material
 {
     public int SpecimenId { get; set; }
-    public string ReferenceId { get; set; }
 
     public int? SourceId { get; set; }
     public MaterialType? TypeId { get; set; }

@@ -1,4 +1,4 @@
-﻿using System.Runtime.Serialization;
+using System.Runtime.Serialization;
 
 namespace Unite.Data.Entities.Donors.Clinical.Enums;
 

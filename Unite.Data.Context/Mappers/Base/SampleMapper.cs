@@ -1,16 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Unite.Data.Entities.Base;
-using Unite.Data.Context.Mappers.Entities;
 
 namespace Unite.Data.Context.Mappers.Base;
 
-internal abstract class SampleMapper<TSample, TSampleType> : IEntityTypeConfiguration<TSample>
-    where TSample : Sample<TSampleType>
-    where TSampleType : struct, Enum
+internal abstract class SampleMapper<TSample> : IEntityTypeConfiguration<TSample>
+    where TSample : Sample
 {
     protected abstract string SchemaName { get; }
-    protected abstract string TableName { get; }
+    protected virtual string TableName => "Samples";
+    protected virtual string SpecimenColumnName => "SpecimenId";
+    protected virtual string AnalysisColumnName => "AnalysisId";
 
     public virtual void Configure(EntityTypeBuilder<TSample> entity)
     {
@@ -22,25 +22,14 @@ internal abstract class SampleMapper<TSample, TSampleType> : IEntityTypeConfigur
               .IsRequired()
               .ValueGeneratedOnAdd();
 
-        entity.Property(sample => sample.ReferenceId)
-              .IsRequired()
-              .HasMaxLength(255)
-              .ValueGeneratedNever();
-
-        entity.Property(sample => sample.DonorId)
+        entity.Property(sample => sample.SpecimenId)
+              .HasColumnName(SpecimenColumnName)
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(sample => sample.TypeId)
+        entity.Property(sample => sample.AnalysisId)
+              .HasColumnName(AnalysisColumnName)
               .IsRequired()
-              .HasConversion<int>();
-
-
-        entity.HasOne<EnumEntity<TSampleType>>()
-              .WithMany()
-              .HasForeignKey(sample => sample.TypeId);
-
-
-        entity.HasIndex(sample => sample.ReferenceId);
+              .ValueGeneratedNever();
     }
 }

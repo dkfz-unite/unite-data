@@ -3,7 +3,7 @@ using Unite.Data.Entities.Donors;
 using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Specimens;
 
-using Variants = Unite.Data.Entities.Genome.Variants;
+using Dna = Unite.Data.Entities.Genome.Analysis.Dna;
 
 namespace Unite.Data.Context.Extensions.Queryable;
 
@@ -79,13 +79,6 @@ public static class IncludeExtensions
             .Include(specimen => specimen.MolecularData);
     }
 
-    public static IQueryable<Specimen> IncludeDrugScreenings(this IQueryable<Specimen> query)
-    {
-        return query
-            .Include(specimen => specimen.DrugScreenings)
-                .ThenInclude(screening => screening.Drug);
-    }
-
     public static IQueryable<Specimen> IncludeInterventions(this IQueryable<Specimen> query)
     {
         return query
@@ -94,22 +87,22 @@ public static class IncludeExtensions
     }
 
 
-    public static IQueryable<TVariant> IncludeAffectedTranscripts<TVariant>(this IQueryable<TVariant> query) where TVariant : Variants.Variant
+    public static IQueryable<TVariant> IncludeAffectedTranscripts<TVariant>(this IQueryable<TVariant> query) where TVariant : Dna.Variant
     {
         switch (query)
         {
-            case IQueryable<Variants.SSM.Variant> mutations:
-                return (IQueryable<TVariant>)mutations.IncludeAffectedTranscripts();
-            case IQueryable<Variants.CNV.Variant> copyNumberVariants:
-                return (IQueryable<TVariant>)copyNumberVariants.IncludeAffectedTranscripts();
-            case IQueryable<Variants.SV.Variant> structuralVariants:
-                return (IQueryable<TVariant>)structuralVariants.IncludeAffectedTranscripts();
+            case IQueryable<Dna.Ssm.Variant> ssms:
+                return (IQueryable<TVariant>)ssms.IncludeAffectedTranscripts();
+            case IQueryable<Dna.Cnv.Variant> cnvs:
+                return (IQueryable<TVariant>)cnvs.IncludeAffectedTranscripts();
+            case IQueryable<Dna.Sv.Variant> svs:
+                return (IQueryable<TVariant>)svs.IncludeAffectedTranscripts();
             default:
                 return query;
         }
     }
 
-    public static IQueryable<Variants.SSM.Variant> IncludeAffectedTranscripts(this IQueryable<Variants.SSM.Variant> query)
+    public static IQueryable<Dna.Ssm.Variant> IncludeAffectedTranscripts(this IQueryable<Dna.Ssm.Variant> query)
     {
         return query
             .Include(variant => variant.AffectedTranscripts)
@@ -122,7 +115,7 @@ public static class IncludeExtensions
                     .ThenInclude(transcript => transcript.Protein);
     }
 
-    public static IQueryable<Variants.CNV.Variant> IncludeAffectedTranscripts(this IQueryable<Variants.CNV.Variant> query)
+    public static IQueryable<Dna.Cnv.Variant> IncludeAffectedTranscripts(this IQueryable<Dna.Cnv.Variant> query)
     {
         return query
             .Include(variant => variant.AffectedTranscripts)
@@ -135,7 +128,7 @@ public static class IncludeExtensions
                     .ThenInclude(transcript => transcript.Protein);
     }
 
-    public static IQueryable<Variants.SV.Variant> IncludeAffectedTranscripts(this IQueryable<Variants.SV.Variant> query)
+    public static IQueryable<Dna.Sv.Variant> IncludeAffectedTranscripts(this IQueryable<Dna.Sv.Variant> query)
     {
         return query
             .Include(variant => variant.AffectedTranscripts)

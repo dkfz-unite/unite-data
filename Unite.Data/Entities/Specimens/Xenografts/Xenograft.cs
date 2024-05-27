@@ -5,7 +5,6 @@ namespace Unite.Data.Entities.Specimens.Xenografts;
 public record Xenograft
 {
     public int SpecimenId { get; set; }
-    public string ReferenceId { get; set; }
 
     public string MouseStrain { get; set; }
     public int? GroupSize { get; set; }

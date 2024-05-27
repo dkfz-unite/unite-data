@@ -1,47 +1,36 @@
 using Microsoft.EntityFrameworkCore;
-using Unite.Data.Entities.Genome.Transcriptomics;
+using Unite.Data.Entities.Genome.Analysis.Rna;
 
-using SSM = Unite.Data.Entities.Genome.Variants.SSM;
-using CNV = Unite.Data.Entities.Genome.Variants.CNV;
-using SV = Unite.Data.Entities.Genome.Variants.SV;
+using Ssm = Unite.Data.Entities.Genome.Analysis.Dna.Ssm;
+using Cnv = Unite.Data.Entities.Genome.Analysis.Dna.Cnv;
+using Sv = Unite.Data.Entities.Genome.Analysis.Dna.Sv;
 
 namespace Unite.Data.Context.Extensions.Queryable;
 
 public static class FilterExtensions
 {   
-    public static IQueryable<SSM.VariantEntry> FilterBySpecimenId(this IQueryable<SSM.VariantEntry> query, params int[] specimenIds)
+    public static IQueryable<Ssm.VariantEntry> FilterBySpecimenId(this IQueryable<Ssm.VariantEntry> query, params int[] specimenIds)
     {
-        return query.Where(entry => specimenIds.Contains(entry.AnalysedSample.TargetSampleId));
+        return query.Where(entry => specimenIds.Contains(entry.Sample.SpecimenId));
     }
 
-    public static IQueryable<CNV.VariantEntry> FilterBySpecimenId(this IQueryable<CNV.VariantEntry> query, params int[] specimenIds)
+    public static IQueryable<Cnv.VariantEntry> FilterBySpecimenId(this IQueryable<Cnv.VariantEntry> query, params int[] specimenIds)
     {
-        return query.Where(entry => specimenIds.Contains(entry.AnalysedSample.TargetSampleId));
+        return query.Where(entry => specimenIds.Contains(entry.Sample.SpecimenId));
     }
 
-    public static IQueryable<SV.VariantEntry> FilterBySpecimenId(this IQueryable<SV.VariantEntry> query, params int[] specimenIds)
+    public static IQueryable<Sv.VariantEntry> FilterBySpecimenId(this IQueryable<Sv.VariantEntry> query, params int[] specimenIds)
     {
-        return query.Where(entry => specimenIds.Contains(entry.AnalysedSample.TargetSampleId));
+        return query.Where(entry => specimenIds.Contains(entry.Sample.SpecimenId));
     }
 
-    public static IQueryable<BulkExpression> FilterBySpecimenId(this IQueryable<BulkExpression> query, params int[] specimenIds)
+    public static IQueryable<GeneExpression> FilterBySpecimenId(this IQueryable<GeneExpression> query, params int[] specimenIds)
     {
-        return query.Where(entry => specimenIds.Contains(entry.AnalysedSample.TargetSampleId));
+        return query.Where(entry => specimenIds.Contains(entry.Sample.SpecimenId));
     }
 
 
-    public static IQueryable<SSM.VariantEntry> FilterByRange(this IQueryable<SSM.VariantEntry> query, int chr, int? start, int? end)
-    {
-        return query
-            .Where(entry => 
-                (int)entry.Entity.ChromosomeId == chr &&
-                ((entry.Entity.Start >= start && entry.Entity.Start <= end) ||
-                (entry.Entity.End >= start && entry.Entity.End <= end) ||
-                (entry.Entity.Start <= start && entry.Entity.End >= end))
-            );
-    }
-
-    public static IQueryable<CNV.VariantEntry> FilterByRange(this IQueryable<CNV.VariantEntry> query, int chr, int? start, int? end)
+    public static IQueryable<Ssm.VariantEntry> FilterByRange(this IQueryable<Ssm.VariantEntry> query, int chr, int? start, int? end)
     {
         return query
             .Where(entry => 
@@ -52,7 +41,18 @@ public static class FilterExtensions
             );
     }
 
-    public static IQueryable<SV.VariantEntry> FilterByRange(this IQueryable<SV.VariantEntry> query, int chr, int? start, int? end)
+    public static IQueryable<Cnv.VariantEntry> FilterByRange(this IQueryable<Cnv.VariantEntry> query, int chr, int? start, int? end)
+    {
+        return query
+            .Where(entry => 
+                (int)entry.Entity.ChromosomeId == chr &&
+                ((entry.Entity.Start >= start && entry.Entity.Start <= end) ||
+                (entry.Entity.End >= start && entry.Entity.End <= end) ||
+                (entry.Entity.Start <= start && entry.Entity.End >= end))
+            );
+    }
+
+    public static IQueryable<Sv.VariantEntry> FilterByRange(this IQueryable<Sv.VariantEntry> query, int chr, int? start, int? end)
     {
         // SV start and end positions are different from SSM and CNV
         // Modified genome is located between two breakpoints, which are represented as bands with start and end positions
@@ -62,7 +62,7 @@ public static class FilterExtensions
         // ------------| |------------| |------------
         //            S1 E1          S2 E2
         
-        var ignoreTypes = new[] { SV.Enums.SvType.ITX, SV.Enums.SvType.CTX };
+        var ignoreTypes = new[] { Sv.Enums.SvType.ITX, Sv.Enums.SvType.CTX };
 
         return query
             .Where(entry => !ignoreTypes.Contains(entry.Entity.TypeId))
@@ -75,7 +75,7 @@ public static class FilterExtensions
             );
     }
 
-    public static IQueryable<BulkExpression> FilterByRange(this IQueryable<BulkExpression> query, int chr, int? start, int? end)
+    public static IQueryable<GeneExpression> FilterByRange(this IQueryable<GeneExpression> query, int chr, int? start, int? end)
     {
         return query
             .Where(entry => 
@@ -87,7 +87,7 @@ public static class FilterExtensions
     }
 
 
-    public static IQueryable<SSM.VariantEntry> FilterByRange(this IQueryable<SSM.VariantEntry> query, int startChr, int? start, int endChr, int? end)
+    public static IQueryable<Ssm.VariantEntry> FilterByRange(this IQueryable<Ssm.VariantEntry> query, int startChr, int? start, int endChr, int? end)
     {
         return query
             .Where(entry => 
@@ -99,7 +99,7 @@ public static class FilterExtensions
             );
     }
 
-    public static IQueryable<CNV.VariantEntry> FilterByRange(this IQueryable<CNV.VariantEntry> query, int startChr, int? start, int endChr, int? end)
+    public static IQueryable<Cnv.VariantEntry> FilterByRange(this IQueryable<Cnv.VariantEntry> query, int startChr, int? start, int endChr, int? end)
     {
         return query
             .Where(entry => 
@@ -111,7 +111,7 @@ public static class FilterExtensions
             );
     }
 
-    public static IQueryable<SV.VariantEntry> FilterByRange(this IQueryable<SV.VariantEntry> query, int startChr, int? start, int endChr, int? end)
+    public static IQueryable<Sv.VariantEntry> FilterByRange(this IQueryable<Sv.VariantEntry> query, int startChr, int? start, int endChr, int? end)
     {
         // SV start and end positions are different from SSM and CNV
         // Modified genome is located between two breakpoints, which are represented as bands with start and end positions
@@ -121,7 +121,7 @@ public static class FilterExtensions
         // ------------| |------------| |------------
         //            S1 E1          S2 E2
         
-        var ignoreTypes = new[] { SV.Enums.SvType.ITX, SV.Enums.SvType.CTX };
+        var ignoreTypes = new[] { Sv.Enums.SvType.ITX, Sv.Enums.SvType.CTX };
 
         return query
             .Where(entry => !ignoreTypes.Contains(entry.Entity.TypeId))
@@ -135,7 +135,7 @@ public static class FilterExtensions
             );
     }
 
-    public static IQueryable<BulkExpression> FilterByRange(this IQueryable<BulkExpression> query, int startChr, int? start, int endChr, int? end)
+    public static IQueryable<GeneExpression> FilterByRange(this IQueryable<GeneExpression> query, int startChr, int? start, int endChr, int? end)
     {
         return query
             .Where(entry => 

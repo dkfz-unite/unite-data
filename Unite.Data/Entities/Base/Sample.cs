@@ -1,20 +1,17 @@
-using Unite.Data.Entities.Donors;
-
 namespace Unite.Data.Entities.Base;
 
 public abstract record Sample
 {
     public int Id { get; set; }
-    public string ReferenceId { get; set; }
-    public int DonorId { get; set; }
-    public DateOnly? CreationDate { get; set; }
-    public int? CreationDay { get; set; }
 
-    public Donor Donor { get; set; }
+    public int SpecimenId { get; set; }
+    public int AnalysisId { get; set; }
 }
 
-public abstract record Sample<TType> : Sample
-    where TType : struct, Enum
+public abstract record Sample<TSpecimen, TAnalysis> : Sample
+    where TSpecimen : Specimen
+    where TAnalysis : Analysis
 {
-    public TType TypeId { get; set; }
+    public virtual TSpecimen Specimen { get; set; }
+    public virtual TAnalysis Analysis { get; set; }
 }

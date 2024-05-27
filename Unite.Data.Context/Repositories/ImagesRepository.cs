@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Unite.Data.Context.Repositories.Constants;
-using Unite.Data.Entities.Genome.Variants;
+using Unite.Data.Entities.Genome.Analysis.Dna;
 using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Specimens;
 
@@ -79,7 +79,7 @@ public class ImagesRepository : Repository
         return await _specimensRepository.GetExpressionRelatedGenes(specimens);
     }
 
-    public async Task<long[]> GetRelatedVariants<TV>(IEnumerable<int> ids)
+    public async Task<int[]> GetRelatedVariants<TV>(IEnumerable<int> ids)
         where TV : Variant    
     {
         var specimens = await GetRelatedSpecimens(ids);

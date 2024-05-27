@@ -18,9 +18,6 @@ internal class MaterialMapper : IEntityTypeConfiguration<Material>
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(material => material.ReferenceId)
-              .HasMaxLength(255);
-
         entity.Property(material => material.TypeId)
               .HasConversion<int>();
 
@@ -44,8 +41,5 @@ internal class MaterialMapper : IEntityTypeConfiguration<Material>
               .WithOne(specimen => specimen.Material)
               .HasForeignKey<Material>(material => material.SpecimenId)
               .IsRequired();
-
-
-        entity.HasIndex(material => material.ReferenceId);
     }
 }

@@ -1,22 +1,22 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Unite.Data.Context.Repositories.Constants;
-using Unite.Data.Entities.Genome.Variants;
+using Unite.Data.Entities.Genome.Analysis.Dna;
 using Unite.Data.Entities.Images.Enums;
 using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Specimens.Enums;
 using Unite.Essentials.Extensions;
 
-using SSM = Unite.Data.Entities.Genome.Variants.SSM;
-using CNV = Unite.Data.Entities.Genome.Variants.CNV;
-using SV = Unite.Data.Entities.Genome.Variants.SV;
+using Ssm = Unite.Data.Entities.Genome.Analysis.Dna.Ssm;
+using Cnv = Unite.Data.Entities.Genome.Analysis.Dna.Cnv;
+using Sv = Unite.Data.Entities.Genome.Analysis.Dna.Sv;
 
 namespace Unite.Data.Context.Repositories;
 
 public class VariantsRepository : Repository
 {
-    private readonly Expression<Func<CNV.AffectedTranscript, CNV.Variant>> _affectedTranscriptCnv = affectedFeature => affectedFeature.Variant;
-    private readonly Expression<Func<CNV.VariantEntry, CNV.Variant>> _variantEntryCnv = entry => entry.Entity;
+    private readonly Expression<Func<Cnv.AffectedTranscript, Cnv.Variant>> _affectedTranscriptCnv = affectedFeature => affectedFeature.Variant;
+    private readonly Expression<Func<Cnv.VariantEntry, Cnv.Variant>> _variantEntryCnv = entry => entry.Entity;
 
 
     public VariantsRepository(IDbContextFactory<DomainDbContext> dbContextFactory) : base(dbContextFactory)
@@ -24,28 +24,28 @@ public class VariantsRepository : Repository
     }
 
 
-    public async Task<int[]> GetRelatedProjects<TV>(IEnumerable<long> ids)
+    public async Task<int[]> GetRelatedProjects<TV>(IEnumerable<int> ids)
     {
         var donors = await GetRelatedDonors<TV>(ids);
 
         return await GetDonorRelatedProjects(donors);
     }
 
-    public async Task<int[]> GetRelatedDonors<TV>(IEnumerable<long> ids)
+    public async Task<int[]> GetRelatedDonors<TV>(IEnumerable<int> ids)
     {
         var type = typeof(TV);
 
-        if (type == typeof(SSM.Variant))
-            return await GetRelatedDonors<SSM.VariantEntry, SSM.Variant>(ids);
-        else if (type == typeof(CNV.Variant))
-            return await GetRelatedDonors<CNV.VariantEntry, CNV.Variant>(ids);
-        else if (type == typeof(SV.Variant))
-            return await GetRelatedDonors<SV.VariantEntry, SV.Variant>(ids);
+        if (type == typeof(Ssm.Variant))
+            return await GetRelatedDonors<Ssm.VariantEntry, Ssm.Variant>(ids);
+        else if (type == typeof(Cnv.Variant))
+            return await GetRelatedDonors<Cnv.VariantEntry, Cnv.Variant>(ids);
+        else if (type == typeof(Sv.Variant))
+            return await GetRelatedDonors<Sv.VariantEntry, Sv.Variant>(ids);
         else
             return [];
     }
 
-    public async Task<int[]> GetRelatedDonors<TVE, TV>(IEnumerable<long> ids)
+    public async Task<int[]> GetRelatedDonors<TVE, TV>(IEnumerable<int> ids)
         where TVE : VariantEntry<TV>
         where TV : Variant
     {
@@ -54,12 +54,12 @@ public class VariantsRepository : Repository
         return await dbContext.Set<TVE>()
             .AsNoTracking()
             .Where(entry => ids.Contains(entry.EntityId))
-            .Select(entry => entry.AnalysedSample.TargetSample.DonorId)
+            .Select(entry => entry.Sample.Specimen.DonorId)
             .Distinct()
             .ToArrayAsync();
     }
 
-    public async Task<int[]> GetRelatedImages<TV>(IEnumerable<long> ids, ImageType? typeId = null)
+    public async Task<int[]> GetRelatedImages<TV>(IEnumerable<int> ids, ImageType? typeId = null)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
@@ -73,62 +73,62 @@ public class VariantsRepository : Repository
             .ToArrayAsync();
     }
 
-    public async Task<int[]> GetRelatedSpecimens<TV>(IEnumerable<long> ids, SpecimenType? typeId = null)
+    public async Task<int[]> GetRelatedSpecimens<TV>(IEnumerable<int> ids, SpecimenType? typeId = null)
         where TV : Variant
     {
         var type = typeof(TV);
 
-        if (type == typeof(SSM.Variant))
-            return await GetRelatedSpecimens<SSM.VariantEntry, SSM.Variant>(ids, typeId);
-        else if (type == typeof(CNV.Variant))
-            return await GetRelatedSpecimens<CNV.VariantEntry, CNV.Variant>(ids, typeId);
-        else if (type == typeof(SV.Variant))
-            return await GetRelatedSpecimens<SV.VariantEntry, SV.Variant>(ids, typeId);
+        if (type == typeof(Ssm.Variant))
+            return await GetRelatedSpecimens<Ssm.VariantEntry, Ssm.Variant>(ids, typeId);
+        else if (type == typeof(Cnv.Variant))
+            return await GetRelatedSpecimens<Cnv.VariantEntry, Cnv.Variant>(ids, typeId);
+        else if (type == typeof(Sv.Variant))
+            return await GetRelatedSpecimens<Sv.VariantEntry, Sv.Variant>(ids, typeId);
         else
             return [];
     }
 
-    public async Task<int[]> GetRelatedSpecimens<TVE, TV>(IEnumerable<long> ids, SpecimenType? typeId = null)
+    public async Task<int[]> GetRelatedSpecimens<TVE, TV>(IEnumerable<int> ids, SpecimenType? typeId = null)
         where TVE : VariantEntry<TV>
         where TV : Variant
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
-        var predicate = typeof(TV) == typeof(CNV.Variant)
+        var predicate = typeof(TV) == typeof(Cnv.Variant)
             ? _variantEntryCnv.Join(Predicates.IsInfluentCnv) as Expression<Func<TVE, bool>>
             : entry => true;
 
         return await dbContext.Set<TVE>()
             .AsNoTracking()
             .Where(predicate)
-            .Where(entry => typeId == null || entry.AnalysedSample.TargetSample.TypeId == typeId)
+            .Where(entry => typeId == null || entry.Sample.Specimen.TypeId == typeId)
             .Where(entry => ids.Contains(entry.EntityId))
-            .Select(entry => entry.AnalysedSample.TargetSampleId)
+            .Select(entry => entry.Sample.SpecimenId)
             .Distinct()
             .ToArrayAsync();
     }
 
-    public async Task<int[]> GetRelatedGenes<TV>(IEnumerable<long> ids)
+    public async Task<int[]> GetRelatedGenes<TV>(IEnumerable<int> ids)
     {
         var type = typeof(TV);
 
-        if (type == typeof(SSM.Variant))
-            return await GetRelatedGenes<SSM.AffectedTranscript, SSM.Variant>(ids);
-        else if (type == typeof(CNV.Variant))
-            return await GetRelatedGenes<CNV.AffectedTranscript, CNV.Variant>(ids);
-        else if (type == typeof(SV.Variant))
-            return await GetRelatedGenes<SV.AffectedTranscript, SV.Variant>(ids);
+        if (type == typeof(Ssm.Variant))
+            return await GetRelatedGenes<Ssm.AffectedTranscript, Ssm.Variant>(ids);
+        else if (type == typeof(Cnv.Variant))
+            return await GetRelatedGenes<Cnv.AffectedTranscript, Cnv.Variant>(ids);
+        else if (type == typeof(Sv.Variant))
+            return await GetRelatedGenes<Sv.AffectedTranscript, Sv.Variant>(ids);
         else
             return [];
     }
 
-    public async Task<int[]> GetRelatedGenes<TVAT, TV>(IEnumerable<long> ids)
+    public async Task<int[]> GetRelatedGenes<TVAT, TV>(IEnumerable<int> ids)
         where TVAT : VariantAffectedTranscript<TV>
         where TV : Variant
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
-        var predicate = typeof(TV) == typeof(CNV.Variant)
+        var predicate = typeof(TV) == typeof(Cnv.Variant)
             ? _affectedTranscriptCnv.Join(Predicates.IsInfluentCnv) as Expression<Func<TVAT, bool>>
             : affectedFeature => true;
 
@@ -141,27 +141,27 @@ public class VariantsRepository : Repository
             .ToArrayAsync();
     }
 
-    public async Task<int[]> GetRelatedTranscripts<TV>(IEnumerable<long> ids)
+    public async Task<int[]> GetRelatedTranscripts<TV>(IEnumerable<int> ids)
     {
         var type = typeof(TV);
 
-        if (type == typeof(SSM.Variant))
-            return await GetRelatedTranscripts<SSM.AffectedTranscript, SSM.Variant>(ids);
-        else if (type == typeof(CNV.Variant))
-            return await GetRelatedTranscripts<CNV.AffectedTranscript, CNV.Variant>(ids);
-        else if (type == typeof(SV.Variant))
-            return await GetRelatedTranscripts<SV.AffectedTranscript, SV.Variant>(ids);
+        if (type == typeof(Ssm.Variant))
+            return await GetRelatedTranscripts<Ssm.AffectedTranscript, Ssm.Variant>(ids);
+        else if (type == typeof(Cnv.Variant))
+            return await GetRelatedTranscripts<Cnv.AffectedTranscript, Cnv.Variant>(ids);
+        else if (type == typeof(Sv.Variant))
+            return await GetRelatedTranscripts<Sv.AffectedTranscript, Sv.Variant>(ids);
         else
             return [];
     }
 
-    public async Task<int[]> GetRelatedTranscripts<TVAT, TV>(IEnumerable<long> ids)
+    public async Task<int[]> GetRelatedTranscripts<TVAT, TV>(IEnumerable<int> ids)
         where TVAT : VariantAffectedTranscript<TV>
         where TV : Variant
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
-        var predicate = typeof(TV) == typeof(CNV.Variant)
+        var predicate = typeof(TV) == typeof(Cnv.Variant)
             ? _affectedTranscriptCnv.Join(Predicates.IsInfluentCnv) as Expression<Func<TVAT, bool>>
             : affectedFeature => true;
 

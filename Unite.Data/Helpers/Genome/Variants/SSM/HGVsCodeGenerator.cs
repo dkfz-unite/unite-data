@@ -1,4 +1,4 @@
-﻿namespace Unite.Data.Helpers.Genome.Variants.SSM;
+﻿namespace Unite.Data.Helpers.Genome.Variants.Ssm;
 
 public static class HGVsCodeGenerator
 {

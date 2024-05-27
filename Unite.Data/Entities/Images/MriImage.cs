@@ -3,7 +3,6 @@
 public record MriImage
 {
     public int ImageId { get; set; }
-    public string ReferenceId { get; set; }
 
     public double? WholeTumor { get; set; }
     public double? ContrastEnhancing { get; set; }

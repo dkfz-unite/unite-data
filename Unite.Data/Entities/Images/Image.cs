@@ -3,10 +3,9 @@ using Unite.Data.Entities.Images.Enums;
 
 namespace Unite.Data.Entities.Images;
 
-public record Image : Base.Sample<ImageType>
+public record Image : Base.Specimen<ImageType>
 {
     public virtual MriImage MriImage { get; set; }
     
-    public virtual ICollection<AnalysedSample> AnalysedSamples { get; set; }
-    public virtual ICollection<AnalysedSample> MatchedSamples { get; set; }
+    public virtual ICollection<Sample> Samples { get; set; }
 }

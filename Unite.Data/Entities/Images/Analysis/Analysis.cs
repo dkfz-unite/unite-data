@@ -4,5 +4,5 @@ namespace Unite.Data.Entities.Images.Analysis;
 
 public record Analysis : Base.Analysis<AnalysisType>
 {
-    public virtual AnalysedSample AnalysedSample { get; set; }
+    public virtual Sample Sample { get; set; }
 }

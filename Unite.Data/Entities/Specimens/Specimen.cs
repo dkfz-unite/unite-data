@@ -1,13 +1,12 @@
-﻿using Unite.Data.Entities.Genome.Analysis;
+﻿using Unite.Data.Entities.Specimens.Enums;
 using Unite.Data.Entities.Specimens.Lines;
-using Unite.Data.Entities.Specimens.Enums;
-using Unite.Data.Entities.Specimens.Organoids;
 using Unite.Data.Entities.Specimens.Materials;
+using Unite.Data.Entities.Specimens.Organoids;
 using Unite.Data.Entities.Specimens.Xenografts;
 
 namespace Unite.Data.Entities.Specimens;
 
-public record Specimen : Base.Sample<SpecimenType>
+public record Specimen : Base.Specimen<SpecimenType>
 {
     public int? ParentId { get; set; }
 
@@ -19,9 +18,8 @@ public record Specimen : Base.Sample<SpecimenType>
     public virtual Organoid Organoid { get; set; }
     public virtual Xenograft Xenograft { get; set; }
     public virtual MolecularData MolecularData { get; set; }
-
     public virtual ICollection<Intervention> Interventions { get; set; }
-    public virtual ICollection<DrugScreening> DrugScreenings { get; set; }
-    public virtual ICollection<AnalysedSample> AnalysedSamples { get; set; }
-    public virtual ICollection<AnalysedSample> MatchedSamples { get; set; }
+
+    public virtual ICollection<Genome.Analysis.Sample> GenomeSamples { get; set; }
+    public virtual ICollection<Specimens.Analysis.Sample> SpecimenSamples { get; set; }
 }

@@ -86,21 +86,21 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
     /// <returns>Collection of dependint SSMs identifiers.</returns>
-    protected abstract IEnumerable<long> LoadRelatedSsms(IEnumerable<TKey> keys);
+    protected abstract IEnumerable<int> LoadRelatedSsms(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads CNVs related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
     /// <returns>Collection of dependint CNVs identifiers.</returns>
-    protected abstract IEnumerable<long> LoadRelatedCnvs(IEnumerable<TKey> keys);
+    protected abstract IEnumerable<int> LoadRelatedCnvs(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads SVs related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
     /// <returns>Collection of dependint SVs identifiers.</returns>
-    protected abstract IEnumerable<long> LoadRelatedSvs(IEnumerable<TKey> keys);
+    protected abstract IEnumerable<int> LoadRelatedSvs(IEnumerable<TKey> keys);
 
 
     /// <summary>

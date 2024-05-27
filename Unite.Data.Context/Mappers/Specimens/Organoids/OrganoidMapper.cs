@@ -16,16 +16,10 @@ internal class OrganoidMapper : IEntityTypeConfiguration<Organoid>
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(organoid => organoid.ReferenceId)
-              .HasMaxLength(255);
-
 
         entity.HasOne(organoid => organoid.Specimen)
               .WithOne(specimen => specimen.Organoid)
               .HasForeignKey<Organoid>(organoid => organoid.SpecimenId)
               .IsRequired();
-
-
-        entity.HasIndex(organoid => organoid.ReferenceId);
     }
 }

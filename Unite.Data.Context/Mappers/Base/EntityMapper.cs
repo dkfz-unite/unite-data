@@ -4,9 +4,8 @@ using Unite.Data.Entities.Base;
 
 namespace Unite.Data.Context.Mappers.Base;
 
-internal abstract class EntityMapper<TEntity, T> : IEntityTypeConfiguration<TEntity>
-    where TEntity : Entity<T>
-    where T : struct
+internal abstract class EntityMapper<TEntity> : IEntityTypeConfiguration<TEntity>
+    where TEntity : Entity
 {
     protected abstract string SchemaName { get; }
     protected abstract string TableName { get; }

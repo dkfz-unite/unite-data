@@ -11,7 +11,7 @@ internal abstract class SampleResourceMapper<TSampleResource> : IEntityTypeConfi
 
     public virtual void Configure(EntityTypeBuilder<TSampleResource> entity)
     {
-        entity.ToTable("Resources", SchemaName);
+        entity.ToTable("SampleResources", SchemaName);
 
         entity.HasKey(resource => resource.Id);
 

@@ -1,6 +1,6 @@
 ﻿using Unite.Data.Entities.Genome.Analysis.Dna.Ssm.Enums;
 
-namespace Unite.Data.Helpers.Genome.Variants.Ssm;
+namespace Unite.Data.Helpers.Genome.Dna.Ssm;
 
 public static class TypeDetector
 {

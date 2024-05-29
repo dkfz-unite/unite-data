@@ -1,6 +1,6 @@
 ﻿namespace Unite.Data.Entities.Genome.Analysis.Dna;
 
-public record Consequence
+public record Effect
 {
     private static class Impacts
     {
@@ -10,7 +10,7 @@ public record Consequence
         public const string Unknown = "Unknown";
     }
 
-    public static readonly Dictionary<string, (string Impact, int Severity)> Consequences = new()
+    public static readonly Dictionary<string, (string Impact, int Severity)> Effects = new()
     {
         { "transcript_ablation", (Impacts.High, 1) },
         { "splice_acceptor_variant", (Impacts.High, 2) },
@@ -56,20 +56,20 @@ public record Consequence
     public int Severity { get; set; }
 
 
-    public Consequence()
+    public Effect()
     {
 
     }
 
-    public Consequence(string type)
+    public Effect(string type)
     {
-        var key = Consequences.Keys.FirstOrDefault(key => key.Equals(type, StringComparison.InvariantCultureIgnoreCase));
+        var key = Effects.Keys.FirstOrDefault(key => key.Equals(type, StringComparison.InvariantCultureIgnoreCase));
 
         if (key != null)
         {
             Type = key;
-            Impact = Consequences[key].Impact;
-            Severity = Consequences[key].Severity;
+            Impact = Effects[key].Impact;
+            Severity = Effects[key].Severity;
         }
         else
         {

@@ -1,4 +1,4 @@
-﻿namespace Unite.Data.Helpers.Genome.Variants.Ssm;
+﻿namespace Unite.Data.Helpers.Genome.Dna.Ssm;
 
 public static class BasePairChangeParser
 {

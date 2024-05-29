@@ -12,7 +12,7 @@ public abstract record VariantAffectedFeature<TVariant, TFeature>
     public int VariantId { get; set; }
     public int FeatureId { get; set; }
 
-    public Consequence[] Consequences { get; set; }
+    public Effect[] Effects { get; set; }
 
     public virtual TVariant Variant { get; set; }
     public virtual TFeature Feature { get; set; }

@@ -20,8 +20,8 @@ internal abstract class VariantAffectedFeatureMapper<TVariantAffectedFeature, TV
     where TFeature : Feature
 {
     protected static readonly JsonSerializerOptions _options = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
-    protected static readonly Expression<Func<Consequence[], string>> _serialize = value => JsonSerializer.Serialize<Consequence[]>(value, _options);
-    protected static readonly Expression<Func<string, Consequence[]>> _deserialize = value => JsonSerializer.Deserialize<Consequence[]>(value, _options);
+    protected static readonly Expression<Func<Effect[], string>> _serialize = value => JsonSerializer.Serialize<Effect[]>(value, _options);
+    protected static readonly Expression<Func<string, Effect[]>> _deserialize = value => JsonSerializer.Deserialize<Effect[]>(value, _options);
 
     public abstract string TableName { get; }
 
@@ -44,7 +44,7 @@ internal abstract class VariantAffectedFeatureMapper<TVariantAffectedFeature, TV
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(affectedFeature => affectedFeature.Consequences)
+        entity.Property(affectedFeature => affectedFeature.Effects)
               .HasConversion(_serialize, _deserialize);
 
 

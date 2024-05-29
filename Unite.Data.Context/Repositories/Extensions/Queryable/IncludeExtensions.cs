@@ -3,7 +3,7 @@ using Unite.Data.Entities.Donors;
 using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Specimens;
 
-using Dna = Unite.Data.Entities.Genome.Analysis.Dna;
+using Gen = Unite.Data.Entities.Genome.Analysis;
 using Spe = Unite.Data.Entities.Specimens.Analysis;
 using Img = Unite.Data.Entities.Images.Analysis;
 
@@ -50,8 +50,12 @@ public static class IncludeExtensions
 
     public static IQueryable<Image> IncludeRadiomicsFeatures(this IQueryable<Image> query)
     {
+        var predicate = (Img.Sample sample) => sample.Analysis.TypeId == Img.Enums.AnalysisType.RFE;
+
         return query
-            .Include(image => image.Samples.Where(sample => sample.Analysis.TypeId == Img.Enums.AnalysisType.RFE))
+            .Include(image => image.Samples.Where(predicate))
+                .ThenInclude(sample => sample.Analysis)
+            .Include(image => image.Samples.Where(predicate))
                 .ThenInclude(sample => sample.RadiomicsFeatureEntries)
                     .ThenInclude(entry => entry.Entity);
     }
@@ -98,29 +102,33 @@ public static class IncludeExtensions
 
     public static IQueryable<Specimen> IncludeDrugScreenings(this IQueryable<Specimen> query)
     {
+        var predicate = (Spe.Sample sample) => sample.Analysis.TypeId == Spe.Enums.AnalysisType.DSA;
+
         return query
-            .Include(specimen => specimen.SpecimenSamples.Where(sample => sample.Analysis.TypeId == Spe.Enums.AnalysisType.DSA))
+            .Include(specimen => specimen.SpecimenSamples.Where(predicate))
+                .ThenInclude(sample => sample.Analysis)
+            .Include(specimen => specimen.SpecimenSamples.Where(predicate))
                 .ThenInclude(sample => sample.DrugScreenings)
                     .ThenInclude(entry => entry.Entity);
     }
 
 
-    public static IQueryable<TVariant> IncludeAffectedTranscripts<TVariant>(this IQueryable<TVariant> query) where TVariant : Dna.Variant
+    public static IQueryable<TVariant> IncludeAffectedTranscripts<TVariant>(this IQueryable<TVariant> query) where TVariant : Gen.Dna.Variant
     {
         switch (query)
         {
-            case IQueryable<Dna.Ssm.Variant> ssms:
+            case IQueryable<Gen.Dna.Ssm.Variant> ssms:
                 return (IQueryable<TVariant>)ssms.IncludeAffectedTranscripts();
-            case IQueryable<Dna.Cnv.Variant> cnvs:
+            case IQueryable<Gen.Dna.Cnv.Variant> cnvs:
                 return (IQueryable<TVariant>)cnvs.IncludeAffectedTranscripts();
-            case IQueryable<Dna.Sv.Variant> svs:
+            case IQueryable<Gen.Dna.Sv.Variant> svs:
                 return (IQueryable<TVariant>)svs.IncludeAffectedTranscripts();
             default:
                 return query;
         }
     }
 
-    public static IQueryable<Dna.Ssm.Variant> IncludeAffectedTranscripts(this IQueryable<Dna.Ssm.Variant> query)
+    public static IQueryable<Gen.Dna.Ssm.Variant> IncludeAffectedTranscripts(this IQueryable<Gen.Dna.Ssm.Variant> query)
     {
         return query
             .Include(variant => variant.AffectedTranscripts)
@@ -133,7 +141,7 @@ public static class IncludeExtensions
                     .ThenInclude(transcript => transcript.Protein);
     }
 
-    public static IQueryable<Dna.Cnv.Variant> IncludeAffectedTranscripts(this IQueryable<Dna.Cnv.Variant> query)
+    public static IQueryable<Gen.Dna.Cnv.Variant> IncludeAffectedTranscripts(this IQueryable<Gen.Dna.Cnv.Variant> query)
     {
         return query
             .Include(variant => variant.AffectedTranscripts)
@@ -146,7 +154,7 @@ public static class IncludeExtensions
                     .ThenInclude(transcript => transcript.Protein);
     }
 
-    public static IQueryable<Dna.Sv.Variant> IncludeAffectedTranscripts(this IQueryable<Dna.Sv.Variant> query)
+    public static IQueryable<Gen.Dna.Sv.Variant> IncludeAffectedTranscripts(this IQueryable<Gen.Dna.Sv.Variant> query)
     {
         return query
             .Include(variant => variant.AffectedTranscripts)

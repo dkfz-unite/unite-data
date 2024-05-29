@@ -4,6 +4,8 @@ using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Specimens;
 
 using Dna = Unite.Data.Entities.Genome.Analysis.Dna;
+using Spe = Unite.Data.Entities.Specimens.Analysis;
+using Img = Unite.Data.Entities.Images.Analysis;
 
 namespace Unite.Data.Context.Extensions.Queryable;
 
@@ -46,6 +48,14 @@ public static class IncludeExtensions
             .Include(image => image.MriImage);
     }
 
+    public static IQueryable<Image> IncludeRadiomicsFeatures(this IQueryable<Image> query)
+    {
+        return query
+            .Include(image => image.Samples.Where(sample => sample.Analysis.TypeId == Img.Enums.AnalysisType.RFE))
+                .ThenInclude(sample => sample.RadiomicsFeatureEntries)
+                    .ThenInclude(entry => entry.Entity);
+    }
+
 
     public static IQueryable<Specimen> IncludeMaterial(this IQueryable<Specimen> query)
     {
@@ -84,6 +94,14 @@ public static class IncludeExtensions
         return query
             .Include(specimen => specimen.Interventions)
                 .ThenInclude(intervention => intervention.Type);
+    }
+
+    public static IQueryable<Specimen> IncludeDrugScreenings(this IQueryable<Specimen> query)
+    {
+        return query
+            .Include(specimen => specimen.SpecimenSamples.Where(sample => sample.Analysis.TypeId == Spe.Enums.AnalysisType.DSA))
+                .ThenInclude(sample => sample.DrugScreenings)
+                    .ThenInclude(entry => entry.Entity);
     }
 
 

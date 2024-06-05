@@ -3,62 +3,52 @@
 public record DrugScreening : Base.SampleEntry<Sample, Drug>
 {
     /// <summary>
-    /// Drug sensitivity score
-    /// </summary>
-    public double? Dss { get; set; }
-
-    /// <summary>
-    /// Selective drug sensitivity score (considering healthy cells)
-    /// </summary>
-    public double? DssSelective { get; set; }
-
-    /// <summary>
-    /// Goodness of fit
+    /// Goodness of fit.
     /// </summary>
     public double? Gof { get; set; }
 
     /// <summary>
-    /// Minimal tested concentration
+    /// Drug sensitivity score.
     /// </summary>
-    public double? MinConcentration { get; set; }
+    public double? Dss { get; set; }
 
     /// <summary>
-    /// Maximal tested concentration
+    /// Selective drug sensitivity score (considering healthy cells).
     /// </summary>
-    public double? MaxConcentration { get; set; }
+    public double? DssS { get; set; }
 
     /// <summary>
-    /// Concentration at 25% inhibition (based on the fitted dose-response curve)
+    /// Minimal tested concentration.
     /// </summary>
-    public double? AbsIC25 { get; set; }
+    public double? MinDose { get; set; }
 
     /// <summary>
-    /// Concentration at 50% inhibition (based on the fitted dose-response curve)
+    /// Maximal tested concentration.
     /// </summary>
-    public double? AbsIC50 { get; set; }
+    public double? MaxDose { get; set; }
 
     /// <summary>
-    /// Concentration at 75% inhibition (based on the fitted dose-response curve)
+    /// Concentration at 25% inhibition (based on the fitted dose-response curve).
     /// </summary>
-    public double? AbsIC75 { get; set; }
+    public double? Dose25 { get; set; }
 
     /// <summary>
-    /// Concentration (dose) at corresponding inhibition (response) percent from Inhibition array (selected points on drug response curve)
+    /// Concentration at 50% inhibition (based on the fitted dose-response curve).
     /// </summary>
-    public double[] Concentration { get; set; }
+    public double? Dose50 { get; set; }
 
     /// <summary>
-    /// Percent inhibition (response) at corresponding concentration (dose) from Concentration array (selected points on drug response curve)
+    /// Concentration at 75% inhibition (based on the fitted dose-response curve).
     /// </summary>
-    public double[] Inhibition { get; set; }
+    public double? Dose75 { get; set; }
 
     /// <summary>
-    /// Concentration (dose) at corresponding inhibition (response) percent from Response array (line of drug response curve)
+    /// Concentration (dose) at corresponding inhibition (response) percent from 'Responses' array (for dose-response curve).
     /// </summary>
-    public double[] ConcentrationLine { get; set; }
+    public double[] Doses { get; set; }
 
     /// <summary>
-    /// Percent inhibition (response) at corresponding concentration (dose) from Dose array (line of drug response curve)
+    /// Percent inhibition (response) at corresponding concentration (dose) from 'Doses' array (for dose-response curve).
     /// </summary>
-    public double[] InhibitionLine { get; set; }
+    public double[] Responses { get; set; }
 }

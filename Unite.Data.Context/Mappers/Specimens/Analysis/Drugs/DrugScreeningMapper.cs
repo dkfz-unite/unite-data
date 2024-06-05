@@ -21,16 +21,10 @@ internal class DrugScreeningMapper : Base.SampleEntryMapper<DrugScreening, Sampl
     {
         base.Configure(entity);
 
-        entity.Property(drugScreening => drugScreening.Concentration)
+        entity.Property(drugScreening => drugScreening.Doses)
               .HasConversion(_serialize, _deserialize);
 
-        entity.Property(drugScreening => drugScreening.Inhibition)
-              .HasConversion(_serialize, _deserialize);
-
-        entity.Property(drugScreening => drugScreening.ConcentrationLine)
-              .HasConversion(_serialize, _deserialize);
-
-        entity.Property(drugScreening => drugScreening.InhibitionLine)
+        entity.Property(drugScreening => drugScreening.Responses)
               .HasConversion(_serialize, _deserialize);
 
 

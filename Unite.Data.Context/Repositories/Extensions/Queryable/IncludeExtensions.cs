@@ -50,12 +50,10 @@ public static class IncludeExtensions
 
     public static IQueryable<Image> IncludeRadiomicsFeatures(this IQueryable<Image> query)
     {
-        var predicate = (Img.Sample sample) => sample.Analysis.TypeId == Img.Enums.AnalysisType.RFE;
-
         return query
-            .Include(image => image.Samples.Where(predicate))
+            .Include(image => image.Samples)
                 .ThenInclude(sample => sample.Analysis)
-            .Include(image => image.Samples.Where(predicate))
+            .Include(image => image.Samples)
                 .ThenInclude(sample => sample.RadiomicsFeatureEntries)
                     .ThenInclude(entry => entry.Entity);
     }
@@ -102,12 +100,10 @@ public static class IncludeExtensions
 
     public static IQueryable<Specimen> IncludeDrugScreenings(this IQueryable<Specimen> query)
     {
-        var predicate = (Spe.Sample sample) => sample.Analysis.TypeId == Spe.Enums.AnalysisType.DSA;
-
         return query
-            .Include(specimen => specimen.SpecimenSamples.Where(predicate))
+            .Include(specimen => specimen.SpecimenSamples)
                 .ThenInclude(sample => sample.Analysis)
-            .Include(specimen => specimen.SpecimenSamples.Where(predicate))
+            .Include(specimen => specimen.SpecimenSamples)
                 .ThenInclude(sample => sample.DrugScreenings)
                     .ThenInclude(entry => entry.Entity);
     }

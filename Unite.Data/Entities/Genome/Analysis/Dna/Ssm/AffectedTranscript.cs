@@ -5,6 +5,6 @@
 /// </summary>
 public record AffectedTranscript : VariantAffectedTranscript<Variant>
 {
-    public string AminoAcidChange { get; set; }
+    public string ProteinChange { get; set; }
     public string CodonChange { get; set; }
 }

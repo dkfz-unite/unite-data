@@ -12,8 +12,8 @@ internal class ProjectDonorMapper : IEntityTypeConfiguration<ProjectDonor>
 
         entity.HasKey(projectDonor => new
         {
-            projectDonor.DonorId,
-            projectDonor.ProjectId
+            projectDonor.ProjectId,
+            projectDonor.DonorId
         });
 
         entity.Property(projectDonor => projectDonor.DonorId)

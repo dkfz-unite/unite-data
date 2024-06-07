@@ -16,7 +16,6 @@ internal class VariantMapper : VariantMapper<Variant>
     {
         base.Configure(entity);
 
-
         entity.Property(variant => variant.TypeId)
               .IsRequired()
               .HasConversion<int>();

@@ -10,7 +10,7 @@ internal class InterventionMapper : IEntityTypeConfiguration<Intervention>
     {
         entity.ToTable("Interventions", DomainDbSchemaNames.Specimens);
 
-        entity.HasKey(intervention => new { intervention.SpecimenId, intervention.TypeId });
+        entity.HasKey(intervention => new { intervention.TypeId, intervention.SpecimenId });
 
         entity.Property(intervention => intervention.SpecimenId)
               .IsRequired()

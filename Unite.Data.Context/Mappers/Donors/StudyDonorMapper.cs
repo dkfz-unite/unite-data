@@ -12,8 +12,8 @@ internal class StudyDonorMapper : IEntityTypeConfiguration<StudyDonor>
 
         entity.HasKey(studyDonor => new
         {
-            studyDonor.DonorId,
-            studyDonor.StudyId
+            studyDonor.StudyId,
+            studyDonor.DonorId
         });
 
         entity.Property(studyDonor => studyDonor.DonorId)

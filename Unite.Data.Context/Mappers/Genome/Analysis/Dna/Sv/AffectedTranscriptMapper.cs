@@ -15,7 +15,6 @@ internal class AffectedTranscriptMapper : VariantAffectedFeatureMapper<AffectedT
     {
         base.Configure(entity);
 
-
         entity.HasOne(affectedTranscript => affectedTranscript.Variant)
               .WithMany(variant => variant.AffectedTranscripts)
               .HasForeignKey(affectedTranscript => affectedTranscript.VariantId);

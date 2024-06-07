@@ -18,7 +18,7 @@ internal abstract class SampleEntryMapper<TSampleEntry, TSample, TEntity> : IEnt
     {
         entity.ToTable(TableName, SchemaName);
 
-        entity.HasKey(entity => new { entity.SampleId, entity.EntityId });
+        entity.HasKey(entity => new { entity.EntityId, entity.SampleId });
 
         entity.Property(entity => entity.SampleId)
               .HasColumnName(SampleColumnName)

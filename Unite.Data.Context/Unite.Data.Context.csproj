@@ -13,7 +13,7 @@
     <ProjectReference Include="..\Unite.Data\Unite.Data.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
     <PackageReference Include="Unite.Essentials" Version="1.4.0" />
   </ItemGroup>
 </Project>

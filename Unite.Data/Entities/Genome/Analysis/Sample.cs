@@ -7,6 +7,11 @@ public record Sample : Base.Sample<Specimen, Analysis>
     public int? MatchedSampleId { get; set; }
 
     /// <summary>
+    /// Reference genome (only grch37 is allowed for DNA samples).
+    /// </summary>
+    public string Genome { get; set; }
+
+    /// <summary>
     /// Percent of tumor cells in the sample (TCC - tumor cells content).
     /// </summary>
     public double? Purity { get; set; }
@@ -19,12 +24,7 @@ public record Sample : Base.Sample<Specimen, Analysis>
     /// <summary>
     /// Number of cells in the sample (for single cell sequencing).
     /// </summary>
-    public int? CellsNumber { get; set; }
-
-    /// <summary>
-    /// Genes model for the sample (for single cell sequencing).
-    /// </summary>
-    public string GenesModel { get; set; }
+    public int? Cells { get; set; }
 
 
     public virtual Sample MatchedSample { get; set; }

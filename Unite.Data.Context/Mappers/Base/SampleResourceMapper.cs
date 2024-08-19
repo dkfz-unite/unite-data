@@ -30,5 +30,8 @@ internal abstract class SampleResourceMapper<TSampleResource> : IEntityTypeConfi
         entity.Property(resource => resource.Format)
               .IsRequired()
               .HasMaxLength(100);
+
+        entity.Property(resource => resource.Archive)
+              .HasMaxLength(100);
     }
 }

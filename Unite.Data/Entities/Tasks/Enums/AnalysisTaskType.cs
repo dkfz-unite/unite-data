@@ -5,8 +5,14 @@ namespace Unite.Data.Entities.Tasks.Enums;
 public enum AnalysisTaskType
 {
     /// <summary>
-    /// Differential Expression
+    /// Bulk RNA differential expression analysis.
     /// </summary>
-    [EnumMember(Value = "DExp")]
-    DExp = 1
+    [EnumMember(Value = "RNA-DE")]
+    RNA_DE = 1,
+
+    /// <summary>
+    /// Single cell RNA dataset creation analysis.
+    /// </summary>
+    [EnumMember(Value = "RNASC")]
+    RNASC = 2
 }

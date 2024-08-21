@@ -12,7 +12,8 @@ internal class AnalysisTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Anal
     {
         var data = new EnumEntity<AnalysisTaskType>[]
         {
-            AnalysisTaskType.DExp.ToEnumValue()
+            AnalysisTaskType.RNA_DE.ToEnumValue(),
+            AnalysisTaskType.RNASC.ToEnumValue()
         };
 
         entity.BuildEnumEntity("AnalysisTaskTypes", DomainDbSchemaNames.Common, data);

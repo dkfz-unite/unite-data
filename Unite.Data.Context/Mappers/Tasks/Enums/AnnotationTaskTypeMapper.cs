@@ -12,9 +12,9 @@ internal class AnnotationTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<An
     {
         var data = new EnumEntity<AnnotationTaskType>[]
         {
-            AnnotationTaskType.SSM.ToEnumValue(),
-            AnnotationTaskType.CNV.ToEnumValue(),
-            AnnotationTaskType.SV.ToEnumValue()
+            AnnotationTaskType.DNA_SSM.ToEnumValue(),
+            AnnotationTaskType.DNA_CNV.ToEnumValue(),
+            AnnotationTaskType.DNA_SV.ToEnumValue()
         };
 
         entity.BuildEnumEntity("AnnotationTaskTypes", DomainDbSchemaNames.Common, data);

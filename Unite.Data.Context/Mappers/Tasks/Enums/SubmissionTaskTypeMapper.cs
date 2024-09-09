@@ -12,11 +12,11 @@ internal class SubmissionTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Su
     {
         var data = new EnumEntity<SubmissionTaskType>[]
         {
-            SubmissionTaskType.SSM.ToEnumValue(),
-            SubmissionTaskType.CNV.ToEnumValue(),
-            SubmissionTaskType.SV.ToEnumValue(),
-            SubmissionTaskType.BGE.ToEnumValue(),
-            SubmissionTaskType.CGE.ToEnumValue()
+            SubmissionTaskType.DNA_SSM.ToEnumValue(),
+            SubmissionTaskType.DNA_CNV.ToEnumValue(),
+            SubmissionTaskType.DNA_SV.ToEnumValue(),
+            SubmissionTaskType.RNA_EXP.ToEnumValue(),
+            SubmissionTaskType.RNASC_EXP.ToEnumValue()
         };
 
         entity.BuildEnumEntity("SubmissionTaskTypes", DomainDbSchemaNames.Common, data);

@@ -66,6 +66,34 @@ public class SpecimensRepository : Repository
         return await GetChildSpecimens(dbContext, ids, typeId);
     }
 
+    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Specimens.Analysis.Enums.AnalysisType> typeIds = null)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var filterByTypes = typeIds?.IsNotEmpty() ?? false;
+
+        return await dbContext.Set<Entities.Specimens.Analysis.Sample>()
+            .AsNoTracking()
+            .Where(sample => ids.Contains(sample.SpecimenId))
+            .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId.Value))
+            .Select(sample => sample.Id)
+            .ToArrayAsync();
+    }
+
+    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Genome.Analysis.Enums.AnalysisType> typeIds = null)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var filterByTypes = typeIds?.IsNotEmpty() ?? false;
+
+        return await dbContext.Set<Entities.Genome.Analysis.Sample>()
+            .AsNoTracking()
+            .Where(sample => ids.Contains(sample.SpecimenId))
+            .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId.Value))
+            .Select(sample => sample.Id)
+            .ToArrayAsync();
+    }
+
     public async Task<int[]> GetRelatedGenes(IEnumerable<int> ids)
     {
         var results = await Task.WhenAll

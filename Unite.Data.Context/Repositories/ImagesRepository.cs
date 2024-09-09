@@ -3,6 +3,7 @@ using Unite.Data.Context.Repositories.Constants;
 using Unite.Data.Entities.Genome.Analysis.Dna;
 using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Specimens;
+using Unite.Essentials.Extensions;
 
 namespace Unite.Data.Context.Repositories;
 
@@ -48,6 +49,34 @@ public class ImagesRepository : Repository
             .Where(specimen => donors.Contains(specimen.DonorId))
             .Select(specimen => specimen.Id)
             .ToArrayAsync();
+    }
+
+    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Images.Analysis.Enums.AnalysisType> typeIds = null)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var filterByTypes = typeIds?.IsNotEmpty() ?? false;
+
+        return await dbContext.Set<Entities.Images.Analysis.Sample>()
+            .AsNoTracking()
+            .Where(sample => ids.Contains(sample.SpecimenId))
+            .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId.Value))
+            .Select(sample => sample.Id)
+            .ToArrayAsync();
+    }
+
+    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Specimens.Analysis.Enums.AnalysisType> typeIds = null)
+    {
+        var specimenIds = await GetRelatedSpecimens(ids);
+
+        return await _specimensRepository.GetRelatedSamples(specimenIds, typeIds);
+    }
+
+    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Genome.Analysis.Enums.AnalysisType> typeIds)
+    {
+        var specimenIds = await GetRelatedSpecimens(ids);
+
+        return await _specimensRepository.GetRelatedSamples(specimenIds, typeIds);
     }
 
     public async Task<int[]> GetRelatedGenes(IEnumerable<int> ids)

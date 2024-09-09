@@ -2,35 +2,42 @@
 
 namespace Unite.Data.Entities.Tasks.Enums;
 
+/// <summary>
+/// Data submission task type.
+/// 0-99: Donor.
+/// 100-199: Image.
+/// 200-299: Specimen.
+/// 300-399: Genome.
+/// </summary>
 public enum SubmissionTaskType
 {
     /// <summary>
     /// Simple somatic mutation
     /// </summary>
-    [EnumMember(Value = "SSM")]
-    SSM = 1,
+    [EnumMember(Value = "dna-ssm")]
+    DNA_SSM = 301,
 
     /// <summary>
     /// Copy number variant
     /// </summary>
-    [EnumMember(Value = "CNV")]
-    CNV = 2,
+    [EnumMember(Value = "dna-cnv")]
+    DNA_CNV = 302,
 
     /// <summary>
     /// Structural variant
     /// </summary>
-    [EnumMember(Value = "SV")]
-    SV = 3,
+    [EnumMember(Value = "dna-sv")]
+    DNA_SV = 303,
 
     /// <summary>
     /// Bulk gene expression
     /// </summary>
-    [EnumMember(Value = "BGE")]
-    BGE = 4,
+    [EnumMember(Value = "rna-exp")]
+    RNA_EXP = 321,
 
     /// <summary>
     /// Single cell gene expression
     /// </summary>
-    [EnumMember(Value = "CGE")]
-    CGE = 5
+    [EnumMember(Value = "rnasc-exp")]
+    RNASC_EXP = 341
 }

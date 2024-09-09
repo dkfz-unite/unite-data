@@ -12,14 +12,14 @@ internal class IndexingTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Inde
     {
         var data = new EnumEntity<IndexingTaskType>[]
         {
+            IndexingTaskType.Project.ToEnumValue(),
             IndexingTaskType.Donor.ToEnumValue(),
             IndexingTaskType.Image.ToEnumValue(),
             IndexingTaskType.Specimen.ToEnumValue(),
             IndexingTaskType.Gene.ToEnumValue(),
             IndexingTaskType.SSM.ToEnumValue(),
             IndexingTaskType.CNV.ToEnumValue(),
-            IndexingTaskType.SV.ToEnumValue(),
-            IndexingTaskType.Project.ToEnumValue()
+            IndexingTaskType.SV.ToEnumValue()
         };
 
         entity.BuildEnumEntity("IndexingTaskTypes", DomainDbSchemaNames.Common, data);

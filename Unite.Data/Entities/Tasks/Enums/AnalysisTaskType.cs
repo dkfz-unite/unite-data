@@ -2,17 +2,24 @@ using System.Runtime.Serialization;
 
 namespace Unite.Data.Entities.Tasks.Enums;
 
+/// <summary>
+/// Data analysis task type.
+/// 0-99: Donor.
+/// 100-199: Image.
+/// 200-299: Specimen.
+/// 300-399: Genome.
+/// </summary> 
 public enum AnalysisTaskType
 {
     /// <summary>
     /// Bulk RNA differential expression analysis.
     /// </summary>
-    [EnumMember(Value = "RNA-DE")]
-    RNA_DE = 1,
+    [EnumMember(Value = "rna-de")]
+    RNA_DE = 320,
 
     /// <summary>
     /// Single cell RNA dataset creation analysis.
     /// </summary>
-    [EnumMember(Value = "RNASC")]
-    RNASC = 2
+    [EnumMember(Value = "rnacs")]
+    RNASC = 340
 }

@@ -12,6 +12,11 @@ namespace Unite.Data.Entities.Tasks.Enums;
 public enum AnalysisTaskType
 {
     /// <summary>
+    /// Donors Kaplan-Meier survival estimation analysis.
+    /// </summary>
+    DON_KM = 0,
+
+    /// <summary>
     /// Bulk RNA differential expression analysis.
     /// </summary>
     [EnumMember(Value = "rna-de")]

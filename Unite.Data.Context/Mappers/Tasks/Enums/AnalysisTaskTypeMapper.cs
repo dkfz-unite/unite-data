@@ -12,6 +12,7 @@ internal class AnalysisTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Anal
     {
         var data = new EnumEntity<AnalysisTaskType>[]
         {
+            AnalysisTaskType.DON_KM.ToEnumValue(),
             AnalysisTaskType.RNA_DE.ToEnumValue(),
             AnalysisTaskType.RNASC.ToEnumValue()
         };

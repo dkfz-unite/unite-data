@@ -14,6 +14,7 @@ public enum AnalysisTaskType
     /// <summary>
     /// Donors Kaplan-Meier survival estimation analysis.
     /// </summary>
+    [EnumMember(Value = "don-km")] 
     DON_KM = 0,
 
     /// <summary>

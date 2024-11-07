@@ -95,8 +95,7 @@ public abstract class TaskService
     protected void CreateTask<TKey, TData>(
         SubmissionTaskType type,
         TKey key,
-        TData data = null,
-        string rejectReason = "")
+        TData data = null)
         where TData : class
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
@@ -112,7 +111,7 @@ public abstract class TaskService
                 Data = data != null ? JsonSerializer.Serialize(data) : null,
                 Date = DateTime.UtcNow,
                 StatusTypeId = TaskStatusType.Preparing,
-                RejectReason = !String.IsNullOrEmpty(rejectReason) ? rejectReason : String.Empty
+                RejectReason = String.Empty
             };
 
             dbContext.Add(task);

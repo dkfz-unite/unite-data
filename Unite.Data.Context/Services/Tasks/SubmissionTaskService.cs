@@ -34,13 +34,13 @@ public class SubmissionTaskService : TaskService
      /// <summary>
     /// Modifies task status of task to prepared.
     /// </summary>
-    public void ChangeTaskStatus(string submissionId)
+    public void ChangeTaskStatus(string target)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
         var task = dbContext.Set<Entities.Tasks.Task>()
             .AsNoTracking()
-            .First(task => task.Target == submissionId);
+            .First(task => task.Target == target);
 
         task.StatusTypeId = TaskStatusType.Prepared;
 

@@ -57,11 +57,12 @@ public class TasksProcessingService
     /// Process submission tasks in batches running handler for each batch if worker is active.
     /// </summary>
     /// <param name="type">Submission task type.</param>
+    /// <param name="statusTypeId">Submission task status type.</param>
     /// <param name="bucketSize">Bucket size.</param>
     /// <param name="handler">Processing handler.</param>
     public void Process(SubmissionTaskType type, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
-        Process(WorkerType.Submission, task => task.SubmissionTypeId == type, bucketSize, handler);
+        Process(WorkerType.Submission, task => task.SubmissionTypeId == type && task.StatusTypeId == TaskStatusType.Prepared, bucketSize, handler);
     }
 
     /// <summary>

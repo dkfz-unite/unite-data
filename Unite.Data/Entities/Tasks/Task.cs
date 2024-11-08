@@ -12,5 +12,6 @@ public record Task
     public TaskStatusType? StatusTypeId { get; set; }
     public string Target { get; set; }
     public string Data { get; set; }
+    public string Comment { get; set; }
     public DateTime Date { get; set; }
 }

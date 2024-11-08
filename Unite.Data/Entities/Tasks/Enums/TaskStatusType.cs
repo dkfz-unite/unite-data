@@ -32,5 +32,11 @@ public enum TaskStatusType
     /// Failed task.
     /// </summary>
     [EnumMember(Value = "Failed")]
-    Failed = 5
+    Failed = 5,
+
+    /// <summary>
+    /// Rejected task.
+    /// </summary>
+    [EnumMember(Value = "Rejected")]
+    Rejected = 6
 }

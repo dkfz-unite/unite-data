@@ -53,6 +53,7 @@ public class TasksProcessingService
             .Any();
     }
 
+
     /// <summary>
     /// Process and remove submission tasks in batches running handler for each batch if worker is active.
     /// </summary>
@@ -121,6 +122,82 @@ public class TasksProcessingService
         await Process(WorkerType.Indexing, task => task.IndexingTypeId == type, bucketSize, handler);
     }
 
+    
+    /// <summary>
+    /// Process and remove submission tasks in batches running handler for each batch if worker is active.
+    /// </summary>
+    /// <param name="type">Submission task type.</param>
+    /// <param name="status">Task status.</param>
+    /// <param name="bucketSize">Bucket size.</param>
+    /// <param name="handler">Processing handler.</param> 
+    public void Process(SubmissionTaskType type, TaskStatusType status, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
+    {
+        Process(WorkerType.Submission, task => task.SubmissionTypeId == type && task.StatusTypeId == status, bucketSize, handler);
+    }
+
+    /// <summary>
+    /// Process and remove annotation tasks in batches running handler for each batch if worker is active.
+    /// </summary>
+    /// <param name="type">Annotation task type.</param>
+    /// <param name="status">Task status.</param>
+    /// <param name="bucketSize">Bucket size.</param>
+    /// <param name="handler">Processing handler.</param>
+    public void Process(AnnotationTaskType type, TaskStatusType status, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
+    {
+        Process(WorkerType.Annotation, task => task.AnnotationTypeId == type && task.StatusTypeId == status, bucketSize, handler);
+    }
+
+    /// <summary>
+    /// Process and remove indexing tasks in batches running handler for each batch if worker is active.
+    /// </summary>
+    /// <param name="type">Indexing task type.</param>
+    /// <param name="status">Task status.</param>
+    /// <param name="bucketSize">Bucket size.</param>
+    /// <param name="handler">Processing handler.</param>
+    public void Process(IndexingTaskType type, TaskStatusType status, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
+    {
+        Process(WorkerType.Indexing, task => task.IndexingTypeId == type && task.StatusTypeId == status, bucketSize, handler);
+    }
+
+    /// <summary>
+    /// Process and remove submission tasks in batches running handler for each batch if worker is active.
+    /// </summary>
+    /// <param name="type">Submission task type.</param>
+    /// <param name="status">Task status.</param>
+    /// <param name="bucketSize">Bucket size.</param>
+    /// <param name="handler">Processing handler.</param>
+    /// <returns>System.Threading.Tasks.Task</returns>
+    public async Task Process(SubmissionTaskType type, TaskStatusType status, int bucketSize, Func<Entities.Tasks.Task[], Task<bool>> handler)
+    {
+        await Process(WorkerType.Submission, task => task.SubmissionTypeId == type && task.StatusTypeId == status, bucketSize, handler);
+    }
+
+    /// <summary>
+    /// Process and remove annotation tasks in batches running handler for each batch if worker is active.
+    /// </summary>
+    /// <param name="type">Annotation task type.</param>
+    /// <param name="status">Task status.</param>
+    /// <param name="bucketSize">Bucket size.</param>
+    /// <param name="handler">Processing handler.</param>
+    /// <returns>System.Threading.Tasks.Task</returns>
+    public async Task Process(AnnotationTaskType type, TaskStatusType status, int bucketSize, Func<Entities.Tasks.Task[], Task<bool>> handler)
+    {
+        await Process(WorkerType.Annotation, task => task.AnnotationTypeId == type && task.StatusTypeId == status, bucketSize, handler);
+    }
+
+    /// <summary>
+    /// Process and remove indexing tasks in batches running handler for each batch if worker is active.
+    /// </summary>
+    /// <param name="type">Indexing task type.</param>
+    /// <param name="status">Task status.</param>
+    /// <param name="bucketSize">Bucket size.</param>
+    /// <param name="handler">Processing handler.</param>
+    /// <returns>System.Threading.Tasks.Task</returns>
+    public async Task Process(IndexingTaskType type, TaskStatusType status, int bucketSize, Func<Entities.Tasks.Task[], Task<bool>> handler)
+    {
+        await Process(WorkerType.Indexing, task => task.IndexingTypeId == type && task.StatusTypeId == status, bucketSize, handler);
+    }
+
 
     /// <summary>
     /// Process and change status of submission tasks in batches running handler for each batch if worker is active.
@@ -132,7 +209,7 @@ public class TasksProcessingService
     /// <param name="handler">Processing handler.</param>
     public void Process(SubmissionTaskType type, TaskStatusType startStatus, TaskStatusType endStatus, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
-        Process(WorkerType.Submission, task => task.SubmissionTypeId == type, startStatus, endStatus, bucketSize, handler);
+        Process(WorkerType.Submission, task => task.SubmissionTypeId == type && task.StatusTypeId == startStatus, bucketSize, endStatus, handler);
     }
 
     /// <summary>
@@ -145,7 +222,7 @@ public class TasksProcessingService
     /// <param name="handler">Processing handler.</param>
     public void Process(AnnotationTaskType type, TaskStatusType startStatus, TaskStatusType endStatus, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
-        Process(WorkerType.Annotation, task => task.AnnotationTypeId == type, startStatus, endStatus, bucketSize, handler);
+        Process(WorkerType.Annotation, task => task.AnnotationTypeId == type && task.StatusTypeId == startStatus, bucketSize, endStatus, handler);
     }
 
     /// <summary>
@@ -158,7 +235,7 @@ public class TasksProcessingService
     /// <param name="handler">Processing handler.</param>
     public void Process(IndexingTaskType type, TaskStatusType startStatus, TaskStatusType endStatus, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
     {
-        Process(WorkerType.Indexing, task => task.IndexingTypeId == type, startStatus, endStatus, bucketSize, handler);
+        Process(WorkerType.Indexing, task => task.IndexingTypeId == type && task.StatusTypeId == startStatus, bucketSize, endStatus, handler);
     }
 
     /// <summary>
@@ -172,7 +249,7 @@ public class TasksProcessingService
     /// <returns>System.Threading.Tasks.Task</returns>
     public async Task Process(SubmissionTaskType type, TaskStatusType startStatus, TaskStatusType endStatus, int bucketSize, Func<Entities.Tasks.Task[], Task<bool>> handler)
     {
-        await Process(WorkerType.Submission, task => task.SubmissionTypeId == type, startStatus, endStatus, bucketSize, handler);
+        await Process(WorkerType.Submission, task => task.SubmissionTypeId == type && task.StatusTypeId == startStatus, bucketSize, endStatus, handler);
     }
 
     /// <summary>
@@ -186,7 +263,7 @@ public class TasksProcessingService
     /// <returns>System.Threading.Tasks.Task</returns>
     public async Task Process(AnnotationTaskType type, TaskStatusType startStatus, TaskStatusType endStatus, int bucketSize, Func<Entities.Tasks.Task[], Task<bool>> handler)
     {
-        await Process(WorkerType.Annotation, task => task.AnnotationTypeId == type, startStatus, endStatus, bucketSize, handler);
+        await Process(WorkerType.Annotation, task => task.AnnotationTypeId == type && task.StatusTypeId == startStatus, bucketSize, endStatus, handler);
     }
 
     /// <summary>
@@ -200,7 +277,7 @@ public class TasksProcessingService
     /// <returns>System.Threading.Tasks.Task</returns>
     public async Task Process(IndexingTaskType type, TaskStatusType startStatus, TaskStatusType endStatus, int bucketSize, Func<Entities.Tasks.Task[], Task<bool>> handler)
     {
-        await Process(WorkerType.Indexing, task => task.IndexingTypeId == type, startStatus, endStatus, bucketSize, handler);
+        await Process(WorkerType.Indexing, task => task.IndexingTypeId == type && task.StatusTypeId == startStatus, bucketSize, endStatus, handler);
     }
 
 
@@ -274,7 +351,7 @@ public class TasksProcessingService
         }
     }
 
-    private void Process(WorkerType type, Expression<Func<Entities.Tasks.Task, bool>> filter, TaskStatusType startStatus, TaskStatusType endStatus, int bucketSize, Func<Entities.Tasks.Task[], bool> handler)
+    private void Process(WorkerType type, Expression<Func<Entities.Tasks.Task, bool>> filter, int bucketSize, TaskStatusType endStatus, Func<Entities.Tasks.Task[], bool> handler)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
@@ -286,7 +363,6 @@ public class TasksProcessingService
         while (true)
         {
             var tasks = dbContext.Set<Entities.Tasks.Task>()
-                .Where(task => task.StatusTypeId == startStatus)
                 .Where(filter)
                 .OrderByDescending(task => task.Date)
                 .Take(bucketSize)
@@ -315,7 +391,7 @@ public class TasksProcessingService
         }
     }
 
-    private async Task Process(WorkerType type, Expression<Func<Entities.Tasks.Task, bool>> filter, TaskStatusType startStatus, TaskStatusType endStatus, int bucketSize, Func<Entities.Tasks.Task[], Task<bool>> handler)
+    private async Task Process(WorkerType type, Expression<Func<Entities.Tasks.Task, bool>> filter, int bucketSize, TaskStatusType endStatus, Func<Entities.Tasks.Task[], Task<bool>> handler)
     {
          using var dbContext = _dbContextFactory.CreateDbContext();
 
@@ -327,7 +403,6 @@ public class TasksProcessingService
         while (true)
         {
             var tasks = await dbContext.Set<Entities.Tasks.Task>()
-                .Where(task => task.StatusTypeId == startStatus)
                 .Where(filter)
                 .OrderByDescending(task => task.Date)
                 .Take(bucketSize)

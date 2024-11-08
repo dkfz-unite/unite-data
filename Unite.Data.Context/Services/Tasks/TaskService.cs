@@ -19,36 +19,81 @@ public abstract class TaskService
 
 
     /// <summary>
+    /// Creates submission task.
+    /// </summary>
+    /// <typeparam name="TKey">Key type.</typeparam>
+    /// <typeparam name="TData">Data type.</typeparam>
+    /// <param name="type">Indexing task type.</param>
+    /// <param name="key">Key.</param>
+    /// <param name="data">Initial data.</param>
+    /// <param name="status">Initial status.</param>
+    /// <returns>Identifier of created or existing task.</returns>
+    protected long CreateTask<TKey, TData>(
+        SubmissionTaskType type,
+        TKey key,
+        TData data = null,
+        TaskStatusType? status = null)
+        where TData : class
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var task = dbContext.Set<Entities.Tasks.Task>().FirstOrDefault(task => task.SubmissionTypeId == type && task.Target == key.ToString());
+
+        if (task == null)
+        {
+            task = new Entities.Tasks.Task
+            {
+                SubmissionTypeId = type,
+                Target = key.ToString(),
+                Data = data != null ? JsonSerializer.Serialize(data) : null,
+                Date = DateTime.UtcNow,
+                StatusTypeId = status,
+            };
+
+            dbContext.Add(task);
+            dbContext.SaveChanges();
+        }
+
+        return task.Id;
+    }
+
+    /// <summary>
     /// Creates indexing task.
     /// </summary>
     /// <typeparam name="TKey">Key type.</typeparam>
     /// <typeparam name="TData">Data type.</typeparam>
     /// <param name="type">Indexing task type.</param>
     /// <param name="key">Key.</param>
-    /// <param name="data">Data.</param>
-    protected void CreateTask<TKey, TData>(
+    /// <param name="data">Initial data.</param>
+    /// <param name="status">Initial status.</param>
+    /// <returns>Identifier of created or existing task.</returns>
+    protected long CreateTask<TKey, TData>(
         IndexingTaskType type,
         TKey key,
-        TData data = null)
+        TData data = null,
+        TaskStatusType? status = null)
         where TData : class
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
-        var exists = dbContext.Set<Entities.Tasks.Task>().Any(task => task.IndexingTypeId == type && task.Target == key.ToString());
+        var task = dbContext.Set<Entities.Tasks.Task>().FirstOrDefault(task => task.IndexingTypeId == type && task.Target == key.ToString());
 
-        if (!exists)
+        if (task == null)
         {
-            var task = new Entities.Tasks.Task
+            task = new Entities.Tasks.Task
             {
                 IndexingTypeId = type,
                 Target = key.ToString(),
                 Data = data != null ? JsonSerializer.Serialize(data) : null,
-                Date = DateTime.UtcNow
+                Date = DateTime.UtcNow,
+                StatusTypeId = status
             };
 
             dbContext.Add(task);
             dbContext.SaveChanges();
         }
+
+        return task.Id;
     }
 
     /// <summary>
@@ -58,65 +103,36 @@ public abstract class TaskService
     /// <typeparam name="TData">Data type.</typeparam>
     /// <param name="type">Indexing task type.</param>
     /// <param name="key">Key.</param>
-    /// <param name="data">Data.</param>
-    protected void CreateTask<TKey, TData>(
+    /// <param name="data">Initial data.</param>
+    /// <param name="status">Initial status.</param>
+    /// <returns>Identifier of created or existing task.</returns>
+    protected long CreateTask<TKey, TData>(
         AnnotationTaskType type,
         TKey key,
-        TData data = null)
+        TData data = null,
+        TaskStatusType? status = null)
         where TData : class
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
-        var exists = dbContext.Set<Entities.Tasks.Task>().Any(task => task.AnnotationTypeId == type && task.Target == key.ToString());
+        var task = dbContext.Set<Entities.Tasks.Task>().FirstOrDefault(task => task.AnnotationTypeId == type && task.Target == key.ToString());
 
-        if (!exists)
+        if (task == null)
         {
-            var task = new Entities.Tasks.Task
+            task = new Entities.Tasks.Task
             {
                 AnnotationTypeId = type,
                 Target = key.ToString(),
                 Data = data != null ? JsonSerializer.Serialize(data) : null,
-                Date = DateTime.UtcNow
-            };
-
-            dbContext.Add(task);
-            dbContext.SaveChanges();
-        }
-    }
-
-    /// <summary>
-    /// Creates submission task.
-    /// </summary>
-    /// <typeparam name="TKey">Key type.</typeparam>
-    /// <typeparam name="TData">Data type.</typeparam>
-    /// <param name="type">Indexing task type.</param>
-    /// <param name="key">Key.</param>
-    /// <param name="data">Data.</param>
-    protected void CreateTask<TKey, TData>(
-        SubmissionTaskType type,
-        TKey key,
-        TData data = null)
-        where TData : class
-    {
-        using var dbContext = _dbContextFactory.CreateDbContext();
-
-        var exists = dbContext.Set<Entities.Tasks.Task>().Any(task => task.SubmissionTypeId == type && task.Target == key.ToString());
-
-        if (!exists)
-        {
-            var task = new Entities.Tasks.Task
-            {
-                SubmissionTypeId = type,
-                Target = key.ToString(),
-                Data = data != null ? JsonSerializer.Serialize(data) : null,
                 Date = DateTime.UtcNow,
-                StatusTypeId = TaskStatusType.Preparing,
-                RejectReason = String.Empty
+                StatusTypeId = status
             };
 
             dbContext.Add(task);
             dbContext.SaveChanges();
         }
+
+        return task.Id;
     }
 
     /// <summary>

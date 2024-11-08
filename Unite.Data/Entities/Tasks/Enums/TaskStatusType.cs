@@ -32,5 +32,5 @@ public enum TaskStatusType
     /// Failed task.
     /// </summary>
     [EnumMember(Value = "Failed")]
-    Failed = 5,
+    Failed = 5
 }

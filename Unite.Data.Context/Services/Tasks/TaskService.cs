@@ -243,6 +243,20 @@ public abstract class TaskService
         }
     }
 
+    /// <summary>
+    /// Get tasks based on task id.
+    /// </summary>
+    /// <param name="id">Submission task id.</param>
+    protected Entities.Tasks.Task GetSubmissionTask(long id)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var task = dbContext.Set<Entities.Tasks.Task>()
+            .Where(task => task.Id == id)
+            .FirstOrDefault();
+
+        return task;
+    }
 
     /// <summary>
     /// Iterate entities of the database in batches running handler for each batch.

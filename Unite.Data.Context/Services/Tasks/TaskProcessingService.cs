@@ -40,7 +40,7 @@ public class TasksProcessingService
     public bool HasTasks(WorkerType type)
     {
         Expression<Func<Entities.Tasks.Task, bool>> predicate = 
-            type == WorkerType.Submission ? task => task.SubmissionTypeId != null && task.StatusTypeId == null:
+            type == WorkerType.Submission ? task => task.SubmissionTypeId != null && task.StatusTypeId != TaskStatusType.Preparing && task.StatusTypeId != TaskStatusType.Rejected:
             type == WorkerType.Annotation ? task => task.AnnotationTypeId != null :
             type == WorkerType.Indexing ? task => task.IndexingTypeId != null :
             task => false;

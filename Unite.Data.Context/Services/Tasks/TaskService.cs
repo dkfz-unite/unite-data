@@ -19,6 +19,22 @@ public abstract class TaskService
 
 
     /// <summary>
+    /// Get tasks by id.
+    /// </summary>
+    /// <param name="id">Task id.</param>
+    /// <returns>Task is was found.</returns>
+    public Entities.Tasks.Task GetTask(long id)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var task = dbContext.Set<Entities.Tasks.Task>()
+            .AsNoTracking()
+            .FirstOrDefault(task => task.Id == id);
+
+        return task;
+    }
+
+    /// <summary>
     /// Creates submission task.
     /// </summary>
     /// <typeparam name="TKey">Key type.</typeparam>
@@ -241,21 +257,6 @@ public abstract class TaskService
             dbContext.AddRange(tasks);
             dbContext.SaveChanges();
         }
-    }
-
-    /// <summary>
-    /// Get tasks based on task id.
-    /// </summary>
-    /// <param name="id">Submission task id.</param>
-    protected Entities.Tasks.Task GetSubmissionTask(long id)
-    {
-        using var dbContext = _dbContextFactory.CreateDbContext();
-
-        var task = dbContext.Set<Entities.Tasks.Task>()
-            .Where(task => task.Id == id)
-            .FirstOrDefault();
-
-        return task;
     }
 
     /// <summary>

@@ -31,18 +31,13 @@ public class SubmissionTaskService : TaskService
         dbContext.SaveChanges();
     }
 
-    public long CreateTask(SubmissionTaskType type, string key, TaskStatusType taskStatusType)
+    public long CreateTask(SubmissionTaskType type, string key, TaskStatusType status)
     {
-       return CreateTask<string, object>(type, key, null,taskStatusType);
+       return CreateTask<string, object>(type, key, null, status);
     }
 
-    public void CreateTask<TData>(SubmissionTaskType type, string key, TData data = null) where TData : class
+    public long CreateTask<TData>(SubmissionTaskType type, string key, TData data = null, TaskStatusType? status = null) where TData : class
     {
-        CreateTask<string, TData>(type, key, data);
-    }
-
-    public Entities.Tasks.Task GetTask(long id)
-    {
-       return GetSubmissionTask(id);
+        return CreateTask<string, TData>(type, key, data, status);
     }
 }

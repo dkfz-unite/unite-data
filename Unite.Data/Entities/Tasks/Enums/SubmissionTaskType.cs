@@ -91,6 +91,12 @@ public enum SubmissionTaskType
     DNA_SV = 303,
 
     /// <summary>
+    /// Methylation array data
+    /// </summary>
+    [EnumMember(Value = "dna-meth")]
+    DNA_METH = 304,
+
+    /// <summary>
     /// Bulk gene expression
     /// </summary>
     [EnumMember(Value = "rna-exp")]

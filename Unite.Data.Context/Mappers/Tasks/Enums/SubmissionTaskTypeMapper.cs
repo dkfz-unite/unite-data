@@ -24,6 +24,7 @@ internal class SubmissionTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Su
             SubmissionTaskType.SPE_DRG.ToEnumValue(),
             SubmissionTaskType.DNA_SSM.ToEnumValue(),
             SubmissionTaskType.DNA_CNV.ToEnumValue(),
+            SubmissionTaskType.DNA_METH.ToEnumValue(),
             SubmissionTaskType.DNA_SV.ToEnumValue(),
             SubmissionTaskType.RNA_EXP.ToEnumValue(),
             SubmissionTaskType.RNASC_EXP.ToEnumValue()          

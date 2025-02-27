@@ -7,6 +7,6 @@ public enum FixationType
     [EnumMember(Value = "FFPE")]
     FFPE = 1,
 
-    [EnumMember(Value = "Fresh_Frozen")]
+    [EnumMember(Value = "Fresh Frozen")]
     FreshFrozen = 2
 }

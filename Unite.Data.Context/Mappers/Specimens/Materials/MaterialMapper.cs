@@ -29,6 +29,10 @@ internal class MaterialMapper : IEntityTypeConfiguration<Material>
               .WithMany()
               .HasForeignKey(material => material.TypeId);
 
+        entity.HasOne<EnumEntity<FixationType>>()
+              .WithMany()
+              .HasForeignKey(material => material.FixationTypeId);
+
         entity.HasOne<EnumEntity<TumorType>>()
               .WithMany()
               .HasForeignKey(material => material.TumorTypeId);

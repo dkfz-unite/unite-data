@@ -149,6 +149,7 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Specimens.InterventionMapper());
 
         builder.ApplyConfiguration(new Mappers.Specimens.Materials.Enums.MaterialTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Materials.Enums.FixationTypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Materials.Enums.TumorTypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Materials.MaterialSourceMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Materials.MaterialMapper());

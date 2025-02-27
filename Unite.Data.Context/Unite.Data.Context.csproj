@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ReleaseVersion>9.4.1</ReleaseVersion>
-    <Version>9.4.1</Version>
+    <ReleaseVersion>9.5.0</ReleaseVersion>
+    <Version>9.5.0</Version>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
     <Authors>Valiantsin Ulasau (DKFZ)</Authors>
@@ -13,7 +13,7 @@
     <ProjectReference Include="..\Unite.Data\Unite.Data.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
     <PackageReference Include="Unite.Essentials" Version="1.4.0" />
   </ItemGroup>
 </Project>

@@ -8,7 +8,9 @@ public record Material
 
     public int? SourceId { get; set; }
     public MaterialType? TypeId { get; set; }
+    public FixationType? FixationTypeId { get; set; }
     public TumorType? TumorTypeId { get; set; }
+    public byte? TumorGrade { get; set; }
 
 
     public virtual Specimen Specimen { get; set; }

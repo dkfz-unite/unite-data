@@ -60,7 +60,7 @@ public class ImagesRepository : Repository
         return await dbContext.Set<Entities.Images.Analysis.Sample>()
             .AsNoTracking()
             .Where(sample => ids.Contains(sample.SpecimenId))
-            .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId.Value))
+            .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId))
             .Select(sample => sample.Id)
             .ToArrayAsync();
     }

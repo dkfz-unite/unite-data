@@ -12,5 +12,5 @@ public abstract record Analysis
 public abstract record Analysis<TType> : Analysis
     where TType : struct, Enum
 {
-    public TType? TypeId { get; set; }
+    public TType TypeId { get; set; }
 }

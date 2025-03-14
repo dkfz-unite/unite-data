@@ -26,6 +26,7 @@ public static class ServicesExtensions
 
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
+        services.AddTransient<ProjectsRepository>();
         services.AddTransient<DonorsRepository>();
         services.AddTransient<SpecimensRepository>();
         services.AddTransient<GenesRepository>();

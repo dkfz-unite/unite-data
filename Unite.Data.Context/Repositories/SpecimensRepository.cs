@@ -75,7 +75,7 @@ public class SpecimensRepository : Repository
         return await dbContext.Set<Entities.Specimens.Analysis.Sample>()
             .AsNoTracking()
             .Where(sample => ids.Contains(sample.SpecimenId))
-            .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId.Value))
+            .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId))
             .Select(sample => sample.Id)
             .ToArrayAsync();
     }
@@ -89,7 +89,7 @@ public class SpecimensRepository : Repository
         return await dbContext.Set<Entities.Genome.Analysis.Sample>()
             .AsNoTracking()
             .Where(sample => ids.Contains(sample.SpecimenId))
-            .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId.Value))
+            .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId))
             .Select(sample => sample.Id)
             .ToArrayAsync();
     }

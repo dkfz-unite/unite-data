@@ -22,11 +22,15 @@ internal class SubmissionTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Su
             SubmissionTaskType.XEN.ToEnumValue(),
             SubmissionTaskType.SPE_INT.ToEnumValue(),
             SubmissionTaskType.SPE_DRG.ToEnumValue(),
+            SubmissionTaskType.DNA.ToEnumValue(),
             SubmissionTaskType.DNA_SSM.ToEnumValue(),
             SubmissionTaskType.DNA_CNV.ToEnumValue(),
-            SubmissionTaskType.DNA_METH.ToEnumValue(),
             SubmissionTaskType.DNA_SV.ToEnumValue(),
+            SubmissionTaskType.METH.ToEnumValue(),
+            SubmissionTaskType.METH_LVL.ToEnumValue(),
+            SubmissionTaskType.RNA.ToEnumValue(),
             SubmissionTaskType.RNA_EXP.ToEnumValue(),
+            SubmissionTaskType.RNASC.ToEnumValue(),
             SubmissionTaskType.RNASC_EXP.ToEnumValue()          
         };
 

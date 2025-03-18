@@ -18,8 +18,6 @@ public static class DataTypes
     // dna-cnv
     // dna-sv
     // meth
-    // meth-red
-    // meth-green
     // meth-lvl
     // rna
     // rna-exp
@@ -69,10 +67,8 @@ public static class DataTypes
 
         public static class Meth
         {
-            public const string Sample = "meth"; // Methylation samples (fasta, fastq, BAM)
-            public const string SampleRed = "meth-red"; // Methylation samples red channel (idat)
-            public const string SampleGreen = "meth-green"; // Methylation samples green channel (idat)
-            public const string Levels = "meth-lvl"; // Methylation levels
+            public const string Sample = "meth"; // Methylation samples (fasta, fastq, BAM, idat)
+            public const string Levels = "meth-lvl"; // Methylation levels (beta and/or M values)
         }
 
         public static class Rna

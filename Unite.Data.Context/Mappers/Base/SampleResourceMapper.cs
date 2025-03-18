@@ -23,6 +23,10 @@ internal abstract class SampleResourceMapper<TSampleResource> : IEntityTypeConfi
               .IsRequired()
               .ValueGeneratedNever();
 
+        entity.Property(resource => resource.Name)
+              .IsRequired()
+              .HasMaxLength(100);
+
         entity.Property(resource => resource.Type)
               .IsRequired()
               .HasMaxLength(100);

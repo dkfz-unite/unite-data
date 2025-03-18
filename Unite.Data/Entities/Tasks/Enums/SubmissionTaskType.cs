@@ -13,98 +13,122 @@ public enum SubmissionTaskType
 {
 
     /// <summary>
-    /// donors general and clinical data
+    /// Donor general and clinical data.
     /// </summary>
     [EnumMember(Value = "don")]
     DON = 0,
 
     /// <summary>
-    /// donors treatments data
+    /// Donor treatments.
     /// </summary>
     [EnumMember(Value = "don-trt")]
     DON_TRT= 1,
 
     /// <summary>
-    /// MRI images data
+    /// MRI image metadata.
     /// </summary>
     [EnumMember(Value = "mri")]
     MRI= 100,
 
     /// <summary>
-    ///  image radiomics features data
+    /// Image radiomics features.
     /// </summary>
     [EnumMember(Value = "img-rad")]
     IMG_RAD= 101,
 
     /// <summary>
-    ///  all donor derived materials data
+    /// Donor derived material general and molecular data.
     /// </summary>
     [EnumMember(Value = "mat")]
     MAT= 200,
 
     /// <summary>
-    ///  cell lines data
+    /// Cell line general and molecular data.
     /// </summary>
     [EnumMember(Value = "lne")]
     LNE= 201,
 
     /// <summary>
-    ///  organoids data
+    /// Organoid general and molecular data.
     /// </summary>
     [EnumMember(Value = "org")]
     ORG= 202,
 
     /// <summary>
-    ///  xenografts data
+    /// Xenograft general and molecular data.
     /// </summary>
     [EnumMember(Value = "xen")]
     XEN= 203,
 
     /// <summary>
-    ///  specimens interventions data
+    /// Specimen interventions.
     /// </summary>
     [EnumMember(Value = "spe-int")]
     SPE_INT= 204,
 
     /// <summary>
-    ///  specimen drugs screening data
+    /// Specimen drugs screening data.
     /// </summary>
     [EnumMember(Value = "spe-drg")]
     SPE_DRG= 205,
 
     /// <summary>
-    /// Simple somatic mutation
+    /// DNA sample.
+    /// </summary>
+    [EnumMember(Value = "dna")]
+    DNA = 300,
+
+    /// <summary>
+    /// Simple somatic mutations.
     /// </summary>
     [EnumMember(Value = "dna-ssm")]
     DNA_SSM = 301,
 
     /// <summary>
-    /// Copy number variant
+    /// Copy number variants.
     /// </summary>
     [EnumMember(Value = "dna-cnv")]
     DNA_CNV = 302,
 
     /// <summary>
-    /// Structural variant
+    /// Structural variants.
     /// </summary>
     [EnumMember(Value = "dna-sv")]
     DNA_SV = 303,
 
     /// <summary>
-    /// Methylation array data
+    /// Methylation sample.
     /// </summary>
-    [EnumMember(Value = "dna-meth")]
-    DNA_METH = 304,
+    [EnumMember(Value = "meth")]
+    METH = 310,
 
     /// <summary>
-    /// Bulk gene expression
+    /// Methylation levels.
+    /// </summary>
+    [EnumMember(Value = "meth-lvl")]
+    METH_LVL = 311,
+
+    /// <summary>
+    /// Bulk RNA sample.
+    /// </summary>
+    [EnumMember(Value = "rna")]
+    RNA = 320,
+
+    /// <summary>
+    /// Bulk gene expressions.
     /// </summary>
     [EnumMember(Value = "rna-exp")]
     RNA_EXP = 321,
 
     /// <summary>
-    /// Single cell gene expression
+    /// Single cell RNA sample.
+    /// </summary>
+    [EnumMember(Value = "rnasc")]
+    RNASC = 330,
+
+    /// <summary>
+    /// Single cell gene expressions.
     /// </summary>
     [EnumMember(Value = "rnasc-exp")]
-    RNASC_EXP = 341
+    RNASC_EXP = 331
 }

@@ -23,5 +23,12 @@ public enum AnalysisTaskType
     /// Kaplan-Meier survival estimation analysis.
     /// </summary>
     [EnumMember(Value = "kmeier")] 
-    KMEIER = 3
+    KMEIER = 3,
+
+    /// <summary>
+    /// Methylation Analysis.
+    /// </summary>
+    [EnumMember(Value = "meth")]
+    METH = 4
+
 }

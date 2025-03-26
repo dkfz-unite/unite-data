@@ -173,8 +173,7 @@ public class VariantsRepository : Repository
             .ToArrayAsync();
     }
 
-    public async Task<int[]> GetSimilarVariants<TVAT, TV>(IEnumerable<int> ids, double overlap = 0.9)
-        where TVAT : VariantAffectedTranscript<TV>
+    public async Task<int[]> GetSimilarVariants<TV>(IEnumerable<int> ids, double overlap = 0.9)
         where TV : Variant
     {
         if (typeof(TV) == typeof(Cnv.Variant))

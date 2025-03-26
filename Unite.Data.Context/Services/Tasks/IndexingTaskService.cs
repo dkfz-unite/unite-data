@@ -57,49 +57,49 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     /// Loads donors related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependint donors identifiers.</returns>
+    /// <returns>Collection of related donors identifiers.</returns>
     protected abstract IEnumerable<int> LoadRelatedDonors(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads images related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependint images identifiers.</returns>
+    /// <returns>Collection of related images identifiers.</returns>
     protected abstract IEnumerable<int> LoadRelatedImages(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads specimens related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependint specimens identifiers.</returns>
+    /// <returns>Collection of related specimens identifiers.</returns>
     protected abstract IEnumerable<int> LoadRelatedSpecimens(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads genes related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependint genes identifiers.</returns>
+    /// <returns>Collection of related genes identifiers.</returns>
     protected abstract IEnumerable<int> LoadRelatedGenes(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads SSMs related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependint SSMs identifiers.</returns>
+    /// <returns>Collection of related SSMs identifiers.</returns>
     protected abstract IEnumerable<int> LoadRelatedSsms(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads CNVs related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependint CNVs identifiers.</returns>
+    /// <returns>Collection of related CNVs identifiers.</returns>
     protected abstract IEnumerable<int> LoadRelatedCnvs(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads SVs related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of dependint SVs identifiers.</returns>
+    /// <returns>Collection of related SVs identifiers.</returns>
     protected abstract IEnumerable<int> LoadRelatedSvs(IEnumerable<TKey> keys);
 
 
@@ -177,5 +177,20 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
         var svIds = LoadRelatedSvs(keys);
 
         CreateTasks(IndexingTaskType.SV, svIds);
+    }
+
+    /// <summary>
+    /// Loads default project id if exists as an array.
+    /// </summary>
+    /// <returns>Array with default project id if exists, otherwise empty array.</returns>
+    protected virtual int[] LoadDefaultProjects()
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var project = dbContext.Set<Entities.Donors.Project>()
+            .AsNoTracking()
+            .FirstOrDefault(project => project.Name == Entities.Donors.Project.DefaultName);
+        
+        return project != null ? [project.Id] : [];
     }
 }

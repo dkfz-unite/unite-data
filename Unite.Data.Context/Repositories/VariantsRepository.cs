@@ -198,7 +198,7 @@ public class VariantsRepository : Repository
 
         foreach (var target in targets)
         {
-            await dbContext.Set<Cnv.Variant>()
+            var similars = await dbContext.Set<Cnv.Variant>()
                 .AsNoTracking()
                 .Where(Predicates.IsInfluentCnv)
                 .Where(current =>
@@ -212,20 +212,25 @@ public class VariantsRepository : Repository
                 .Select(current => new 
                 {
                     Id = current.Id,
-                    OverlapStart = Math.Max(current.Start, target.Start),
-                    OverlapEnd = Math.Min(current.End, target.End),
+                    // OverlapStart = Math.Max(current.Start, target.Start),
+                    // OverlapEnd = Math.Min(current.End, target.End),
+                    OverlapLength = Math.Min(current.End, target.End) - Math.Max(current.Start, target.Start),
                     CurrentLength = current.End - current.Start,
                     TargetLength = target.End - target.Start
                 })
                 .Where(current => Math.Min(
-                    (double)(current.OverlapEnd - current.OverlapStart) / current.CurrentLength,
-                    (double)(current.OverlapEnd - current.OverlapStart) / current.TargetLength
+                    // (double)(current.OverlapEnd - current.OverlapStart) / current.CurrentLength,
+                    // (double)(current.OverlapEnd - current.OverlapStart) / current.TargetLength
+                    (double)current.OverlapLength / current.CurrentLength,
+                    (double)current.OverlapLength / current.TargetLength
                 ) >= overlap)
                 .Select(current => current.Id)
                 .ToArrayAsync();
+
+            results.AddRange(similars);
         }
 
-        return results.ToArray();
+        return results.Distinct().ToArray();
     }
 
     private async Task<int[]> GetSimilarSvs(IEnumerable<int> ids, double overlap)
@@ -249,7 +254,7 @@ public class VariantsRepository : Repository
                 var targetEndMin = Math.Max(0, target.OtherStart - distance);
                 var targetEndMax = target.OtherStart + distance;
 
-                results.AddRange(await dbContext.Set<Sv.Variant>()
+                var similars = await dbContext.Set<Sv.Variant>()
                     .AsNoTracking()
                     .Where(current =>
                         current.Id != target.Id &&
@@ -263,11 +268,13 @@ public class VariantsRepository : Repository
                         current.OtherStart <= targetEndMax
                     )
                     .Select(current => current.Id)
-                    .ToArrayAsync());
+                    .ToArrayAsync();
+
+                results.AddRange(similars);
             }
             else
             {
-                results.AddRange(await dbContext.Set<Sv.Variant>()
+                var similars = await dbContext.Set<Sv.Variant>()
                     .AsNoTracking()
                     .Where(current =>
                         current.Id != target.Id &&
@@ -279,20 +286,25 @@ public class VariantsRepository : Repository
                     .Select(current => new 
                     {
                         Id = current.Id,
-                        OverlapStart = Math.Max(current.End, target.End),
-                        OverlapEnd = Math.Min(current.OtherStart, target.OtherStart),
+                        // OverlapStart = Math.Max(current.End, target.End),
+                        // OverlapEnd = Math.Min(current.OtherStart, target.OtherStart),
+                        OverlapLength = Math.Min(current.OtherStart, target.OtherStart) - Math.Max(current.End, target.End),
                         CurrentLength = current.OtherStart - current.End,
                         TargetLength = target.OtherStart - target.End
                     })
                     .Where(current => Math.Min(
-                        (double)(current.OverlapEnd - current.OverlapStart) / current.CurrentLength,
-                        (double)(current.OverlapEnd - current.OverlapStart) / current.TargetLength
+                        // (double)(current.OverlapEnd - current.OverlapStart) / current.CurrentLength,
+                        // (double)(current.OverlapEnd - current.OverlapStart) / current.TargetLength
+                        (double)current.OverlapLength / current.CurrentLength,
+                        (double)current.OverlapLength / current.TargetLength
                     ) >= overlap)
                     .Select(current => current.Id)
-                    .ToArrayAsync());
+                    .ToArrayAsync();
+
+                results.AddRange(similars);
             }
         }
 
-        return results.ToArray();
+        return results.Distinct().ToArray();
     }
 }

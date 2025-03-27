@@ -200,7 +200,9 @@ public class VariantsRepository : Repository
         {
             await dbContext.Set<Cnv.Variant>()
                 .AsNoTracking()
+                .Where(Predicates.IsInfluentCnv)
                 .Where(current =>
+                    current.Id != target.Id &&
                     current.TypeId == target.TypeId &&
                     current.Loh == target.Loh &&
                     current.Del == target.Del &&
@@ -250,6 +252,7 @@ public class VariantsRepository : Repository
                 results.AddRange(await dbContext.Set<Sv.Variant>()
                     .AsNoTracking()
                     .Where(current =>
+                        current.Id != target.Id &&
                         current.TypeId == target.TypeId &&
                         current.Inverted == target.Inverted &&
                         current.ChromosomeId == target.ChromosomeId &&
@@ -267,6 +270,7 @@ public class VariantsRepository : Repository
                 results.AddRange(await dbContext.Set<Sv.Variant>()
                     .AsNoTracking()
                     .Where(current =>
+                        current.Id != target.Id &&
                         current.TypeId == target.TypeId &&
                         current.Inverted == target.Inverted &&
                         current.End >= target.Start &&

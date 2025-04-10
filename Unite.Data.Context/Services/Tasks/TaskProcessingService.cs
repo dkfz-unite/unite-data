@@ -294,7 +294,7 @@ public class TasksProcessingService
         {
             var tasks = dbContext.Set<Entities.Tasks.Task>()
                 .Where(filter)
-                .OrderByDescending(task => task.Date)
+                .OrderBy(task => task.Id)
                 .Take(bucketSize)
                 .ToArray();
 
@@ -329,7 +329,7 @@ public class TasksProcessingService
         {
             var tasks = await dbContext.Set<Entities.Tasks.Task>()
                 .Where(filter)
-                .OrderByDescending(task => task.Date)
+                .OrderBy(task => task.Id)
                 .Take(bucketSize)
                 .ToArrayAsync();
 
@@ -364,7 +364,7 @@ public class TasksProcessingService
         {
             var tasks = dbContext.Set<Entities.Tasks.Task>()
                 .Where(filter)
-                .OrderByDescending(task => task.Date)
+                .OrderBy(task => task.Id)
                 .Take(bucketSize)
                 .ToArray();
 
@@ -404,7 +404,7 @@ public class TasksProcessingService
         {
             var tasks = await dbContext.Set<Entities.Tasks.Task>()
                 .Where(filter)
-                .OrderByDescending(task => task.Date)
+                .OrderBy(task => task.Id)
                 .Take(bucketSize)
                 .ToArrayAsync();
 

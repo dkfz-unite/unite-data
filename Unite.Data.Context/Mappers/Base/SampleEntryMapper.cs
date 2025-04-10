@@ -11,8 +11,8 @@ internal abstract class SampleEntryMapper<TSampleEntry, TSample, TEntity> : IEnt
 {
     protected abstract string SchemaName { get; }
     protected abstract string TableName { get; }
-    protected virtual string SampleColumnName => "SampleId";
-    protected virtual string EntityColumnName => "EntityId";
+    protected virtual string SampleColumnName => "sample_id";
+    protected virtual string EntityColumnName => "entity_id";
 
     public virtual void Configure(EntityTypeBuilder<TSampleEntry> entity)
     {

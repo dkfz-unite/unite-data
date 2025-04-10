@@ -3,18 +3,18 @@
 namespace Unite.Data.Entities.Specimens.Enums;
 
 /// <summary>
-/// IDH
+/// IDH.
 /// </summary>
 public enum IdhStatus
 {
     /// <summary>
-    /// Wild Type
+    /// Wild Type.
     /// </summary>
     [EnumMember(Value = "Wild Type")]
     WildType = 1,
 
     /// <summary>
-    /// Mutant
+    /// Mutant.
     /// </summary>
     [EnumMember(Value = "Mutant")]
     Mutant = 2

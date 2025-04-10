@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
+using Unite.Data.Context.Mappers.Base.Entities;
 using Unite.Data.Entities.Base;
 
 using Parameters = System.Collections.Generic.Dictionary<string, string>;
@@ -19,7 +19,7 @@ internal abstract class AnalysisMapper<TAnalysis, TAnalysisType> : IEntityTypeCo
     private static readonly Expression<Func<string, Parameters>> _deserialize = value => JsonSerializer.Deserialize<Parameters>(value, _options);
 
     protected abstract string SchemaName { get; }
-    protected virtual string TableName => "Analyses";
+    protected virtual string TableName => "analysis";
     
     public virtual void Configure(EntityTypeBuilder<TAnalysis> entity)
     {

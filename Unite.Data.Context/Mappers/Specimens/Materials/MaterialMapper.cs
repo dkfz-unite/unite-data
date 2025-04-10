@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
+using Unite.Data.Context.Mappers.Base.Entities;
 using Unite.Data.Entities.Specimens.Materials;
 using Unite.Data.Entities.Specimens.Materials.Enums;
 
@@ -10,7 +10,7 @@ internal class MaterialMapper : IEntityTypeConfiguration<Material>
 {
     public void Configure(EntityTypeBuilder<Material> entity)
     {
-        entity.ToTable("Materials", DomainDbSchemaNames.Specimens);
+        entity.ToTable("material", DomainDbSchemaNames.Specimens);
 
         entity.HasKey(material => material.SpecimenId);
 

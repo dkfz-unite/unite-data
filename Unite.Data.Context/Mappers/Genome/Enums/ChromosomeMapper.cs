@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
-using Unite.Data.Context.Mappers.Entities.Extensions;
+using Unite.Data.Context.Mappers.Base.Entities;
+using Unite.Data.Context.Mappers.Base.Entities.Extensions;
 using Unite.Data.Entities.Genome.Enums;
 
 namespace Unite.Data.Context.Mappers.Genome.Enums;
@@ -35,9 +35,10 @@ internal class ChromosomeMapper : IEntityTypeConfiguration<EnumEntity<Chromosome
             Chromosome.Chr21.ToEnumValue(name: "Chromosome 21"),
             Chromosome.Chr22.ToEnumValue(name: "Chromosome 22"),
             Chromosome.ChrX.ToEnumValue(name: "Chromosome X"),
-            Chromosome.ChrY.ToEnumValue(name: "Chromosome Y")
+            Chromosome.ChrY.ToEnumValue(name: "Chromosome Y"),
+            Chromosome.ChrMT.ToEnumValue(name: "Chromosome MT"),
         };
 
-        entity.BuildEnumEntity("Chromosomes", DomainDbSchemaNames.Genome, data);
+        entity.BuildEnumEntity("chromosome", DomainDbSchemaNames.Genome, data);
     }
 }

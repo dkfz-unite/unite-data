@@ -8,7 +8,7 @@ internal class StudyDonorMapper : IEntityTypeConfiguration<StudyDonor>
 {
     public void Configure(EntityTypeBuilder<StudyDonor> entity)
     {
-        entity.ToTable("StudyDonors", DomainDbSchemaNames.Donors);
+        entity.ToTable("study_donor", DomainDbSchemaNames.Donors);
 
         entity.HasKey(studyDonor => new
         {

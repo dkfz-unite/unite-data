@@ -5,19 +5,19 @@ namespace Unite.Data.Entities.Specimens.Enums;
 public enum GeneExpressionSubtype
 {
     /// <summary>
-    /// Classical
+    /// Classical.
     /// </summary>
     [EnumMember(Value = "Classical")]
     Classical = 1,
 
     /// <summary>
-    /// Mesenchymal
+    /// Mesenchymal.
     /// </summary>
     [EnumMember(Value = "Mesenchymal")]
     Mesenchymal = 2,
 
     /// <summary>
-    /// Proneural
+    /// Proneural.
     /// </summary>
     [EnumMember(Value = "Proneural")]
     Proneural = 3

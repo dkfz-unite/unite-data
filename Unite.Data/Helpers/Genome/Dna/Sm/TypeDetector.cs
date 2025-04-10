@@ -1,6 +1,6 @@
-﻿using Unite.Data.Entities.Genome.Analysis.Dna.Ssm.Enums;
+﻿using Unite.Data.Entities.Genome.Analysis.Dna.Sm.Enums;
 
-namespace Unite.Data.Helpers.Genome.Dna.Ssm;
+namespace Unite.Data.Helpers.Genome.Dna.Sm;
 
 public static class TypeDetector
 {
@@ -10,34 +10,34 @@ public static class TypeDetector
     /// <param name="referenceBase">Reference base</param>
     /// <param name="alternateBase">Alternate base</param>
     /// <returns>Mutation type (SNV, INS, DEL or MNV).</returns>
-    public static SsmType Detect(string referenceBase, string alternateBase)
+    public static SmType Detect(string referenceBase, string alternateBase)
     {
         if (!string.IsNullOrWhiteSpace(referenceBase) && !string.IsNullOrWhiteSpace(alternateBase))
         {
             if (referenceBase.Length == 1 && alternateBase.Length == 1)
             {
-                return SsmType.SNV;
+                return SmType.SNV;
             }
             else if (referenceBase.Length == 1 && alternateBase.Length > 1)
             {
-                return SsmType.INS;
+                return SmType.INS;
             }
             else if (referenceBase.Length > 1 && alternateBase.Length == 1)
             {
-                return SsmType.DEL;
+                return SmType.DEL;
             }
             else if (referenceBase.Length > 1 && alternateBase.Length > 1)
             {
-                return SsmType.MNV;
+                return SmType.MNV;
             }
         }
         else if (string.IsNullOrWhiteSpace(referenceBase) && !string.IsNullOrWhiteSpace(alternateBase))
         {
-            return SsmType.INS;
+            return SmType.INS;
         }
         else if (!string.IsNullOrWhiteSpace(referenceBase) && string.IsNullOrWhiteSpace(alternateBase))
         {
-            return SsmType.DEL;
+            return SmType.DEL;
         }
 
         throw new NotImplementedException($"Can't detect mutation type: REF - '{referenceBase}', ALT - '{alternateBase}'");

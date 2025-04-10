@@ -14,8 +14,8 @@ internal class DrugScreeningMapper : Base.SampleEntryMapper<DrugScreening, Sampl
     private static readonly Expression<Func<string, double[]>> _deserialize = value => JsonSerializer.Deserialize<double[]>(value, _options);
 
     protected override string SchemaName => DomainDbSchemaNames.Specimens;
-    protected override string TableName => "DrugScreenings";
-    protected override string EntityColumnName => "DrugId";
+    protected override string TableName => "drug_screening";
+    protected override string EntityColumnName => "drug_id";
 
     public override void Configure(EntityTypeBuilder<DrugScreening> entity)
     {

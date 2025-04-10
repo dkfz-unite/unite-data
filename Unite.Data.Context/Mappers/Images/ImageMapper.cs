@@ -7,7 +7,7 @@ namespace Unite.Data.Context.Mappers.Images;
 internal class ImageMapper : Base.SpecimenMapper<Image, ImageType>
 {
     protected override string SchemaName => DomainDbSchemaNames.Images;
-    protected override string TableName => "Images";
+    protected override string TableName => "image";
 
     public override void Configure(EntityTypeBuilder<Image> entity)
     {

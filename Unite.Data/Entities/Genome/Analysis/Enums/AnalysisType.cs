@@ -8,7 +8,7 @@ public enum AnalysisType
     /// DNA - Whole Genome Sequencing.
     /// Produces a fastq file.
     /// Can be aligned to a reference genome.
-    /// Variants can be called (SSM, CNV, SV).
+    /// Variants can be called (SM, CNV, SV).
     /// </summary>
     [EnumMember(Value = "WGS")]
     WGS = 1,
@@ -17,7 +17,7 @@ public enum AnalysisType
     /// DNA - Whole Exome Sequencing.
     /// Produces a fastq file.
     /// Can be aligned to a reference genome.
-    /// Variants can be called (SSM, CNV, SV).
+    /// Variants can be called (SM, CNV, SV).
     /// </summary>
     [EnumMember(Value = "WES")]
     WES = 2,

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
-using Unite.Data.Context.Mappers.Entities.Extensions;
+using Unite.Data.Context.Mappers.Base.Entities;
+using Unite.Data.Context.Mappers.Base.Entities.Extensions;
 using Unite.Data.Entities.Genome.Analysis.Dna.Sv.Enums;
 
 namespace Unite.Data.Context.Mappers.Genome.Analysis.Dna.Sv.Enums;
@@ -22,6 +22,6 @@ internal class SvTypeMapper : IEntityTypeConfiguration<EnumEntity<SvType>>
             SvType.COM.ToEnumValue(name: "Complex rearrangement")
         };
 
-        entity.BuildEnumEntity("SvTypes", DomainDbSchemaNames.Genome, data);
+        entity.BuildEnumEntity("sv_type", DomainDbSchemaNames.Genome, data);
     }
 }

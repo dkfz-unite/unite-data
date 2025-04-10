@@ -1,9 +1,11 @@
-﻿namespace Unite.Data.Entities.Genome.Analysis.Dna;
+﻿using System.Text.Json.Serialization;
+
+namespace Unite.Data.Entities.Genome.Analysis.Dna;
 
 /// <summary>
 /// Variant consequence. <href>https://www.ensembl.org/info/genome/variation/prediction/predicted_data.html</href>
 /// </summary>
-public record Effect
+public record Effect : IComparable<Effect>
 {
     private static class Impacts
     {
@@ -61,9 +63,11 @@ public record Effect
         { "sequence_variant", (Impacts.Unknown, 41) }
     };
 
-
+    [JsonPropertyName("type")]
     public string Type { get; set; }
+    [JsonPropertyName("impact")]
     public string Impact { get; set; }
+    [JsonPropertyName("severity")]
     public int Severity { get; set; }
 
 
@@ -86,5 +90,14 @@ public record Effect
         {
             Type = type;
         }
+    }
+
+
+    public int CompareTo(Effect other)
+    {
+        if (other == null)
+            return 1;
+
+        return Severity.CompareTo(other.Severity);
     }
 }

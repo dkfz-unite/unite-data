@@ -8,7 +8,7 @@ internal class TreatmentMapper : IEntityTypeConfiguration<Treatment>
 {
     public void Configure(EntityTypeBuilder<Treatment> entity)
     {
-        entity.ToTable("Treatments", DomainDbSchemaNames.Donors);
+        entity.ToTable("treatment", DomainDbSchemaNames.Donors);
 
         entity.HasKey(treatment => new { treatment.DonorId, treatment.TherapyId });
 

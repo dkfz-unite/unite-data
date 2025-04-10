@@ -3,54 +3,54 @@
 namespace Unite.Data.Entities.Genome.Analysis.Dna.Sv.Enums;
 
 /// <summary>
-/// Structural variant type
+/// Structural variant type.
 /// </summary>
 public enum SvType
 {
     /// <summary>
-    /// Duplication
+    /// Duplication.
     /// </summary>
     [EnumMember(Value = "DUP")]
     DUP = 1,
 
     /// <summary>
-    /// Tandem duplication
+    /// Tandem duplication.
     /// </summary>
     [EnumMember(Value = "TDUP")]
     TDUP = 2,
 
     /// <summary>
-    /// Insertion
+    /// Insertion.
     /// </summary>
     [EnumMember(Value = "INS")]
     INS = 3,
 
     /// <summary>
-    /// Deletion
+    /// Deletion.
     /// </summary>
     [EnumMember(Value = "DEL")]
     DEL = 4,
 
     /// <summary>
-    /// Inversion
+    /// Inversion.
     /// </summary>
     [EnumMember(Value = "INV")]
     INV = 5,
 
     /// <summary>
-    /// Intra-chromosomal translocation
+    /// Intra-chromosomal translocation.
     /// </summary>
     [EnumMember(Value = "ITX")]
     ITX = 6,
 
     /// <summary>
-    /// Inter-chromosomal translocation
+    /// Inter-chromosomal translocation.
     /// </summary>
     [EnumMember(Value = "CTX")]
     CTX = 7,
 
     /// <summary>
-    /// Complex
+    /// Complex.
     /// </summary>
     [EnumMember(Value = "COM")]
     COM = 8

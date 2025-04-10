@@ -1,16 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
-using Unite.Data.Entities.Genome.Analysis.Dna.Ssm;
-using Unite.Data.Entities.Genome.Analysis.Dna.Ssm.Enums;
+using Unite.Data.Context.Mappers.Base.Entities;
+using Unite.Data.Entities.Genome.Analysis.Dna.Sm;
+using Unite.Data.Entities.Genome.Analysis.Dna.Sm.Enums;
 
-namespace Unite.Data.Context.Mappers.Genome.Analysis.Dna.Ssm;
+namespace Unite.Data.Context.Mappers.Genome.Analysis.Dna.Sm;
 
 /// <summary>
-/// SSM mapper
+/// SM mapper.
 /// </summary>
 internal class VariantMapper : VariantMapper<Variant>
 {
-    protected override string TableName => "Ssms";
+    protected override string TableName => "sm";
 
     public override void Configure(EntityTypeBuilder<Variant> entity)
     {
@@ -27,7 +27,7 @@ internal class VariantMapper : VariantMapper<Variant>
               .HasMaxLength(200);
 
 
-        entity.HasOne<EnumEntity<SsmType>>()
+        entity.HasOne<EnumEntity<SmType>>()
               .WithMany()
               .HasForeignKey(variant => variant.TypeId);
     }

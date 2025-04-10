@@ -8,7 +8,7 @@ internal class TumorLocalizationMapper : IEntityTypeConfiguration<TumorLocalizat
 {
     public void Configure(EntityTypeBuilder<TumorLocalization> entity)
     {
-        entity.ToTable("TumorLocalizations", DomainDbSchemaNames.Donors);
+        entity.ToTable("tumor_localization", DomainDbSchemaNames.Donors);
 
         entity.HasKey(localization => localization.Id);
 

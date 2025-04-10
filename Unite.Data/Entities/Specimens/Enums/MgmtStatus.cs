@@ -3,18 +3,18 @@
 namespace Unite.Data.Entities.Specimens.Enums;
 
 /// <summary>
-/// MGMT
+/// MGMT.
 /// </summary>
 public enum MgmtStatus
 {
     /// <summary>
-    /// Unmethylated
+    /// Unmethylated.
     /// </summary>
     [EnumMember(Value = "Unmethylated")]
     Unmethylated = 1,
 
     /// <summary>
-    /// Methylated
+    /// Methylated.
     /// </summary>
     [EnumMember(Value = "Methylated")]
     Methylated = 2,

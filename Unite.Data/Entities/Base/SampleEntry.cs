@@ -1,8 +1,12 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Unite.Data.Entities.Base;
 
 public abstract record SampleEntry
 {
+    [Column("id")]
     public int SampleId { get; set; }
+    [Column("entity_id")]
     public int EntityId { get; set; }
 }
 

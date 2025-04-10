@@ -6,7 +6,7 @@ namespace Unite.Data.Context.Mappers.Images.Analysis;
 internal class SampleMapper : Base.SampleMapper<Sample>
 {
     protected override string SchemaName => DomainDbSchemaNames.Images;
-    protected override string SpecimenColumnName => "ImageId";
+    protected override string SpecimenColumnName => "image_id";
 
     public override void Configure(EntityTypeBuilder<Sample> entity)
     {

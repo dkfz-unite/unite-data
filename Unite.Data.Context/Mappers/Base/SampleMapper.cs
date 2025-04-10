@@ -8,9 +8,9 @@ internal abstract class SampleMapper<TSample> : IEntityTypeConfiguration<TSample
     where TSample : Sample
 {
     protected abstract string SchemaName { get; }
-    protected virtual string TableName => "Samples";
-    protected virtual string SpecimenColumnName => "SpecimenId";
-    protected virtual string AnalysisColumnName => "AnalysisId";
+    protected virtual string TableName => "sample";
+    protected virtual string SpecimenColumnName => "specimen_id";
+    protected virtual string AnalysisColumnName => "analysis_id";
 
     public virtual void Configure(EntityTypeBuilder<TSample> entity)
     {

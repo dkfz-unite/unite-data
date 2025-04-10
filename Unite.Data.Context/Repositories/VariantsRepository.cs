@@ -7,7 +7,7 @@ using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Specimens.Enums;
 using Unite.Essentials.Extensions;
 
-using Ssm = Unite.Data.Entities.Genome.Analysis.Dna.Ssm;
+using Sm = Unite.Data.Entities.Genome.Analysis.Dna.Sm;
 using Cnv = Unite.Data.Entities.Genome.Analysis.Dna.Cnv;
 using Sv = Unite.Data.Entities.Genome.Analysis.Dna.Sv;
 
@@ -35,8 +35,8 @@ public class VariantsRepository : Repository
     {
         var type = typeof(TV);
 
-        if (type == typeof(Ssm.Variant))
-            return await GetRelatedDonors<Ssm.VariantEntry, Ssm.Variant>(ids);
+        if (type == typeof(Sm.Variant))
+            return await GetRelatedDonors<Sm.VariantEntry, Sm.Variant>(ids);
         else if (type == typeof(Cnv.Variant))
             return await GetRelatedDonors<Cnv.VariantEntry, Cnv.Variant>(ids);
         else if (type == typeof(Sv.Variant))
@@ -78,8 +78,8 @@ public class VariantsRepository : Repository
     {
         var type = typeof(TV);
 
-        if (type == typeof(Ssm.Variant))
-            return await GetRelatedSpecimens<Ssm.VariantEntry, Ssm.Variant>(ids, typeId);
+        if (type == typeof(Sm.Variant))
+            return await GetRelatedSpecimens<Sm.VariantEntry, Sm.Variant>(ids, typeId);
         else if (type == typeof(Cnv.Variant))
             return await GetRelatedSpecimens<Cnv.VariantEntry, Cnv.Variant>(ids, typeId);
         else if (type == typeof(Sv.Variant))
@@ -112,8 +112,8 @@ public class VariantsRepository : Repository
     {
         var type = typeof(TV);
 
-        if (type == typeof(Ssm.Variant))
-            return await GetRelatedGenes<Ssm.AffectedTranscript, Ssm.Variant>(ids);
+        if (type == typeof(Sm.Variant))
+            return await GetRelatedGenes<Sm.AffectedTranscript, Sm.Variant>(ids);
         else if (type == typeof(Cnv.Variant))
             return await GetRelatedGenes<Cnv.AffectedTranscript, Cnv.Variant>(ids);
         else if (type == typeof(Sv.Variant))
@@ -145,8 +145,8 @@ public class VariantsRepository : Repository
     {
         var type = typeof(TV);
 
-        if (type == typeof(Ssm.Variant))
-            return await GetRelatedTranscripts<Ssm.AffectedTranscript, Ssm.Variant>(ids);
+        if (type == typeof(Sm.Variant))
+            return await GetRelatedTranscripts<Sm.AffectedTranscript, Sm.Variant>(ids);
         else if (type == typeof(Cnv.Variant))
             return await GetRelatedTranscripts<Cnv.AffectedTranscript, Cnv.Variant>(ids);
         else if (type == typeof(Sv.Variant))

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
-using Unite.Data.Context.Mappers.Entities.Extensions;
+using Unite.Data.Context.Mappers.Base.Entities;
+using Unite.Data.Context.Mappers.Base.Entities.Extensions;
 using Unite.Data.Entities.Tasks.Enums;
 
 namespace Unite.Data.Context.Mappers.Tasks.Enums;
@@ -17,11 +17,11 @@ internal class IndexingTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Inde
             IndexingTaskType.Image.ToEnumValue(),
             IndexingTaskType.Specimen.ToEnumValue(),
             IndexingTaskType.Gene.ToEnumValue(),
-            IndexingTaskType.SSM.ToEnumValue(),
+            IndexingTaskType.SM.ToEnumValue(),
             IndexingTaskType.CNV.ToEnumValue(),
             IndexingTaskType.SV.ToEnumValue()
         };
 
-        entity.BuildEnumEntity("IndexingTaskTypes", DomainDbSchemaNames.Common, data);
+        entity.BuildEnumEntity("indexing_task_type", DomainDbSchemaNames.Common, data);
     }
 }

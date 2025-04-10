@@ -9,7 +9,7 @@ namespace Unite.Data.Context.Mappers.Genome.Analysis.Dna.Sv;
 /// </summary>
 internal class AffectedTranscriptMapper : VariantAffectedFeatureMapper<AffectedTranscript, Variant, Transcript>
 {
-    public override string TableName => "SvAffectedTranscripts";
+    public override string TableName => "sv_affected_transcript";
 
     public override void Configure(EntityTypeBuilder<AffectedTranscript> entity)
     {

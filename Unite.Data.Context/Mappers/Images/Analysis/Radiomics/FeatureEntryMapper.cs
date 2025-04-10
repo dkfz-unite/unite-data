@@ -7,8 +7,8 @@ namespace Unite.Data.Context.Mappers.Images.Analysis.Radiomics;
 internal class FeatureEntryMapper : Base.SampleEntryMapper<FeatureEntry, Sample, Feature>
 {
     protected override string SchemaName => DomainDbSchemaNames.Images;
-    protected override string TableName => "RadiomicsFeatureEntries";
-    protected override string EntityColumnName => "FeatureId";
+    protected override string TableName => "radiomics_feature_entry";
+    protected override string EntityColumnName => "feature_id";
 
     public override void Configure(EntityTypeBuilder<FeatureEntry> entity)
     {

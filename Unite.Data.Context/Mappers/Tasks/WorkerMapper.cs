@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
+using Unite.Data.Context.Mappers.Base.Entities;
 using Unite.Data.Entities.Tasks;
 using Unite.Data.Entities.Tasks.Enums;
 
@@ -10,7 +10,7 @@ public class WorkerMapper : IEntityTypeConfiguration<Worker>
 {
     public void Configure(EntityTypeBuilder<Worker> entity)
     {
-        entity.ToTable("Workers", DomainDbSchemaNames.Common);
+        entity.ToTable("worker", DomainDbSchemaNames.Common);
 
         entity.HasKey(worker => worker.Id);
 

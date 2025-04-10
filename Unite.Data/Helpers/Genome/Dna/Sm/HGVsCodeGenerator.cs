@@ -1,4 +1,4 @@
-﻿namespace Unite.Data.Helpers.Genome.Dna.Ssm;
+﻿namespace Unite.Data.Helpers.Genome.Dna.Sm;
 
 public static class HGVsCodeGenerator
 {

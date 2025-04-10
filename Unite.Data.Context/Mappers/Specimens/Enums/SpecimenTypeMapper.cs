@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
-using Unite.Data.Context.Mappers.Entities.Extensions;
+using Unite.Data.Context.Mappers.Base.Entities;
+using Unite.Data.Context.Mappers.Base.Entities.Extensions;
 using Unite.Data.Entities.Specimens.Enums;
 
 namespace Unite.Data.Context.Mappers.Specimens.Enums;
@@ -18,6 +18,6 @@ internal class SpecimenTypeMapper : IEntityTypeConfiguration<EnumEntity<Specimen
             SpecimenType.Xenograft.ToEnumValue()
         };
 
-        entity.BuildEnumEntity("SpecimenTypes", DomainDbSchemaNames.Specimens, data);
+        entity.BuildEnumEntity("specimen_type", DomainDbSchemaNames.Specimens, data);
     }
 }

@@ -8,8 +8,8 @@ namespace Unite.Data.Context.Mappers.Genome.Analysis.Rna;
 internal class GeneExpressionMapper : Base.SampleEntryMapper<GeneExpression, Sample, Gene>
 {
     protected override string SchemaName => DomainDbSchemaNames.Genome;
-    protected override string TableName => "GeneExpressions";
-    protected override string EntityColumnName => "GeneId";
+    protected override string TableName => "gene_expression";
+    protected override string EntityColumnName => "gene_id";
     
     public override void Configure(EntityTypeBuilder<GeneExpression> entity)
     {

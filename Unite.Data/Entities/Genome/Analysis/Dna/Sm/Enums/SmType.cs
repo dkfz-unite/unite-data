@@ -1,32 +1,32 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Unite.Data.Entities.Genome.Analysis.Dna.Ssm.Enums;
+namespace Unite.Data.Entities.Genome.Analysis.Dna.Sm.Enums;
 
 /// <summary>
-/// Simple somatic mutation type
+/// Simple mutation type.
 /// </summary>
-public enum SsmType
+public enum SmType
 {
     /// <summary>
-    /// Substitution
+    /// Substitution.
     /// </summary>
     [EnumMember(Value = "SNV")]
     SNV = 1,
 
     /// <summary>
-    /// Insertion
+    /// Insertion.
     /// </summary>
     [EnumMember(Value = "INS")]
     INS = 2,
 
     /// <summary>
-    /// Deletion
+    /// Deletion.
     /// </summary>
     [EnumMember(Value = "DEL")]
     DEL = 3,
 
     /// <summary>
-    /// Multiple Base Substitution
+    /// Multiple Base Substitution.
     /// </summary>
     [EnumMember(Value = "MNV")]
     MNV = 4

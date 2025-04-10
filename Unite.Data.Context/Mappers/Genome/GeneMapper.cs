@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
+using Unite.Data.Context.Mappers.Base.Entities;
 using Unite.Data.Entities.Genome;
 using Unite.Data.Entities.Genome.Enums;
 
@@ -10,7 +10,7 @@ internal class GeneMapper : IEntityTypeConfiguration<Gene>
 {
     public void Configure(EntityTypeBuilder<Gene> entity)
     {
-        entity.ToTable("Genes", DomainDbSchemaNames.Genome);
+        entity.ToTable("gene", DomainDbSchemaNames.Genome);
 
         entity.HasKey(gene => gene.Id);
 

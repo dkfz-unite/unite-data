@@ -1,6 +1,6 @@
 using Unite.Essentials.Extensions;
 
-namespace Unite.Data.Context.Mappers.Entities.Extensions;
+namespace Unite.Data.Context.Mappers.Base.Entities.Extensions;
 
 internal static class EnumEntityExtensions
 {

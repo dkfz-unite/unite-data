@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Unite.Data.Context.Mappers.Entities.Extensions;
+namespace Unite.Data.Context.Mappers.Base.Entities.Extensions;
 
 internal static class EnumEntityTypeBuilderExtensions
 {

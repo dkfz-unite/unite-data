@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
-using Unite.Data.Context.Mappers.Entities.Extensions;
+using Unite.Data.Context.Mappers.Base.Entities;
+using Unite.Data.Context.Mappers.Base.Entities.Extensions;
 using Unite.Data.Entities.Specimens.Lines.Enums;
 
 namespace Unite.Data.Context.Mappers.Specimens.Lines.Enums;
@@ -16,6 +16,6 @@ internal class CellsTypeMapper : IEntityTypeConfiguration<EnumEntity<CellsType>>
             CellsType.Differentiated.ToEnumValue()
         };
 
-        entity.BuildEnumEntity("CellsTypes", DomainDbSchemaNames.Specimens, data);
+        entity.BuildEnumEntity("cells_type", DomainDbSchemaNames.Specimens, data);
     }
 }

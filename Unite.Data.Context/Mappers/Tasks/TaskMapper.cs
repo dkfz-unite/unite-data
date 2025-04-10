@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
+using Unite.Data.Context.Mappers.Base.Entities;
 using Unite.Data.Entities.Tasks.Enums;
 
 using Task = Unite.Data.Entities.Tasks.Task;
@@ -11,7 +11,7 @@ internal class TaskMapper : IEntityTypeConfiguration<Task>
 {
     public void Configure(EntityTypeBuilder<Task> entity)
     {
-        entity.ToTable("Tasks", DomainDbSchemaNames.Common);
+        entity.ToTable("task", DomainDbSchemaNames.Common);
 
         entity.HasKey(task => task.Id);
 
@@ -40,9 +40,6 @@ internal class TaskMapper : IEntityTypeConfiguration<Task>
               .ValueGeneratedNever();
 
         entity.Property(task => task.Target)
-              .IsRequired();
-
-        entity.Property(task => task.Date)
               .IsRequired();
 
 

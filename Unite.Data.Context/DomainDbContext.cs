@@ -24,7 +24,7 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Donors.Clinical.Treatment> Treatments { get; set; }
 
     public DbSet<Entities.Images.Image> Images { get; set; }
-    public DbSet<Entities.Images.MriImage> MriImages { get; set; }
+    public DbSet<Entities.Images.MrImage> MrImages { get; set; }
     public DbSet<Entities.Images.Analysis.Analysis> ImageAnalyses { get; set; }
     public DbSet<Entities.Images.Analysis.Sample> ImageSamples { get; set; }
     public DbSet<Entities.Images.Analysis.Radiomics.Feature> RadiomicsFeatures { get; set; }
@@ -51,9 +51,9 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Genome.Analysis.Analysis> GenomeAnalyses { get; set; }
     public DbSet<Entities.Genome.Analysis.Sample> GenomeSamples { get; set; }
     public DbSet<Entities.Genome.Analysis.SampleResource> GenomeSampleResources { get; set; }
-    public DbSet<Entities.Genome.Analysis.Dna.Ssm.Variant> Ssms { get; set; }
-    public DbSet<Entities.Genome.Analysis.Dna.Ssm.VariantEntry> SsmEntries { get; set; }
-    public DbSet<Entities.Genome.Analysis.Dna.Ssm.AffectedTranscript> SsmAffectedTranscripts { get; set; }
+    public DbSet<Entities.Genome.Analysis.Dna.Sm.Variant> Sms { get; set; }
+    public DbSet<Entities.Genome.Analysis.Dna.Sm.VariantEntry> SmEntries { get; set; }
+    public DbSet<Entities.Genome.Analysis.Dna.Sm.AffectedTranscript> SmAffectedTranscripts { get; set; }
     public DbSet<Entities.Genome.Analysis.Dna.Cnv.Variant> Cnvs { get; set; }
     public DbSet<Entities.Genome.Analysis.Dna.Cnv.VariantEntry> CnvEntries { get; set; }
     public DbSet<Entities.Genome.Analysis.Dna.Cnv.AffectedTranscript> CnvAffectedTranscripts { get; set; }
@@ -113,7 +113,7 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Donors.ProjectMapper());
         builder.ApplyConfiguration(new Mappers.Donors.ProjectDonorMapper());
 
-        builder.ApplyConfiguration(new Mappers.Donors.Clinical.Enums.GenderMapper());
+        builder.ApplyConfiguration(new Mappers.Donors.Clinical.Enums.SexMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.ClinicalDataMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.TumorPrimarySiteMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.TumorLocalizationMapper());
@@ -126,7 +126,7 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Images.Enums.ImageTypeMapper());
         builder.ApplyConfiguration(new Mappers.Images.ImageMapper());
 
-        builder.ApplyConfiguration(new Mappers.Images.MriImageMapper());
+        builder.ApplyConfiguration(new Mappers.Images.MrImageMapper());
 
         builder.ApplyConfiguration(new Mappers.Images.Analysis.Enums.AnalysisTypeMapper());
         builder.ApplyConfiguration(new Mappers.Images.Analysis.AnalysisMapper());
@@ -186,10 +186,10 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Genome.Analysis.SampleMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Analysis.SampleResourceMapper());
 
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Ssm.Enums.SsmTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Ssm.VariantMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Ssm.VariantEntryMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Ssm.AffectedTranscriptMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Sm.Enums.SmTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Sm.VariantMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Sm.VariantEntryMapper());
+        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Sm.AffectedTranscriptMapper());
 
         builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Cnv.Enums.CnvTypeMapper());
         builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Cnv.VariantMapper());

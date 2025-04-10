@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities.Genome.Analysis.Rna;
 
-using Ssm = Unite.Data.Entities.Genome.Analysis.Dna.Ssm;
+using Sm = Unite.Data.Entities.Genome.Analysis.Dna.Sm;
 using Cnv = Unite.Data.Entities.Genome.Analysis.Dna.Cnv;
 using Sv = Unite.Data.Entities.Genome.Analysis.Dna.Sv;
 
@@ -9,7 +9,7 @@ namespace Unite.Data.Context.Extensions.Queryable;
 
 public static class FilterExtensions
 {   
-    public static IQueryable<Ssm.VariantEntry> FilterBySpecimenId(this IQueryable<Ssm.VariantEntry> query, params int[] specimenIds)
+    public static IQueryable<Sm.VariantEntry> FilterBySpecimenId(this IQueryable<Sm.VariantEntry> query, params int[] specimenIds)
     {
         return query.Where(entry => specimenIds.Contains(entry.Sample.SpecimenId));
     }
@@ -30,7 +30,7 @@ public static class FilterExtensions
     }
 
 
-    public static IQueryable<Ssm.VariantEntry> FilterByRange(this IQueryable<Ssm.VariantEntry> query, int chr, int? start, int? end)
+    public static IQueryable<Sm.VariantEntry> FilterByRange(this IQueryable<Sm.VariantEntry> query, int chr, int? start, int? end)
     {
         return query
             .Where(entry => 
@@ -54,7 +54,7 @@ public static class FilterExtensions
 
     public static IQueryable<Sv.VariantEntry> FilterByRange(this IQueryable<Sv.VariantEntry> query, int chr, int? start, int? end)
     {
-        // SV start and end positions are different from SSM and CNV
+        // SV start and end positions are different from SM and CNV
         // Modified genome is located between two breakpoints, which are represented as bands with start and end positions
         // Breakpoint 1 (Chromosome1, S1, E1) - start and end positions of the first breakpoint (Variant.ChromosomeId, Variant.Start, Variant.End)
         // Breakpoint 2 (Chromosome2, S2, E2) - start and end positions of the second breakpoint (Variant.OtherChromosomeId, Variant.OtherStart, Variant.OtherEnd)
@@ -87,7 +87,7 @@ public static class FilterExtensions
     }
 
 
-    public static IQueryable<Ssm.VariantEntry> FilterByRange(this IQueryable<Ssm.VariantEntry> query, int startChr, int? start, int endChr, int? end)
+    public static IQueryable<Sm.VariantEntry> FilterByRange(this IQueryable<Sm.VariantEntry> query, int startChr, int? start, int endChr, int? end)
     {
         return query
             .Where(entry => 
@@ -113,7 +113,7 @@ public static class FilterExtensions
 
     public static IQueryable<Sv.VariantEntry> FilterByRange(this IQueryable<Sv.VariantEntry> query, int startChr, int? start, int endChr, int? end)
     {
-        // SV start and end positions are different from SSM and CNV
+        // SV start and end positions are different from SM and CNV
         // Modified genome is located between two breakpoints, which are represented as bands with start and end positions
         // Breakpoint 1 (Chromosome1, S1, E1) - start and end positions of the first breakpoint (Variant.ChromosomeId, Variant.Start, Variant.End)
         // Breakpoint 2 (Chromosome2, S2, E2) - start and end positions of the second breakpoint (Variant.OtherChromosomeId, Variant.OtherStart, Variant.OtherEnd)

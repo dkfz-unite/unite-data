@@ -6,7 +6,7 @@ namespace Unite.Data.Context.Mappers.Specimens.Analysis.Drugs;
 internal class DrugMapper : Base.EntityMapper<Drug>
 {
     protected override string SchemaName => DomainDbSchemaNames.Specimens;
-    protected override string TableName => "Drugs";
+    protected override string TableName => "drug";
 
     public override void Configure(EntityTypeBuilder<Drug> entity)
     {

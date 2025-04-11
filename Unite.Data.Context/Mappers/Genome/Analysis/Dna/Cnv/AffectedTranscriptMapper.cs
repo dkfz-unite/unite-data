@@ -5,11 +5,11 @@ using Unite.Data.Entities.Genome.Analysis.Dna.Cnv;
 namespace Unite.Data.Context.Mappers.Genome.Analysis.Dna.Cnv;
 
 /// <summary>
-/// CNV affected transcript mapper
+/// CNV affected transcript mapper.
 /// </summary>
 internal class AffectedTranscriptMapper : VariantAffectedFeatureMapper<AffectedTranscript, Variant, Transcript>
 {
-    public override string TableName => "CnvAffectedTranscripts";
+    public override string TableName => "cnv_affected_transcript";
 
 
     public override void Configure(EntityTypeBuilder<AffectedTranscript> entity)

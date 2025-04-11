@@ -8,7 +8,7 @@ internal class TumorPrimarySiteMapper : IEntityTypeConfiguration<TumorPrimarySit
 {
     public void Configure(EntityTypeBuilder<TumorPrimarySite> entity)
     {
-        entity.ToTable("TumorPrimarySites", DomainDbSchemaNames.Donors);
+        entity.ToTable("tumor_primary_site", DomainDbSchemaNames.Donors);
 
         entity.HasKey(primarySite => primarySite.Id);
 

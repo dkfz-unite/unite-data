@@ -7,7 +7,7 @@ namespace Unite.Data.Context.Mappers.Specimens;
 internal class SpecimenMapper : Base.SpecimenMapper<Specimen, SpecimenType>
 {
     protected override string SchemaName => DomainDbSchemaNames.Specimens;
-    protected override string TableName => "Specimens";
+    protected override string TableName => "specimen";
 
     public override void Configure(EntityTypeBuilder<Specimen> entity)
     {

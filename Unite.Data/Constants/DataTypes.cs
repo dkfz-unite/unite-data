@@ -4,7 +4,7 @@ public static class DataTypes
 {
     // don
     // dont-trt
-    // mri
+    // mr
     // ct
     // img-rad
     // mat
@@ -14,7 +14,7 @@ public static class DataTypes
     // spe-int
     // spe-drg
     // dna
-    // dna-ssm
+    // dna-sm
     // dna-cnv
     // dna-sv
     // meth
@@ -34,8 +34,8 @@ public static class DataTypes
     {
         public static class Entry
         {
-            public const string Mri = "mri"; // MRIs
-            public const string Ct = "ct"; // CTs
+            public const string Mr = "mr"; // MR images
+            public const string Ct = "ct"; // CT images
         }
 
         public const string Feature = "img-rad"; // Radiomics features (RFE analysis)
@@ -60,7 +60,7 @@ public static class DataTypes
         public static class Dna
         {
             public const string Sample = "dna"; // DNA samples (fasta, fastq, BAM)
-            public const string Ssm = "dna-ssm"; // SSMs
+            public const string Sm = "dna-sm"; // SMs
             public const string Cnv = "dna-cnv"; // CNVs
             public const string Sv = "dna-sv"; // SVs
         }
@@ -68,7 +68,7 @@ public static class DataTypes
         public static class Meth
         {
             public const string Sample = "meth"; // Methylation samples (fasta, fastq, BAM, idat)
-            public const string Levels = "meth-lvl"; // Methylation levels (beta and/or M values)
+            public const string Level = "meth-lvl"; // Methylation levels (beta and/or M values)
         }
 
         public static class Rna

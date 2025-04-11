@@ -8,7 +8,7 @@ internal class InterventionMapper : IEntityTypeConfiguration<Intervention>
 {
     public void Configure(EntityTypeBuilder<Intervention> entity)
     {
-        entity.ToTable("Interventions", DomainDbSchemaNames.Specimens);
+        entity.ToTable("intervention", DomainDbSchemaNames.Specimens);
 
         entity.HasKey(intervention => new { intervention.TypeId, intervention.SpecimenId });
 

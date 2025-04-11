@@ -7,7 +7,7 @@ using Unite.Data.Entities.Images.Enums;
 using Unite.Data.Entities.Specimens.Enums;
 using Unite.Essentials.Extensions;
 
-using Ssm = Unite.Data.Entities.Genome.Analysis.Dna.Ssm;
+using Sm = Unite.Data.Entities.Genome.Analysis.Dna.Sm;
 using Cnv = Unite.Data.Entities.Genome.Analysis.Dna.Cnv;
 using Sv = Unite.Data.Entities.Genome.Analysis.Dna.Sv;
 
@@ -64,7 +64,7 @@ public class GenesRepository : Repository
     {
         var results = await Task.WhenAll
         (
-            GetVariantRelatedSpecimens<Ssm.Variant>(ids, typeId),
+            GetVariantRelatedSpecimens<Sm.Variant>(ids, typeId),
             GetVariantRelatedSpecimens<Cnv.Variant>(ids, typeId),
             GetVariantRelatedSpecimens<Sv.Variant>(ids, typeId)
         );
@@ -79,8 +79,8 @@ public class GenesRepository : Repository
     {
         var type = typeof(TV);
 
-        if (type == typeof(Ssm.Variant))
-            return await GetVariantRelatedSpecimens<Ssm.VariantEntry, Ssm.Variant>(ids, typeId);
+        if (type == typeof(Sm.Variant))
+            return await GetVariantRelatedSpecimens<Sm.VariantEntry, Sm.Variant>(ids, typeId);
         else if (type == typeof(Cnv.Variant))
             return await GetVariantRelatedSpecimens<Cnv.VariantEntry, Cnv.Variant>(ids, typeId);
         else if (type == typeof(Sv.Variant))
@@ -123,8 +123,8 @@ public class GenesRepository : Repository
     {
         var type = typeof(TV);
 
-        if (type == typeof(Ssm.Variant))
-            return await GetRelatedVariants<Ssm.AffectedTranscript, Ssm.Variant>(ids);
+        if (type == typeof(Sm.Variant))
+            return await GetRelatedVariants<Sm.AffectedTranscript, Sm.Variant>(ids);
         else if (type == typeof(Cnv.Variant))
             return await GetRelatedVariants<Cnv.AffectedTranscript, Cnv.Variant>(ids);
         else if (type == typeof(Sv.Variant))

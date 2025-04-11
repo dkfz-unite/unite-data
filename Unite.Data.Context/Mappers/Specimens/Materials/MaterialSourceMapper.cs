@@ -8,7 +8,7 @@ internal class MaterialSourceMapper : IEntityTypeConfiguration<MaterialSource>
 {
     public void Configure(EntityTypeBuilder<MaterialSource> entity)
     {
-        entity.ToTable("MaterialSources", DomainDbSchemaNames.Specimens);
+        entity.ToTable("material_source", DomainDbSchemaNames.Specimens);
 
         entity.HasKey(source => source.Id);
 

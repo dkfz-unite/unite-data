@@ -8,7 +8,7 @@ internal class OrganoidMapper : IEntityTypeConfiguration<Organoid>
 {
     public void Configure(EntityTypeBuilder<Organoid> entity)
     {
-        entity.ToTable("Organoids", DomainDbSchemaNames.Specimens);
+        entity.ToTable("organoid", DomainDbSchemaNames.Specimens);
 
         entity.HasKey(organoid => organoid.SpecimenId);
 

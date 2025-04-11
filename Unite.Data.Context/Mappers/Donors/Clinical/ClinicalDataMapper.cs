@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
+using Unite.Data.Context.Mappers.Base.Entities;
 using Unite.Data.Entities.Donors.Clinical;
 using Unite.Data.Entities.Donors.Clinical.Enums;
 
@@ -10,7 +10,7 @@ internal class ClinicalDataMapper : IEntityTypeConfiguration<ClinicalData>
 {
     public void Configure(EntityTypeBuilder<ClinicalData> entity)
     {
-        entity.ToTable("ClinicalData", DomainDbSchemaNames.Donors);
+        entity.ToTable("clinical_data", DomainDbSchemaNames.Donors);
 
         entity.HasKey(clinicalData => clinicalData.DonorId);
 
@@ -18,16 +18,16 @@ internal class ClinicalDataMapper : IEntityTypeConfiguration<ClinicalData>
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(clinicalData => clinicalData.GenderId)
+        entity.Property(clinicalData => clinicalData.SexId)
               .HasConversion<int>();
 
         entity.Property(clinicalData => clinicalData.Diagnosis)
               .HasMaxLength(255);
 
 
-        entity.HasOne<EnumEntity<Gender>>()
+        entity.HasOne<EnumEntity<Sex>>()
               .WithMany()
-              .HasForeignKey(clinicalData => clinicalData.GenderId);
+              .HasForeignKey(clinicalData => clinicalData.SexId);
 
         entity.HasOne(clinicalData => clinicalData.PrimarySite)
               .WithMany()

@@ -12,19 +12,19 @@ namespace Unite.Data.Entities.Tasks.Enums;
 public enum AnnotationTaskType
 {
     /// <summary>
-    /// Simple somatic mutation
+    /// Simple mutation.
     /// </summary>
-    [EnumMember(Value = "dna-ssm")]
-    DNA_SSM = 301,
+    [EnumMember(Value = "dna-sm")]
+    DNA_SM = 301,
 
     /// <summary>
-    /// Copy number variant
+    /// Copy number variant.
     /// </summary>
     [EnumMember(Value = "dna-cnv")]
     DNA_CNV = 302,
 
     /// <summary>
-    /// Structural variant
+    /// Structural variant.
     /// </summary>
     [EnumMember(Value = "dna-sv")]
     DNA_SV = 303

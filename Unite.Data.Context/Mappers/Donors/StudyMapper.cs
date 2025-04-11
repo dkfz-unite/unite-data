@@ -8,7 +8,7 @@ internal class StudyMapper : IEntityTypeConfiguration<Study>
 {
     public void Configure(EntityTypeBuilder<Study> entity)
     {
-        entity.ToTable("Studies", DomainDbSchemaNames.Donors);
+        entity.ToTable("study", DomainDbSchemaNames.Donors);
 
         entity.HasKey(study => study.Id);
 

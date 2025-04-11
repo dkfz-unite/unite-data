@@ -2,22 +2,22 @@ using System.Runtime.Serialization;
 
 namespace Unite.Data.Entities.Donors.Clinical.Enums;
 
-public enum Gender
+public enum Sex
 {
     /// <summary>
-    /// Other
+    /// Other.
     /// </summary>
     [EnumMember(Value = "Other")]
     Other = 1,
 
     /// <summary>
-    /// Female
+    /// Female.
     /// </summary>
     [EnumMember(Value = "Female")]
     Female = 2,
 
     /// <summary>
-    /// Male
+    /// Male.
     /// </summary>
     [EnumMember(Value = "Male")]
     Male = 3

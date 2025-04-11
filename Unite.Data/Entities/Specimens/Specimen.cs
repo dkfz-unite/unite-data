@@ -1,4 +1,5 @@
-﻿using Unite.Data.Entities.Specimens.Enums;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Unite.Data.Entities.Specimens.Enums;
 using Unite.Data.Entities.Specimens.Lines;
 using Unite.Data.Entities.Specimens.Materials;
 using Unite.Data.Entities.Specimens.Organoids;
@@ -8,6 +9,7 @@ namespace Unite.Data.Entities.Specimens;
 
 public record Specimen : Base.Specimen<SpecimenType>
 {
+    [Column("parent_id")]
     public int? ParentId { get; set; }
 
     public virtual Specimen Parent { get; set; }

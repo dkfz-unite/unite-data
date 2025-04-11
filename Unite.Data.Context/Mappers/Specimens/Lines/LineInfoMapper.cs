@@ -8,7 +8,7 @@ internal class LineInfoMapper : IEntityTypeConfiguration<LineInfo>
 {
     public void Configure(EntityTypeBuilder<LineInfo> entity)
     {
-        entity.ToTable("LineInfos", DomainDbSchemaNames.Specimens);
+        entity.ToTable("line_info", DomainDbSchemaNames.Specimens);
 
         entity.HasKey(info => info.SpecimenId);
 

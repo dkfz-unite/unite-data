@@ -9,7 +9,7 @@ using Unite.Data.Entities.Images.Enums;
 using Unite.Data.Entities.Specimens;
 using Unite.Data.Entities.Specimens.Enums;
 
-using Ssm = Unite.Data.Entities.Genome.Analysis.Dna.Ssm;
+using Sm = Unite.Data.Entities.Genome.Analysis.Dna.Sm;
 using Cnv = Unite.Data.Entities.Genome.Analysis.Dna.Cnv;
 using Sv = Unite.Data.Entities.Genome.Analysis.Dna.Sv;
 
@@ -112,7 +112,7 @@ public class SpecimensRepository : Repository
     {
         var results = await Task.WhenAll
         (
-            GetVariantRelatedGenes<Ssm.Variant>(ids),
+            GetVariantRelatedGenes<Sm.Variant>(ids),
             GetVariantRelatedGenes<Cnv.Variant>(ids),
             GetVariantRelatedGenes<Sv.Variant>(ids)
         );
@@ -147,8 +147,8 @@ public class SpecimensRepository : Repository
     {
         var type = typeof(TV);
 
-        if (type == typeof(Ssm.Variant))
-            return await GetRelatedVariants<Ssm.VariantEntry, Ssm.Variant>(ids);
+        if (type == typeof(Sm.Variant))
+            return await GetRelatedVariants<Sm.VariantEntry, Sm.Variant>(ids);
         else if (type == typeof(Cnv.Variant))
             return await GetRelatedVariants<Cnv.VariantEntry, Cnv.Variant>(ids);
         else if (type == typeof(Sv.Variant))

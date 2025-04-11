@@ -8,7 +8,7 @@ internal class ProteinMapper : IEntityTypeConfiguration<Protein>
 {
     public void Configure(EntityTypeBuilder<Protein> entity)
     {
-        entity.ToTable("Proteins", DomainDbSchemaNames.Genome);
+        entity.ToTable("protein", DomainDbSchemaNames.Genome);
 
         entity.HasKey(protein => protein.Id);
 

@@ -4,7 +4,7 @@ namespace Unite.Data.Entities.Images.Analysis.Enums;
 
 public enum AnalysisType
 {
-    // Radiomics Feature Extraction
+    // Radiomics Feature Extraction.
     [EnumMember(Value = "RFE")]
     RFE = 1
 }

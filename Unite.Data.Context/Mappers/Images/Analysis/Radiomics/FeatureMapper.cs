@@ -6,7 +6,7 @@ namespace Unite.Data.Context.Mappers.Images.Analysis.Radiomics;
 internal class FeatureMapper : Base.EntityMapper<Feature>
 {
     protected override string SchemaName => DomainDbSchemaNames.Images;
-    protected override string TableName => "RadiomicsFeatures";
+    protected override string TableName => "radiomics_feature";
 
     public override void Configure(EntityTypeBuilder<Feature> entity)
     {

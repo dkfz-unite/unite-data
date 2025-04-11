@@ -82,11 +82,11 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     protected abstract IEnumerable<int> LoadRelatedGenes(IEnumerable<TKey> keys);
 
     /// <summary>
-    /// Loads SSMs related to entities of given tasks with given keys.
+    /// Loads SMs related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
-    /// <returns>Collection of related SSMs identifiers.</returns>
-    protected abstract IEnumerable<int> LoadRelatedSsms(IEnumerable<TKey> keys);
+    /// <returns>Collection of related SMs identifiers.</returns>
+    protected abstract IEnumerable<int> LoadRelatedSms(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads CNVs related to entities of given tasks with given keys.
@@ -164,9 +164,9 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     /// <param name="keys">Identifiers of entities.</param>
     protected virtual void CreateVariantIndexingTasks(IEnumerable<TKey> keys)
     {
-        var ssmIds = LoadRelatedSsms(keys);
+        var ssmIds = LoadRelatedSms(keys);
 
-        CreateTasks(IndexingTaskType.SSM, ssmIds);
+        CreateTasks(IndexingTaskType.SM, ssmIds);
 
 
         var cnvIds = LoadRelatedCnvs(keys);

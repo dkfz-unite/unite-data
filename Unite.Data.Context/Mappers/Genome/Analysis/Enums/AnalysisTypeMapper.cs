@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
-using Unite.Data.Context.Mappers.Entities.Extensions;
+using Unite.Data.Context.Mappers.Base.Entities;
+using Unite.Data.Context.Mappers.Base.Entities.Extensions;
 using Unite.Data.Entities.Genome.Analysis.Enums;
 
 namespace Unite.Data.Context.Mappers.Genome.Analysis.Enums;
@@ -25,6 +25,6 @@ internal class AnalysisTypeMapper : IEntityTypeConfiguration<EnumEntity<Analysis
             AnalysisType.RRBS.ToEnumValue(name: "Reduced Representation Bisulfite Sequencing")
         };
 
-        entity.BuildEnumEntity("AnalysisTypes", DomainDbSchemaNames.Genome, data);
+        entity.BuildEnumEntity("analysis_type", DomainDbSchemaNames.Genome, data);
     }
 }

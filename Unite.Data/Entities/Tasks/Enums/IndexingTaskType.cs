@@ -5,49 +5,49 @@ namespace Unite.Data.Entities.Tasks.Enums;
 public enum IndexingTaskType
 {
     /// <summary>
-    /// Project
+    /// Project.
     /// </summary>
     [EnumMember(Value = "Project")]
     Project = 1,
 
     /// <summary>
-    /// Donor
+    /// Donor.
     /// </summary>
     [EnumMember(Value = "Donor")]
     Donor = 2,
 
     /// <summary>
-    /// Image
+    /// Image.
     /// </summary>
     [EnumMember(Value = "Image")]
     Image = 3,
 
     /// <summary>
-    /// Specimen
+    /// Specimen.
     /// </summary>
     [EnumMember(Value = "Specimen")]
     Specimen = 4,
 
     /// <summary>
-    /// Gene
+    /// Gene.
     /// </summary>
     [EnumMember(Value = "Gene")]
     Gene = 5,
 
     /// <summary>
-    /// SSM
+    /// SM.
     /// </summary>
-    [EnumMember(Value = "SSM")]
-    SSM = 6,
+    [EnumMember(Value = "SM")]
+    SM = 6,
 
     /// <summary>
-    /// CNV
+    /// CNV.
     /// </summary>
     [EnumMember(Value = "CNV")]
     CNV = 7,
 
     /// <summary>
-    /// SV
+    /// SV.
     /// </summary>
     [EnumMember(Value = "SV")]
     SV = 8

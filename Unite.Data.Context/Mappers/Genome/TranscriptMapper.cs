@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
+using Unite.Data.Context.Mappers.Base.Entities;
 using Unite.Data.Entities.Genome;
 using Unite.Data.Entities.Genome.Enums;
 
@@ -10,7 +10,7 @@ internal class TranscriptMapper : IEntityTypeConfiguration<Transcript>
 {
     public void Configure(EntityTypeBuilder<Transcript> entity)
     {
-        entity.ToTable("Transcripts", DomainDbSchemaNames.Genome);
+        entity.ToTable("transcript", DomainDbSchemaNames.Genome);
 
         entity.HasKey(transcript => transcript.Id);
 

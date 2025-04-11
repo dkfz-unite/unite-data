@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
-using Unite.Data.Context.Mappers.Entities.Extensions;
+using Unite.Data.Context.Mappers.Base.Entities;
+using Unite.Data.Context.Mappers.Base.Entities.Extensions;
 using Unite.Data.Entities.Tasks.Enums;
 
 namespace Unite.Data.Context.Mappers.Tasks.Enums;
@@ -12,12 +12,12 @@ internal class AnalysisTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Anal
     {
         var data = new EnumEntity<AnalysisTaskType>[]
         {
-            AnalysisTaskType.DESEQ2.ToEnumValue(),
-            AnalysisTaskType.SCELL.ToEnumValue(),
-            AnalysisTaskType.KMEIER.ToEnumValue(),
-            AnalysisTaskType.METH.ToEnumValue()
+            AnalysisTaskType.DON_SCE.ToEnumValue(),
+            AnalysisTaskType.METH_DM.ToEnumValue(),
+            AnalysisTaskType.RNA_DE.ToEnumValue(),
+            AnalysisTaskType.RNASC_DC.ToEnumValue()
         };
 
-        entity.BuildEnumEntity("AnalysisTaskTypes", DomainDbSchemaNames.Common, data);
+        entity.BuildEnumEntity("analysis_task_type", DomainDbSchemaNames.Common, data);
     }
 }

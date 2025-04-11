@@ -1,10 +1,11 @@
 ﻿using System.Runtime.Serialization;
+using Unite.Data.Constants;
 
 namespace Unite.Data.Entities.Tasks.Enums;
 
 /// <summary>
 /// Data submission task type.
-/// 0-99: Donor.
+/// 1-99: Donor.
 /// 100-199: Image.
 /// 200-299: Specimen.
 /// 300-399: Genome.
@@ -15,120 +16,120 @@ public enum SubmissionTaskType
     /// <summary>
     /// Donor general and clinical data.
     /// </summary>
-    [EnumMember(Value = "don")]
+    [EnumMember(Value = DataTypes.Donor.Entry)]
     DON = 0,
 
     /// <summary>
     /// Donor treatments.
     /// </summary>
-    [EnumMember(Value = "don-trt")]
+    [EnumMember(Value = DataTypes.Donor.Treatment)]
     DON_TRT= 1,
 
     /// <summary>
-    /// MRI image metadata.
+    /// MR image metadata.
     /// </summary>
-    [EnumMember(Value = "mri")]
-    MRI= 100,
+    [EnumMember(Value = DataTypes.Image.Entry.Mr)]
+    MR= 100,
 
     /// <summary>
     /// Image radiomics features.
     /// </summary>
-    [EnumMember(Value = "img-rad")]
+    [EnumMember(Value = DataTypes.Image.Feature)]
     IMG_RAD= 101,
 
     /// <summary>
     /// Donor derived material general and molecular data.
     /// </summary>
-    [EnumMember(Value = "mat")]
+    [EnumMember(Value = DataTypes.Specimen.Entry.Material)]
     MAT= 200,
 
     /// <summary>
     /// Cell line general and molecular data.
     /// </summary>
-    [EnumMember(Value = "lne")]
+    [EnumMember(Value = DataTypes.Specimen.Entry.Line)]
     LNE= 201,
 
     /// <summary>
     /// Organoid general and molecular data.
     /// </summary>
-    [EnumMember(Value = "org")]
+    [EnumMember(Value = DataTypes.Specimen.Entry.Organoid)]
     ORG= 202,
 
     /// <summary>
     /// Xenograft general and molecular data.
     /// </summary>
-    [EnumMember(Value = "xen")]
+    [EnumMember(Value = DataTypes.Specimen.Entry.Xenograft)]
     XEN= 203,
 
     /// <summary>
     /// Specimen interventions.
     /// </summary>
-    [EnumMember(Value = "spe-int")]
+    [EnumMember(Value = DataTypes.Specimen.Intervention)]
     SPE_INT= 204,
 
     /// <summary>
     /// Specimen drugs screening data.
     /// </summary>
-    [EnumMember(Value = "spe-drg")]
+    [EnumMember(Value = DataTypes.Specimen.Drug)]
     SPE_DRG= 205,
 
     /// <summary>
     /// DNA sample.
     /// </summary>
-    [EnumMember(Value = "dna")]
+    [EnumMember(Value = DataTypes.Genome.Dna.Sample)]
     DNA = 300,
 
     /// <summary>
-    /// Simple somatic mutations.
+    /// Simple mutations.
     /// </summary>
-    [EnumMember(Value = "dna-ssm")]
-    DNA_SSM = 301,
+    [EnumMember(Value = DataTypes.Genome.Dna.Sm)]
+    DNA_SM = 301,
 
     /// <summary>
     /// Copy number variants.
     /// </summary>
-    [EnumMember(Value = "dna-cnv")]
+    [EnumMember(Value = DataTypes.Genome.Dna.Cnv)]
     DNA_CNV = 302,
 
     /// <summary>
     /// Structural variants.
     /// </summary>
-    [EnumMember(Value = "dna-sv")]
+    [EnumMember(Value = DataTypes.Genome.Dna.Sv)]
     DNA_SV = 303,
 
     /// <summary>
     /// Methylation sample.
     /// </summary>
-    [EnumMember(Value = "meth")]
+    [EnumMember(Value = DataTypes.Genome.Meth.Sample)]
     METH = 310,
 
     /// <summary>
     /// Methylation levels.
     /// </summary>
-    [EnumMember(Value = "meth-lvl")]
+    [EnumMember(Value = DataTypes.Genome.Meth.Level)]
     METH_LVL = 311,
 
     /// <summary>
     /// Bulk RNA sample.
     /// </summary>
-    [EnumMember(Value = "rna")]
+    [EnumMember(Value = DataTypes.Genome.Rna.Sample)]
     RNA = 320,
 
     /// <summary>
     /// Bulk gene expressions.
     /// </summary>
-    [EnumMember(Value = "rna-exp")]
+    [EnumMember(Value = DataTypes.Genome.Rna.Exp)]
     RNA_EXP = 321,
 
     /// <summary>
     /// Single cell RNA sample.
     /// </summary>
-    [EnumMember(Value = "rnasc")]
+    [EnumMember(Value = DataTypes.Genome.Rnasc.Sample)]
     RNASC = 330,
 
     /// <summary>
     /// Single cell gene expressions.
     /// </summary>
-    [EnumMember(Value = "rnasc-exp")]
+    [EnumMember(Value = DataTypes.Genome.Rnasc.Exp)]
     RNASC_EXP = 331
 }

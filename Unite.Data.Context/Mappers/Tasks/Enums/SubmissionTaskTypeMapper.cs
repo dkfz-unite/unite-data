@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
-using Unite.Data.Context.Mappers.Entities.Extensions;
+using Unite.Data.Context.Mappers.Base.Entities;
+using Unite.Data.Context.Mappers.Base.Entities.Extensions;
 using Unite.Data.Entities.Tasks.Enums;
 
 namespace Unite.Data.Context.Mappers.Tasks.Enums;
@@ -14,7 +14,7 @@ internal class SubmissionTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Su
         {
             SubmissionTaskType.DON.ToEnumValue(),
             SubmissionTaskType.DON_TRT.ToEnumValue(),
-            SubmissionTaskType.MRI.ToEnumValue(),
+            SubmissionTaskType.MR.ToEnumValue(),
             SubmissionTaskType.IMG_RAD.ToEnumValue(),
             SubmissionTaskType.MAT.ToEnumValue(),
             SubmissionTaskType.LNE.ToEnumValue(),
@@ -23,7 +23,7 @@ internal class SubmissionTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Su
             SubmissionTaskType.SPE_INT.ToEnumValue(),
             SubmissionTaskType.SPE_DRG.ToEnumValue(),
             SubmissionTaskType.DNA.ToEnumValue(),
-            SubmissionTaskType.DNA_SSM.ToEnumValue(),
+            SubmissionTaskType.DNA_SM.ToEnumValue(),
             SubmissionTaskType.DNA_CNV.ToEnumValue(),
             SubmissionTaskType.DNA_SV.ToEnumValue(),
             SubmissionTaskType.METH.ToEnumValue(),
@@ -34,6 +34,6 @@ internal class SubmissionTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Su
             SubmissionTaskType.RNASC_EXP.ToEnumValue()          
         };
 
-        entity.BuildEnumEntity("SubmissionTaskTypes", DomainDbSchemaNames.Common, data);
+        entity.BuildEnumEntity("submission_task_types", DomainDbSchemaNames.Common, data);
     }
 }

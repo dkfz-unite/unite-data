@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
+using Unite.Data.Context.Mappers.Base.Entities;
 using Unite.Data.Entities.Specimens;
 using Unite.Data.Entities.Specimens.Enums;
 
@@ -10,7 +10,7 @@ internal class MolecularDataMapper : IEntityTypeConfiguration<MolecularData>
 {
     public void Configure(EntityTypeBuilder<MolecularData> entity)
     {
-        entity.ToTable("MolecularData", DomainDbSchemaNames.Specimens);
+        entity.ToTable("molecular_data", DomainDbSchemaNames.Specimens);
 
         entity.HasKey(molecularData => molecularData.SpecimenId);
 

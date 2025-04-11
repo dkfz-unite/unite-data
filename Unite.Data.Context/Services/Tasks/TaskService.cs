@@ -62,8 +62,8 @@ public abstract class TaskService
                 SubmissionTypeId = type,
                 Target = key.ToString(),
                 Data = data != null ? JsonSerializer.Serialize(data) : null,
-                Date = DateTime.UtcNow,
                 StatusTypeId = status,
+                Date = DateTime.UtcNow
             };
 
             dbContext.Add(task);
@@ -101,8 +101,8 @@ public abstract class TaskService
                 IndexingTypeId = type,
                 Target = key.ToString(),
                 Data = data != null ? JsonSerializer.Serialize(data) : null,
-                Date = DateTime.UtcNow,
-                StatusTypeId = status
+                StatusTypeId = status,
+                Date = DateTime.UtcNow
             };
 
             dbContext.Add(task);
@@ -140,8 +140,8 @@ public abstract class TaskService
                 AnnotationTypeId = type,
                 Target = key.ToString(),
                 Data = data != null ? JsonSerializer.Serialize(data) : null,
-                Date = DateTime.UtcNow,
-                StatusTypeId = status
+                StatusTypeId = status,
+                Date = DateTime.UtcNow
             };
 
             dbContext.Add(task);
@@ -295,4 +295,4 @@ public abstract class TaskService
         }
         while (entities.Length == BucketSize);
     }
-} 
+}

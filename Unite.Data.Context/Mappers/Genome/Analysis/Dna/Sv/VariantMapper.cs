@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Entities;
 using Unite.Data.Entities.Genome.Enums;
 using Unite.Data.Entities.Genome.Analysis.Dna.Sv;
 using Unite.Data.Entities.Genome.Analysis.Dna.Sv.Enums;
+using Unite.Data.Context.Mappers.Base.Entities;
 
 namespace Unite.Data.Context.Mappers.Genome.Analysis.Dna.Sv;
 
@@ -11,7 +11,7 @@ namespace Unite.Data.Context.Mappers.Genome.Analysis.Dna.Sv;
 /// </summary>
 internal class VariantMapper : VariantMapper<Variant>
 {
-    protected override string TableName => "Svs";
+    protected override string TableName => "sv";
 
     public override void Configure(EntityTypeBuilder<Variant> entity)
     {

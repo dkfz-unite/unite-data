@@ -1,26 +1,36 @@
-﻿using Unite.Data.Entities.Genome.Analysis.Dna.Ssm.Enums;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Unite.Data.Entities.Genome.Analysis.Dna.Sm.Enums;
 
-namespace Unite.Data.Entities.Genome.Analysis.Dna.Ssm;
+namespace Unite.Data.Entities.Genome.Analysis.Dna.Sm;
 
 /// <summary>
-/// Simple somatic mutation (SSM).
+/// Simple mutation (SM).
 /// </summary>
 public record Variant : Dna.Variant
 {
     /// <summary>
-    /// Simple somatic mutation type.
+    /// Simple mutation type.
     /// </summary>
-    public SsmType TypeId { get; set; }
+    [Column("type_id")]
+    public SmType TypeId { get; set; }
 
     /// <summary>
     /// Reference genomic sequence of chromosome region.
     /// </summary>
+    [Column("ref")]
     public string Ref { get; set; }
 
     /// <summary>
     /// Alternate genomic sequence of chromosome region.
     /// </summary>
+    [Column("alt")]
     public string Alt { get; set; }
+
+    /// <summary>
+    /// Transcript with the most severe effect of the variant.
+    /// </summary>
+    [NotMapped]
+    public AffectedTranscript MostAffectedTranscript => AffectedTranscripts?.Order().FirstOrDefault();
 
 
     /// <summary>

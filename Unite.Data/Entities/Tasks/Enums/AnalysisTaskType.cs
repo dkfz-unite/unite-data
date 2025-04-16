@@ -4,35 +4,30 @@ namespace Unite.Data.Entities.Tasks.Enums;
 
 /// <summary>
 /// Data analysis task type.
-/// 1-99: Donor.
-/// 100-199: Image.
-/// 200-299: Specimen.
-/// 300-399: Genome.
-/// 400+: Cross-type.
 /// </summary>
 public enum AnalysisTaskType
 {
     /// <summary>
     /// Survival curve estimation (Kaplan-Meier).
     /// </summary>
-    [EnumMember(Value = "don-sce")] 
-    DON_SCE = 1,
+    [EnumMember(Value = "surv")] 
+    SURV = 3,
 
     /// <summary>
     /// Differential methylation (Minfi).
     /// </summary>
-    [EnumMember(Value = "meth-dm")]
-    METH_DM = 300,
+    [EnumMember(Value = "dm")]
+    DM = 4,
 
     /// <summary>
     /// RNA differential expression (DESeq2).
     /// </summary>
-    [EnumMember(Value = "rna_de")]
-    RNA_DE = 301,
+    [EnumMember(Value = "de")]
+    DE = 1,
 
     /// <summary>
     /// scRNA dataset creation.
     /// </summary>
-    [EnumMember(Value = "rnasc_dc")]
-    RNASC_DC = 302
+    [EnumMember(Value = "scell")]
+    SCELL = 2
 }

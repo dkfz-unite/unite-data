@@ -1,5 +1,4 @@
 using Unite.Data.Context.Services.Stats.Extensions;
-using Unite.Essentials.Extensions;
 
 namespace Unite.Data.Context.Services.Stats;
 
@@ -50,7 +49,7 @@ public static class StatsService
     {
         if (!entries.Any())
             return [];
-            
+
         return entries
             .GroupIntoRangesBy(selector, rangesNumber, desiredMin, desiredMax)
             .OrderBy(group => group.Key)

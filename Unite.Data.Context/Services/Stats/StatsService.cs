@@ -12,11 +12,14 @@ public static class StatsService
         Func<T, TProp> selector)
         where T : class
     {
+        if (!entries.Any())
+            return [];
+
         return entries
             .GroupBy(selector)
             .OrderBy(group => group.Key)
             .Select(group => new Stat<TProp>(group.Key, group.Count()))
-            .ToArrayOrNull();
+            .ToArray();
     }
 
     public static Stat<int?>[] GetRangeBreakdown<T>(
@@ -27,11 +30,14 @@ public static class StatsService
         int? desiredMax = null)
         where T : class
     {
+        if (!entries.Any())
+            return [];
+
         return entries
             .GroupIntoRangesBy(selector, rangesNumber, desiredMin, desiredMax)
             .OrderBy(group => group.Key)
             .Select(group => new Stat<int?>(group.Key, group.Count()))
-            .ToArrayOrNull();
+            .ToArray();
     }
 
     public static Stat<double?>[] GetRangeBreakdown<T>(
@@ -42,10 +48,13 @@ public static class StatsService
         double? desiredMax = null)
         where T : class
     {
+        if (!entries.Any())
+            return [];
+            
         return entries
             .GroupIntoRangesBy(selector, rangesNumber, desiredMin, desiredMax)
             .OrderBy(group => group.Key)
             .Select(group => new Stat<double?>(group.Key, group.Count()))
-            .ToArrayOrNull();
+            .ToArray();
     }
 }

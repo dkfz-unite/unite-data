@@ -19,6 +19,9 @@ internal static class EnumerableExtensions
         int? desiredMin = null,
         int? desiredMax = null)
     {
+        if (!source.Any())
+            return [];
+
         var groups = DefineGroups(source.Select(selector), rangesNumber, desiredMin, desiredMax);
 
         return source.GroupBy(entry => GetGroup(selector(entry), groups));
@@ -41,6 +44,9 @@ internal static class EnumerableExtensions
         double? desiredMin = null,
         double? desiredMax = null)
     {
+        if (!source.Any())
+            return [];
+            
         var groups = DefineGroups(source.Select(selector), rangesNumber, desiredMin, desiredMax);
 
         return source.GroupBy(entry => GetGroup(selector(entry), groups));

@@ -20,6 +20,12 @@ public enum AnalysisTaskType
     DM = 4,
 
     /// <summary>
+    /// Principle component analysis for methylation (Minfi).
+    /// </summary>
+    [EnumMember(Value = "pcam")]
+    PCAM = 5,
+
+    /// <summary>
     /// RNA differential expression (DESeq2).
     /// </summary>
     [EnumMember(Value = "de")]

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Unite.Data.Context.Repositories.Constants;
-using Unite.Data.Entities.Genome.Analysis.Dna;
+using Unite.Data.Entities.Omics.Analysis.Dna;
 using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Specimens;
 using Unite.Essentials.Extensions;
@@ -72,7 +72,7 @@ public class ImagesRepository : Repository
         return await _specimensRepository.GetRelatedSamples(specimenIds, typeIds);
     }
 
-    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Genome.Analysis.Enums.AnalysisType> typeIds)
+    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Omics.Analysis.Enums.AnalysisType> typeIds)
     {
         var specimenIds = await GetRelatedSpecimens(ids);
 

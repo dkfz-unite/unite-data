@@ -45,22 +45,22 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Specimens.Analysis.Drugs.Drug> Drugs { get; set; }
     public DbSet<Entities.Specimens.Analysis.Drugs.DrugScreening> DrugScreenings { get; set; }
 
-    public DbSet<Entities.Genome.Gene> Genes { get; set; }
-    public DbSet<Entities.Genome.Transcript> Transcripts { get; set; }
-    public DbSet<Entities.Genome.Protein> Proteins { get; set; }
-    public DbSet<Entities.Genome.Analysis.Analysis> GenomeAnalyses { get; set; }
-    public DbSet<Entities.Genome.Analysis.Sample> GenomeSamples { get; set; }
-    public DbSet<Entities.Genome.Analysis.SampleResource> GenomeSampleResources { get; set; }
-    public DbSet<Entities.Genome.Analysis.Dna.Sm.Variant> Sms { get; set; }
-    public DbSet<Entities.Genome.Analysis.Dna.Sm.VariantEntry> SmEntries { get; set; }
-    public DbSet<Entities.Genome.Analysis.Dna.Sm.AffectedTranscript> SmAffectedTranscripts { get; set; }
-    public DbSet<Entities.Genome.Analysis.Dna.Cnv.Variant> Cnvs { get; set; }
-    public DbSet<Entities.Genome.Analysis.Dna.Cnv.VariantEntry> CnvEntries { get; set; }
-    public DbSet<Entities.Genome.Analysis.Dna.Cnv.AffectedTranscript> CnvAffectedTranscripts { get; set; }
-    public DbSet<Entities.Genome.Analysis.Dna.Sv.Variant> Svs { get; set; }
-    public DbSet<Entities.Genome.Analysis.Dna.Sv.VariantEntry> SvEntries { get; set; }
-    public DbSet<Entities.Genome.Analysis.Dna.Sv.AffectedTranscript> SvAffectedTranscripts { get; set; }
-    public DbSet<Entities.Genome.Analysis.Rna.GeneExpression> GeneExpressions { get; set; }
+    public DbSet<Entities.Omics.Gene> Genes { get; set; }
+    public DbSet<Entities.Omics.Transcript> Transcripts { get; set; }
+    public DbSet<Entities.Omics.Protein> Proteins { get; set; }
+    public DbSet<Entities.Omics.Analysis.Analysis> OmicsAnalyses { get; set; }
+    public DbSet<Entities.Omics.Analysis.Sample> OmicsSamples { get; set; }
+    public DbSet<Entities.Omics.Analysis.SampleResource> OmicsSampleResources { get; set; }
+    public DbSet<Entities.Omics.Analysis.Dna.Sm.Variant> Sms { get; set; }
+    public DbSet<Entities.Omics.Analysis.Dna.Sm.VariantEntry> SmEntries { get; set; }
+    public DbSet<Entities.Omics.Analysis.Dna.Sm.AffectedTranscript> SmAffectedTranscripts { get; set; }
+    public DbSet<Entities.Omics.Analysis.Dna.Cnv.Variant> Cnvs { get; set; }
+    public DbSet<Entities.Omics.Analysis.Dna.Cnv.VariantEntry> CnvEntries { get; set; }
+    public DbSet<Entities.Omics.Analysis.Dna.Cnv.AffectedTranscript> CnvAffectedTranscripts { get; set; }
+    public DbSet<Entities.Omics.Analysis.Dna.Sv.Variant> Svs { get; set; }
+    public DbSet<Entities.Omics.Analysis.Dna.Sv.VariantEntry> SvEntries { get; set; }
+    public DbSet<Entities.Omics.Analysis.Dna.Sv.AffectedTranscript> SvAffectedTranscripts { get; set; }
+    public DbSet<Entities.Omics.Analysis.Rna.GeneExpression> GeneExpressions { get; set; }
 
 
     public DomainDbContext(ISqlOptions options)
@@ -84,7 +84,7 @@ public class DomainDbContext : DbContext
         ConfigureDonors(builder);
         ConfigureImages(builder);
         ConfigureSpecimens(builder);
-        ConfigureGenome(builder);
+        ConfigureOmics(builder);
     }
 
 
@@ -174,33 +174,33 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Specimens.Analysis.Drugs.DrugScreeningMapper());
     }
 
-    private static void ConfigureGenome(ModelBuilder builder)
+    private static void ConfigureOmics(ModelBuilder builder)
     {
-        builder.ApplyConfiguration(new Mappers.Genome.Enums.ChromosomeMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.GeneMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.TranscriptMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.ProteinMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Enums.ChromosomeMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.GeneMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.TranscriptMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.ProteinMapper());
 
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Enums.AnalysisTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.AnalysisMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.SampleMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.SampleResourceMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Enums.AnalysisTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.AnalysisMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.SampleMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.SampleResourceMapper());
 
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Sm.Enums.SmTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Sm.VariantMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Sm.VariantEntryMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Sm.AffectedTranscriptMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sm.Enums.SmTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sm.VariantMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sm.VariantEntryMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sm.AffectedTranscriptMapper());
 
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Cnv.Enums.CnvTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Cnv.VariantMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Cnv.VariantEntryMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Cnv.AffectedTranscriptMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.Enums.CnvTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.VariantMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.VariantEntryMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.AffectedTranscriptMapper());
 
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Sv.Enums.SvTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Sv.VariantMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Sv.VariantEntryMapper());
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Dna.Sv.AffectedTranscriptMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.Enums.SvTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.VariantMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.VariantEntryMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.AffectedTranscriptMapper());
 
-        builder.ApplyConfiguration(new Mappers.Genome.Analysis.Rna.GeneExpressionMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Rna.GeneExpressionMapper());
     }
 }

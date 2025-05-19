@@ -3,7 +3,7 @@ using Unite.Data.Entities.Specimens;
 using Unite.Data.Entities.Specimens.Enums;
 using Unite.Data.Entities.Specimens.Materials.Enums;
 
-using Cnv = Unite.Data.Entities.Genome.Analysis.Dna.Cnv;
+using Cnv = Unite.Data.Entities.Omics.Analysis.Dna.Cnv;
 
 namespace Unite.Data.Context.Repositories.Constants;
 

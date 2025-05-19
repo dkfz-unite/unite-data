@@ -2,16 +2,16 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Unite.Essentials.Extensions;
 using Unite.Data.Context.Repositories.Constants;
-using Unite.Data.Entities.Genome.Analysis.Dna;
-using Unite.Data.Entities.Genome.Analysis.Rna;
+using Unite.Data.Entities.Omics.Analysis.Dna;
+using Unite.Data.Entities.Omics.Analysis.Rna;
 using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Images.Enums;
 using Unite.Data.Entities.Specimens;
 using Unite.Data.Entities.Specimens.Enums;
 
-using Sm = Unite.Data.Entities.Genome.Analysis.Dna.Sm;
-using Cnv = Unite.Data.Entities.Genome.Analysis.Dna.Cnv;
-using Sv = Unite.Data.Entities.Genome.Analysis.Dna.Sv;
+using Sm = Unite.Data.Entities.Omics.Analysis.Dna.Sm;
+using Cnv = Unite.Data.Entities.Omics.Analysis.Dna.Cnv;
+using Sv = Unite.Data.Entities.Omics.Analysis.Dna.Sv;
 
 namespace Unite.Data.Context.Repositories;
 
@@ -80,13 +80,13 @@ public class SpecimensRepository : Repository
             .ToArrayAsync();
     }
 
-    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Genome.Analysis.Enums.AnalysisType> typeIds = null)
+    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Omics.Analysis.Enums.AnalysisType> typeIds = null)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
         var filterByTypes = typeIds?.IsNotEmpty() ?? false;
 
-        return await dbContext.Set<Entities.Genome.Analysis.Sample>()
+        return await dbContext.Set<Entities.Omics.Analysis.Sample>()
             .AsNoTracking()
             .Where(sample => ids.Contains(sample.SpecimenId))
             .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId))

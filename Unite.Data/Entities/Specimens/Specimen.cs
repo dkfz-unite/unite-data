@@ -22,6 +22,6 @@ public record Specimen : Base.Specimen<SpecimenType>
     public virtual MolecularData MolecularData { get; set; }
     public virtual ICollection<Intervention> Interventions { get; set; }
 
-    public virtual ICollection<Genome.Analysis.Sample> GenomeSamples { get; set; }
+    public virtual ICollection<Omics.Analysis.Sample> OmicsSamples { get; set; }
     public virtual ICollection<Specimens.Analysis.Sample> SpecimenSamples { get; set; }
 }

@@ -7,7 +7,7 @@ namespace Unite.Data.Entities.Tasks.Enums;
 /// 0-99: Donor.
 /// 100-199: Image.
 /// 200-299: Specimen.
-/// 300-399: Genome.
+/// 300-399: Omics.
 /// </summary> 
 public enum AnnotationTaskType
 {

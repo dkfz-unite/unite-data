@@ -6,5 +6,5 @@ public static class DomainDbSchemaNames
     public const string Donors = "don";
     public const string Specimens = "spe";
     public const string Images = "img";
-    public const string Genome = "gen";
+    public const string Omics = "omi";
 }

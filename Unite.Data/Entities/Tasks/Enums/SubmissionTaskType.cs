@@ -8,7 +8,7 @@ namespace Unite.Data.Entities.Tasks.Enums;
 /// 1-99: Donor.
 /// 100-199: Image.
 /// 200-299: Specimen.
-/// 300-399: Genome.
+/// 300-399: Omics.
 /// </summary>
 public enum SubmissionTaskType
 {
@@ -76,60 +76,60 @@ public enum SubmissionTaskType
     /// <summary>
     /// DNA sample.
     /// </summary>
-    [EnumMember(Value = DataTypes.Genome.Dna.Sample)]
+    [EnumMember(Value = DataTypes.Omics.Dna.Sample)]
     DNA = 300,
 
     /// <summary>
     /// Simple mutations.
     /// </summary>
-    [EnumMember(Value = DataTypes.Genome.Dna.Sm)]
+    [EnumMember(Value = DataTypes.Omics.Dna.Sm)]
     DNA_SM = 301,
 
     /// <summary>
     /// Copy number variants.
     /// </summary>
-    [EnumMember(Value = DataTypes.Genome.Dna.Cnv)]
+    [EnumMember(Value = DataTypes.Omics.Dna.Cnv)]
     DNA_CNV = 302,
 
     /// <summary>
     /// Structural variants.
     /// </summary>
-    [EnumMember(Value = DataTypes.Genome.Dna.Sv)]
+    [EnumMember(Value = DataTypes.Omics.Dna.Sv)]
     DNA_SV = 303,
 
     /// <summary>
     /// Methylation sample.
     /// </summary>
-    [EnumMember(Value = DataTypes.Genome.Meth.Sample)]
+    [EnumMember(Value = DataTypes.Omics.Meth.Sample)]
     METH = 310,
 
     /// <summary>
     /// Methylation levels.
     /// </summary>
-    [EnumMember(Value = DataTypes.Genome.Meth.Level)]
+    [EnumMember(Value = DataTypes.Omics.Meth.Level)]
     METH_LVL = 311,
 
     /// <summary>
     /// Bulk RNA sample.
     /// </summary>
-    [EnumMember(Value = DataTypes.Genome.Rna.Sample)]
+    [EnumMember(Value = DataTypes.Omics.Rna.Sample)]
     RNA = 320,
 
     /// <summary>
     /// Bulk gene expressions.
     /// </summary>
-    [EnumMember(Value = DataTypes.Genome.Rna.Exp)]
+    [EnumMember(Value = DataTypes.Omics.Rna.Exp)]
     RNA_EXP = 321,
 
     /// <summary>
     /// Single cell RNA sample.
     /// </summary>
-    [EnumMember(Value = DataTypes.Genome.Rnasc.Sample)]
+    [EnumMember(Value = DataTypes.Omics.Rnasc.Sample)]
     RNASC = 330,
 
     /// <summary>
     /// Single cell gene expressions.
     /// </summary>
-    [EnumMember(Value = DataTypes.Genome.Rnasc.Exp)]
+    [EnumMember(Value = DataTypes.Omics.Rnasc.Exp)]
     RNASC_EXP = 331
 }

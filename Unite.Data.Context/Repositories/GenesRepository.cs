@@ -1,15 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Unite.Data.Context.Repositories.Constants;
-using Unite.Data.Entities.Genome.Analysis.Rna;
-using Unite.Data.Entities.Genome.Analysis.Dna;
+using Unite.Data.Entities.Omics.Analysis.Rna;
+using Unite.Data.Entities.Omics.Analysis.Dna;
 using Unite.Data.Entities.Images.Enums;
 using Unite.Data.Entities.Specimens.Enums;
 using Unite.Essentials.Extensions;
 
-using Sm = Unite.Data.Entities.Genome.Analysis.Dna.Sm;
-using Cnv = Unite.Data.Entities.Genome.Analysis.Dna.Cnv;
-using Sv = Unite.Data.Entities.Genome.Analysis.Dna.Sv;
+using Sm = Unite.Data.Entities.Omics.Analysis.Dna.Sm;
+using Cnv = Unite.Data.Entities.Omics.Analysis.Dna.Cnv;
+using Sv = Unite.Data.Entities.Omics.Analysis.Dna.Sv;
 
 namespace Unite.Data.Context.Repositories;
 

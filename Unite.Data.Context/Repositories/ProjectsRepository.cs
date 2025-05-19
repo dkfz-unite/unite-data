@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Unite.Data.Entities.Genome.Analysis.Dna;
+using Unite.Data.Entities.Omics.Analysis.Dna;
 using Unite.Data.Entities.Images.Enums;
 using Unite.Data.Entities.Specimens.Enums;
 
@@ -56,7 +56,7 @@ public class ProjectsRepository : Repository
         return await _donorsRepository.GetRelatedSamples(donors, typeIds);
     }
 
-    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Genome.Analysis.Enums.AnalysisType> typeIds = null)
+    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Omics.Analysis.Enums.AnalysisType> typeIds = null)
     {
         var donors = await GetRelatedDonors(ids);
 

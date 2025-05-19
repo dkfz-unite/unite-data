@@ -4,7 +4,7 @@ namespace Unite.Data.Entities.Base;
 
 public abstract record SampleEntry
 {
-    [Column("id")]
+    [Column("sample_id")]
     public int SampleId { get; set; }
     [Column("entity_id")]
     public int EntityId { get; set; }

@@ -51,6 +51,12 @@ public record Variant : Dna.Variant
     [Column("flanking_sequence_to")]
     public string FlankingSequenceTo { get; set; }
 
+    /// <summary>
+    /// Transcript with the most severe effect of the variant.
+    /// </summary>
+    [NotMapped]
+    public AffectedTranscript MostAffectedTranscript => AffectedTranscripts?.Order().FirstOrDefault();
+
 
     /// <summary>
     /// Occurrences of the variant in analysed sample.

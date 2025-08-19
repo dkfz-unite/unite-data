@@ -10,7 +10,7 @@ public enum AnalysisTaskType
     /// <summary>
     /// Survival curve estimation (Kaplan-Meier).
     /// </summary>
-    [EnumMember(Value = "surv")] 
+    [EnumMember(Value = "surv")]
     SURV = 3,
 
     /// <summary>
@@ -30,6 +30,12 @@ public enum AnalysisTaskType
     /// </summary>
     [EnumMember(Value = "de")]
     DE = 1,
+
+    /// <summary>
+    /// Genomic alteration frequency.
+    /// </summary>
+    [EnumMember(Value = "gaf")]
+    GAF = 6,
 
     /// <summary>
     /// scRNA dataset creation.

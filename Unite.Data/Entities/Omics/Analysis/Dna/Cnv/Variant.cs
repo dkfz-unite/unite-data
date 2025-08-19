@@ -74,6 +74,12 @@ public record Variant : Dna.Variant
     [Column("dh_max")]
     public double? DhMax { get; set; }
 
+    /// <summary>
+    /// Transcript with the most severe effect of the variant.
+    /// </summary>
+    [NotMapped]
+    public AffectedTranscript MostAffectedTranscript => AffectedTranscripts?.Order().FirstOrDefault();
+
 
     /// <summary>
     /// Occurrences of the variant in analysed sample.

@@ -7,7 +7,7 @@ namespace Unite.Data.Entities.Omics.Analysis.Dna;
 /// </summary>
 public record Effect : IComparable<Effect>
 {
-    private static class Impacts
+    public static class Impacts
     {
         public const string High = "High";
         public const string Moderate = "Moderate";

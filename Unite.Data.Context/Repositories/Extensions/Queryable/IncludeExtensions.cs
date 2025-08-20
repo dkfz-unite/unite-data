@@ -146,4 +146,55 @@ public static class IncludeExtensions
             .Include(variant => variant.AffectedTranscripts)
                 .ThenInclude(affectedTranscript => affectedTranscript.Feature.Protein);
     }
+
+
+    public static IQueryable<TVariantEntry> IncludeAffectedTranscripts<TVariantEntry, TVariant>(this IQueryable<TVariantEntry> query)
+        where TVariantEntry : Gen.Dna.VariantEntry<TVariant>
+        where TVariant : Gen.Dna.Variant
+    {
+        switch (query)
+        {
+            case IQueryable<Gen.Dna.Sm.VariantEntry> sms:
+                return (IQueryable<TVariantEntry>)sms.IncludeAffectedTranscripts();
+            case IQueryable<Gen.Dna.Cnv.VariantEntry> cnvs:
+                return (IQueryable<TVariantEntry>)cnvs.IncludeAffectedTranscripts();
+            case IQueryable<Gen.Dna.Sv.VariantEntry> svs:
+                return (IQueryable<TVariantEntry>)svs.IncludeAffectedTranscripts();
+            default:
+                return query;
+        }
+    }
+
+    public static IQueryable<Gen.Dna.Sm.VariantEntry> IncludeAffectedTranscripts(this IQueryable<Gen.Dna.Sm.VariantEntry> query)
+    {
+        return query
+            .Include(entry => entry.Entity)
+                .ThenInclude(variant => variant.AffectedTranscripts)
+                    .ThenInclude(affectedTranscript => affectedTranscript.Feature.Gene)
+            .Include(entry => entry.Entity)
+                .ThenInclude(variant => variant.AffectedTranscripts)
+                    .ThenInclude(affectedTranscript => affectedTranscript.Feature.Protein);
+    }
+
+    public static IQueryable<Gen.Dna.Cnv.VariantEntry> IncludeAffectedTranscripts(this IQueryable<Gen.Dna.Cnv.VariantEntry> query)
+    {
+        return query
+            .Include(entry => entry.Entity)
+                .ThenInclude(variant => variant.AffectedTranscripts)
+                    .ThenInclude(affectedTranscript => affectedTranscript.Feature.Gene)
+            .Include(entry => entry.Entity)
+                .ThenInclude(variant => variant.AffectedTranscripts)
+                    .ThenInclude(affectedTranscript => affectedTranscript.Feature.Protein);
+    }
+
+    public static IQueryable<Gen.Dna.Sv.VariantEntry> IncludeAffectedTranscripts(this IQueryable<Gen.Dna.Sv.VariantEntry> query)
+    {
+        return query
+            .Include(entry => entry.Entity)
+                .ThenInclude(variant => variant.AffectedTranscripts)
+                    .ThenInclude(affectedTranscript => affectedTranscript.Feature.Gene)
+            .Include(entry => entry.Entity)
+                .ThenInclude(variant => variant.AffectedTranscripts)
+                    .ThenInclude(affectedTranscript => affectedTranscript.Feature.Protein);
+    }
 }

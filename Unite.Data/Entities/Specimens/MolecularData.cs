@@ -20,6 +20,8 @@ public record MolecularData
     public MethylationSubtype? MethylationSubtypeId { get; set; }
     [Column("gcimp_methylation")]
     public bool? GcimpMethylation { get; set; }
+    [Column("gene_knockouts")]
+    public string[] GeneKnockouts { get; set; }
 
 
     public virtual Specimen Specimen { get; set; }

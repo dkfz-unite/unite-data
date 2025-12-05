@@ -12,6 +12,14 @@ public record Specimen : Base.Specimen<SpecimenType>
     [Column("parent_id")]
     public int? ParentId { get; set; }
 
+    [Column("condition_id")]
+    public Condition? ConditionId { get; set; }
+    [Column("tumor_type_id")]
+    public TumorType? TumorTypeId { get; set; }
+    [Column("tumor_grade")]
+    public byte? TumorGrade { get; set; }
+
+
     public virtual Specimen Parent { get; set; }
     public virtual ICollection<Specimen> Children { get; set; }
 
@@ -19,6 +27,7 @@ public record Specimen : Base.Specimen<SpecimenType>
     public virtual Line Line { get; set; }
     public virtual Organoid Organoid { get; set; }
     public virtual Xenograft Xenograft { get; set; }
+    public virtual TumorClassification TumorClassification { get; set; }
     public virtual MolecularData MolecularData { get; set; }
     public virtual ICollection<Intervention> Interventions { get; set; }
 

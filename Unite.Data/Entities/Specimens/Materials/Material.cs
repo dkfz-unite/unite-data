@@ -10,14 +10,8 @@ public record Material
 
     [Column("source_id")]
     public int? SourceId { get; set; }
-    [Column("type_id")]
-    public MaterialType? TypeId { get; set; }
     [Column("fixation_type_id")]
     public FixationType? FixationTypeId { get; set; }
-    [Column("tumor_type_id")]
-    public TumorType? TumorTypeId { get; set; }
-    [Column("tumor_grade")]
-    public byte? TumorGrade { get; set; }
 
 
     public virtual Specimen Specimen { get; set; }

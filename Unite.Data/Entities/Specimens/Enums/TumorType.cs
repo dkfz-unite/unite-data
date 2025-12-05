@@ -1,6 +1,6 @@
-﻿using System.Runtime.Serialization;
+using System.Runtime.Serialization;
 
-namespace Unite.Data.Entities.Specimens.Materials.Enums;
+namespace Unite.Data.Entities.Specimens.Enums;
 
 public enum TumorType
 {

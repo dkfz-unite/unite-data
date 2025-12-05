@@ -25,16 +25,13 @@ internal class MolecularDataMapper : IEntityTypeConfiguration<MolecularData>
               .IsRequired()
               .ValueGeneratedNever();
 
-        entity.Property(molecularData => molecularData.MgmtStatusId)
-              .HasConversion<int>();
-
-        entity.Property(molecularData => molecularData.IdhStatusId)
-              .HasConversion<int>();
-
         entity.Property(molecularData => molecularData.IdhMutationId)
               .HasConversion<int>();
 
-        entity.Property(molecularData => molecularData.GeneExpressionSubtypeId)
+        entity.Property(molecularData => molecularData.TertMutationId)
+              .HasConversion<int>();
+
+        entity.Property(molecularData => molecularData.ExpressionSubtypeId)
               .HasConversion<int>();
 
         entity.Property(molecularData => molecularData.MethylationSubtypeId)
@@ -44,21 +41,17 @@ internal class MolecularDataMapper : IEntityTypeConfiguration<MolecularData>
               .HasConversion(_serialize, _deserialize);
 
 
-        entity.HasOne<EnumEntity<MgmtStatus>>()
-              .WithMany()
-              .HasForeignKey(molecularData => molecularData.MgmtStatusId);
-
-        entity.HasOne<EnumEntity<IdhStatus>>()
-              .WithMany()
-              .HasForeignKey(molecularData => molecularData.IdhStatusId);
-
         entity.HasOne<EnumEntity<IdhMutation>>()
               .WithMany()
               .HasForeignKey(molecularData => molecularData.IdhMutationId);
 
-        entity.HasOne<EnumEntity<GeneExpressionSubtype>>()
+        entity.HasOne<EnumEntity<TertMutation>>()
               .WithMany()
-              .HasForeignKey(molecularData => molecularData.GeneExpressionSubtypeId);
+              .HasForeignKey(molecularData => molecularData.TertMutationId);
+
+        entity.HasOne<EnumEntity<ExpressionSubtype>>()
+              .WithMany()
+              .HasForeignKey(molecularData => molecularData.ExpressionSubtypeId);
 
         entity.HasOne<EnumEntity<MethylationSubtype>>()
               .WithMany()

@@ -8,14 +8,18 @@ public record MolecularData
     [Column("specimen_id")]
     public int? SpecimenId { get; set; }
 
-    [Column("mgmt_status_id")]
-    public MgmtStatus? MgmtStatusId { get; set; }
-    [Column("idh_status_id")]
-    public IdhStatus? IdhStatusId { get; set; }
+    [Column("mgmt_status")]
+    public bool? MgmtStatus { get; set; }
+    [Column("idh_status")]
+    public bool? IdhStatus { get; set; }
     [Column("idh_mutation_id")]
     public IdhMutation? IdhMutationId { get; set; }
-    [Column("gene_expression_subtype_id")]
-    public GeneExpressionSubtype? GeneExpressionSubtypeId { get; set; }
+    [Column("tert_status")]
+    public bool? TertStatus { get; set; }
+    [Column("tert_mutation_id")]
+    public TertMutation? TertMutationId { get; set; }
+    [Column("expression_subtype_id")]
+    public ExpressionSubtype? ExpressionSubtypeId { get; set; }
     [Column("methylation_subtype_id")]
     public MethylationSubtype? MethylationSubtypeId { get; set; }
     [Column("gcimp_methylation")]

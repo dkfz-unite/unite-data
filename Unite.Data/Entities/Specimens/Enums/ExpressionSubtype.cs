@@ -2,7 +2,7 @@
 
 namespace Unite.Data.Entities.Specimens.Enums;
 
-public enum GeneExpressionSubtype
+public enum ExpressionSubtype
 {
     /// <summary>
     /// Classical.

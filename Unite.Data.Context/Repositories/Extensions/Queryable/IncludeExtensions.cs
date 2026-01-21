@@ -80,6 +80,15 @@ public static class IncludeExtensions
         return query
             .Include(specimen => specimen.Xenograft);
     }
+    
+    public static IQueryable<Specimen> IncludeTumorClassification(this IQueryable<Specimen> query)
+    {
+        return query
+            .Include(specimen => specimen.TumorClassification.Superfamily)
+            .Include(specimen => specimen.TumorClassification.Family)
+            .Include(specimen => specimen.TumorClassification.Class)
+            .Include(specimen => specimen.TumorClassification.Subclass);
+    }
 
     public static IQueryable<Specimen> IncludeMolecularData(this IQueryable<Specimen> query)
     {

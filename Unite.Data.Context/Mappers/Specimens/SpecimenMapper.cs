@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Unite.Data.Context.Mappers.Base.Entities;
 using Unite.Data.Entities.Specimens;
 using Unite.Data.Entities.Specimens.Enums;
 
@@ -20,5 +21,21 @@ internal class SpecimenMapper : Base.SpecimenMapper<Specimen, SpecimenType>
         entity.HasOne(specimen => specimen.Donor)
               .WithMany(donor => donor.Specimens)
               .HasForeignKey(specimen => specimen.DonorId);
+
+        
+        entity.Property(specimen => specimen.ConditionId)
+              .HasConversion<int>();
+
+        entity.Property(specimen => specimen.TumorTypeId)
+              .HasConversion<int>();
+
+        
+        entity.HasOne<EnumEntity<Condition>>()
+              .WithMany()
+              .HasForeignKey(specimen => specimen.ConditionId);
+
+        entity.HasOne<EnumEntity<TumorType>>()
+              .WithMany()
+              .HasForeignKey(specimen => specimen.TumorTypeId);
     }
 }

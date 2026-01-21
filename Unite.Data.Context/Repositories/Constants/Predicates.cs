@@ -1,7 +1,6 @@
 using System.Linq.Expressions;
 using Unite.Data.Entities.Specimens;
 using Unite.Data.Entities.Specimens.Enums;
-using Unite.Data.Entities.Specimens.Materials.Enums;
 
 using Cnv = Unite.Data.Entities.Omics.Analysis.Dna.Cnv;
 
@@ -13,7 +12,7 @@ public static class Predicates
     (
         specimen.ParentId == null &&
         specimen.TypeId == SpecimenType.Material &&
-        specimen.Material.TypeId == MaterialType.Tumor
+        specimen.ConditionId == Condition.Tumor
     );
 
     public readonly static Expression<Func<Cnv.Variant, bool>> IsInfluentCnv = variant =>

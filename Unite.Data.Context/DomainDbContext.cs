@@ -31,6 +31,7 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Images.Analysis.Radiomics.FeatureEntry> RadiomicsFeatureEntries { get; set; }
 
     public DbSet<Entities.Specimens.Specimen> Specimens { get; set; }
+    public DbSet<Entities.Specimens.TumorClassification> TumorClassifications { get; set; }
     public DbSet<Entities.Specimens.MolecularData> MolecularData { get; set; }
     public DbSet<Entities.Specimens.InterventionType> InterventionTypes { get; set; }
     public DbSet<Entities.Specimens.Intervention> Interventions { get; set; }
@@ -138,19 +139,23 @@ public class DomainDbContext : DbContext
     private static void ConfigureSpecimens(ModelBuilder builder)
     {
         builder.ApplyConfiguration(new Mappers.Specimens.Enums.SpecimenTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Enums.GeneExpressionSubtypeMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Enums.IdhStatusMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Enums.ConditionMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Enums.TumorTypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Enums.IdhMutationMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Enums.MgmtStatusMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Enums.TertMutationMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Enums.ExpressionSubtypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Enums.MethylationSubtypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.SpecimenMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.TumorSuperfamilyMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.TumorFamilyMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.TumorClassMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.TumorSubclassMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.TumorClassificationMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.MolecularDataMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.InterventionTypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.InterventionMapper());
 
-        builder.ApplyConfiguration(new Mappers.Specimens.Materials.Enums.MaterialTypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Materials.Enums.FixationTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Materials.Enums.TumorTypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Materials.MaterialSourceMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Materials.MaterialMapper());
 

@@ -2,7 +2,7 @@ using System.Runtime.Serialization;
 
 namespace Unite.Data.Entities.Specimens.Enums;
 
-public enum Condition
+public enum Category
 {
     [EnumMember(Value = "Normal")]
     Normal = 1,

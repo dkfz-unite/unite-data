@@ -12,7 +12,7 @@ public static class Predicates
     (
         specimen.ParentId == null &&
         specimen.TypeId == SpecimenType.Material &&
-        specimen.ConditionId == Condition.Tumor
+        specimen.CategoryId == Category.Tumor
     );
 
     public readonly static Expression<Func<Cnv.Variant, bool>> IsInfluentCnv = variant =>

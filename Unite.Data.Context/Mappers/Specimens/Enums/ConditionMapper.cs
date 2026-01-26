@@ -6,16 +6,16 @@ using Unite.Data.Entities.Specimens.Enums;
 
 namespace Unite.Data.Context.Mappers.Specimens.Enums;
 
-internal class ConditionMapper : IEntityTypeConfiguration<EnumEntity<Condition>>
+internal class CategoryMapper : IEntityTypeConfiguration<EnumEntity<Category>>
 {
-    public void Configure(EntityTypeBuilder<EnumEntity<Condition>> entity)
+    public void Configure(EntityTypeBuilder<EnumEntity<Category>> entity)
     {
-        var data = new EnumEntity<Condition>[]
+        var data = new EnumEntity<Category>[]
         {
-            Condition.Normal.ToEnumValue(),
-            Condition.Tumor.ToEnumValue()
+            Category.Normal.ToEnumValue(),
+            Category.Tumor.ToEnumValue()
         };
 
-        entity.BuildEnumEntity("condition", DomainDbSchemaNames.Specimens, data);
+        entity.BuildEnumEntity("category", DomainDbSchemaNames.Specimens, data);
     }
 }

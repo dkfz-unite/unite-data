@@ -23,16 +23,16 @@ internal class SpecimenMapper : Base.SpecimenMapper<Specimen, SpecimenType>
               .HasForeignKey(specimen => specimen.DonorId);
 
         
-        entity.Property(specimen => specimen.ConditionId)
+        entity.Property(specimen => specimen.CategoryId)
               .HasConversion<int>();
 
         entity.Property(specimen => specimen.TumorTypeId)
               .HasConversion<int>();
 
         
-        entity.HasOne<EnumEntity<Condition>>()
+        entity.HasOne<EnumEntity<Category>>()
               .WithMany()
-              .HasForeignKey(specimen => specimen.ConditionId);
+              .HasForeignKey(specimen => specimen.CategoryId);
 
         entity.HasOne<EnumEntity<TumorType>>()
               .WithMany()

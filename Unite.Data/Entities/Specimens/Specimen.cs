@@ -12,8 +12,8 @@ public record Specimen : Base.Specimen<SpecimenType>
     [Column("parent_id")]
     public int? ParentId { get; set; }
 
-    [Column("condition_id")]
-    public Condition? ConditionId { get; set; }
+    [Column("category_id")]
+    public Category? CategoryId { get; set; }
     [Column("tumor_type_id")]
     public TumorType? TumorTypeId { get; set; }
     [Column("tumor_grade")]

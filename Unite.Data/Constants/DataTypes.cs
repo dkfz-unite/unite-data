@@ -63,6 +63,7 @@ public static class DataTypes
             public const string Sm = "dna-sm"; // SMs
             public const string Cnv = "dna-cnv"; // CNVs
             public const string Sv = "dna-sv"; // SVs
+            public const string CnvProfile = "dna-cnv-profile"; //CNV profile(aggregation of CNV per chromosome arm)
         }
 
         public static class Meth

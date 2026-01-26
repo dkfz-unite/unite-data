@@ -139,7 +139,7 @@ public class DomainDbContext : DbContext
     private static void ConfigureSpecimens(ModelBuilder builder)
     {
         builder.ApplyConfiguration(new Mappers.Specimens.Enums.SpecimenTypeMapper());
-        builder.ApplyConfiguration(new Mappers.Specimens.Enums.ConditionMapper());
+        builder.ApplyConfiguration(new Mappers.Specimens.Enums.CategoryMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Enums.TumorTypeMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Enums.IdhMutationMapper());
         builder.ApplyConfiguration(new Mappers.Specimens.Enums.TertMutationMapper());

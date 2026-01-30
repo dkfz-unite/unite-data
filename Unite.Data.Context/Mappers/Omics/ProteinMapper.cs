@@ -22,6 +22,10 @@ internal class ProteinMapper : IEntityTypeConfiguration<Protein>
               .IsRequired()
               .HasMaxLength(100);
 
+        entity.Property(protein => protein.AccessionId)
+              .IsRequired()
+              .HasMaxLength(100);
+
 
         entity.HasOne(protein => protein.Transcript)
               .WithOne(transcript => transcript.Protein)

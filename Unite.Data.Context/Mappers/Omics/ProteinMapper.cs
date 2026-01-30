@@ -23,7 +23,7 @@ internal class ProteinMapper : IEntityTypeConfiguration<Protein>
               .HasMaxLength(100);
 
         entity.Property(protein => protein.AccessionId)
-              .IsRequired()
+              // .IsRequired() Temporary relaxation for compatibility with existing data
               .HasMaxLength(100);
 
 

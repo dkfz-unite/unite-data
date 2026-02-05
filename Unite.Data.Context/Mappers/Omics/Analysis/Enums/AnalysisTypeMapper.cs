@@ -22,7 +22,8 @@ internal class AnalysisTypeMapper : IEntityTypeConfiguration<EnumEntity<Analysis
             AnalysisType.ATACSeqSn.ToEnumValue(name: "Single Nucleus ATAC Sequencing"),
             AnalysisType.MethArray.ToEnumValue(name: "Illumina Infinium Methylation Arrays Assay"),
             AnalysisType.WGBS.ToEnumValue(name: "Whole Genome Bisulfite Sequencing"),
-            AnalysisType.RRBS.ToEnumValue(name: "Reduced Representation Bisulfite Sequencing")
+            AnalysisType.RRBS.ToEnumValue(name: "Reduced Representation Bisulfite Sequencing"),
+            AnalysisType.MS.ToEnumValue(name: "Mass Spectrometry")
         };
 
         entity.BuildEnumEntity("analysis_type", DomainDbSchemaNames.Omics, data);

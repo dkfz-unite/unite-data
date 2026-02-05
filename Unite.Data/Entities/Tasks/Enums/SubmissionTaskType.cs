@@ -102,6 +102,12 @@ public enum SubmissionTaskType
     /// </summary>
     [EnumMember(Value = DataTypes.Omics.Dna.Sv)]
     DNA_SV = 303,
+    
+    /// <summary>
+    /// DNA CNV Profile
+    /// </summary>
+    [EnumMember(Value = DataTypes.Omics.Dna.CnvProfile)]
+    DNA_CNV_PROFILE = 304,
 
     /// <summary>
     /// Methylation sample.

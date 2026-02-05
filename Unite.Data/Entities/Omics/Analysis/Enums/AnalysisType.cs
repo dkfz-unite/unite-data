@@ -102,5 +102,13 @@ public enum AnalysisType
     /// Can be used to quantify methylation levels (Beta and M-values).
     /// </summary>
     [EnumMember(Value = "RRBS")]
-    RRBS = 11
+    RRBS = 11,
+
+    /// <summary>
+    /// Mass Spectrometry.
+    /// Produces raw mass spectrometry data files.
+    /// Can be used to identify and quantify proteins and peptides in complex biological samples.
+    /// </summary>
+    [EnumMember(Value = "MS")]
+    MS = 12
 }

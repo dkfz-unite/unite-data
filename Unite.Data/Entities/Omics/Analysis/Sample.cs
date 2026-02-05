@@ -40,4 +40,5 @@ public record Sample : Base.Sample<Specimen, Analysis>
     public virtual ICollection<Dna.Cnv.VariantEntry> CnvEntries { get; set; }
     public virtual ICollection<Dna.Sv.VariantEntry> SvEntries { get; set; }
     public virtual ICollection<Rna.GeneExpression> GeneExpressions { get; set; }
+    public virtual ICollection<Prot.ProteinExpression> ProteinExpressions { get; set; }
 }

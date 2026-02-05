@@ -207,5 +207,6 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.AffectedTranscriptMapper());
 
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Rna.GeneExpressionMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Prot.ProteinExpressionMapper());
     }
 }

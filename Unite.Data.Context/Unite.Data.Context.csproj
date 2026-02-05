@@ -16,4 +16,7 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
     <PackageReference Include="Unite.Essentials" Version="1.4.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mappers/Omics/Analysis/Prot/" />
+  </ItemGroup>
 </Project>

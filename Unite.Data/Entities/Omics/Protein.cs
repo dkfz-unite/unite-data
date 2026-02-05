@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Unite.Data.Entities.Omics.Analysis.Prot;
 
 namespace Unite.Data.Entities.Omics;
 
-public record Protein
+public record Protein : Base.Entity
 {
-    [Column("id")]
-    public int Id { get; set; }
     [Column("stable_id")]
     public string StableId { get; set; }
     [Column("accession_id")]
@@ -31,4 +30,5 @@ public record Protein
 
 
     public virtual Transcript Transcript { get; set; }
+    public virtual ICollection<ProteinExpression> ProteinExpressions { get; set; }
 }

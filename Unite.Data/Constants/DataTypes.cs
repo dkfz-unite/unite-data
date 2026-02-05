@@ -16,6 +16,7 @@ public static class DataTypes
     // dna
     // dna-sm
     // dna-cnv
+    // dna-cnvp
     // dna-sv
     // meth
     // meth-lvl
@@ -23,6 +24,8 @@ public static class DataTypes
     // rna-exp
     // rnasc
     // rnasc-exp
+    // prot
+    // prot-exp
 
     public static class Donor
     {
@@ -62,11 +65,11 @@ public static class DataTypes
             public const string Sample = "dna"; // DNA samples (fasta, fastq, BAM)
             public const string Sm = "dna-sm"; // SMs
             public const string Cnv = "dna-cnv"; // CNVs
+            public const string CnvProfile = "dna-cnvp"; //CNV profiles (aggregation of CNV per chromosome arm)
             public const string Sv = "dna-sv"; // SVs
-            public const string CnvProfile = "dna-cnv-profile"; //CNV profile(aggregation of CNV per chromosome arm)
         }
 
-        public static class Meth
+        public static class Methylation
         {
             public const string Sample = "meth"; // Methylation samples (fasta, fastq, BAM, idat)
             public const string Level = "meth-lvl"; // Methylation levels (beta and/or M values)
@@ -75,13 +78,19 @@ public static class DataTypes
         public static class Rna
         {
             public const string Sample = "rna"; // Bulk RNA samples (fasta, fastq, BAM)
-            public const string Exp = "rna-exp"; // Bulk RNA expressions
+            public const string Expression = "rna-exp"; // Bulk RNA expressions
         }
 
         public static class Rnasc
         {
             public const string Sample = "rnasc"; // Single cell RNA samples (fasta, fastq, BAM)
-            public const string Exp = "rnasc-exp"; // Single cell RNA expressions (mtx)
+            public const string Expression = "rnasc-exp"; // Single cell RNA expressions (mtx)
+        }
+
+        public static class Proteomics
+        {
+            public const string Sample = "prot"; // Proteomics samples (mzML)
+            public const string Expression = "prot-exp"; // Protein expressions
         }
     }
 }

@@ -12,6 +12,8 @@ internal class CnvProfileMapper: EntityMapper<CnvProfile>
 
     public override void Configure(EntityTypeBuilder<CnvProfile> builder)
     {
+        base.Configure(builder);
+        
         builder.HasOne(cnvProfile => cnvProfile.Sample)
             .WithMany(sample => sample.CnvProfiles)
             .HasForeignKey(x => x.SampleId).OnDelete(DeleteBehavior.Restrict);

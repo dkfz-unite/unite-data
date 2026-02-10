@@ -202,7 +202,7 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.VariantEntryMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.AffectedTranscriptMapper());
 
-        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.Enums.SvTyp¡eMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.Enums.SvTypeMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.VariantMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.VariantEntryMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.AffectedTranscriptMapper());

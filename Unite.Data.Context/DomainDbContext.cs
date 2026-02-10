@@ -62,6 +62,7 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Omics.Analysis.Dna.Sv.VariantEntry> SvEntries { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Sv.AffectedTranscript> SvAffectedTranscripts { get; set; }
     public DbSet<Entities.Omics.Analysis.Rna.GeneExpression> GeneExpressions { get; set; }
+    public DbSet<Entities.Omics.Analysis.CnvProfile> CnvProfiles { get; set; }
 
 
     public DomainDbContext(ISqlOptions options)
@@ -201,11 +202,12 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.VariantEntryMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.AffectedTranscriptMapper());
 
-        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.Enums.SvTypeMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.Enums.SvTyp¡eMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.VariantMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.VariantEntryMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.AffectedTranscriptMapper());
 
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Rna.GeneExpressionMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.CnvProfileMapper());
     }
 }

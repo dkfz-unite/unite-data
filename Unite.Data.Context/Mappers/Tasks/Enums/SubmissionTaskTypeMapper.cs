@@ -31,7 +31,8 @@ internal class SubmissionTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Su
             SubmissionTaskType.RNA.ToEnumValue(),
             SubmissionTaskType.RNA_EXP.ToEnumValue(),
             SubmissionTaskType.RNASC.ToEnumValue(),
-            SubmissionTaskType.RNASC_EXP.ToEnumValue()          
+            SubmissionTaskType.RNASC_EXP.ToEnumValue(),        
+            SubmissionTaskType.DNA_CNV_PROFILE.ToEnumValue()
         };
 
         entity.BuildEnumEntity("submission_task_types", DomainDbSchemaNames.Common, data);

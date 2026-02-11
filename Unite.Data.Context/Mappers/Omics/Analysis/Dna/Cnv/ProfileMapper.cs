@@ -1,17 +1,16 @@
-using System.Xml.Schema;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Unite.Data.Context.Mappers.Base;
-using Unite.Data.Entities.Omics.Analysis;
+using Unite.Data.Entities.Omics.Analysis.Dna.Cnv;
 
-namespace Unite.Data.Context.Mappers.Omics.Analysis;
+namespace Unite.Data.Context.Mappers.Omics.Analysis.Dna.Cnv;
 
-internal class CnvProfileMapper: EntityMapper<CnvProfile>
+internal class ProfileMapper: EntityMapper<Profile>
 {
     protected override string SchemaName => DomainDbSchemaNames.Omics;
     protected override string TableName => "cnv_profile";
 
-    public override void Configure(EntityTypeBuilder<CnvProfile> builder)
+    public override void Configure(EntityTypeBuilder<Profile> builder)
     {
         base.Configure(builder);
         

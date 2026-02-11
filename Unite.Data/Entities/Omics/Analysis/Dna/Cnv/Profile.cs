@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Unite.Data.Entities.Omics.Enums;
 
-namespace Unite.Data.Entities.Omics.Analysis;
+namespace Unite.Data.Entities.Omics.Analysis.Dna.Cnv;
 
-public record CnvProfile: Base.Entity
+public record Profile: Base.Entity
 {
     [Column("sample_id")]
     public int SampleId { get; set; }

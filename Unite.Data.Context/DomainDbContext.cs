@@ -185,6 +185,7 @@ public class DomainDbContext : DbContext
     private static void ConfigureOmics(ModelBuilder builder)
     {
         builder.ApplyConfiguration(new Mappers.Omics.Enums.ChromosomeMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Enums.ChromosomeArmMapper());
         builder.ApplyConfiguration(new Mappers.Omics.GeneMapper());
         builder.ApplyConfiguration(new Mappers.Omics.TranscriptMapper());
         builder.ApplyConfiguration(new Mappers.Omics.ProteinMapper());

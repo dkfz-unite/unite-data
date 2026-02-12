@@ -20,6 +20,10 @@ internal class ProfileMapper: EntityMapper<Profile>
             .WithMany(sample => sample.CnvProfiles)
             .HasForeignKey(x => x.SampleId).OnDelete(DeleteBehavior.Restrict);
         
+        builder.HasOne<EnumEntity<Chromosome>>()
+            .WithMany()
+            .HasForeignKey(x => x.Chromosome);
+        
         builder.HasOne<EnumEntity<ChromosomeArm>>()
             .WithMany()
             .HasForeignKey(x => x.ChromosomeArm);

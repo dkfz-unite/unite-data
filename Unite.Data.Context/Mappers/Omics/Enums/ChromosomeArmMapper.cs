@@ -16,6 +16,6 @@ internal class ChromosomeArmMapper: IEntityTypeConfiguration<EnumEntity<Chromoso
             ChromosomeArm.Long.ToEnumValue(name: "Long arm")
         };
 
-        builder.BuildEnumEntity("chromosome-arm", DomainDbSchemaNames.Omics, data);
+        builder.BuildEnumEntity("chromosome_arm", DomainDbSchemaNames.Omics, data);
     }
 }

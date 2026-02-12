@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Unite.Data.Context.Mappers.Base;
+using Unite.Data.Context.Mappers.Base.Entities;
 using Unite.Data.Entities.Omics.Analysis.Dna.Cnv;
+using Unite.Data.Entities.Omics.Enums;
 
 namespace Unite.Data.Context.Mappers.Omics.Analysis.Dna.Cnv;
 
@@ -17,6 +19,10 @@ internal class ProfileMapper: EntityMapper<Profile>
         builder.HasOne(cnvProfile => cnvProfile.Sample)
             .WithMany(sample => sample.CnvProfiles)
             .HasForeignKey(x => x.SampleId).OnDelete(DeleteBehavior.Restrict);
+        
+        builder.HasOne<EnumEntity<ChromosomeArm>>()
+            .WithMany()
+            .HasForeignKey(x => x.ChromosomeArm);
         
         builder.Property(x => x.Chromosome).HasColumnName("chromosome");
         builder.Property(x => x.ChromosomeArm).HasColumnName("chromosome_arm");

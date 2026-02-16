@@ -35,6 +35,12 @@ public enum IndexingTaskType
     Gene = 5,
 
     /// <summary>
+    /// Protein.
+    /// </summary>
+    [EnumMember(Value = "Protein")]
+    Protein = 9,
+
+    /// <summary>
     /// SM.
     /// </summary>
     [EnumMember(Value = "SM")]

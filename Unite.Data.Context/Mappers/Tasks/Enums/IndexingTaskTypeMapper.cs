@@ -17,6 +17,7 @@ internal class IndexingTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Inde
             IndexingTaskType.Image.ToEnumValue(),
             IndexingTaskType.Specimen.ToEnumValue(),
             IndexingTaskType.Gene.ToEnumValue(),
+            IndexingTaskType.Protein.ToEnumValue(),
             IndexingTaskType.SM.ToEnumValue(),
             IndexingTaskType.CNV.ToEnumValue(),
             IndexingTaskType.SV.ToEnumValue()

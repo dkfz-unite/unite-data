@@ -19,7 +19,8 @@ internal class IndexingTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Inde
             IndexingTaskType.Gene.ToEnumValue(),
             IndexingTaskType.SM.ToEnumValue(),
             IndexingTaskType.CNV.ToEnumValue(),
-            IndexingTaskType.SV.ToEnumValue()
+            IndexingTaskType.SV.ToEnumValue(),
+            IndexingTaskType.CNVProfile.ToEnumValue()
         };
 
         entity.BuildEnumEntity("indexing_task_type", DomainDbSchemaNames.Common, data);

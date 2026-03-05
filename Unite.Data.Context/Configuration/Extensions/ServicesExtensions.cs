@@ -32,6 +32,7 @@ public static class ServicesExtensions
         services.AddTransient<GenesRepository>();
         services.AddTransient<VariantsRepository>();
         services.AddTransient<ImagesRepository>();
+        services.AddTransient<CnvProfilesRepository>();
 
         return services;
     }

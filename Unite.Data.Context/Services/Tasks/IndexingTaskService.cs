@@ -80,6 +80,7 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     /// <param name="keys">Identifiers of entities.</param>
     /// <returns>Collection of related genes identifiers.</returns>
     protected abstract IEnumerable<int> LoadRelatedGenes(IEnumerable<TKey> keys);
+    protected abstract IEnumerable<int> LoadRelatedCnvProfiles(IEnumerable<TKey> keys);
 
     /// <summary>
     /// Loads SMs related to entities of given tasks with given keys.
@@ -156,6 +157,13 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
         var geneIds = LoadRelatedGenes(keys);
 
         CreateTasks(IndexingTaskType.Gene, geneIds);
+    }
+
+    protected virtual void CreateCnvProfileIndexingTasks(IEnumerable<TKey> keys)
+    {
+        var cnvProfileIds = LoadRelatedCnvProfiles(keys);
+        
+        CreateTasks(IndexingTaskType.CNVProfile, cnvProfileIds);
     }
 
     /// <summary>

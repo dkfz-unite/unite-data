@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Unite.Data.Entities.Omics.Analysis.Prot;
+using Unite.Data.Entities.Omics.Enums;
 
 namespace Unite.Data.Entities.Omics;
 
@@ -13,6 +14,8 @@ public record Protein : Base.Entity
     [Column("transcript_id")]
     public int? TranscriptId { get; set; }
 
+    [Column("chromosome_id")]
+    public Chromosome? ChromosomeId { get; set; }
     [Column("start")]
     public int? Start { get; set; }
     [Column("end")]

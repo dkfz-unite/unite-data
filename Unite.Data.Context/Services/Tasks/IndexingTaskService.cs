@@ -82,6 +82,13 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
     protected abstract IEnumerable<int> LoadRelatedGenes(IEnumerable<TKey> keys);
 
     /// <summary>
+    /// Loads proteins related to entities of given tasks with given keys.
+    /// </summary>
+    /// <param name="keys">Identifiers of entities.</param>
+    /// <returns>Collection of related proteins identifiers.</returns>
+    protected abstract IEnumerable<int> LoadRelatedProteins(IEnumerable<TKey> keys);
+
+    /// <summary>
     /// Loads SMs related to entities of given tasks with given keys.
     /// </summary>
     /// <param name="keys">Identifiers of entities.</param>
@@ -156,6 +163,17 @@ public abstract class IndexingTaskService<T, TKey> : TaskService where T : class
         var geneIds = LoadRelatedGenes(keys);
 
         CreateTasks(IndexingTaskType.Gene, geneIds);
+    }
+
+    /// <summary>
+    /// Creates proteins indexing tasks for all proteins depeding on entities of given type with given keys.
+    /// </summary>
+    /// <param name="keys">Identifiers of entities.</param>
+    protected virtual void CreateProteinIndexingTasks(IEnumerable<TKey> keys)
+    {
+        var proteinIds = LoadRelatedProteins(keys);
+
+        CreateTasks(IndexingTaskType.Protein, proteinIds);
     }
 
     /// <summary>

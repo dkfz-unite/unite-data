@@ -173,6 +173,40 @@ public class VariantsRepository : Repository
             .ToArrayAsync();
     }
 
+    public async Task<int[]> GetRelatedProteins<TV>(IEnumerable<int> ids)
+    {
+        var type = typeof(TV);
+
+        if (type == typeof(Sm.Variant))
+            return await GetRelatedProteins<Sm.AffectedTranscript, Sm.Variant>(ids);
+        else if (type == typeof(Cnv.Variant))
+            return await GetRelatedProteins<Cnv.AffectedTranscript, Cnv.Variant>(ids);
+        else if (type == typeof(Sv.Variant))
+            return await GetRelatedProteins<Sv.AffectedTranscript, Sv.Variant>(ids);
+        else
+            return [];
+    }
+
+    public async Task<int[]> GetRelatedProteins<TVAT, TV>(IEnumerable<int> ids)
+        where TVAT : VariantAffectedTranscript<TV>
+        where TV : Variant
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var predicate = typeof(TV) == typeof(Cnv.Variant)
+            ? _affectedTranscriptCnv.Join(Predicates.IsInfluentCnv) as Expression<Func<TVAT, bool>>
+            : affectedFeature => true;
+
+        return await dbContext.Set<TVAT>()
+            .AsNoTracking()
+            .Where(predicate)
+            .Where(affectedFeature => ids.Contains(affectedFeature.VariantId))
+            .Where(affectedFeature => affectedFeature.Feature.Protein != null)
+            .Select(affectedFeature => affectedFeature.Feature.Protein.Id)
+            .Distinct()
+            .ToArrayAsync();
+    }
+        
     public async Task<int[]> GetSimilarVariants<TV>(IEnumerable<int> ids, double overlap = 0.9)
         where TV : Variant
     {

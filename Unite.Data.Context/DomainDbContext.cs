@@ -62,6 +62,7 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Omics.Analysis.Dna.Sv.VariantEntry> SvEntries { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Sv.AffectedTranscript> SvAffectedTranscripts { get; set; }
     public DbSet<Entities.Omics.Analysis.Rna.GeneExpression> GeneExpressions { get; set; }
+    public DbSet<Entities.Omics.Analysis.Prot.ProteinExpression> ProteinExpressions { get; set; }
 
 
     public DomainDbContext(ISqlOptions options)

@@ -70,6 +70,13 @@ public class ProjectsRepository : Repository
         return await _donorsRepository.GetRelatedGenes(donors);
     }
 
+    public async Task<int[]> GetRelatedProteins(IEnumerable<int> ids)
+    {
+        var donors = await GetRelatedDonors(ids);
+
+        return await _donorsRepository.GetRelatedProteins(donors);
+    }
+
     public async Task<int[]> GetRelatedVariants<TV>(IEnumerable<int> ids)
         where TV : Variant
     {

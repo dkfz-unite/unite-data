@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unite.Data.Context.Configuration.Options;
-using Unite.Data.Context.Mappers.Omics.Analysis.Dna.Cnv;
-using Unite.Data.Entities.Omics.Analysis.Dna.Cnv;
 
 namespace Unite.Data.Context;
 
@@ -59,13 +57,13 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Omics.Analysis.Dna.Sm.AffectedTranscript> SmAffectedTranscripts { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Cnv.Variant> Cnvs { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Cnv.VariantEntry> CnvEntries { get; set; }
+    public DbSet<Entities.Omics.Analysis.Dna.Cnv.Profile> CnvProfiles { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Cnv.AffectedTranscript> CnvAffectedTranscripts { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Sv.Variant> Svs { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Sv.VariantEntry> SvEntries { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Sv.AffectedTranscript> SvAffectedTranscripts { get; set; }
     public DbSet<Entities.Omics.Analysis.Rna.GeneExpression> GeneExpressions { get; set; }
-    public DbSet<Profile> CnvProfiles { get; set; }
-
+    
 
     public DomainDbContext(ISqlOptions options)
     {
@@ -204,6 +202,7 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.VariantMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.VariantEntryMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.AffectedTranscriptMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.ProfileMapper());
 
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.Enums.SvTypeMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.VariantMapper());
@@ -211,6 +210,5 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.AffectedTranscriptMapper());
 
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Rna.GeneExpressionMapper());
-        builder.ApplyConfiguration(new ProfileMapper());
     }
 }

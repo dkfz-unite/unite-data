@@ -4,8 +4,15 @@ namespace Unite.Data.Entities.Omics.Enums;
 
 public enum ChromosomeArm
 {
-    [EnumMember(Value = "1")]
+    /// <summary>
+    /// Chromosome arm P (short arm).
+    /// </summary>
+    [EnumMember(Value = "P")]
     P = 1,
-    [EnumMember(Value = "2")]
+
+    /// <summary>
+    /// Chromosome arm Q (long arm).
+    /// </summary>
+    [EnumMember(Value = "Q")]
     Q = 2
 }

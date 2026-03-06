@@ -16,6 +16,7 @@ public static class DataTypes
     // dna
     // dna-sm
     // dna-cnv
+    // dna-cnvp
     // dna-sv
     // meth
     // meth-lvl
@@ -62,8 +63,8 @@ public static class DataTypes
             public const string Sample = "dna"; // DNA samples (fasta, fastq, BAM)
             public const string Sm = "dna-sm"; // SMs
             public const string Cnv = "dna-cnv"; // CNVs
+            public const string CnvProfile = "dna-cnvp"; // CNV profile (aggregation of CNV per chromosome arm)
             public const string Sv = "dna-sv"; // SVs
-            public const string CnvProfile = "dna-cnv-profile"; //CNV profile(aggregation of CNV per chromosome arm)
         }
 
         public static class Meth

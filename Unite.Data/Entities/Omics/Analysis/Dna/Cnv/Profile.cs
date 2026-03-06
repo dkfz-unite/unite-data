@@ -7,15 +7,18 @@ public record Profile: Base.Entity
 {
     [Column("sample_id")]
     public int SampleId { get; set; }
-    public Sample Sample { get; set; }
-    [Column("chromosome")]
-    public Chromosome Chromosome { get; set; }
-    [Column("chromosome_arm")]
-    public ChromosomeArm ChromosomeArm { get; set; }
+
+    
+    [Column("chromosome_id")]
+    public Chromosome ChromosomeId { get; set; }
+    [Column("chromosome_arm_id")]
+    public ChromosomeArm ChromosomeArmId { get; set; }
     [Column("gain")]
-    public float Gain { get; set; }
+    public double Gain { get; set; }
     [Column("loss")]
-    public float Loss { get; set; }
+    public double Loss { get; set; }
     [Column("neutral")]
-    public float Neutral { get; set; }
+    public double Neutral { get; set; }
+
+    public virtual Sample Sample { get; set; }
 }

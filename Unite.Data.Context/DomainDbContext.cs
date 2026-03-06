@@ -57,6 +57,7 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Omics.Analysis.Dna.Sm.AffectedTranscript> SmAffectedTranscripts { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Cnv.Variant> Cnvs { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Cnv.VariantEntry> CnvEntries { get; set; }
+    public DbSet<Entities.Omics.Analysis.Dna.Cnv.Profile> CnvProfiles { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Cnv.AffectedTranscript> CnvAffectedTranscripts { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Sv.Variant> Svs { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Sv.VariantEntry> SvEntries { get; set; }
@@ -183,6 +184,7 @@ public class DomainDbContext : DbContext
     private static void ConfigureOmics(ModelBuilder builder)
     {
         builder.ApplyConfiguration(new Mappers.Omics.Enums.ChromosomeMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Enums.ChromosomeArmMapper());
         builder.ApplyConfiguration(new Mappers.Omics.GeneMapper());
         builder.ApplyConfiguration(new Mappers.Omics.TranscriptMapper());
         builder.ApplyConfiguration(new Mappers.Omics.ProteinMapper());
@@ -201,6 +203,7 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.VariantMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.VariantEntryMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.AffectedTranscriptMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Cnv.ProfileMapper());
 
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.Enums.SvTypeMapper());
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.VariantMapper());

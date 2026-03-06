@@ -90,6 +90,12 @@ public enum SubmissionTaskType
     /// </summary>
     [EnumMember(Value = DataTypes.Omics.Dna.Cnv)]
     DNA_CNV = 302,
+    
+    /// <summary>
+    /// DNA CNV Profile
+    /// </summary>
+    [EnumMember(Value = DataTypes.Omics.Dna.CnvProfile)]
+    DNA_CNVP = 304,
 
     /// <summary>
     /// Copy number variant profiles.

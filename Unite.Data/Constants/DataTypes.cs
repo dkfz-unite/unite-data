@@ -65,7 +65,7 @@ public static class DataTypes
             public const string Sample = "dna"; // DNA samples (fasta, fastq, BAM)
             public const string Sm = "dna-sm"; // SMs
             public const string Cnv = "dna-cnv"; // CNVs
-            public const string CnvProfile = "dna-cnvp"; //CNV profiles (aggregation of CNV per chromosome arm)
+            public const string CnvProfile = "dna-cnvp"; // CNV profile (aggregation of CNV per chromosome arm)
             public const string Sv = "dna-sv"; // SVs
         }
 

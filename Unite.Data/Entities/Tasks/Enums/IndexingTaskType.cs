@@ -56,5 +56,11 @@ public enum IndexingTaskType
     /// SV.
     /// </summary>
     [EnumMember(Value = "SV")]
-    SV = 8
+    SV = 8,
+    
+    /// <summary>
+    /// CNV Profile indexing
+    /// </summary>
+    [EnumMember(Value = "CNVProfile")]
+    CNVProfile = 9
 }

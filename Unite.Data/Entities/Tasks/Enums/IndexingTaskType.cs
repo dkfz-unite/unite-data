@@ -38,7 +38,7 @@ public enum IndexingTaskType
     /// Protein.
     /// </summary>
     [EnumMember(Value = "Protein")]
-    Protein = 9,
+    Protein = 10,
 
     /// <summary>
     /// SM.
@@ -57,7 +57,7 @@ public enum IndexingTaskType
     /// </summary>
     [EnumMember(Value = "SV")]
     SV = 8,
-    
+
     /// <summary>
     /// CNV Profile indexing
     /// </summary>

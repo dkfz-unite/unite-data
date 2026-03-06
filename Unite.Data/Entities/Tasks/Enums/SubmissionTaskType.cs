@@ -90,9 +90,9 @@ public enum SubmissionTaskType
     /// </summary>
     [EnumMember(Value = DataTypes.Omics.Dna.Cnv)]
     DNA_CNV = 302,
-    
+
     /// <summary>
-    /// DNA CNV Profile
+    /// Copy number variant profiles.
     /// </summary>
     [EnumMember(Value = DataTypes.Omics.Dna.CnvProfile)]
     DNA_CNVP = 304,
@@ -106,13 +106,13 @@ public enum SubmissionTaskType
     /// <summary>
     /// Methylation sample.
     /// </summary>
-    [EnumMember(Value = DataTypes.Omics.Meth.Sample)]
+    [EnumMember(Value = DataTypes.Omics.Methylation.Sample)]
     METH = 310,
 
     /// <summary>
     /// Methylation levels.
     /// </summary>
-    [EnumMember(Value = DataTypes.Omics.Meth.Level)]
+    [EnumMember(Value = DataTypes.Omics.Methylation.Level)]
     METH_LVL = 311,
 
     /// <summary>
@@ -124,7 +124,7 @@ public enum SubmissionTaskType
     /// <summary>
     /// Bulk gene expressions.
     /// </summary>
-    [EnumMember(Value = DataTypes.Omics.Rna.Exp)]
+    [EnumMember(Value = DataTypes.Omics.Rna.Expression)]
     RNA_EXP = 321,
 
     /// <summary>
@@ -136,6 +136,18 @@ public enum SubmissionTaskType
     /// <summary>
     /// Single cell gene expressions.
     /// </summary>
-    [EnumMember(Value = DataTypes.Omics.Rnasc.Exp)]
-    RNASC_EXP = 331
+    [EnumMember(Value = DataTypes.Omics.Rnasc.Expression)]
+    RNASC_EXP = 331,
+
+    /// <summary>
+    /// Proteomics sample.
+    /// </summary>
+    [EnumMember(Value = DataTypes.Omics.Proteomics.Sample)]
+    PROT = 340,
+
+    /// <summary>
+    /// Protein expressions.
+    /// </summary>
+    [EnumMember(Value = DataTypes.Omics.Proteomics.Expression)]
+    PROT_EXP = 341
 }

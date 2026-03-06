@@ -20,5 +20,6 @@ public static class FileTypes
         public const string Idat = "idat";
         public const string Vcf = "vcf";
         public const string Mtx = "mtx";
+        public const string Mzml = "mzml";
     }
 }

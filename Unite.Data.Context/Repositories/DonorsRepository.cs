@@ -77,6 +77,13 @@ public class DonorsRepository : Repository
         return await _specimensRepository.GetRelatedGenes(specimens);
     }
 
+    public async Task<int[]> GetRelatedProteins(IEnumerable<int> ids)
+    {
+        var specimens = await GetRelatedSpecimens(ids);
+
+        return await _specimensRepository.GetRelatedProteins(specimens);
+    }
+
     public async Task<int[]> GetRelatedVariants<TV>(IEnumerable<int> ids)
         where TV : Variant
     {

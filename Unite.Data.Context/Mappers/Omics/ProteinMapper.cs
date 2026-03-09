@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Unite.Data.Context.Mappers.Base.Entities;
 using Unite.Data.Entities.Omics;
+using Unite.Data.Entities.Omics.Enums;
 
 namespace Unite.Data.Context.Mappers.Omics;
 
@@ -22,6 +24,17 @@ internal class ProteinMapper : IEntityTypeConfiguration<Protein>
               .IsRequired()
               .HasMaxLength(100);
 
+        entity.Property(protein => protein.AccessionId)
+              // .IsRequired() Temporary relaxation for compatibility with existing data
+              .HasMaxLength(100);
+
+        entity.Property(protein => protein.ChromosomeId)
+              .HasConversion<int>();
+
+
+        entity.HasOne<EnumEntity<Chromosome>>()
+              .WithMany()
+              .HasForeignKey(gene => gene.ChromosomeId);
 
         entity.HasOne(protein => protein.Transcript)
               .WithOne(transcript => transcript.Protein)

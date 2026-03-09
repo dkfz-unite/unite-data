@@ -63,7 +63,8 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Omics.Analysis.Dna.Sv.VariantEntry> SvEntries { get; set; }
     public DbSet<Entities.Omics.Analysis.Dna.Sv.AffectedTranscript> SvAffectedTranscripts { get; set; }
     public DbSet<Entities.Omics.Analysis.Rna.GeneExpression> GeneExpressions { get; set; }
-    
+    public DbSet<Entities.Omics.Analysis.Prot.ProteinExpression> ProteinExpressions { get; set; }
+
 
     public DomainDbContext(ISqlOptions options)
     {
@@ -210,5 +211,6 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Dna.Sv.AffectedTranscriptMapper());
 
         builder.ApplyConfiguration(new Mappers.Omics.Analysis.Rna.GeneExpressionMapper());
+        builder.ApplyConfiguration(new Mappers.Omics.Analysis.Prot.ProteinExpressionMapper());
     }
 }

@@ -86,27 +86,56 @@ public class ImagesRepository : Repository
         return await _specimensRepository.GetRelatedGenes(specimens);
     }
 
-    public async Task<int[]> GetVariantRelatedGenes(IEnumerable<int> ids)
+    public async Task<int[]> GetRelatedProteins(IEnumerable<int> ids)
     {
         var specimens = await GetRelatedSpecimens(ids);
 
-        return await _specimensRepository.GetVariantRelatedGenes(specimens);
+        return await _specimensRepository.GetRelatedProteins(specimens);
     }
 
-    public async Task<int[]> GetVariantRelatedGenes<TV>(IEnumerable<int> ids)
-        where TV : Variant
-    {
-        var specimens = await GetRelatedSpecimens(ids);
+    // public async Task<int[]> GetVariantRelatedGenes(IEnumerable<int> ids)
+    // {
+    //     var specimens = await GetRelatedSpecimens(ids);
 
-        return await _specimensRepository.GetVariantRelatedGenes<TV>(specimens);
-    }
+    //     return await _specimensRepository.GetVariantRelatedGenes(specimens);
+    // }
 
-    public async Task<int[]> GetExpressionRelatedGenes(IEnumerable<int> ids)
-    {
-        var specimens = await GetRelatedSpecimens(ids);
+    // public async Task<int[]> GetVariantRelatedGenes<TV>(IEnumerable<int> ids)
+    //     where TV : Variant
+    // {
+    //     var specimens = await GetRelatedSpecimens(ids);
 
-        return await _specimensRepository.GetExpressionRelatedGenes(specimens);
-    }
+    //     return await _specimensRepository.GetVariantRelatedGenes<TV>(specimens);
+    // }
+
+    // public async Task<int[]> GetVariantRelatedProteins(IEnumerable<int> ids)
+    // {
+    //     var specimens = await GetRelatedSpecimens(ids);
+
+    //     return await _specimensRepository.GetVariantRelatedProteins(specimens);
+    // }
+
+    // public async Task<int[]> GetVariantRelatedProteins<TV>(IEnumerable<int> ids)
+    //     where TV : Variant
+    // {
+    //     var specimens = await GetRelatedSpecimens(ids);
+
+    //     return await _specimensRepository.GetVariantRelatedProteins<TV>(specimens);
+    // }
+
+    // public async Task<int[]> GetTranscriptomicsRelatedGenes(IEnumerable<int> ids)
+    // {
+    //     var specimens = await GetRelatedSpecimens(ids);
+
+    //     return await _specimensRepository.GetTranscriptomicsRelatedGenes(specimens);
+    // }
+
+    // public async Task<int[]> GetProteomicsRelatedGenes(IEnumerable<int> ids)
+    // {
+    //     var specimens = await GetRelatedSpecimens(ids);
+
+    //     return await _specimensRepository.GetProteomicsRelatedGenes(specimens);
+    // }
 
     public async Task<int[]> GetRelatedVariants<TV>(IEnumerable<int> ids)
         where TV : Variant    

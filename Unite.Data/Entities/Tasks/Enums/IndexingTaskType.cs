@@ -35,6 +35,12 @@ public enum IndexingTaskType
     Gene = 5,
 
     /// <summary>
+    /// Protein.
+    /// </summary>
+    [EnumMember(Value = "Protein")]
+    Protein = 10,
+
+    /// <summary>
     /// SM.
     /// </summary>
     [EnumMember(Value = "SM")]
@@ -51,7 +57,7 @@ public enum IndexingTaskType
     /// </summary>
     [EnumMember(Value = "SV")]
     SV = 8,
-    
+
     /// <summary>
     /// CNV Profile indexing
     /// </summary>

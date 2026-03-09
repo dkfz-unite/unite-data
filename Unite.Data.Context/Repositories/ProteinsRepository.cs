@@ -15,13 +15,13 @@ using Sv = Unite.Data.Entities.Omics.Analysis.Dna.Sv;
 
 namespace Unite.Data.Context.Repositories;
 
-public class GenesRepository : Repository
+public class ProteinsRepository : Repository
 {
     private readonly Expression<Func<Cnv.AffectedTranscript, Cnv.Variant>> _affectedTranscriptCnv = affectedFeature => affectedFeature.Variant;
     private readonly SpecimensRepository _specimensRepository;
 
 
-    public GenesRepository(IDbContextFactory<DomainDbContext> dbContextFactory) : base(dbContextFactory)
+    public ProteinsRepository(IDbContextFactory<DomainDbContext> dbContextFactory) : base(dbContextFactory)
     {
         _specimensRepository = new SpecimensRepository(dbContextFactory);
     }
@@ -113,10 +113,17 @@ public class GenesRepository : Repository
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
+        var geneIds = await dbContext.Set<Protein>()
+            .AsNoTracking()
+            .Where(protein => ids.Contains(protein.Id))
+            .Select(protein => protein.Transcript.GeneId.Value)
+            .Distinct()
+            .ToArrayAsync();
+
         return await dbContext.Set<GeneExpression>()
             .AsNoTracking()
             .Where(expression => typeId == null || expression.Sample.Specimen.TypeId == typeId)
-            .Where(expression => ids.Contains(expression.EntityId))
+            .Where(expression => geneIds.Contains(expression.EntityId))
             .Select(expression => expression.Sample.SpecimenId)
             .Distinct()
             .ToArrayAsync();
@@ -126,30 +133,23 @@ public class GenesRepository : Repository
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
-        var proteinIds = await dbContext.Set<Protein>()
-            .AsNoTracking()
-            .Where(protein => ids.Contains(protein.Transcript.GeneId.Value))
-            .Select(protein => protein.Id)
-            .Distinct()
-            .ToArrayAsync();
-
         return await dbContext.Set<ProteinExpression>()
             .AsNoTracking()
             .Where(expression => typeId == null || expression.Sample.Specimen.TypeId == typeId)
-            .Where(expression => proteinIds.Contains(expression.EntityId))
+            .Where(expression => ids.Contains(expression.EntityId))
             .Select(expression => expression.Sample.SpecimenId)
             .Distinct()
             .ToArrayAsync();
     }
 
-    public async Task<int[]> GetRelatedProteins(IEnumerable<int> ids)
+    public async Task<int[]> GetRelatedGenes(IEnumerable<int> ids)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
         return await dbContext.Set<Protein>()
             .AsNoTracking()
-            .Where(protein => ids.Contains(protein.Transcript.GeneId.Value))
-            .Select(protein => protein.Id)
+            .Where(protein => ids.Contains(protein.Id))
+            .Select(protein => protein.Transcript.GeneId.Value)
             .Distinct()
             .ToArrayAsync();
     }
@@ -181,8 +181,8 @@ public class GenesRepository : Repository
         return await dbContext.Set<TVAT>()
             .AsNoTracking()
             .Where(predicate)
-            .Where(affectedFeature => affectedFeature.Feature.GeneId != null)
-            .Where(affectedFeature => ids.Contains(affectedFeature.Feature.GeneId.Value))
+            .Where(affectedFeature => affectedFeature.Feature.Protein != null)
+            .Where(affectedFeature => ids.Contains(affectedFeature.Feature.Protein.Id))
             .Select(affectedFeature => affectedFeature.VariantId)
             .ToArrayAsync();
     }

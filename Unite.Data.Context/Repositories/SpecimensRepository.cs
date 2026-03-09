@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Unite.Essentials.Extensions;
 using Unite.Data.Context.Repositories.Constants;
 using Unite.Data.Entities.Omics.Analysis.Dna;
+using Unite.Data.Entities.Omics.Analysis.Prot;
 using Unite.Data.Entities.Omics.Analysis.Rna;
 using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Images.Enums;
@@ -99,7 +100,8 @@ public class SpecimensRepository : Repository
         var results = await Task.WhenAll
         (
             GetVariantRelatedGenes(ids),
-            GetExpressionRelatedGenes(ids)
+            GetTranscriptomicsRelatedGenes(ids),
+            GetProteomicsRelatedGenes(ids)
         );
 
         return results
@@ -131,11 +133,86 @@ public class SpecimensRepository : Repository
         return await _variantsRepository.GetRelatedGenes<TV>(variants);
     }
 
-    public async Task<int[]> GetExpressionRelatedGenes(IEnumerable<int> ids)
+    public async Task<int[]> GetTranscriptomicsRelatedGenes(IEnumerable<int> ids)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
 
         return await dbContext.Set<GeneExpression>()
+            .AsNoTracking()
+            .Where(expression => ids.Contains(expression.SampleId))
+            .Select(expression => expression.EntityId)
+            .Distinct()
+            .ToArrayAsync();
+    }
+
+    public async Task<int[]> GetProteomicsRelatedGenes(IEnumerable<int> ids)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<ProteinExpression>()
+            .AsNoTracking()
+            .Where(expression => ids.Contains(expression.SampleId))
+            .Select(expression => expression.Entity.Transcript.GeneId.Value)
+            .Distinct()
+            .ToArrayAsync();
+    }
+
+    public async Task<int[]> GetRelatedProteins(IEnumerable<int> ids)
+    {
+        var results = await Task.WhenAll
+        (
+            GetVariantRelatedProteins(ids),
+            GetTranscriptomicsRelatedProteins(ids),
+            GetProteomicsRelatedProteins(ids)
+        );
+
+        return results
+            .SelectMany(result => result)
+            .Distinct()
+            .ToArray();
+    }
+
+    public async Task<int[]> GetVariantRelatedProteins(IEnumerable<int> ids)
+    {
+        var results = await Task.WhenAll
+        (
+            GetVariantRelatedProteins<Sm.Variant>(ids),
+            GetVariantRelatedProteins<Cnv.Variant>(ids),
+            GetVariantRelatedProteins<Sv.Variant>(ids)
+        );
+
+        return results
+            .SelectMany(result => result)
+            .Distinct()
+            .ToArray();
+    }
+
+    public async Task<int[]> GetVariantRelatedProteins<TV>(IEnumerable<int> ids)
+        where TV : Variant
+    {
+        var variants = await GetRelatedVariants<TV>(ids);
+
+        return await _variantsRepository.GetRelatedProteins<TV>(variants);
+    }
+    
+    public async Task<int[]> GetTranscriptomicsRelatedProteins(IEnumerable<int> ids)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<GeneExpression>()
+            .AsNoTracking()
+            .Where(expression => ids.Contains(expression.SampleId))
+            .SelectMany(expression => expression.Entity.Transcripts)
+            .Select(transcript => transcript.Protein.Id)
+            .Distinct()
+            .ToArrayAsync();
+    }
+
+    public async Task<int[]> GetProteomicsRelatedProteins(IEnumerable<int> ids)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<ProteinExpression>()
             .AsNoTracking()
             .Where(expression => ids.Contains(expression.SampleId))
             .Select(expression => expression.EntityId)

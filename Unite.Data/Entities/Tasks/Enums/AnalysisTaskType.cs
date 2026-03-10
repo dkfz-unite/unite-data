@@ -26,10 +26,10 @@ public enum AnalysisTaskType
     PCAM = 5,
 
     /// <summary>
-    /// RNA differential expression (DESeq2).
+    /// Differential gene expression (DESeq2).
     /// </summary>
-    [EnumMember(Value = "de")]
-    DE = 1,
+    [EnumMember(Value = "deg")]
+    DEG = 1,
 
     /// <summary>
     /// Genomic alteration frequency.
@@ -41,5 +41,11 @@ public enum AnalysisTaskType
     /// scRNA dataset creation.
     /// </summary>
     [EnumMember(Value = "scell")]
-    SCELL = 2
+    SCELL = 2,
+
+    /// <summary>
+    /// Differential protein expression (Limma).
+    /// </summary>
+    [EnumMember(Value = "dep")]
+    DEP = 7
 }

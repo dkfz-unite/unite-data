@@ -12,12 +12,13 @@ internal class AnalysisTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Anal
     {
         var data = new EnumEntity<AnalysisTaskType>[]
         {
-            AnalysisTaskType.DE.ToEnumValue(),
+            AnalysisTaskType.DEG.ToEnumValue(),
             AnalysisTaskType.SCELL.ToEnumValue(),
             AnalysisTaskType.SURV.ToEnumValue(),
             AnalysisTaskType.DM.ToEnumValue(),
             AnalysisTaskType.PCAM.ToEnumValue(),
             AnalysisTaskType.GAF.ToEnumValue(),
+            AnalysisTaskType.DEP.ToEnumValue()
         };
 
         entity.BuildEnumEntity("analysis_task_type", DomainDbSchemaNames.Common, data);

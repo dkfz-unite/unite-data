@@ -9,7 +9,7 @@ public record Sample : Base.Sample<Specimen, Analysis>
     public int? MatchedSampleId { get; set; }
 
     /// <summary>
-    /// Reference genome (only grch37 is allowed for DNA samples).
+    /// Reference genome (GRCh37 or GRCh38).
     /// </summary>
     [Column("genome")]
     public string Genome { get; set; }
@@ -31,6 +31,12 @@ public record Sample : Base.Sample<Specimen, Analysis>
     /// </summary>
     [Column("cells")]
     public int? Cells { get; set; }
+
+    /// <summary>
+    /// Batch in which the sample was processed.
+    /// </summary>
+    [Column("batch")]
+    public string Batch { get; set; }
 
 
     public virtual Sample MatchedSample { get; set; }

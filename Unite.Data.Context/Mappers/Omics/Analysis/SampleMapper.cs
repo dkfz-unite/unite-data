@@ -11,6 +11,9 @@ internal class SampleMapper : Base.SampleMapper<Sample>
     {
         base.Configure(entity);
 
+        entity.Property(sample => sample.Batch)
+              .HasMaxLength(100);
+
         entity.HasOne(sample => sample.Specimen)
               .WithMany(specimen => specimen.OmicsSamples)
               .HasForeignKey(sample => sample.SpecimenId);

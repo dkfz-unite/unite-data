@@ -6,4 +6,5 @@ public interface ISqlOptions
     string Port { get; }
     string User { get; }
     string Password { get; }
+    bool IncludeErrorDetail { get; }
 }

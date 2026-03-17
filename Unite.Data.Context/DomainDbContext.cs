@@ -93,7 +93,7 @@ public class DomainDbContext : DbContext
 
     public static string CreateConnectionString(ISqlOptions options)
     {
-        return $"Host={options.Host};Port={options.Port};Database={DatabaseName};Username={options.User};Password={options.Password}";
+        return $"Host={options.Host};Port={options.Port};Database={DatabaseName};Username={options.User};Password={options.Password};Include Error Detail={options.IncludeErrorDetail.ToString().ToLower()}";
     }
 
     private static void Configure(ModelBuilder modelBuilder)

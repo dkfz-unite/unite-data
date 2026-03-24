@@ -16,10 +16,14 @@ public record Protein : Base.Entity
 
     [Column("chromosome_id")]
     public Chromosome? ChromosomeId { get; set; }
+    [Column("chromosome_arm_id")]
+    public ChromosomeArm? ChromosomeArmId { get; set; }
     [Column("start")]
     public int? Start { get; set; }
     [Column("end")]
     public int? End { get; set; }
+    [Column("strand")]
+    public bool? Strand { get; set; }
     [Column("length")]
     public int? Length { get; set; }
     [Column("is_canonical")]

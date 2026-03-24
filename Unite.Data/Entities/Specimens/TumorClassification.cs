@@ -11,12 +11,20 @@ public record TumorClassification
 
     [Column("superfamily_id")]
     public int? SuperfamilyId { get; set; }
+    [Column("superfamily_score")]
+    public double? SuperfamilyScore { get; set; }
     [Column("family_id")]
     public int? FamilyId { get; set; }
+    [Column("family_score")]
+    public double? FamilyScore { get; set; }
     [Column("class_id")]
     public int? ClassId { get; set; }
+    [Column("class_score")]
+    public double? ClassScore { get; set; }
     [Column("subclass_id")]
     public int? SubclassId { get; set; }
+    [Column("subclass_score")]
+    public double? SubclassScore { get; set; }
 
 
     public virtual Specimen Specimen { get; set; }

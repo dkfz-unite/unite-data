@@ -16,6 +16,12 @@ public record Variant : Dna.Variant
     public Chromosome OtherChromosomeId { get; set; }
 
     /// <summary>
+    /// Second breakpoint chromosome arm.
+    /// </summary>
+    [Column("other_chromosome_arm_id")]
+    public ChromosomeArm? OtherChromosomeArmId { get; set; }
+
+    /// <summary>
     /// Second breakpoint start.
     /// </summary>
     [Column("other_start")]

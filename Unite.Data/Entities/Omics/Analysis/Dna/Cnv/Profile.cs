@@ -12,7 +12,7 @@ public record Profile: Base.Entity
     [Column("chromosome_id")]
     public Chromosome ChromosomeId { get; set; }
     [Column("chromosome_arm_id")]
-    public ChromosomeArm ChromosomeArmId { get; set; }
+    public ChromosomeArm? ChromosomeArmId { get; set; }
     [Column("gain")]
     public double Gain { get; set; }
     [Column("loss")]

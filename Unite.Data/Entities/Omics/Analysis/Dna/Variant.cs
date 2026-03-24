@@ -12,6 +12,12 @@ public abstract record Variant : Base.Entity
     public Chromosome ChromosomeId { get; set; }
 
     /// <summary>
+    /// Chromosome arm.
+    /// </summary>
+    [Column("chromosome_arm_id")]
+    public ChromosomeArm? ChromosomeArmId { get; set; }
+
+    /// <summary>
     /// Chromosome region start.
     /// </summary>
     [Column("start")]

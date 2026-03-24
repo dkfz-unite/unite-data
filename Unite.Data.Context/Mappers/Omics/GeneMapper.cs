@@ -27,6 +27,9 @@ internal class GeneMapper : IEntityTypeConfiguration<Gene>
         entity.Property(gene => gene.ChromosomeId)
               .HasConversion<int>();
 
+        entity.Property(gene => gene.ChromosomeArmId)
+              .HasConversion<int>();
+
         entity.Property(gene => gene.Biotype)
               .HasMaxLength(100);
 
@@ -34,5 +37,9 @@ internal class GeneMapper : IEntityTypeConfiguration<Gene>
         entity.HasOne<EnumEntity<Chromosome>>()
               .WithMany()
               .HasForeignKey(gene => gene.ChromosomeId);
+
+        entity.HasOne<EnumEntity<ChromosomeArm>>()
+              .WithMany()
+              .HasForeignKey(gene => gene.ChromosomeArmId);
     }
 }

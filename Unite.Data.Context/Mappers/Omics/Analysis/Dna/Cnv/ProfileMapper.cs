@@ -20,7 +20,6 @@ internal class ProfileMapper: EntityMapper<Profile>
               .HasConversion<int>();
 
         entity.Property(cnvProfile => cnvProfile.ChromosomeArmId)
-              .IsRequired()
               .HasConversion<int>();
 
 

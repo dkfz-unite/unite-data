@@ -21,6 +21,9 @@ internal class VariantMapper : VariantMapper<Variant>
               .IsRequired()
               .HasConversion<int>();
 
+        entity.Property(variant => variant.OtherChromosomeArmId)
+              .HasConversion<int>();
+
         entity.Property(variant => variant.OtherStart)
               .IsRequired();
 
@@ -35,6 +38,10 @@ internal class VariantMapper : VariantMapper<Variant>
         entity.HasOne<EnumEntity<Chromosome>>()
               .WithMany()
               .HasForeignKey(variant => variant.OtherChromosomeId);
+
+        entity.HasOne<EnumEntity<ChromosomeArm>>()
+              .WithMany()
+              .HasForeignKey(variant => variant.OtherChromosomeArmId);
 
         entity.HasOne<EnumEntity<SvType>>()
               .WithMany()

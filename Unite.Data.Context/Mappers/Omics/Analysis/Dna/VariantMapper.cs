@@ -23,6 +23,9 @@ internal abstract class VariantMapper<TVariant> : Base.EntityMapper<TVariant>
               .IsRequired()
               .HasConversion<int>();
 
+        entity.Property(variant => variant.ChromosomeArmId)
+              .HasConversion<int>();
+
         entity.Property(variant => variant.Start)
               .IsRequired();
 
@@ -33,5 +36,9 @@ internal abstract class VariantMapper<TVariant> : Base.EntityMapper<TVariant>
         entity.HasOne<EnumEntity<Chromosome>>()
               .WithMany()
               .HasForeignKey(variant => variant.ChromosomeId);
+
+        entity.HasOne<EnumEntity<ChromosomeArm>>()
+              .WithMany()
+              .HasForeignKey(variant => variant.ChromosomeArmId);
     }
 }

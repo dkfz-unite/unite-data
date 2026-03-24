@@ -25,16 +25,23 @@ internal class ProteinMapper : IEntityTypeConfiguration<Protein>
               .HasMaxLength(100);
 
         entity.Property(protein => protein.AccessionId)
-              // .IsRequired() Temporary relaxation for compatibility with existing data
+              .IsRequired()
               .HasMaxLength(100);
 
         entity.Property(protein => protein.ChromosomeId)
+              .HasConversion<int>();
+
+        entity.Property(protein => protein.ChromosomeArmId)
               .HasConversion<int>();
 
 
         entity.HasOne<EnumEntity<Chromosome>>()
               .WithMany()
               .HasForeignKey(gene => gene.ChromosomeId);
+
+        entity.HasOne<EnumEntity<ChromosomeArm>>()
+              .WithMany()
+              .HasForeignKey(gene => gene.ChromosomeArmId);
 
         entity.HasOne(protein => protein.Transcript)
               .WithOne(transcript => transcript.Protein)

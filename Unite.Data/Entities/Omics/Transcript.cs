@@ -15,6 +15,8 @@ public record Transcript : Feature
 
     [Column("chromosome_id")]
     public Chromosome? ChromosomeId { get; set; }
+    [Column("chromosome_arm_id")]
+    public ChromosomeArm? ChromosomeArmId { get; set; }
     [Column("start")]
     public int? Start { get; set; }
     [Column("end")]

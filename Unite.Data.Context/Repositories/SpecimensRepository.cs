@@ -201,7 +201,7 @@ public class SpecimensRepository : Repository
 
         return await dbContext.Set<GeneExpression>()
             .AsNoTracking()
-            .Where(expression => ids.Contains(expression.SampleId))
+            .Where(expression => ids.Contains(expression.SampleId) && expression.Entity.Transcripts.Any())
             .SelectMany(expression => expression.Entity.Transcripts)
             .Select(transcript => transcript.Protein.Id)
             .Distinct()

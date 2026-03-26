@@ -139,7 +139,7 @@ public class SpecimensRepository : Repository
 
         return await dbContext.Set<GeneExpression>()
             .AsNoTracking()
-            .Where(expression => ids.Contains(expression.SampleId))
+            .Where(expression => ids.Contains(expression.Sample.SpecimenId))
             .Select(expression => expression.EntityId)
             .Distinct()
             .ToArrayAsync();
@@ -151,7 +151,7 @@ public class SpecimensRepository : Repository
 
         return await dbContext.Set<ProteinExpression>()
             .AsNoTracking()
-            .Where(expression => ids.Contains(expression.SampleId))
+            .Where(expression => ids.Contains(expression.Sample.SpecimenId))
             .Select(expression => expression.Entity.Transcript.GeneId.Value)
             .Distinct()
             .ToArrayAsync();
@@ -201,7 +201,7 @@ public class SpecimensRepository : Repository
 
         return await dbContext.Set<GeneExpression>()
             .AsNoTracking()
-            .Where(expression => ids.Contains(expression.SampleId) && expression.Entity.Transcripts.Any())
+            .Where(expression => ids.Contains(expression.Sample.SpecimenId))
             .SelectMany(expression => expression.Entity.Transcripts)
             .Select(transcript => transcript.Protein.Id)
             .Distinct()
@@ -214,7 +214,7 @@ public class SpecimensRepository : Repository
 
         return await dbContext.Set<ProteinExpression>()
             .AsNoTracking()
-            .Where(expression => ids.Contains(expression.SampleId))
+            .Where(expression => ids.Contains(expression.Sample.SpecimenId))
             .Select(expression => expression.EntityId)
             .Distinct()
             .ToArrayAsync();

@@ -18,7 +18,8 @@ internal class AnalysisTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Anal
             AnalysisTaskType.DM.ToEnumValue(),
             AnalysisTaskType.PCAM.ToEnumValue(),
             AnalysisTaskType.GAF.ToEnumValue(),
-            AnalysisTaskType.DEP.ToEnumValue()
+            AnalysisTaskType.DEP.ToEnumValue(),
+            AnalysisTaskType.UMAPP.ToEnumValue()
         };
 
         entity.BuildEnumEntity("analysis_task_type", DomainDbSchemaNames.Common, data);

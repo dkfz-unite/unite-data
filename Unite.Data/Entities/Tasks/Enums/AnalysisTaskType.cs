@@ -47,5 +47,11 @@ public enum AnalysisTaskType
     /// Differential protein expression (Limma).
     /// </summary>
     [EnumMember(Value = "dep")]
-    DEP = 7
+    DEP = 7,
+
+    /// <summary>
+    /// UMAP of protein expression profiles (Limma).
+    /// </summary>
+    [EnumMember(Value = "umapp")]
+    UMAPP = 8
 }

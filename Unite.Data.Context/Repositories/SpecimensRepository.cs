@@ -1,7 +1,9 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Unite.Essentials.Extensions;
+using Unite.Data.Constants;
 using Unite.Data.Context.Repositories.Constants;
+using Unite.Data.Entities.Omics.Analysis;
 using Unite.Data.Entities.Omics.Analysis.Dna;
 using Unite.Data.Entities.Omics.Analysis.Prot;
 using Unite.Data.Entities.Omics.Analysis.Rna;
@@ -250,6 +252,65 @@ public class SpecimensRepository : Repository
                 .Where(entry => ids.Contains(entry.Sample.SpecimenId))
                 .Select(entry => entry.EntityId)
                 .ToArrayAsync();
+    }
+
+
+    public async Task<bool> HaveVariants<TVE, TV>(int[] specimenIds)
+        where TVE : VariantEntry<TV>
+        where TV : Variant
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<TVE>()
+            .AsNoTracking()
+            .AnyAsync(entry => specimenIds.Contains(entry.Sample.SpecimenId));
+    }
+
+    public async Task<bool> HaveProfiles(int[] specimenIds)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<Cnv.Profile>()
+            .AsNoTracking()
+            .AnyAsync(profile => specimenIds.Contains(profile.Sample.SpecimenId));
+    }
+
+    public async Task<bool> HaveMethylation(int[] specimenIds)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<SampleResource>()
+            .AsNoTracking()
+            .AnyAsync(resource => specimenIds.Contains(resource.Sample.SpecimenId)
+                          && resource.Type == DataTypes.Omics.Methylation.Sample
+                          && resource.Format == FileTypes.Sequence.Idat);
+    }
+
+    public async Task<bool> HaveGeneExpressions(int[] specimenIds)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<GeneExpression>()
+            .AsNoTracking()
+            .AnyAsync(expression => specimenIds.Contains(expression.Sample.SpecimenId));
+    }
+
+    public async Task<bool> HaveGeneExpressionsPerCells(int[] specimenIds)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<SampleResource>()
+            .AsNoTracking()
+            .AnyAsync(resource => specimenIds.Contains(resource.Sample.SpecimenId) && resource.Type == DataTypes.Omics.Rnasc.Expression);
+    }
+
+    public async Task<bool> HaveProteinExpressions(int[] specimenIds)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<ProteinExpression>()
+            .AsNoTracking()
+            .AnyAsync(expression => specimenIds.Contains(expression.Sample.SpecimenId));
     }
 
 

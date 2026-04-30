@@ -13,7 +13,7 @@ namespace Unite.Data.Context.Repositories;
 
 public class SamplesRepository : Repository
 {
-    public record OmicsResources(bool Sm, bool Cnv, bool Sv, bool Meth, bool GeneExp, bool GeneExpSc, bool ProtExp);
+    public record OmicsResources(bool Sm, bool Cnv, bool Sv, bool Cnvp, bool Meth, bool GeneExp, bool GeneExpSc, bool ProtExp);
 
     public SamplesRepository(IDbContextFactory<DomainDbContext> dbContextFactory) : base(dbContextFactory)
     {
@@ -25,13 +25,14 @@ public class SamplesRepository : Repository
         var sm = await HasRelatedVariants<Sm.VariantEntry, Sm.Variant>(id);
         var cnv = await HasRelatedVariants<Cnv.VariantEntry, Cnv.Variant>(id);
         var sv = await HasRelatedVariants<Sv.VariantEntry, Sv.Variant>(id);
+        var cnvp = await HasRelatedProfiles(id);
         var meth = await HasRelatedMethylations(id);
         var geneExp = await HasRelatedGeneExpressions(id);
         var geneExpSc = await HasRelatedGeneExpressionsPerCells(id);
         var protExp = await HasRelatedProteinExpressions(id);
 
-        if (sm || cnv || sv || meth || geneExp || geneExpSc || protExp)
-            return new OmicsResources(sm, cnv, sv, meth, geneExp, geneExpSc, protExp);
+        if (sm || cnv || sv || cnvp || meth || geneExp || geneExpSc || protExp)
+            return new OmicsResources(sm, cnv, sv, cnvp, meth, geneExp, geneExpSc, protExp);
         
         return null;
     }

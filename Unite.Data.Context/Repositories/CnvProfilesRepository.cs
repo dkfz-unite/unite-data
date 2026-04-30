@@ -49,4 +49,14 @@ public class CnvProfilesRepository : Repository
             .Distinct()
             .ToArrayAsync();
     }
+
+    public async Task<Profile[]> GetRelatedProfiles(IEnumerable<int> sampleIds)
+    {
+        await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+        
+        return await dbContext.Set<Profile>()
+            .AsNoTracking()
+            .Where(profile => sampleIds.Contains(profile.Id))
+            .ToArrayAsync();
+    }
 }

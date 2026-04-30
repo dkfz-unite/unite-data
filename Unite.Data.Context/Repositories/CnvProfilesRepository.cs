@@ -56,7 +56,7 @@ public class CnvProfilesRepository : Repository
         
         return await dbContext.Set<Profile>()
             .AsNoTracking()
-            .Where(profile => sampleIds.Contains(profile.Id))
+            .Where(profile => sampleIds.Contains(profile.SampleId))
             .ToArrayAsync();
     }
 }

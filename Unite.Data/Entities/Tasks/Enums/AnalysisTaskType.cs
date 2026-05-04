@@ -59,5 +59,5 @@ public enum AnalysisTaskType
     /// CNV Profile Analysis
     /// </summary>
     [EnumMember(Value = "cnv_profile")]
-    CNV_PROFILE = 8
+    CNV_PROFILE = 9
 }

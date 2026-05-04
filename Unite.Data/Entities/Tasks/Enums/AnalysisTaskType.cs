@@ -53,5 +53,11 @@ public enum AnalysisTaskType
     /// UMAP of protein expression profiles (Limma).
     /// </summary>
     [EnumMember(Value = "umapp")]
-    UMAPP = 8
+    UMAPP = 8,
+    
+    /// <summary>
+    /// CNV Profile Analysis
+    /// </summary>
+    [EnumMember(Value = "cnv_profile")]
+    CNV_PROFILE = 9
 }

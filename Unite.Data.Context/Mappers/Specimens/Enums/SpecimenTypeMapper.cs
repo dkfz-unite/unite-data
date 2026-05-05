@@ -10,13 +10,9 @@ internal class SpecimenTypeMapper : IEntityTypeConfiguration<EnumEntity<Specimen
 {
     public void Configure(EntityTypeBuilder<EnumEntity<SpecimenType>> entity)
     {
-        var data = new EnumEntity<SpecimenType>[]
-        {
-            SpecimenType.Material.ToEnumValue(),
-            SpecimenType.Line.ToEnumValue(),
-            SpecimenType.Organoid.ToEnumValue(),
-            SpecimenType.Xenograft.ToEnumValue()
-        };
+        var data = Enum.GetValues<SpecimenType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("specimen_type", DomainDbSchemaNames.Specimens, data);
     }

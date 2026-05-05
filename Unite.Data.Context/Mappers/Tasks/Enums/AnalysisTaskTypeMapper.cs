@@ -10,19 +10,10 @@ internal class AnalysisTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Anal
 {
     public void Configure(EntityTypeBuilder<EnumEntity<AnalysisTaskType>> entity)
     {
-        var data = new EnumEntity<AnalysisTaskType>[]
-        {
-            AnalysisTaskType.DEG.ToEnumValue(),
-            AnalysisTaskType.SCELL.ToEnumValue(),
-            AnalysisTaskType.SURV.ToEnumValue(),
-            AnalysisTaskType.DM.ToEnumValue(),
-            AnalysisTaskType.PCAM.ToEnumValue(),
-            AnalysisTaskType.GAF.ToEnumValue(),
-            AnalysisTaskType.DEP.ToEnumValue(),
-            AnalysisTaskType.UMAPP.ToEnumValue(),
-            AnalysisTaskType.CNV_PROFILE.ToEnumValue()
-        };
-
+        var data = Enum.GetValues<AnalysisTaskType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
+        
         entity.BuildEnumEntity("analysis_task_type", DomainDbSchemaNames.Common, data);
     }
 }

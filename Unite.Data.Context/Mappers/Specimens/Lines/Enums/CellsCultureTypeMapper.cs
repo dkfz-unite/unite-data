@@ -10,12 +10,9 @@ internal class CellsCultureTypeMapper : IEntityTypeConfiguration<EnumEntity<Cell
 {
     public void Configure(EntityTypeBuilder<EnumEntity<CellsCultureType>> entity)
     {
-        var data = new EnumEntity<CellsCultureType>[]
-        {
-            CellsCultureType.Suspension.ToEnumValue(),
-            CellsCultureType.Adherent.ToEnumValue(),
-            CellsCultureType.Both.ToEnumValue()
-        };
+        var data = Enum.GetValues<CellsCultureType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("cells_culture_type", DomainDbSchemaNames.Specimens, data);
     }

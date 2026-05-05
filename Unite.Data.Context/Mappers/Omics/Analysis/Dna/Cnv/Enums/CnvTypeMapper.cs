@@ -10,13 +10,9 @@ internal class CnvTypeMapper : IEntityTypeConfiguration<EnumEntity<CnvType>>
 {
     public void Configure(EntityTypeBuilder<EnumEntity<CnvType>> entity)
     {
-        var data = new EnumEntity<CnvType>[]
-        {
-            CnvType.Gain.ToEnumValue(name: "TCN gain"),
-            CnvType.Loss.ToEnumValue(name: "TCN loss"),
-            CnvType.Neutral.ToEnumValue(name: "TCN neutral"),
-            CnvType.Undetermined.ToEnumValue(name: "Undetermined")
-        };
+        var data = Enum.GetValues<CnvType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("cnv_type", DomainDbSchemaNames.Omics, data);
     }

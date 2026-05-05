@@ -10,17 +10,9 @@ internal class SvTypeMapper : IEntityTypeConfiguration<EnumEntity<SvType>>
 {
     public void Configure(EntityTypeBuilder<EnumEntity<SvType>> entity)
     {
-        var data = new EnumEntity<SvType>[]
-        {
-            SvType.DUP.ToEnumValue(name: "Duplication"),
-            SvType.TDUP.ToEnumValue(name: "Tandem duplication"),
-            SvType.INS.ToEnumValue(name: "Insertion"),
-            SvType.DEL.ToEnumValue(name: "Deletion"),
-            SvType.INV.ToEnumValue(name: "Inversion"),
-            SvType.ITX.ToEnumValue(name: "Intra-choromosmal translocation"),
-            SvType.CTX.ToEnumValue(name: "Inter-chromosomal translocation"),
-            SvType.COM.ToEnumValue(name: "Complex rearrangement")
-        };
+        var data = Enum.GetValues<SvType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("sv_type", DomainDbSchemaNames.Omics, data);
     }

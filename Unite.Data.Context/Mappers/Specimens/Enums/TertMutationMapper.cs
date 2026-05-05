@@ -10,11 +10,9 @@ internal class TertMutationMapper : IEntityTypeConfiguration<EnumEntity<TertMuta
 {
     public void Configure(EntityTypeBuilder<EnumEntity<TertMutation>> entity)
     {
-        var data = new EnumEntity<TertMutation>[]
-        {
-            TertMutation.C228T.ToEnumValue(),
-            TertMutation.C250T.ToEnumValue()
-        };
+        var data = Enum.GetValues<TertMutation>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("tert_mutation", DomainDbSchemaNames.Specimens, data);
     }

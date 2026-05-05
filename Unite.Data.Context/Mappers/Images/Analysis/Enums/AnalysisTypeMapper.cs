@@ -10,10 +10,9 @@ internal class AnalysisTypeMapper : IEntityTypeConfiguration<EnumEntity<Analysis
 {
     public void Configure(EntityTypeBuilder<EnumEntity<AnalysisType>> entity)
     {
-        var data = new EnumEntity<AnalysisType>[]
-        {
-            AnalysisType.RFE.ToEnumValue(name: "Radiomics Features Extraction")
-        };
+        var data = Enum.GetValues<AnalysisType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("analysis_type", DomainDbSchemaNames.Images, data);
     }

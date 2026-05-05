@@ -10,12 +10,9 @@ internal class ImplantLocationMapper : IEntityTypeConfiguration<EnumEntity<Impla
 {
     public void Configure(EntityTypeBuilder<EnumEntity<ImplantLocation>> entity)
     {
-        var data = new EnumEntity<ImplantLocation>[]
-        {
-            ImplantLocation.Other.ToEnumValue(),
-            ImplantLocation.Striatal.ToEnumValue(),
-            ImplantLocation.Cortical.ToEnumValue()
-        };
+        var data = Enum.GetValues<ImplantLocation>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("implant_location", DomainDbSchemaNames.Specimens, data);
     }

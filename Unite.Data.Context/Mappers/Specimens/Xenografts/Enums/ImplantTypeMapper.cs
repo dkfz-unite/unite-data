@@ -10,11 +10,9 @@ internal class ImplantTypeMapper : IEntityTypeConfiguration<EnumEntity<ImplantTy
 {
     public void Configure(EntityTypeBuilder<EnumEntity<ImplantType>> entity)
     {
-        var data = new EnumEntity<ImplantType>[]
-        {
-            ImplantType.Other.ToEnumValue(),
-            ImplantType.Orhtotopical.ToEnumValue()
-        };
+        var data = Enum.GetValues<ImplantType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("implant_type", DomainDbSchemaNames.Specimens, data);
     }

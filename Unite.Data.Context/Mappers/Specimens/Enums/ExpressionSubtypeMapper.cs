@@ -10,12 +10,9 @@ internal class ExpressionSubtypeMapper : IEntityTypeConfiguration<EnumEntity<Exp
 {
     public void Configure(EntityTypeBuilder<EnumEntity<ExpressionSubtype>> entity)
     {
-        var data = new EnumEntity<ExpressionSubtype>[]
-        {
-            ExpressionSubtype.Classical.ToEnumValue(),
-            ExpressionSubtype.Mesenchymal.ToEnumValue(),
-            ExpressionSubtype.Proneural.ToEnumValue()
-        };
+        var data = Enum.GetValues<ExpressionSubtype>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("expression_subtype", DomainDbSchemaNames.Specimens, data);
     }

@@ -10,11 +10,9 @@ internal class ImageTypeMapper : IEntityTypeConfiguration<EnumEntity<ImageType>>
 {
     public void Configure(EntityTypeBuilder<EnumEntity<ImageType>> entity)
     {
-        var data = new EnumEntity<ImageType>[]
-        {
-            ImageType.MR.ToEnumValue(),
-            ImageType.CT.ToEnumValue()
-        };
+        var data = Enum.GetValues<ImageType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("image_type", DomainDbSchemaNames.Images, data);
     }

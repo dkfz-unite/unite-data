@@ -10,19 +10,9 @@ internal class IndexingTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<Inde
 {
     public void Configure(EntityTypeBuilder<EnumEntity<IndexingTaskType>> entity)
     {
-        var data = new EnumEntity<IndexingTaskType>[]
-        {
-            IndexingTaskType.Project.ToEnumValue(),
-            IndexingTaskType.Donor.ToEnumValue(),
-            IndexingTaskType.Image.ToEnumValue(),
-            IndexingTaskType.Specimen.ToEnumValue(),
-            IndexingTaskType.Gene.ToEnumValue(),
-            IndexingTaskType.Protein.ToEnumValue(),
-            IndexingTaskType.SM.ToEnumValue(),
-            IndexingTaskType.CNV.ToEnumValue(),
-            IndexingTaskType.SV.ToEnumValue(),
-            IndexingTaskType.CNVProfile.ToEnumValue()
-        };
+        var data = Enum.GetValues<IndexingTaskType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("indexing_task_type", DomainDbSchemaNames.Common, data);
     }

@@ -10,11 +10,9 @@ internal class CellsSpeciesMapper : IEntityTypeConfiguration<EnumEntity<CellsSpe
 {
     public void Configure(EntityTypeBuilder<EnumEntity<CellsSpecies>> entity)
     {
-        var data = new EnumEntity<CellsSpecies>[]
-        {
-            CellsSpecies.Human.ToEnumValue(),
-            CellsSpecies.Mouse.ToEnumValue()
-        };
+        var data = Enum.GetValues<CellsSpecies>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("cells_species", DomainDbSchemaNames.Specimens, data);
     }

@@ -10,15 +10,9 @@ internal class TaskStatusTypeMapper : IEntityTypeConfiguration<EnumEntity<TaskSt
 {
     public void Configure(EntityTypeBuilder<EnumEntity<TaskStatusType>> entity)
     {
-        var data = new EnumEntity<TaskStatusType>[]
-        {
-            TaskStatusType.Preparing.ToEnumValue(),
-            TaskStatusType.Prepared.ToEnumValue(),
-            TaskStatusType.Processing.ToEnumValue(),
-            TaskStatusType.Processed.ToEnumValue(),
-            TaskStatusType.Failed.ToEnumValue(),
-            TaskStatusType.Rejected.ToEnumValue()
-        };
+        var data = Enum.GetValues<TaskStatusType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("task_status_type", DomainDbSchemaNames.Common, data);
     }

@@ -10,14 +10,9 @@ internal class MethylationSubtypeMapper : IEntityTypeConfiguration<EnumEntity<Me
 {
     public void Configure(EntityTypeBuilder<EnumEntity<MethylationSubtype>> entity)
     {
-        var data = new EnumEntity<MethylationSubtype>[]
-        {
-            MethylationSubtype.H3_K27.ToEnumValue(),
-            MethylationSubtype.H3_G34.ToEnumValue(),
-            MethylationSubtype.RTKI.ToEnumValue(),
-            MethylationSubtype.RTKII.ToEnumValue(),
-            MethylationSubtype.Mesenchymal.ToEnumValue()
-        };
+        var data = Enum.GetValues<MethylationSubtype>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("methylation_subtype", DomainDbSchemaNames.Specimens, data);
     }

@@ -10,13 +10,9 @@ internal class SmTypeMapper : IEntityTypeConfiguration<EnumEntity<SmType>>
 {
     public void Configure(EntityTypeBuilder<EnumEntity<SmType>> entity)
     {
-        var data = new EnumEntity<SmType>[]
-        {
-            SmType.SNV.ToEnumValue(name: "Single Nucleotide Variant"),
-            SmType.INS.ToEnumValue(name: "Insertion"),
-            SmType.DEL.ToEnumValue(name: "Deletion"),
-            SmType.MNV.ToEnumValue(name: "Multiple Nucleotide Variant")
-        };
+        var data = Enum.GetValues<SmType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("sm_type", DomainDbSchemaNames.Omics, data);
     }

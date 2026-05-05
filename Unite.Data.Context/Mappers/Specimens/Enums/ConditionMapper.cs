@@ -10,11 +10,9 @@ internal class CategoryMapper : IEntityTypeConfiguration<EnumEntity<Category>>
 {
     public void Configure(EntityTypeBuilder<EnumEntity<Category>> entity)
     {
-        var data = new EnumEntity<Category>[]
-        {
-            Category.Normal.ToEnumValue(),
-            Category.Tumor.ToEnumValue()
-        };
+        var data = Enum.GetValues<Category>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("category", DomainDbSchemaNames.Specimens, data);
     }

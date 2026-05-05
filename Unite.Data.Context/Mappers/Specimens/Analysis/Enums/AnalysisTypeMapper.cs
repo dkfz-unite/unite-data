@@ -10,10 +10,9 @@ internal class AnalysisTypeMapper : IEntityTypeConfiguration<EnumEntity<Analysis
 {
     public void Configure(EntityTypeBuilder<EnumEntity<AnalysisType>> entity)
     {
-        var data = new EnumEntity<AnalysisType>[]
-        {
-            AnalysisType.DSA.ToEnumValue(name: "Drugs Screening Analysis")
-        };
+        var data = Enum.GetValues<AnalysisType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("analysis_type", DomainDbSchemaNames.Specimens, data);
     }

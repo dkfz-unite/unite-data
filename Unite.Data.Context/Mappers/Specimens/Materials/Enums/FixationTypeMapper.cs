@@ -10,11 +10,9 @@ internal class FixationTypeMapper : IEntityTypeConfiguration<EnumEntity<Fixation
 {
     public void Configure(EntityTypeBuilder<EnumEntity<FixationType>> entity)
     {
-        var data = new EnumEntity<FixationType>[]
-        {
-            FixationType.FFPE.ToEnumValue(),
-            FixationType.FreshFrozen.ToEnumValue()
-        };
+        var data = Enum.GetValues<FixationType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("fixation_type", DomainDbSchemaNames.Specimens, data);
     }

@@ -10,12 +10,9 @@ internal class WorkerTypeMapper : IEntityTypeConfiguration<EnumEntity<WorkerType
 {
     public void Configure(EntityTypeBuilder<EnumEntity<WorkerType>> entity)
     {
-        var data = new EnumEntity<WorkerType>[]
-        {
-            WorkerType.Submission.ToEnumValue(),
-            WorkerType.Annotation.ToEnumValue(),
-            WorkerType.Indexing.ToEnumValue()
-        };
+        var data = Enum.GetValues<WorkerType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("worker_type", DomainDbSchemaNames.Common, data);
     }

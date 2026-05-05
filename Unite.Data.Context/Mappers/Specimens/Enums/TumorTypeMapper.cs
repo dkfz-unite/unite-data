@@ -10,12 +10,9 @@ internal class TumorTypeMapper : IEntityTypeConfiguration<EnumEntity<TumorType>>
 {
     public void Configure(EntityTypeBuilder<EnumEntity<TumorType>> entity)
     {
-        var data = new EnumEntity<TumorType>[]
-        {
-            TumorType.Primary.ToEnumValue(),
-            TumorType.Metastasis.ToEnumValue(),
-            TumorType.Recurrent.ToEnumValue()
-        };
+        var data = Enum.GetValues<TumorType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("tumor_type", DomainDbSchemaNames.Specimens, data);
     }

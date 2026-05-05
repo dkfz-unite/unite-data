@@ -10,11 +10,9 @@ internal class TumorGrowthFormMapper : IEntityTypeConfiguration<EnumEntity<Tumor
 {
     public void Configure(EntityTypeBuilder<EnumEntity<TumorGrowthForm>> entity)
     {
-        var data = new EnumEntity<TumorGrowthForm>[]
-        {
-            TumorGrowthForm.Encapsulated.ToEnumValue(),
-            TumorGrowthForm.Invasive.ToEnumValue()
-        };
+        var data = Enum.GetValues<TumorGrowthForm>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("tumor_growth_form", DomainDbSchemaNames.Specimens, data);
     }

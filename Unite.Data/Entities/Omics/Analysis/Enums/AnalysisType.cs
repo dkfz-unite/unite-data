@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace Unite.Data.Entities.Omics.Analysis.Enums;
 
@@ -11,6 +12,7 @@ public enum AnalysisType
     /// Variants can be called (SM, CNV, SV).
     /// </summary>
     [EnumMember(Value = "WGS")]
+    [Description("Whole Genome Sequencing")]
     WGS = 1,
 
     /// <summary>
@@ -20,6 +22,7 @@ public enum AnalysisType
     /// Variants can be called (SM, CNV, SV).
     /// </summary>
     [EnumMember(Value = "WES")]
+    [Description("Whole Exome Sequencing")]
     WES = 2,
 
     /// <summary>
@@ -29,6 +32,7 @@ public enum AnalysisType
     /// Gene expression levels can be quantified.
     /// </summary>
     [EnumMember(Value = "RNASeq")]
+    [Description("Bulk RNA Sequencing")]
     RNASeq = 3,
 
     /// <summary>
@@ -38,6 +42,7 @@ public enum AnalysisType
     /// Gene expression levels can be quantified for each cell.
     /// </summary>
     [EnumMember(Value = "scRNASeq")]
+    [Description("Single Cell RNA Sequencing")]
     RNASeqSc = 4,
 
     /// <summary>
@@ -47,6 +52,7 @@ public enum AnalysisType
     /// Gene expression levels can be quantified for each cell nucleus.
     /// </summary>
     [EnumMember(Value = "snRNASeq")]
+    [Description("Single Nucleus RNA Sequencing")]
     RNASeqSn = 5,
 
     /// <summary>
@@ -56,6 +62,7 @@ public enum AnalysisType
     /// Can be used to identify open chromatin regions.
     /// </summary>
     [EnumMember(Value = "ATACSeq")]
+    [Description("Bulk ATAC Sequencing")]
     ATACSeq = 6,
 
     /// <summary>
@@ -65,6 +72,7 @@ public enum AnalysisType
     /// Can be used to identify open chromatin regions for each cell.
     /// </summary>
     [EnumMember(Value = "scATACSeq")]
+    [Description("Single Cell ATAC Sequencing")]
     ATACSeqSc = 7,
 
     /// <summary>
@@ -74,6 +82,7 @@ public enum AnalysisType
     /// Can be used to identify open chromatin regions for each cell nucleus.
     /// </summary>
     [EnumMember(Value = "snATACSeq")]
+    [Description("Single Nucleus ATAC Sequencing")]
     ATACSeqSn = 8,
 
     /// <summary>
@@ -82,6 +91,7 @@ public enum AnalysisType
     /// Can be used to quantify methylation levels (Beta and M-values) at predefined CpG sites.
     /// </summary>
     [EnumMember(Value = "MethArray")]
+    [Description("Illumina Infinium Methylation Arrays Assay")]
     MethArray = 9,
 
     /// <summary>
@@ -92,6 +102,7 @@ public enum AnalysisType
     /// Can be used to quantify methylation levels (Beta and M-values).
     /// </summary>
     [EnumMember(Value = "WGBS")]
+    [Description("Whole Genome Bisulfite Sequencing")]
     WGBS = 10,
 
     /// <summary>
@@ -102,6 +113,7 @@ public enum AnalysisType
     /// Can be used to quantify methylation levels (Beta and M-values).
     /// </summary>
     [EnumMember(Value = "RRBS")]
+    [Description("Reduced Representation Bisulfite Sequencing")]
     RRBS = 11,
 
     /// <summary>
@@ -110,5 +122,6 @@ public enum AnalysisType
     /// Can be used to identify and quantify proteins and peptides in complex biological samples.
     /// </summary>
     [EnumMember(Value = "MS")]
+    [Description("Mass Spectrometry")]
     MS = 12
 }

@@ -10,12 +10,9 @@ internal class SexMapper : IEntityTypeConfiguration<EnumEntity<Sex>>
 {
     public void Configure(EntityTypeBuilder<EnumEntity<Sex>> entity)
     {
-        var data = new EnumEntity<Sex>[]
-        {
-            Sex.Other.ToEnumValue(),
-            Sex.Female.ToEnumValue(),
-            Sex.Male.ToEnumValue()
-        };
+        var data = Enum.GetValues<Sex>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("sex", DomainDbSchemaNames.Donors, data);
     }

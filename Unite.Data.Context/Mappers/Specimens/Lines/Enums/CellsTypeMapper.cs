@@ -10,11 +10,9 @@ internal class CellsTypeMapper : IEntityTypeConfiguration<EnumEntity<CellsType>>
 {
     public void Configure(EntityTypeBuilder<EnumEntity<CellsType>> entity)
     {
-        var data = new EnumEntity<CellsType>[]
-        {
-            CellsType.StemCell.ToEnumValue(),
-            CellsType.Differentiated.ToEnumValue()
-        };
+        var data = Enum.GetValues<CellsType>()
+            .Select(e => e.ToEnumValue())
+            .ToArray();
 
         entity.BuildEnumEntity("cells_type", DomainDbSchemaNames.Specimens, data);
     }

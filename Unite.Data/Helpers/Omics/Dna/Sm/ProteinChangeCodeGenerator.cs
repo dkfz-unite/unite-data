@@ -1,6 +1,4 @@
-﻿using Unite.Data.Helpers.Omics.Dna.Sm;
-
-namespace Unite.Data.Helpers.Omics.Dna.Sm;
+﻿namespace Unite.Data.Helpers.Omics.Dna.Sm;
 
 public static class ProteinChangeCodeGenerator
 {

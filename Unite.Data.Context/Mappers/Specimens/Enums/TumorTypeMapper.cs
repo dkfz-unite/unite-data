@@ -1,19 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Unite.Data.Context.Mappers.Base;
 using Unite.Data.Context.Mappers.Base.Entities;
 using Unite.Data.Context.Mappers.Base.Entities.Extensions;
 using Unite.Data.Entities.Specimens.Enums;
 
 namespace Unite.Data.Context.Mappers.Specimens.Enums;
 
-internal class TumorTypeMapper : IEntityTypeConfiguration<EnumEntity<TumorType>>
+internal class TumorTypeMapper : EnumEntityMapper<TumorType>
 {
-    public void Configure(EntityTypeBuilder<EnumEntity<TumorType>> entity)
-    {
-        var data = Enum.GetValues<TumorType>()
-            .Select(e => e.ToEnumValue())
-            .ToArray();
-
-        entity.BuildEnumEntity("tumor_type", DomainDbSchemaNames.Specimens, data);
-    }
+    protected override string TableName => "tumor_type";
+    protected override string SchemaName => DomainDbSchemaNames.Specimens;
 }

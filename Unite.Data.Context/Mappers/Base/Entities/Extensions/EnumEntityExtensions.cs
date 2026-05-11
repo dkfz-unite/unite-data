@@ -7,7 +7,9 @@ internal static class EnumEntityExtensions
 {
     public static EnumEntity<T> ToEnumValue<T>(this T id, string value = null, string name = null) where T : Enum
     {
-        if (name == null)
+        var entityName = name;
+        
+        if (entityName == null)
         {
             var type = typeof(T);
             var member = type.GetMember(id.ToString()).First();
@@ -18,14 +20,14 @@ internal static class EnumEntityExtensions
                 .FirstOrDefault();
             
             if(description != null)
-                name = description.Description;
+                entityName = description.Description;
         }
         
         return new EnumEntity<T>()
         {
             Id = id,
             Value = value ?? id.ToDefinitionString(),
-            Name = name ?? id.ToDefinitionString()
+            Name = entityName ?? id.ToDefinitionString()
         };
     }
 }

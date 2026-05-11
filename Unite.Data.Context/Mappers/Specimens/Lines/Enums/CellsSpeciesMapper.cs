@@ -1,21 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Base.Entities;
-using Unite.Data.Context.Mappers.Base.Entities.Extensions;
+﻿using Unite.Data.Context.Mappers.Base;
 using Unite.Data.Entities.Specimens.Lines.Enums;
 
 namespace Unite.Data.Context.Mappers.Specimens.Lines.Enums;
 
-internal class CellsSpeciesMapper : IEntityTypeConfiguration<EnumEntity<CellsSpecies>>
+internal class CellsSpeciesMapper : EnumEntityMapper<CellsSpecies>
 {
-    public void Configure(EntityTypeBuilder<EnumEntity<CellsSpecies>> entity)
-    {
-        var data = new EnumEntity<CellsSpecies>[]
-        {
-            CellsSpecies.Human.ToEnumValue(),
-            CellsSpecies.Mouse.ToEnumValue()
-        };
-
-        entity.BuildEnumEntity("cells_species", DomainDbSchemaNames.Specimens, data);
-    }
+    protected override string TableName => "cells_species";
+    protected override string SchemaName => DomainDbSchemaNames.Specimens;
 }

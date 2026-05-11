@@ -1,28 +1,10 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Base.Entities;
-using Unite.Data.Context.Mappers.Base.Entities.Extensions;
+using Unite.Data.Context.Mappers.Base;
 using Unite.Data.Entities.Tasks.Enums;
 
 namespace Unite.Data.Context.Mappers.Tasks.Enums;
 
-internal class AnalysisTaskTypeMapper : IEntityTypeConfiguration<EnumEntity<AnalysisTaskType>>
+internal class AnalysisTaskTypeMapper : EnumEntityMapper<AnalysisTaskType>
 {
-    public void Configure(EntityTypeBuilder<EnumEntity<AnalysisTaskType>> entity)
-    {
-        var data = new EnumEntity<AnalysisTaskType>[]
-        {
-            AnalysisTaskType.DEG.ToEnumValue(),
-            AnalysisTaskType.SCELL.ToEnumValue(),
-            AnalysisTaskType.SURV.ToEnumValue(),
-            AnalysisTaskType.DM.ToEnumValue(),
-            AnalysisTaskType.PCAM.ToEnumValue(),
-            AnalysisTaskType.GAF.ToEnumValue(),
-            AnalysisTaskType.DEP.ToEnumValue(),
-            AnalysisTaskType.UMAPP.ToEnumValue(),
-            AnalysisTaskType.CNV_PROFILE.ToEnumValue()
-        };
-
-        entity.BuildEnumEntity("analysis_task_type", DomainDbSchemaNames.Common, data);
-    }
+    protected override string TableName => "analysis_task_type";
+    protected override string SchemaName => DomainDbSchemaNames.Common;
 }

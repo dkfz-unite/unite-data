@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using Unite.Data.Entities.Omics.Analysis.Rna;
 
 using Sm = Unite.Data.Entities.Omics.Analysis.Dna.Sm;

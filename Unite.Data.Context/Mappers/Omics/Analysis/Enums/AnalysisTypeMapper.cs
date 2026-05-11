@@ -1,31 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Unite.Data.Context.Mappers.Base.Entities;
-using Unite.Data.Context.Mappers.Base.Entities.Extensions;
+﻿using Unite.Data.Context.Mappers.Base;
 using Unite.Data.Entities.Omics.Analysis.Enums;
 
 namespace Unite.Data.Context.Mappers.Omics.Analysis.Enums;
 
-internal class AnalysisTypeMapper : IEntityTypeConfiguration<EnumEntity<AnalysisType>>
+internal class AnalysisTypeMapper : EnumEntityMapper<AnalysisType>
 {
-    public void Configure(EntityTypeBuilder<EnumEntity<AnalysisType>> entity)
-    {
-        var data = new EnumEntity<AnalysisType>[]
-        {
-            AnalysisType.WGS.ToEnumValue(name: "Whole Genome Sequencing"),
-            AnalysisType.WES.ToEnumValue(name: "Whole Exome Sequencing"),
-            AnalysisType.RNASeq.ToEnumValue(name: "Bulk RNA Sequencing"),
-            AnalysisType.RNASeqSc.ToEnumValue(name: "Single Cell RNA Sequencing"),
-            AnalysisType.RNASeqSn.ToEnumValue(name: "Single Nucleus RNA Sequencing"),
-            AnalysisType.ATACSeq.ToEnumValue(name: "Bulk ATAC Sequencing"),
-            AnalysisType.ATACSeqSc.ToEnumValue(name: "Single Cell ATAC Sequencing"),
-            AnalysisType.ATACSeqSn.ToEnumValue(name: "Single Nucleus ATAC Sequencing"),
-            AnalysisType.MethArray.ToEnumValue(name: "Illumina Infinium Methylation Arrays Assay"),
-            AnalysisType.WGBS.ToEnumValue(name: "Whole Genome Bisulfite Sequencing"),
-            AnalysisType.RRBS.ToEnumValue(name: "Reduced Representation Bisulfite Sequencing"),
-            AnalysisType.MS.ToEnumValue(name: "Mass Spectrometry")
-        };
-
-        entity.BuildEnumEntity("analysis_type", DomainDbSchemaNames.Omics, data);
-    }
+    protected override string TableName => "analysis_type";
+    protected override string SchemaName => DomainDbSchemaNames.Omics;
 }

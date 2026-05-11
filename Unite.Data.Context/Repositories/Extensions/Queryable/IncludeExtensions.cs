@@ -4,8 +4,6 @@ using Unite.Data.Entities.Images;
 using Unite.Data.Entities.Specimens;
 
 using Gen = Unite.Data.Entities.Omics.Analysis;
-using Spe = Unite.Data.Entities.Specimens.Analysis;
-using Img = Unite.Data.Entities.Images.Analysis;
 
 namespace Unite.Data.Context.Repositories.Extensions.Queryable;
 

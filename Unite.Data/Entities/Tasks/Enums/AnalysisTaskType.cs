@@ -59,5 +59,17 @@ public enum AnalysisTaskType
     /// CNV Profile Analysis
     /// </summary>
     [EnumMember(Value = "cnv_profile")]
-    CNV_PROFILE = 9
+    CNV_PROFILE = 9,
+
+    /// <summary>
+    /// Protein expression variability per condition.
+    /// </summary>
+    [EnumMember(Value = "cevp")]
+    CEVP = 10,
+
+    /// <summary>
+    /// Gene expression variability per condition.
+    /// </summary>
+    [EnumMember(Value = "cevg")]
+    CEVG = 11
 }

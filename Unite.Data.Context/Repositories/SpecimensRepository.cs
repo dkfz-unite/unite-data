@@ -74,6 +74,21 @@ public class SpecimensRepository : Repository
         using var dbContext = _dbContextFactory.CreateDbContext();
 
         var filterByTypes = typeIds?.IsNotEmpty() ?? false;
+        
+        var query = dbContext.Set<Entities.Specimens.Analysis.Sample>()
+            .AsNoTracking()
+            .Where(sample => ids.Contains(sample.SpecimenId))
+            .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId))
+            .Select(sample => sample.Id);
+        
+        return await query.ToArrayAsync();
+    }
+
+    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Omics.Analysis.Enums.AnalysisType> typeIds = null)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var filterByTypes = typeIds?.IsNotEmpty() ?? false;
 
         Console.Write("Specimen IDs: ");
         var count = ids.Count() > 10 ? 10 : ids.Count();
@@ -91,30 +106,16 @@ public class SpecimensRepository : Repository
             Console.Write(",");
         }
         Console.WriteLine(";");
-        
-        var query = dbContext.Set<Entities.Specimens.Analysis.Sample>()
+
+        var query = dbContext.Set<Entities.Omics.Analysis.Sample>()
             .AsNoTracking()
             .Where(sample => ids.Contains(sample.SpecimenId))
             .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId))
             .Select(sample => sample.Id);
-
+        
         Console.WriteLine(query.ToQueryString());
         
         return await query.ToArrayAsync();
-    }
-
-    public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Omics.Analysis.Enums.AnalysisType> typeIds = null)
-    {
-        using var dbContext = _dbContextFactory.CreateDbContext();
-
-        var filterByTypes = typeIds?.IsNotEmpty() ?? false;
-
-        return await dbContext.Set<Entities.Omics.Analysis.Sample>()
-            .AsNoTracking()
-            .Where(sample => ids.Contains(sample.SpecimenId))
-            .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId))
-            .Select(sample => sample.Id)
-            .ToArrayAsync();
     }
 
     public async Task<int[]> GetRelatedGenes(IEnumerable<int> ids)

@@ -82,7 +82,15 @@ public class SpecimensRepository : Repository
             Console.Write(ids.ElementAt(i));
             Console.Write(",");
         }
-        Console.Write("\\n");
+        Console.WriteLine(";");
+        
+        Console.Write("typeIds: ");
+        for (var i = 0; i < typeIds.Count(); i++)
+        {
+            Console.Write(typeIds.ElementAt(i));
+            Console.Write(",");
+        }
+        Console.WriteLine(";");
         
         var query = dbContext.Set<Entities.Specimens.Analysis.Sample>()
             .AsNoTracking()
@@ -90,7 +98,7 @@ public class SpecimensRepository : Repository
             .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId))
             .Select(sample => sample.Id);
 
-        Console.WriteLine(query.ToString());
+        Console.WriteLine(query.ToQueryString());
         
         return await query.ToArrayAsync();
     }

@@ -54,9 +54,23 @@ public class CnvProfilesRepository : Repository
     {
         await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
         
-        return await dbContext.Set<Profile>()
+        Console.WriteLine("Load CNVPs");
+        Console.WriteLine("sampleIds count: {0}", sampleIds.Count());
+        Console.Write("sampleIds: ");
+        var count = sampleIds.Count() > 10 ? 10 : sampleIds.Count();
+        for (var i = 0; i < count; i++)
+        {
+            Console.Write(sampleIds.ElementAt(i));
+            Console.Write(",");
+        }
+        Console.WriteLine(";");
+        
+        var query = dbContext.Set<Profile>()
             .AsNoTracking()
-            .Where(profile => sampleIds.Contains(profile.SampleId))
-            .ToArrayAsync();
+            .Where(profile => sampleIds.Contains(profile.SampleId));
+        
+        Console.WriteLine(query.ToQueryString());
+        
+        return await query.ToArrayAsync();
     }
 }

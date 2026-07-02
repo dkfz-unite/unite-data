@@ -75,12 +75,24 @@ public class SpecimensRepository : Repository
 
         var filterByTypes = typeIds?.IsNotEmpty() ?? false;
 
-        return await dbContext.Set<Entities.Specimens.Analysis.Sample>()
+        Console.Write("Specimen IDs: ");
+        var count = ids.Count() > 10 ? 10 : ids.Count();
+        for (var i = 0; i < count; i++)
+        {
+            Console.Write(ids.ElementAt(i));
+            Console.Write(",");
+        }
+        Console.Write("\\n");
+        
+        var query = dbContext.Set<Entities.Specimens.Analysis.Sample>()
             .AsNoTracking()
             .Where(sample => ids.Contains(sample.SpecimenId))
             .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId))
-            .Select(sample => sample.Id)
-            .ToArrayAsync();
+            .Select(sample => sample.Id);
+
+        Console.WriteLine(query.ToString());
+        
+        return await query.ToArrayAsync();
     }
 
     public async Task<int[]> GetRelatedSamples(IEnumerable<int> ids, IEnumerable<Entities.Omics.Analysis.Enums.AnalysisType> typeIds = null)

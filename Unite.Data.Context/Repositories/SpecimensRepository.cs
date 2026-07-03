@@ -90,30 +90,11 @@ public class SpecimensRepository : Repository
 
         var filterByTypes = typeIds?.IsNotEmpty() ?? false;
 
-        Console.Write("Specimen IDs: ");
-        var count = ids.Count() > 10 ? 10 : ids.Count();
-        for (var i = 0; i < count; i++)
-        {
-            Console.Write(ids.ElementAt(i));
-            Console.Write(",");
-        }
-        Console.WriteLine(";");
-        
-        Console.Write("typeIds: ");
-        for (var i = 0; i < typeIds.Count(); i++)
-        {
-            Console.Write(typeIds.ElementAt(i));
-            Console.Write(",");
-        }
-        Console.WriteLine(";");
-
         var query = dbContext.Set<Entities.Omics.Analysis.Sample>()
             .AsNoTracking()
             .Where(sample => ids.Contains(sample.SpecimenId))
             .Where(sample => !filterByTypes || typeIds.Contains(sample.Analysis.TypeId))
             .Select(sample => sample.Id);
-        
-        Console.WriteLine(query.ToQueryString());
         
         return await query.ToArrayAsync();
     }

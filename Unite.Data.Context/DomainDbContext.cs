@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unite.Data.Context.Configuration.Options;
+using Unite.Data.Context.Mappers;
+using Unite.Data.Entities;
 
 namespace Unite.Data.Context;
 
@@ -64,6 +66,8 @@ public class DomainDbContext : DbContext
     public DbSet<Entities.Omics.Analysis.Dna.Sv.AffectedTranscript> SvAffectedTranscripts { get; set; }
     public DbSet<Entities.Omics.Analysis.Rna.GeneExpression> GeneExpressions { get; set; }
     public DbSet<Entities.Omics.Analysis.Prot.ProteinExpression> ProteinExpressions { get; set; }
+    
+    public DbSet<Entities.DataUser> DataUsers { get; set; }
 
 
     public DomainDbContext(ISqlOptions options)
@@ -106,6 +110,7 @@ public class DomainDbContext : DbContext
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.Enums.WorkerTypeMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.TaskMapper());
         modelBuilder.ApplyConfiguration(new Mappers.Tasks.WorkerMapper());
+        modelBuilder.ApplyConfiguration(new DataUserMapper());
     }
 
     private static void ConfigureDonors(ModelBuilder builder)

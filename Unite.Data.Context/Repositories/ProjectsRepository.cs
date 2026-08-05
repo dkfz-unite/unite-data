@@ -27,6 +27,18 @@ public class ProjectsRepository : Repository
             .Distinct()
             .ToArrayAsync();
     }
+    
+    public async Task<int[]> GetRelatedUsers(IEnumerable<int> ids)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Set<Entities.Donors.ProjectUser>()
+            .AsNoTracking()
+            .Where(projectUser => ids.Contains(projectUser.ProjectId))
+            .Select(projectUser => projectUser.UserId)
+            .Distinct()
+            .ToArrayAsync();
+    }
 
     public async Task<int[]> GetRelatedImages(IEnumerable<int> ids, ImageType? typeId = null)
     {

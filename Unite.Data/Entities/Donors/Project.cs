@@ -15,4 +15,5 @@ public record Project
     public string Description { get; set; }
 
     public virtual ICollection<ProjectDonor> ProjectDonors { get; set; }
+    public virtual ICollection<ProjectUser> ProjectUsers { get; set; }
 }

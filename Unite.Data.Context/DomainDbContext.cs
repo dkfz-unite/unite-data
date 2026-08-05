@@ -120,6 +120,7 @@ public class DomainDbContext : DbContext
         builder.ApplyConfiguration(new Mappers.Donors.StudyDonorMapper());
         builder.ApplyConfiguration(new Mappers.Donors.ProjectMapper());
         builder.ApplyConfiguration(new Mappers.Donors.ProjectDonorMapper());
+        builder.ApplyConfiguration(new Mappers.Donors.ProjectUserMapper());
 
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.Enums.SexMapper());
         builder.ApplyConfiguration(new Mappers.Donors.Clinical.ClinicalDataMapper());

@@ -21,5 +21,9 @@ internal class ProjectMapper : IEntityTypeConfiguration<Project>
         entity.Property(project => project.Name)
               .IsRequired()
               .HasMaxLength(100);
+        
+        entity.Property(project => project.IsPublic)
+            .IsRequired()
+            .HasDefaultValue(false);
     }
 }

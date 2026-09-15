@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Unite.Data.Entities;
+using Unite.Data.Entities.Donors;
 using Unite.Data.Entities.Omics.Analysis.Dna;
 using Unite.Data.Entities.Images.Enums;
 using Unite.Data.Entities.Specimens.Enums;
@@ -95,5 +97,33 @@ public class ProjectsRepository : Repository
         var donors = await GetRelatedDonors(ids);
 
         return await _donorsRepository.GetRelatedVariants<TV>(donors);
+    }
+    
+    public async Task<ProjectUser> AssignToProject(int dataUserId, int projectId)
+    {
+        await using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var projectUser = await dbContext.Set<Entities.Donors.ProjectUser>()
+            .FirstOrDefaultAsync(x => x.UserId == dataUserId && x.ProjectId == projectId);
+
+        if (projectUser is null)
+        {
+            projectUser = new ProjectUser
+            {
+                ProjectId = projectId,
+                UserId = dataUserId
+            };
+            dbContext.Set<Entities.Donors.ProjectUser>().Add(projectUser);
+            await dbContext.SaveChangesAsync();
+        }
+
+        return projectUser;
+    }
+
+    public async Task<Project> Load(int projectId)
+    {
+        await using var dbContext = _dbContextFactory.CreateDbContext();
+
+        return await dbContext.Projects.FirstOrDefaultAsync(x => x.Id == projectId);
     }
 }

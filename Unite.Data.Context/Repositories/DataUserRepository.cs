@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Unite.Data.Entities;
 
 namespace Unite.Data.Context.Repositories;
 
@@ -18,5 +19,25 @@ public class DataUserRepository: Repository
             .Select(projectUser => projectUser.ProjectId)
             .Distinct()
             .ToArrayAsync();
+    }
+
+    public async Task<DataUser> LoadOrCreate(int userId)
+    {
+        using var dbContext = _dbContextFactory.CreateDbContext();
+
+        var dataUser = await dbContext.DataUsers
+            .FirstOrDefaultAsync(du => du.UserId == userId);
+
+        if (dataUser is null)
+        {
+            dataUser = new DataUser
+            {
+                UserId = userId
+            };
+            dbContext.DataUsers.Add(dataUser);
+            await dbContext.SaveChangesAsync();
+        }
+
+        return dataUser;
     }
 }

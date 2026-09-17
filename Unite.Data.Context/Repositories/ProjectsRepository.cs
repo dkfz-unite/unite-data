@@ -99,30 +99,50 @@ public class ProjectsRepository : Repository
         return await _donorsRepository.GetRelatedVariants<TV>(donors);
     }
     
-    public async Task<ProjectUser> AssignToProject(int dataUserId, int projectId)
+    public async Task<List<ProjectUser>> AssignToProject(int[] dataUserIds, int projectId)
     {
-        await using var dbContext = _dbContextFactory.CreateDbContext();
+        await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
 
-        var projectUser = await dbContext.Set<Entities.Donors.ProjectUser>()
-            .FirstOrDefaultAsync(x => x.UserId == dataUserId && x.ProjectId == projectId);
+        var distinctUserIds = dataUserIds.Distinct().ToArray();
 
-        if (projectUser is null)
+        var existingProjectUsers = await dbContext.Set<Entities.Donors.ProjectUser>()
+            .Where(x => x.ProjectId == projectId && distinctUserIds.Contains(x.UserId))
+            .ToListAsync();
+
+        var existingUserIds = existingProjectUsers.Select(x => x.UserId).ToHashSet();
+
+        var newProjectUsers = distinctUserIds
+            .Where(userId => !existingUserIds.Contains(userId))
+            .Select(userId => new ProjectUser { ProjectId = projectId, UserId = userId })
+            .ToList();
+
+        if (newProjectUsers.Count > 0)
         {
-            projectUser = new ProjectUser
-            {
-                ProjectId = projectId,
-                UserId = dataUserId
-            };
-            dbContext.Set<Entities.Donors.ProjectUser>().Add(projectUser);
+            dbContext.Set<Entities.Donors.ProjectUser>().AddRange(newProjectUsers);
             await dbContext.SaveChangesAsync();
         }
 
-        return projectUser;
+        return existingProjectUsers.Concat(newProjectUsers).ToList();
+    }
+    
+    public async Task RemoveFromProject(int[] dataUserIds, int projectId)
+    {
+        await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+
+        var projectUsers = await dbContext.Set<Entities.Donors.ProjectUser>()
+            .Where(x => x.ProjectId == projectId && dataUserIds.Contains(x.UserId))
+            .ToListAsync();
+
+        if (projectUsers.Count > 0)
+        {
+            dbContext.Set<Entities.Donors.ProjectUser>().RemoveRange(projectUsers);
+            await dbContext.SaveChangesAsync();
+        }
     }
 
     public async Task<Project> Load(int projectId)
     {
-        await using var dbContext = _dbContextFactory.CreateDbContext();
+        await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
 
         return await dbContext.Projects.FirstOrDefaultAsync(x => x.Id == projectId);
     }

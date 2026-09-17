@@ -20,24 +20,54 @@ public class DataUserRepository: Repository
             .Distinct()
             .ToArrayAsync();
     }
-
-    public async Task<DataUser> LoadOrCreate(int userId)
+    
+    public async Task<List<DataUser>> Load(int[] userIds)
     {
-        using var dbContext = _dbContextFactory.CreateDbContext();
+        await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+    
+        return await dbContext.DataUsers
+            .Where(du => userIds.Contains(du.UserId))
+            .ToListAsync();
+    }
 
-        var dataUser = await dbContext.DataUsers
-            .FirstOrDefaultAsync(du => du.UserId == userId);
+    public async Task<List<DataUser>> LoadOrCreate(int[] userIds)
+    {
+        await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
 
-        if (dataUser is null)
+        var distinctUserIds = userIds.Distinct().ToArray();
+
+        var existingDataUsers = await dbContext.DataUsers
+            .Where(du => distinctUserIds.Contains(du.UserId))
+            .ToListAsync();
+
+        var existingUserIds = existingDataUsers.Select(du => du.UserId).ToHashSet();
+
+        var newDataUsers = distinctUserIds
+            .Where(userId => !existingUserIds.Contains(userId))
+            .Select(userId => new DataUser { UserId = userId })
+            .ToList();
+
+        if (newDataUsers.Count > 0)
         {
-            dataUser = new DataUser
-            {
-                UserId = userId
-            };
-            dbContext.DataUsers.Add(dataUser);
+            dbContext.DataUsers.AddRange(newDataUsers);
             await dbContext.SaveChangesAsync();
         }
 
-        return dataUser;
+        return existingDataUsers.Concat(newDataUsers).ToList();
+    }
+
+    public async Task Delete(int[] dataUserIds)
+    {
+        await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+
+        var dataUsers = await dbContext.DataUsers
+            .Where(du => dataUserIds.Contains(du.Id))
+            .ToListAsync();
+
+        if (dataUsers.Count > 0)
+        {
+            dbContext.DataUsers.RemoveRange(dataUsers);
+            await dbContext.SaveChangesAsync();
+        }
     }
 }

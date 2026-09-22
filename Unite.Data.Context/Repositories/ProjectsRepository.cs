@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Unite.Data.Entities;
+using Unite.Data.Entities.Donors;
 using Unite.Data.Entities.Omics.Analysis.Dna;
 using Unite.Data.Entities.Images.Enums;
 using Unite.Data.Entities.Specimens.Enums;
@@ -95,5 +97,53 @@ public class ProjectsRepository : Repository
         var donors = await GetRelatedDonors(ids);
 
         return await _donorsRepository.GetRelatedVariants<TV>(donors);
+    }
+    
+    public async Task<List<ProjectUser>> AssignToProject(int[] dataUserIds, int projectId)
+    {
+        await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+
+        var distinctUserIds = dataUserIds.Distinct().ToArray();
+
+        var existingProjectUsers = await dbContext.Set<Entities.Donors.ProjectUser>()
+            .Where(x => x.ProjectId == projectId && distinctUserIds.Contains(x.UserId))
+            .ToListAsync();
+
+        var existingUserIds = existingProjectUsers.Select(x => x.UserId).ToHashSet();
+
+        var newProjectUsers = distinctUserIds
+            .Where(userId => !existingUserIds.Contains(userId))
+            .Select(userId => new ProjectUser { ProjectId = projectId, UserId = userId })
+            .ToList();
+
+        if (newProjectUsers.Count > 0)
+        {
+            dbContext.Set<Entities.Donors.ProjectUser>().AddRange(newProjectUsers);
+            await dbContext.SaveChangesAsync();
+        }
+
+        return existingProjectUsers.Concat(newProjectUsers).ToList();
+    }
+    
+    public async Task RemoveFromProject(int[] dataUserIds, int projectId)
+    {
+        await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+
+        var projectUsers = await dbContext.Set<Entities.Donors.ProjectUser>()
+            .Where(x => x.ProjectId == projectId && dataUserIds.Contains(x.UserId))
+            .ToListAsync();
+
+        if (projectUsers.Count > 0)
+        {
+            dbContext.Set<Entities.Donors.ProjectUser>().RemoveRange(projectUsers);
+            await dbContext.SaveChangesAsync();
+        }
+    }
+
+    public async Task<Project> Load(int projectId)
+    {
+        await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+
+        return await dbContext.Projects.FirstOrDefaultAsync(x => x.Id == projectId);
     }
 }

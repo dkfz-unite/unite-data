@@ -21,6 +21,13 @@ public class DataUserRepository: Repository
             .ToArrayAsync();
     }
     
+    public async Task<List<DataUser>> LoadAll()
+    {
+        await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+    
+        return await dbContext.DataUsers.ToListAsync();
+    }
+    
     public async Task<List<DataUser>> Load(int[] userIds)
     {
         await using var dbContext = await _dbContextFactory.CreateDbContextAsync();

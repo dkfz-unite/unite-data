@@ -146,4 +146,12 @@ public class ProjectsRepository : Repository
 
         return await dbContext.Projects.FirstOrDefaultAsync(x => x.Id == projectId);
     }
+    
+    public async Task Save(Project project)
+    {
+        await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+
+        dbContext.Projects.Update(project);
+        await dbContext.SaveChangesAsync();
+    }
 }

@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ReleaseVersion>12.10.29</ReleaseVersion>
-    <Version>12.10.29</Version>
+    <ReleaseVersion>12.10.31</ReleaseVersion>
+    <Version>12.10.31</Version>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <RepositoryUrl>https://github.com/dkfz-unite/unite-data</RepositoryUrl>
     <Authors>Valiantsin Ulasau (DKFZ)</Authors>
